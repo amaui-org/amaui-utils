@@ -88,18 +88,26 @@
     "@amaui/utils" "^1.0.113"
     "@babel/runtime" "^7.16.3"
 
-"@amaui/test@^1.0.170":
-  version "1.0.170"
-  resolved "https://registry.yarnpkg.com/@amaui/test/-/test-1.0.170.tgz#2b884c0fc89fc5f97f58031b0e10fe73f42e54dd"
-  integrity sha512-pKMlyqtcat4QdrDyIDHyWNe6NvH5GApVb5+9eDRYfjCrt1aQDmjBndXuMU248JkEdDD8vYQH5GSFUOxDZX7f7Q==
+"@amaui/subscription@^1.0.144":
+  version "1.0.144"
+  resolved "https://registry.yarnpkg.com/@amaui/subscription/-/subscription-1.0.144.tgz#61fa4040318abd81733bf469e1aa3741b1262214"
+  integrity sha512-lNpHhqvYwkKCxROCVscYbEl3URvuylAw84jK4pjvhxW0pnwrZs0ki9Xm68t4b98TOJWTmys5ABtM8e37QKA/ZA==
+  dependencies:
+    "@amaui/utils" "^1.0.174"
+    "@babel/runtime" "^7.16.3"
+
+"@amaui/test@^1.0.1114":
+  version "1.0.1114"
+  resolved "https://registry.yarnpkg.com/@amaui/test/-/test-1.0.1114.tgz#46e037f94d984f5c0ce828ec2c767fd3ac6c6573"
+  integrity sha512-dM6i0P9iz4jJoN9Joo67o/bo3QGvpCfztU6fmlNh//qAYaW9e8m1PR1oXwsfZQ+suyTQLbt0+/8E3b0jQi/4zA==
   dependencies:
     "@amaui/date" "^1.0.123"
     "@amaui/diff" "^1.0.113"
     "@amaui/errors" "^1.0.11"
     "@amaui/log" "^1.0.111"
     "@amaui/request" "^1.0.114"
-    "@amaui/subscription" "^1.0.111"
-    "@amaui/utils" "^1.0.151"
+    "@amaui/subscription" "^1.0.144"
+    "@amaui/utils" "^1.0.1871"
     "@babel/runtime" "^7.16.3"
     fast-glob "^3.2.7"
     yargs "^17.3.1"
@@ -124,16 +132,6 @@
     path-to-regexp "^6.2.0"
     uuid "^8.3.2"
 
-"@amaui/utils@^1.0.151":
-  version "1.0.151"
-  resolved "https://registry.yarnpkg.com/@amaui/utils/-/utils-1.0.151.tgz#20baf0ae7ec8237cda45de31ad704922d22a7ef0"
-  integrity sha512-XTYEVW2fnrset0xsRrUe12u6vi7244wYeMv0Uc5m6dcDI8eI3iLxU4eIHcC2yZmWXVEv4uBlRKawWDagySjxUg==
-  dependencies:
-    "@babel/runtime" "^7.16.3"
-    crypto-js "^4.1.1"
-    path-to-regexp "^6.2.0"
-    uuid "^8.3.2"
-
 "@amaui/utils@^1.0.174":
   version "1.0.174"
   resolved "https://registry.yarnpkg.com/@amaui/utils/-/utils-1.0.174.tgz#f9db9802a7b471e692ff4a98dcae3b9921c57df5"
@@ -142,6 +140,16 @@
     "@babel/runtime" "^7.16.3"
     crypto-js "^4.1.1"
     path-to-regexp "^6.2.0"
+    uuid "^8.3.2"
+
+"@amaui/utils@^1.0.1871", "@amaui/utils@^1.0.1874":
+  version "1.0.1874"
+  resolved "https://registry.yarnpkg.com/@amaui/utils/-/utils-1.0.1874.tgz#41fe174b0c7a66c2fcae3eb7742ee830a3864a85"
+  integrity sha512-pVJlw8P2oQDZHgYWFTOPwo80/1x89aRIitq2YMiQFL9/f/KHY+QtN44bOKHc5x8qdo7eIwB2HK6w4/eBmmkGcQ==
+  dependencies:
+    "@babel/runtime" "^7.18.3"
+    crypto-js "^4.1.1"
+    path-to-regexp "^6.2.1"
     uuid "^8.3.2"
 
 "@amaui/zip@^1.0.111":
