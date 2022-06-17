@@ -1,6 +1,6 @@
 {
   "name": "@amaui/utils",
-  "version": "1.0.1871",
+  "version": "1.0.1874",
   "description": "Utils",
   "repository": "https://github.com/amaui-org/amaui-utils.git",
   "author": "Lazar <lazareric.com@gmail.com>",
@@ -31,7 +31,7 @@
     "release": "yarn test && yarn build && npm publish ./build",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "type": "tsc --noEmit -p tsconfig.json",
-    "cov": "cross-env NODE_ENV=test amaui-test",
+    "cov": "cross-env NODE_ENV=test amaui-test 'test/reactLazy.test.ts'",
     "test:pre": "pm2 update && pm2 delete all && pm2 start utils/js/test/app.js && wait-on http://localhost:4000",
     "test:post": "pm2 delete all",
     "test": "yarn lint && yarn type && yarn build && yarn test:pre && yarn cov && yarn test:post"
@@ -40,9 +40,9 @@
     "react": "^17.0.2"
   },
   "dependencies": {
-    "@babel/runtime": "^7.16.3",
+    "@babel/runtime": "^7.18.3",
     "crypto-js": "^4.1.1",
-    "path-to-regexp": "^6.2.0",
+    "path-to-regexp": "^6.2.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
@@ -51,6 +51,8 @@
     "@amaui/utils": "^1.0.174",
     "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.0",
+    "@babel/plugin-proposal-class-properties": "^7.17.12",
+    "@babel/plugin-proposal-object-rest-spread": "^7.18.0",
     "@babel/plugin-transform-runtime": "^7.17.10",
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.7",
@@ -73,7 +75,7 @@
     "fs-extra": "^10.0.0",
     "playwright": "1.17.1",
     "pm2": "^5.1.2",
-    "react": "^17.0.2",
+    "react": "^18.2.0",
     "rimraf": "^3.0.2",
     "rollup": "^2.60.2",
     "rollup-plugin-node-globals": "^1.4.0",

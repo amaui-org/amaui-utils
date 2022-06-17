@@ -36,19 +36,20 @@ group('@amaui/utils/reactLazy', () => {
 
     values.forEach(value => assert(value).eql([
       {
-        _payload: {
-          _status: 1,
-          _result: {
-            '$$typeof': undefined,
-            type: 'a',
-            key: null,
-            ref: null,
-            props: {},
-            _owner: null,
-          },
-        },
-        _init: undefined,
-      },
+        "_payload": {
+          "_status": 1,
+          "_result": {
+            "__esModule": true,
+            "default": {
+              "type": "a",
+              "key": null,
+              "ref": null,
+              "props": {},
+              "_owner": null
+            }
+          }
+        }
+      }
     ]));
   });
 
