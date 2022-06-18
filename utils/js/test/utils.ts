@@ -231,4 +231,4 @@ preEveryTo(async () => {
   });
 });
 
-postAll(async () => await closeBrowsers(utils.browsers));
+postAll(async () => await closeBrowsers(utils.browsers as IBrowsers));
