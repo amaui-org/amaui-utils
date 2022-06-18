@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/hash', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('hash', async () => {
     const values_ = [
@@ -63,7 +56,7 @@ group('@amaui/utils/hash', () => {
       ];
 
       return values_.map(value => window.AmauiUtils.hash(value));
-    }, { browsers });
+    });
     const valueNode = values_.map(value => AmauiUtils.hash(value));
     const values = [valueNode, ...valueBrowsers];
 
@@ -81,13 +74,13 @@ group('@amaui/utils/hash', () => {
         '0xac8d8342bbb2362d13f0a559a3621bb407011368895164b628a54f7fc33fc43c',
         '0x4b227777d4dd1fc61c6f884f48641d02b4d121d3fd328cb08b5531fcacdabf8a',
         '0xb5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b',
-        '0xa0951901d7a89f4126687862fa7a496a6fa7f8779d760ca6931c2ef2c8c40fa4',
+        '0x44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a',
         '0x71047b3ff31e14678c9efaf7cb1b9c32166fa5a7b09c24ca1bdb33fa29cab590',
         '0x302e5bed656bca90e2a9982a20c1983d3854f5c2404679f279002ced5586bebf',
         '0xe3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
         '0x74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b',
         '0x5302090aad87a3ba1943e5db8145535fb96b149059400055edb465e62553482d',
-        '0x67c2290197de6b686234e301efb1499a87078d11adfc9be57fbc6d1685c22f9c'
+        '0x375d5c418f0d1864a46592bbb9453e37c6b78d3ae85725a05b486529307ec74b'
       ]);
     });
   });
@@ -98,7 +91,7 @@ group('@amaui/utils/hash', () => {
       const valueBrowsers = await evaluate((window: any) => [
         window.AmauiUtils.hash('a', { withPrefix: true }),
         window.AmauiUtils.hash('a', { withPrefix: false }),
-      ], { browsers });
+      ]);
       const valueNode = [
         AmauiUtils.hash('a', { withPrefix: true }),
         AmauiUtils.hash('a', { withPrefix: false }),
@@ -115,7 +108,7 @@ group('@amaui/utils/hash', () => {
       const valueBrowsers = await evaluate((window: any) => [
         window.AmauiUtils.hash('a', { serialize: true }),
         window.AmauiUtils.hash('a', { serialize: false }),
-      ], { browsers });
+      ]);
       const valueNode = [
         AmauiUtils.hash('a', { serialize: true }),
         AmauiUtils.hash('a', { serialize: false }),
@@ -141,7 +134,7 @@ group('@amaui/utils/hash', () => {
         ([1, 4, 1] as any).hash(),
         ({ a: '4' } as any).hash(),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

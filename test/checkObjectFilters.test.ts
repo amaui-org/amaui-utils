@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/checkObjectFilters', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('checkObjectFilters', async () => {
     const valueBrowsers = await evaluate((window: any) => [
@@ -35,7 +28,7 @@ group('@amaui/utils/checkObjectFilters', () => {
         ],
         'or'
       ),
-    ], { browsers });
+    ]);
     const valueNode = [
       AmauiUtils.checkObjectFilters(
         { a: 4, ab: [1, 4, 7], ad: { a: 4 } },
@@ -84,7 +77,7 @@ group('@amaui/utils/checkObjectFilters', () => {
           ],
           'or'
         ),
-      ], { browsers });
+      ]);
       const valueNode = [
         AmauiUtils.checkObjectFilters(
           { a: 4, ab: [1, 4, 7], ad: { a: 4 } },
@@ -140,7 +133,7 @@ group('@amaui/utils/checkObjectFilters', () => {
           ],
           'and'
         ),
-      ], { browsers });
+      ]);
       const valueNode = [
         AmauiUtils.checkObjectFilters(
           { a: 4, ab: [1, 4, 7], ad: { a: 'a ad' } },
@@ -191,7 +184,7 @@ group('@amaui/utils/checkObjectFilters', () => {
           ],
         ),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

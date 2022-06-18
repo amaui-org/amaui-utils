@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/colorToRgb', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('colorToRgb', async () => {
     const values_ = [
@@ -51,7 +44,7 @@ group('@amaui/utils/colorToRgb', () => {
       ];
 
       return values_.map((value: any) => window.AmauiUtils.colorToRgb(value));
-    }, { browsers });
+    });
     const valueNode = values_.map((value: any) => AmauiUtils.colorToRgb(value));
     const values = [valueNode, ...valueBrowsers];
 
@@ -88,7 +81,7 @@ group('@amaui/utils/colorToRgb', () => {
       ];
 
       return values_.map((value: any) => window.AmauiUtils.colorToRgb(value, 0.4));
-    }, { browsers });
+    });
     const valueNode = values_.map((value: any) => AmauiUtils.colorToRgb(value, 0.4));
     const values = [valueNode, ...valueBrowsers];
 
@@ -126,7 +119,7 @@ group('@amaui/utils/colorToRgb', () => {
         window.AmauiUtils.colorToRgb('rgb(255, 140, 0)', undefined, false),
         ...values_.map((value: any) => window.AmauiUtils.colorToRgb(value, undefined, true)),
       ];
-    }, { browsers });
+    });
     const valueNode = [
       AmauiUtils.colorToRgb('rgb(255, 140, 0)', undefined, false),
       ...values_.map((value: any) => AmauiUtils.colorToRgb(value, undefined, true)),
@@ -151,7 +144,7 @@ group('@amaui/utils/colorToRgb', () => {
       return [
         ('rgb(255, 140, 0)' as any).colorToRgb(.4),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

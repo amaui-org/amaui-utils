@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/hslToRgb', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('hslToRgb', async () => {
     const values_ = [
@@ -49,7 +42,7 @@ group('@amaui/utils/hslToRgb', () => {
       ];
 
       return values_.map((value: any) => window.AmauiUtils.hslToRgb(value));
-    }, { browsers });
+    });
     const valueNode = values_.map((value: any) => AmauiUtils.hslToRgb(value));
     const values = [valueNode, ...valueBrowsers];
 
@@ -82,7 +75,7 @@ group('@amaui/utils/hslToRgb', () => {
       ];
 
       return values_.map((value: any) => window.AmauiUtils.hslToRgb(value, 0.4));
-    }, { browsers });
+    });
     const valueNode = values_.map((value: any) => AmauiUtils.hslToRgb(value, 0.4));
     const values = [valueNode, ...valueBrowsers];
 
@@ -111,7 +104,7 @@ group('@amaui/utils/hslToRgb', () => {
         window.AmauiUtils.hslToRgb('hsl(39, 100%, 50%)', undefined, false),
         ...values_.map((value: any) => window.AmauiUtils.hslToRgb(value, undefined, true)),
       ];
-    }, { browsers });
+    });
     const valueNode = [
       AmauiUtils.hslToRgb('hsl(39, 100%, 50%)', undefined, false),
       ...values_.map((value: any) => AmauiUtils.hslToRgb(value, undefined, true)),
@@ -132,7 +125,7 @@ group('@amaui/utils/hslToRgb', () => {
       return [
         ('hsl(40, 100%, 40%)' as any).hslToRgb(),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

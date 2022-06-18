@@ -2,20 +2,13 @@
 import { assert } from '@amaui/test';
 import { spy } from 'sinon';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/asyncMethodRetry', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('made', async () => {
     let retryCount = 3;
@@ -50,7 +43,7 @@ group('@amaui/utils/asyncMethodRetry', () => {
       await window.AmauiUtils.asyncMethodRetry(methodMain, 40);
 
       return [method.callCount];
-    }, { browsers });
+    });
     const valueNode = [method.callCount];
     const values = [valueNode, ...valueBrowsers];
 
@@ -108,7 +101,7 @@ group('@amaui/utils/asyncMethodRetry', () => {
         method.callCount,
         value instanceof Error,
       ];
-    }, { browsers });
+    });
     const valueNode = [
       retryCount,
       method.callCount,
@@ -168,7 +161,7 @@ group('@amaui/utils/asyncMethodRetry', () => {
         new Date().getTime() - start,
         method.callCount,
       ];
-    }, { browsers });
+    });
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => {
@@ -225,7 +218,7 @@ group('@amaui/utils/asyncMethodRetry', () => {
         method.callCount,
         value instanceof Error,
       ];
-    }, { browsers });
+    });
     const valueNode = [
       method.callCount,
       value instanceof Error,

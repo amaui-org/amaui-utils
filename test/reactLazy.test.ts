@@ -1,18 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 group('@amaui/utils/reactLazy', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('reactLazy', async () => {
     const valueBrowsers = await evaluate(async (window: any) => {
@@ -29,9 +22,10 @@ group('@amaui/utils/reactLazy', () => {
       } catch (error) { }
 
       return [
-        lazy,
+        lazy
       ];
-    }, { browsers });
+    });
+
     const values = [...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -73,7 +67,8 @@ group('@amaui/utils/reactLazy', () => {
         window.AMAUI.test?.reactLazy.logs.length,
         (await caches.keys()).length,
       ];
-    }, { browsers });
+    });
+
     const values = [...valueBrowsers];
 
     values.forEach(value => assert(value).eql([

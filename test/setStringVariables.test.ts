@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/setStringVariables', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('setStringVariables', async () => {
     const values_ = [
@@ -33,7 +26,7 @@ group('@amaui/utils/setStringVariables', () => {
       ];
 
       return values_;
-    }, { browsers });
+    });
     const valueNode = values_;
     const values = [valueNode, ...valueBrowsers];
 
@@ -64,7 +57,7 @@ group('@amaui/utils/setStringVariables', () => {
         ];
 
         return values_;
-      }, { browsers });
+      });
       const valueNode = values_;
       const values = [valueNode, ...valueBrowsers];
 
@@ -93,7 +86,7 @@ group('@amaui/utils/setStringVariables', () => {
         ];
 
         return values_;
-      }, { browsers });
+      });
       const valueNode = values_;
       const values = [valueNode, ...valueBrowsers];
 
@@ -122,7 +115,7 @@ group('@amaui/utils/setStringVariables', () => {
         ];
 
         return values_;
-      }, { browsers });
+      });
       const valueNode = values_;
       const values = [valueNode, ...valueBrowsers];
 
@@ -143,7 +136,7 @@ group('@amaui/utils/setStringVariables', () => {
       return [
         ('a {a} a [ab]' as any).setVariables([{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }]),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

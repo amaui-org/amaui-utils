@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/combination', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('combination', async () => {
     const values_ = [
@@ -84,7 +77,7 @@ group('@amaui/utils/combination', () => {
         item.length === window.AmauiUtils.unique(item.map(item_ => item_.join('-'))).length,
         item.filter(item_ => window.AmauiUtils.unique(item_).length === item_.length).length === item.length
       ]);
-    }, { browsers });
+    });
     const valueNode = values_.map((value: [[any, any], any]) => [AmauiUtils.combination(...value[0]), value[0][1], value[1]]).map(([item, len, length]) => !item ? item : [
       item.length === length,
       !len || item.filter(item_ => item_.length === len).length === length,
@@ -163,7 +156,7 @@ group('@amaui/utils/combination', () => {
             item.length === window.AmauiUtils.unique(item.map(item_ => item_.join('-'))).length,
             item.filter(item_ => window.AmauiUtils.unique(item_).length === item_.length).length === item.length
           ]);
-        }, { browsers });
+        });
         const valueNode = values_.map((value: [[any, any], any]) => [AmauiUtils.combination(...value[0]), value[0][1], value[1]]).map(([item, len, length]) => !item ? item : [
           item.length === length,
           !len || item.filter(item_ => item_.length === len).length === length,
@@ -250,7 +243,7 @@ group('@amaui/utils/combination', () => {
             item.length === window.AmauiUtils.unique(item.map(item_ => item_.join('-'))).length,
             item.filter(item_ => window.AmauiUtils.unique(item_).length === item_.length).length === item.length
           ]);
-        }, { browsers });
+        });
         const valueNode = values_.map(item => [item[0][0], item[0][1], item[1]]).map(([item, len, length]) => !item ? item : [
           item.length === length,
           !len || item.filter(item_ => item_.length === len).length === length,
@@ -273,7 +266,7 @@ group('@amaui/utils/combination', () => {
       window.AmauiUtils.polyfills();
 
       return ([1, 2, 3, 4] as any).combination(3);
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 
@@ -289,15 +282,8 @@ group('@amaui/utils/combination', () => {
 });
 
 group('@amaui/utils/combinationWithRepetition', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('combinationWithRepetition', async () => {
     const values_ = [
@@ -386,7 +372,7 @@ group('@amaui/utils/combinationWithRepetition', () => {
         !len || item.filter(item_ => item_.length === len).length === length,
         item.length === window.AmauiUtils.unique(item.map(item_ => item_.join('-'))).length
       ]);
-    }, { browsers });
+    });
     const valueNode = values_.map((value: [[any, any], any]) => [AmauiUtils.combinationWithRepetition(...value[0]), value[0][1], value[1]]).map(([item, len, length]) => !item ? item : [
       item.length === length,
       !len || item.filter(item_ => item_.length === len).length === length,
@@ -483,7 +469,7 @@ group('@amaui/utils/combinationWithRepetition', () => {
             !len || item.filter(item_ => item_.length === len).length === length,
             item.length === window.AmauiUtils.unique(item.map(item_ => item_.join('-'))).length
           ]);
-        }, { browsers });
+        });
         const valueNode = values_.map((value: [[any, any], any]) => [AmauiUtils.combinationWithRepetition(...value[0]), value[0][1], value[1]]).map(([item, len, length]) => !item ? item : [
           item.length === length,
           !len || item.filter(item_ => item_.length === len).length === length,
@@ -592,7 +578,7 @@ group('@amaui/utils/combinationWithRepetition', () => {
             !len || item.filter(item_ => item_.length === len).length === length,
             item.length === window.AmauiUtils.unique(item.map(item_ => item_.join('-'))).length
           ]);
-        }, { browsers });
+        });
         const valueNode = values_.map(item => [item[0][0], item[0][1], item[1]]).map(([item, len, length]) => !item ? item : [
           item.length === length,
           !len || item.filter(item_ => item_.length === len).length === length,
@@ -614,7 +600,7 @@ group('@amaui/utils/combinationWithRepetition', () => {
       window.AmauiUtils.polyfills();
 
       return ([1, 2, 3, 4] as any).combinationWithRepetition(3);
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

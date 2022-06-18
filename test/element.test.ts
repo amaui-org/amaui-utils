@@ -1,15 +1,14 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 group('@amaui/utils/element', () => {
-  let browsers: IBrowsers;
 
   pre(async () => {
-    browsers = await startBrowsers();
-
     await evaluate((window: any) => {
+      window.document.body.innerHTML = '';
+
       const div = window.document.createElement('div');
 
       div.innerHTML = `
@@ -25,15 +24,11 @@ group('@amaui/utils/element', () => {
       `;
 
       window.document.body.append(div);
-    }, { browsers });
+    });
 
   });
 
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('value', async () => {
     const valueBrowsers = await evaluate((window: any) => {
@@ -53,7 +48,7 @@ group('@amaui/utils/element', () => {
       ];
 
       return value.map(item => item.value).map(item => item && (item.tagName.toLowerCase() + item.id));
-    }, { browsers });
+    });
     const values = [...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -87,7 +82,7 @@ group('@amaui/utils/element', () => {
       ];
 
       return value.map(item => item && (item.nodeName?.toLowerCase() + (item.id || '')));
-    }, { browsers });
+    });
     const values = [...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -124,7 +119,7 @@ group('@amaui/utils/element', () => {
         ];
 
         return value.map(item => item && item.map(item_ => item_.nodeName?.toLowerCase() + (item_.id || '')));
-      }, { browsers });
+      });
       const values = [...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -162,7 +157,7 @@ group('@amaui/utils/element', () => {
         ];
 
         return value.map(item => item && item.map(item_ => item_.nodeName?.toLowerCase() + (item_.id || '')));
-      }, { browsers });
+      });
       const values = [...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -189,7 +184,7 @@ group('@amaui/utils/element', () => {
         ];
 
         return value.map(item => item && item.map(item_ => item_.nodeName?.toLowerCase() + (item_.id || '')));
-      }, { browsers });
+      });
       const values = [...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -227,7 +222,7 @@ group('@amaui/utils/element', () => {
         ];
 
         return value.map(item => item && item.nodeName?.toLowerCase() + (item.id || ''));
-      }, { browsers });
+      });
       const values = [...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -259,7 +254,7 @@ group('@amaui/utils/element', () => {
         ];
 
         return value.map(item => item && item.nodeName?.toLowerCase() + (item.id || ''));
-      }, { browsers });
+      });
       const values = [...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -283,7 +278,7 @@ group('@amaui/utils/element', () => {
         ];
 
         return value.map(item => item && item.nodeName?.toLowerCase() + (item.id || ''));
-      }, { browsers });
+      });
       const values = [...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -321,7 +316,7 @@ group('@amaui/utils/element', () => {
         ];
 
         return value.map(item => item && item.nodeName?.toLowerCase() + (item.id || ''));
-      }, { browsers });
+      });
       const values = [...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -353,7 +348,7 @@ group('@amaui/utils/element', () => {
         ];
 
         return value.map(item => item && item.nodeName?.toLowerCase() + (item.id || ''));
-      }, { browsers });
+      });
       const values = [...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -378,7 +373,7 @@ group('@amaui/utils/element', () => {
         ];
 
         return value.map(item => item && item.nodeName?.toLowerCase() + (item.id || ''));
-      }, { browsers });
+      });
       const values = [...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -415,7 +410,7 @@ group('@amaui/utils/element', () => {
         ];
 
         return value;
-      }, { browsers });
+      });
       const values = [...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -450,7 +445,7 @@ group('@amaui/utils/element', () => {
           ];
 
           return value;
-        }, { browsers });
+        });
         const values = [...valueBrowsers];
 
         values.forEach(value => assert(value).eql([
@@ -483,7 +478,7 @@ group('@amaui/utils/element', () => {
           ];
 
           return value;
-        }, { browsers });
+        });
         const values = [...valueBrowsers];
 
         values.forEach(value => assert(value).eql([
@@ -506,7 +501,7 @@ group('@amaui/utils/element', () => {
         ];
 
         return value;
-      }, { browsers });
+      });
       const values = [...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -546,7 +541,7 @@ group('@amaui/utils/element', () => {
         ];
 
         return value;
-      }, { browsers });
+      });
       const values = [...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -585,7 +580,7 @@ group('@amaui/utils/element', () => {
           ];
 
           return value;
-        }, { browsers });
+        });
         const values = [...valueBrowsers];
 
         values.forEach(value => assert(value).eql([
@@ -623,7 +618,7 @@ group('@amaui/utils/element', () => {
           ];
 
           return value;
-        }, { browsers });
+        });
         const values = [...valueBrowsers];
 
         values.forEach(value => assert(value).eql([
@@ -646,7 +641,7 @@ group('@amaui/utils/element', () => {
         ];
 
         return value;
-      }, { browsers });
+      });
       const values = [...valueBrowsers];
 
       values.forEach(value => assert(value).eql([

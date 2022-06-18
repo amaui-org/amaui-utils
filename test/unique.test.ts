@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/unique', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('unique', async () => {
     const value = [
@@ -54,7 +47,7 @@ group('@amaui/utils/unique', () => {
       ];
 
       return window.AmauiUtils.unique(value, 'a.a', '1');
-    }, { browsers });
+    });
     const valueNode = AmauiUtils.unique(value, 'a.a', '1');
     const values = [valueNode, ...valueBrowsers];
 
@@ -96,7 +89,7 @@ group('@amaui/utils/unique', () => {
       ];
 
       return window.AmauiUtils.unique(value);
-    }, { browsers });
+    });
     const valueNode = AmauiUtils.unique(value);
     const values = [valueNode, ...valueBrowsers];
 
@@ -130,7 +123,7 @@ group('@amaui/utils/unique', () => {
       ];
 
       return window.AmauiUtils.unique(value, 'a.a', '1');
-    }, { browsers });
+    });
     const valueNode = AmauiUtils.unique(value, 'a.a', '1');
     const values = [valueNode, ...valueBrowsers];
 
@@ -164,7 +157,7 @@ group('@amaui/utils/unique', () => {
       ];
 
       return window.AmauiUtils.unique(value);
-    }, { browsers });
+    });
     const valueNode = AmauiUtils.unique(value);
     const values = [valueNode, ...valueBrowsers];
 
@@ -185,7 +178,7 @@ group('@amaui/utils/unique', () => {
       return [
         ([1, 4, 1] as any).unique(),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

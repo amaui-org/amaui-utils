@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/binaryStringToHexadecimal', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('binaryStringToHexadecimal', async () => {
     const values_ = [
@@ -85,7 +78,7 @@ group('@amaui/utils/binaryStringToHexadecimal', () => {
       ];
 
       return values_;
-    }, { browsers });
+    });
     const valueNode = values_;
     const values = [valueNode, ...valueBrowsers];
 
@@ -130,7 +123,7 @@ group('@amaui/utils/binaryStringToHexadecimal', () => {
       return [
         ('10100100010011' as any).binaryStringToHexadecimal(),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

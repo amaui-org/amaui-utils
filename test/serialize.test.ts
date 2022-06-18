@@ -1,30 +1,27 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/serialize', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('serialize', async () => {
     const valueBrowsers = await evaluate((window: any) => {
+      class A {
+        a = 14;
+      }
+
       const values_ = [
         'a',
         4,
         true,
         new Map(),
         function a() { },
-        class A { },
+        new A(),
         () => { },
         undefined,
         null,
@@ -41,7 +38,11 @@ group('@amaui/utils/serialize', () => {
       ];
 
       return values_.map(value => window.AmauiUtils.serialize(value));
-    }, { browsers });
+    });
+
+    class A {
+      a = 14;
+    }
 
     const values_ = [
       'a',
@@ -49,7 +50,7 @@ group('@amaui/utils/serialize', () => {
       true,
       new Map(),
       function a() { },
-      class A { },
+      new A(),
       () => { },
       undefined,
       null,
@@ -69,27 +70,19 @@ group('@amaui/utils/serialize', () => {
 
     const values = [valueNode, ...valueBrowsers];
 
-    values.forEach(value => {
-      assert(value[5]).one.eq([
-        '"class A {\\n                }"',
-        '"class A {\\n            }"',
-      ]);
-
-      value.splice(5, 1);
-
-      assert(value).eql([
-        '"a"',
-        '4',
-        'true',
-        '"[object Map]"',
-        '"function a() { }"',
-        '"() => { }"',
-        '',
-        'null',
-        '[1,"a",[1,"a",4]]',
-        '{"a":4,"b":{"a":447,"b":[true,"function a() { }","[object Map]",{}],"d":{"a":4}},"c":[1,"a","4",[1,"a",4]]}'
-      ]);
-    });
+    values.forEach(value => assert(value).eql([
+      "\"a\"",
+      "4",
+      "true",
+      "{}",
+      "\"function a() { }\"",
+      "{\"a\":14}",
+      "\"() => { }\"",
+      "",
+      "null",
+      "[1,\"a\",[1,\"a\",4]]",
+      "{\"a\":4,\"b\":{\"a\":447,\"b\":[true,\"function a() { }\",{},{}],\"d\":{\"a\":4}},\"c\":[1,\"a\",\"4\",[1,\"a\",4]]}"
+    ]));
   });
 
   to('serialize circular ref', async () => {
@@ -106,7 +99,7 @@ group('@amaui/utils/serialize', () => {
       ];
 
       return values.map(value => window.AmauiUtils.serialize(value));
-    }, { browsers });
+    });
 
     const a: any = [1, 4];
     const a1 = { a: 14 };
@@ -140,7 +133,7 @@ group('@amaui/utils/serialize', () => {
         ([1, 4] as any).serialize().deserialize(),
         ({ a: '4' } as any).serialize().deserialize(),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

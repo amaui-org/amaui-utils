@@ -24,9 +24,7 @@ const run = async () => {
     paths.push(
       'https://cdn.jsdelivr.net/npm/sinon@12.0.1/pkg/sinon.min.js',
 
-      'https://unpkg.com/react@latest/umd/react.production.min.js',
-
-      'https://unpkg.com/@amaui/utils@latest/umd/amaui-utils.prod.min.js'
+      'https://unpkg.com/react@latest/umd/react.production.min.js'
     );
 
     let value = `<!DOCTYPE html>

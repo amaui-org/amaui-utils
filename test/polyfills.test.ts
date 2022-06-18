@@ -1,35 +1,26 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/polyfills', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   preTo(reset);
 
   to('additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
       const values_ = [
-        window.AmauiUtils.polyfills(false), !(('a' as any).alpha instanceof Function),
         window.AmauiUtils.polyfills(true), ('a' as any).alpha instanceof Function,
       ].filter(Boolean);
 
       return values_;
-    }, { browsers });
+    });
 
     const values_ = [
-      AmauiUtils.polyfills(false), !(('a' as any).alpha instanceof Function),
       AmauiUtils.polyfills(true), ('a' as any).alpha instanceof Function,
     ].filter(Boolean);
 
@@ -38,7 +29,6 @@ group('@amaui/utils/polyfills', () => {
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
-      true,
       true,
     ]));
   });
@@ -59,7 +49,7 @@ group('@amaui/utils/polyfills', () => {
             File.prototype.arrayBuffer.toString().indexOf('native code') === -1,
             Blob.prototype.arrayBuffer.toString().indexOf('native code') === -1,
           ];
-        }, { browsers });
+        });
         const values = [...valueBrowsers];
 
         values.forEach(value => assert(value).eql([
@@ -108,7 +98,7 @@ group('@amaui/utils/polyfills', () => {
           );
 
           return result;
-        }, { browsers });
+        });
         const values = [...valueBrowsers];
 
         values.forEach(value => assert(value).eql([

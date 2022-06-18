@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/parse', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('parse', async () => {
     const values_ = [
@@ -61,7 +54,7 @@ group('@amaui/utils/parse', () => {
       ];
 
       return values_.map(value => window.AmauiUtils.parse(value));
-    }, { browsers });
+    });
     const valueNode = values_.map(value => AmauiUtils.parse(value));
     const values = [valueNode, ...valueBrowsers];
 
@@ -175,7 +168,7 @@ group('@amaui/utils/parse', () => {
         return [
           window.AMAUI.test.parse.logs.length,
         ];
-      }, { browsers });
+      });
       const valueNode = [
         global.AMAUI.test.parse.logs.length,
       ];
@@ -192,7 +185,7 @@ group('@amaui/utils/parse', () => {
           window.AmauiUtils.parse([], 'JSON', { returnSame: true }),
           window.AmauiUtils.parse([], 'JSON', { returnSame: false }),
         ];
-      }, { browsers });
+      });
       const valueNode = [
         AmauiUtils.parse([], 'JSON', { returnSame: true }),
         AmauiUtils.parse([], 'JSON', { returnSame: false }),
@@ -218,7 +211,7 @@ group('@amaui/utils/parse', () => {
         ('[]' as any).parse(),
         ('{}' as any).parse(),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

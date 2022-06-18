@@ -2,20 +2,13 @@
 import { assert } from '@amaui/test';
 import path from 'path';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset, utils } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/equalDeep', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('string', async () => {
     const values_ = [
@@ -30,7 +23,7 @@ group('@amaui/utils/equalDeep', () => {
       ];
 
       return values_;
-    }, { browsers });
+    });
     const valueNode = values_;
     const values = [valueNode, ...valueBrowsers];
 
@@ -52,7 +45,7 @@ group('@amaui/utils/equalDeep', () => {
       ];
 
       return values_;
-    }, { browsers });
+    });
     const valueNode = values_;
     const values = [valueNode, ...valueBrowsers];
 
@@ -72,7 +65,7 @@ group('@amaui/utils/equalDeep', () => {
       ];
 
       return values_;
-    }, { browsers });
+    });
     const valueNode = values_;
     const values = [valueNode, ...valueBrowsers];
 
@@ -98,7 +91,7 @@ group('@amaui/utils/equalDeep', () => {
       ];
 
       return values_;
-    }, { browsers });
+    });
     const valueNode = values_;
     const values = [valueNode, ...valueBrowsers];
 
@@ -126,7 +119,7 @@ group('@amaui/utils/equalDeep', () => {
       ];
 
       return values_;
-    }, { browsers });
+    });
     const valueNode = values_;
     const values = [valueNode, ...valueBrowsers];
 
@@ -138,8 +131,8 @@ group('@amaui/utils/equalDeep', () => {
     const filePath = path.resolve(__dirname, '../size-snapshot.json');
     const filePath1 = path.resolve(__dirname, '../package.json');
 
-    for (const [index, name] of Object.keys(browsers).entries()) {
-      const browser = browsers[name];
+    for (const [index, name] of Object.keys(utils.browsers).entries()) {
+      const browser = utils.browsers[name];
 
       // Note that Promise.all prevents a race condition
       // between clicking and waiting for the file chooser.
@@ -152,10 +145,12 @@ group('@amaui/utils/equalDeep', () => {
           input.multiple = true;
           input.id = 'a';
 
-          window.document.body.appendChild(input);
+          if (!window.document.getElementById('a')) window.document.body.appendChild(input);
         }, { browsers: { [name]: browser } }),
+
         // It is important to call waitForEvent before click to set up waiting.
         browser.page.waitForEvent('filechooser'),
+
         // Opens the file chooser.
         browser.page.locator('#a').click(),
       ]);
@@ -191,7 +186,7 @@ group('@amaui/utils/equalDeep', () => {
       ];
 
       return values_;
-    }, { browsers });
+    });
     const values = [...valueBrowsers];
 
     values.forEach(value => assert(value).eql(new Array(2).fill(true)));
@@ -216,7 +211,7 @@ group('@amaui/utils/equalDeep', () => {
       ];
 
       return values_;
-    }, { browsers });
+    });
     const valueNode = values_;
     const values = [valueNode, ...valueBrowsers];
 
@@ -228,6 +223,7 @@ group('@amaui/utils/equalDeep', () => {
       window.AmauiUtils.polyfills();
 
       const input = window.document.getElementById('a') as HTMLInputElement;
+
       const file = input.files[0];
 
       const a = function a() { };
@@ -243,7 +239,7 @@ group('@amaui/utils/equalDeep', () => {
         (b as any).equalDeep(b),
         (a as any).equalDeep(a),
       ].every(item => item === true);
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

@@ -13,7 +13,7 @@ const input = path.resolve(process.cwd(), inputRelative);
 const module = path.basename(process.cwd());
 
 const globals = {
-  'react': 'React',
+  react: 'React',
 };
 const extensions = ['.ts', '.js'];
 

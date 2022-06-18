@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/rgbToHex', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('rgbToHex', async () => {
     const values_ = [
@@ -45,7 +38,7 @@ group('@amaui/utils/rgbToHex', () => {
       ];
 
       return values_.map((value: any) => window.AmauiUtils.rgbToHex(value));
-    }, { browsers });
+    });
     const valueNode = values_.map((value: any) => AmauiUtils.rgbToHex(value));
     const values = [valueNode, ...valueBrowsers];
 
@@ -71,7 +64,7 @@ group('@amaui/utils/rgbToHex', () => {
       ];
 
       return values_.map((value: any) => window.AmauiUtils.rgbToHex(value, 0.44));
-    }, { browsers });
+    });
     const valueNode = values_.map((value: any) => AmauiUtils.rgbToHex(value, 0.44));
     const values = [valueNode, ...valueBrowsers];
 
@@ -97,7 +90,7 @@ group('@amaui/utils/rgbToHex', () => {
         window.AmauiUtils.rgbToHex('rgb(255, 140, 0)', undefined, false),
         ...values_.map((value: any) => window.AmauiUtils.rgbToHex(value, undefined, true)),
       ];
-    }, { browsers });
+    });
     const valueNode = [
       AmauiUtils.rgbToHex('rgb(255, 140, 0)', undefined, false),
       ...values_.map((value: any) => AmauiUtils.rgbToHex(value, undefined, true)),
@@ -118,7 +111,7 @@ group('@amaui/utils/rgbToHex', () => {
       return [
         ('rgb(255, 140, 0)' as any).rgbToHex(),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

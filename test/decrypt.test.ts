@@ -1,29 +1,26 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/decrypt', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('decrypt', async () => {
+    class A {
+      a = 14;
+    }
+
     const values_ = [
       'a',
       4,
       true,
       new Map(),
       function a() { },
-      class A { },
+      new A(),
       () => { },
       undefined,
       null,
@@ -40,13 +37,17 @@ group('@amaui/utils/decrypt', () => {
     ];
 
     const valueBrowsers = await evaluate((window: any) => {
+      class A {
+        a = 14;
+      }
+
       const values_ = [
         'a',
         4,
         true,
         new Map(),
         function a() { },
-        class A { },
+        new A(),
         () => { },
         undefined,
         null,
@@ -63,65 +64,59 @@ group('@amaui/utils/decrypt', () => {
       ];
 
       return values_.map((value: any) => window.AmauiUtils.decrypt(window.AmauiUtils.encrypt(value, 'amaui'), 'amaui'));
-    }, { browsers });
+    });
 
     const valueNode = values_.map((value: any) => AmauiUtils.decrypt(AmauiUtils.encrypt(value, 'amaui'), 'amaui'));
 
     const values = [valueNode, ...valueBrowsers];
 
-    values.forEach(value => {
-      assert(value[5]).one.eq([
-        'class A {\n                }',
-        'class A {\n            }',
-      ]);
-
-      value.splice(5, 1);
-
-      assert(value).eql([
-        'a',
-        4,
-        true,
-        '[object Map]',
-        'function a() { }',
-        '() => { }',
-        undefined,
-        null,
+    values.forEach(value => assert(value).eql([
+      "a",
+      4,
+      true,
+      {},
+      "function a() { }",
+      {
+        "a": 14
+      },
+      "() => { }",
+      undefined,
+      null,
+      [
+        1,
+        "a",
         [
           1,
-          'a',
+          "a",
+          4
+        ]
+      ],
+      {
+        "a": 4,
+        "b": {
+          "a": 447,
+          "b": [
+            true,
+            "function a() { }",
+            {},
+            {}
+          ],
+          "d": {
+            "a": 4
+          }
+        },
+        "c": [
+          1,
+          "a",
+          "4",
           [
             1,
-            'a',
+            "a",
             4
           ]
-        ],
-        {
-          'a': 4,
-          'b': {
-            'a': 447,
-            'b': [
-              true,
-              'function a() { }',
-              '[object Map]',
-              {}
-            ],
-            'd': {
-              'a': 4
-            }
-          },
-          'c': [
-            1,
-            'a',
-            '4',
-            [
-              1,
-              'a',
-              4
-            ]
-          ]
-        }
-      ]);
-    });
+        ]
+      }
+    ]));
   });
 
   to('Invalid private value', async () => {
@@ -135,8 +130,10 @@ group('@amaui/utils/decrypt', () => {
       ];
 
       return values_.map(value => window.AmauiUtils.decrypt(window.AmauiUtils.encrypt(value, 'amaui'), 'a'));
-    }, { browsers });
+    });
+
     const valueNode = values_.map(value => AmauiUtils.decrypt(AmauiUtils.encrypt(value, 'amaui'), 'a'));
+
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -160,7 +157,7 @@ group('@amaui/utils/decrypt', () => {
         values_.push(!window.AmauiUtils.decrypt(window.AmauiUtils.encrypt('a', 'amaui'), 'a', { exception: false }));
 
         return values_;
-      }, { browsers });
+      });
 
       const values_ = [];
 
@@ -188,7 +185,7 @@ group('@amaui/utils/decrypt', () => {
       return [
         ('a' as any).encrypt('amaui').decrypt('amaui'),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

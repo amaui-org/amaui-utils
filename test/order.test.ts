@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/order', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('object', async () => {
     const values_ = [
@@ -43,7 +36,7 @@ group('@amaui/utils/order', () => {
       ];
 
       return values_;
-    }, { browsers });
+    });
     const valueNode = values_;
     const values = [valueNode, ...valueBrowsers];
 
@@ -74,7 +67,7 @@ group('@amaui/utils/order', () => {
       ];
 
       return values_;
-    }, { browsers });
+    });
     const valueNode = values_;
     const values = [valueNode, ...valueBrowsers];
 
@@ -99,7 +92,7 @@ group('@amaui/utils/order', () => {
         ({ a: [1, 4], ad: 4, b: { a: 4, b: 'a' }, d: 1 } as any).order(),
         (['a', 4, { ad: 4, a: 1 }, 1] as any).order(),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

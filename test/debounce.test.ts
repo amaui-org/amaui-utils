@@ -2,20 +2,13 @@
 import { assert } from '@amaui/test';
 import { spy } from 'sinon';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/debounce', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('debounce', async () => {
     const valueBrowsers = await evaluate(async (window: any) => {
@@ -29,7 +22,7 @@ group('@amaui/utils/debounce', () => {
       }
 
       return [method.callCount, method.args];
-    }, { browsers });
+    });
 
     const method = spy();
     const debounceMethod = AmauiUtils.debounce(method);
@@ -61,7 +54,7 @@ group('@amaui/utils/debounce', () => {
       await window.AmauiUtils.wait(170);
 
       return [method.callCount, method.args];
-    }, { browsers });
+    });
 
     const method = spy();
     const debounceMethod = AmauiUtils.debounce(method);

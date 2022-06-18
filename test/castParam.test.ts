@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/castParam', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('castParam', async () => {
     const values_ = [
@@ -47,7 +40,7 @@ group('@amaui/utils/castParam', () => {
       ];
 
       return values_.map((value: any) => window.AmauiUtils.castParam(value));
-    }, { browsers });
+    });
     const valueNode = values_.map((value: any) => AmauiUtils.castParam(value));
     const values = [valueNode, ...valueBrowsers];
 
@@ -72,7 +65,7 @@ group('@amaui/utils/castParam', () => {
       const valueBrowsers = await evaluate((window: any) => [
         window.AmauiUtils.castParam('a%2C4', { decode: true }),
         window.AmauiUtils.castParam('a%2C4', { decode: false }),
-      ], { browsers });
+      ]);
       const valueNode = [
         AmauiUtils.castParam('a%2C4', { decode: true }),
         AmauiUtils.castParam('a%2C4', { decode: false }),
@@ -88,7 +81,7 @@ group('@amaui/utils/castParam', () => {
     to('decodeMethod', async () => {
       const valueBrowsers = await evaluate((window: any) => [
         window.AmauiUtils.castParam('a', { decode: true, decodeMethod: () => (4 as any) }),
-      ], { browsers });
+      ]);
 
       const valueNode = [
         AmauiUtils.castParam('a', { decode: true, decodeMethod: () => (4 as any) }),
@@ -114,7 +107,7 @@ group('@amaui/utils/castParam', () => {
       ];
 
       return values_.map((value: any) => value.castParam());
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

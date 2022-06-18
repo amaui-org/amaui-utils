@@ -2,18 +2,15 @@
 import { assert } from '@amaui/test';
 import path from 'path';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset, utils } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/getFileName', () => {
-  let browsers: IBrowsers;
 
   pre(async () => {
-    browsers = await startBrowsers();
-
-    for (const name of Object.keys(browsers)) {
-      const browser = browsers[name];
+    for (const name of Object.keys(utils.browsers)) {
+      const browser = utils.browsers[name];
 
       // Note that Promise.all prevents a race condition
       // between clicking and waiting for the file chooser.
@@ -25,7 +22,7 @@ group('@amaui/utils/getFileName', () => {
           input.type = 'file';
           input.id = 'a';
 
-          window.document.body.appendChild(input);
+          if (!window.document.getElementById('a')) window.document.body.appendChild(input);
         }, { browsers: { [name]: browser } }),
         // It is important to call waitForEvent before click to set up waiting.
         browser.page.waitForEvent('filechooser'),
@@ -39,15 +36,11 @@ group('@amaui/utils/getFileName', () => {
     }
   });
 
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('getFileName', async () => {
-    for (const name of Object.keys(browsers)) {
-      const browser = browsers[name];
+    for (const name of Object.keys(utils.browsers)) {
+      const browser = utils.browsers[name];
 
       const valueBrowser = await evaluate(async (window: any) => {
         const input = window.document.getElementById('a') as HTMLInputElement;
@@ -69,8 +62,8 @@ group('@amaui/utils/getFileName', () => {
   group('options', () => {
 
     to('prefix', async () => {
-      for (const name of Object.keys(browsers)) {
-        const browser = browsers[name];
+      for (const name of Object.keys(utils.browsers)) {
+        const browser = utils.browsers[name];
 
         const valueBrowser = await evaluate(async (window: any) => {
           const input = window.document.getElementById('a') as HTMLInputElement;
@@ -90,8 +83,8 @@ group('@amaui/utils/getFileName', () => {
     });
 
     to('sufix', async () => {
-      for (const name of Object.keys(browsers)) {
-        const browser = browsers[name];
+      for (const name of Object.keys(utils.browsers)) {
+        const browser = utils.browsers[name];
 
         const valueBrowser = await evaluate(async (window: any) => {
           const input = window.document.getElementById('a') as HTMLInputElement;
@@ -111,8 +104,8 @@ group('@amaui/utils/getFileName', () => {
     });
 
     to('clean', async () => {
-      for (const name of Object.keys(browsers)) {
-        const browser = browsers[name];
+      for (const name of Object.keys(utils.browsers)) {
+        const browser = utils.browsers[name];
 
         const valueBrowser = await evaluate(async (window: any) => {
           const input = window.document.getElementById('a') as HTMLInputElement;
@@ -134,8 +127,8 @@ group('@amaui/utils/getFileName', () => {
     });
 
     to('capitalize', async () => {
-      for (const name of Object.keys(browsers)) {
-        const browser = browsers[name];
+      for (const name of Object.keys(utils.browsers)) {
+        const browser = utils.browsers[name];
 
         const valueBrowser = await evaluate(async (window: any) => {
           const input = window.document.getElementById('a') as HTMLInputElement;
@@ -157,8 +150,8 @@ group('@amaui/utils/getFileName', () => {
     });
 
     to('withExt', async () => {
-      for (const name of Object.keys(browsers)) {
-        const browser = browsers[name];
+      for (const name of Object.keys(utils.browsers)) {
+        const browser = utils.browsers[name];
 
         const valueBrowser = await evaluate(async (window: any) => {
           const input = window.document.getElementById('a') as HTMLInputElement;
@@ -191,7 +184,7 @@ group('@amaui/utils/getFileName', () => {
       return [
         (file as any).getName(),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

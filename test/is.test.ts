@@ -6,20 +6,13 @@ import React from 'react';
 
 declare const WorkerGlobalScope: any;
 
-import { startBrowsers, IBrowsers, evaluate, startBrowser, closeBrowsers, IBrowser, reset, evaluateWorker } from '../utils/js/test/utils';
+import { evaluate, startBrowser, IBrowser, reset, evaluateWorker, utils } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/is', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   group('is', () => {
 
@@ -42,7 +35,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('string', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('string', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -64,7 +57,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('string', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('string', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -92,7 +85,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('number', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('number', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -118,7 +111,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('number', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('number', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -148,7 +141,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('boolean', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('boolean', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -172,7 +165,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('boolean', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('boolean', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -200,7 +193,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('array', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('array', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -224,7 +217,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('array', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('array', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -248,7 +241,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('object', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('object', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -278,7 +271,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('object', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('object', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -304,7 +297,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('object-like', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('object-like', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -324,7 +317,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('object-like', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('object-like', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -353,7 +346,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('class', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('class', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -383,7 +376,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('class', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('class', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -412,7 +405,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('function', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('function', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -436,7 +429,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('function', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('function', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -465,7 +458,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('async', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('async', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -496,7 +489,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('async', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('async', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -518,7 +511,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('map', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('map', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -544,7 +537,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('map', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('map', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -566,7 +559,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('weakmap', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('weakmap', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -592,7 +585,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('weakmap', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('weakmap', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -614,7 +607,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('set', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('set', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -640,7 +633,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('set', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('set', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -662,7 +655,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('weakset', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('weakset', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -688,7 +681,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('weakset', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('weakset', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -710,7 +703,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('promise', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('promise', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -736,7 +729,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('promise', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('promise', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -758,7 +751,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('int8array', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('int8array', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -784,7 +777,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('int8array', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('int8array', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -806,7 +799,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('uint8array', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('uint8array', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -832,7 +825,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('uint8array', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('uint8array', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -854,7 +847,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('uint8clampedarray', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('uint8clampedarray', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -880,7 +873,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('uint8clampedarray', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('uint8clampedarray', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -902,7 +895,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('int16array', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('int16array', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -928,7 +921,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('int16array', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('int16array', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -950,7 +943,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('uint16array', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('uint16array', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -976,7 +969,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('uint16array', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('uint16array', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -998,7 +991,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('int32array', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('int32array', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1024,7 +1017,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('int32array', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('int32array', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1046,7 +1039,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('uint32array', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('uint32array', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1072,7 +1065,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('uint32array', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('uint32array', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1094,7 +1087,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('float32array', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('float32array', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1120,7 +1113,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('float32array', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('float32array', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1142,7 +1135,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('float64array', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('float64array', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1168,7 +1161,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('float64array', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('float64array', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1190,7 +1183,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('bigint64array', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('bigint64array', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1216,7 +1209,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('bigint64array', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('bigint64array', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1238,7 +1231,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('biguint64array', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('biguint64array', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1264,7 +1257,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('biguint64array', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('biguint64array', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1306,7 +1299,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('typedarray', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('typedarray', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1332,7 +1325,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('typedarray', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('typedarray', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1354,7 +1347,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('dataview', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('dataview', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1380,7 +1373,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('dataview', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('dataview', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1402,7 +1395,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('arraybuffer', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('arraybuffer', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1428,7 +1421,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('arraybuffer', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('arraybuffer', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1470,7 +1463,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('sharedarraybuffer', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('sharedarraybuffer', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1492,7 +1485,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('symbol', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('symbol', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1518,7 +1511,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('symbol', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('symbol', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1540,7 +1533,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('error', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('error', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1566,7 +1559,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('error', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('error', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1590,7 +1583,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('date', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('date', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1614,7 +1607,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('date', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('date', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1638,7 +1631,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('regexp', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('regexp', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1664,7 +1657,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('regexp', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('regexp', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1686,7 +1679,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_;
-        }, { browsers });
+        });
         const valueNode = values_;
         const values = [valueNode, ...valueBrowsers];
 
@@ -1712,7 +1705,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('arguments', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('arguments', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1734,7 +1727,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('null', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('null', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1760,7 +1753,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('null', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('null', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1782,7 +1775,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('undefined', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('undefined', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1808,7 +1801,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('undefined', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('undefined', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1826,7 +1819,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('blob', value));
-        }, { browsers });
+        });
         const values = [...valueBrowsers];
 
         values.forEach(value => assert(value).eql(new Array(1).fill(true)));
@@ -1849,7 +1842,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('blob', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('blob', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1888,7 +1881,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('buffer', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('buffer', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1915,7 +1908,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('element', ...value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('element', ...value));
 
         assert(valueNode).eql(new Array(2).fill(true));
@@ -1940,7 +1933,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('element', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('element', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -1972,7 +1965,7 @@ group('@amaui/utils/is', () => {
           return [
             ...values_.map(value => window.AmauiUtils.is('simple', value)),
           ];
-        }, { browsers });
+        });
         const valueNode = [
           ...values_.map(value => AmauiUtils.is('simple', value)),
         ];
@@ -1994,7 +1987,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('simple', ...value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('simple', ...value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2026,7 +2019,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('not-array-object', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('not-array-object', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2046,7 +2039,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.is('not-array-object', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.is('not-array-object', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2096,7 +2089,7 @@ group('@amaui/utils/is', () => {
       });
 
       to('is not offline', async () => {
-        const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isState('offline'), { browsers });
+        const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isState('offline'),);
         const valueNode = AmauiUtils.isState('offline');
         const values = [valueNode, ...valueBrowsers];
 
@@ -2130,7 +2123,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('date', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('date', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2156,7 +2149,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('date', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('date', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2182,7 +2175,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('uuid', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('uuid', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2206,7 +2199,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('uuid', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('uuid', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2232,7 +2225,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('binary-string', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('binary-string', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2258,7 +2251,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('binary-string', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('binary-string', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2284,7 +2277,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('hexadecimal-string', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('hexadecimal-string', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2310,7 +2303,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('hexadecimal-string', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('hexadecimal-string', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2342,7 +2335,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('url', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('url', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2368,7 +2361,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('url', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('url', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2396,7 +2389,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('url-path', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('url-path', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2420,7 +2413,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('url-path', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('url-path', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2458,7 +2451,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('compare', ...value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('compare', ...value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2492,7 +2485,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('semver', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('semver', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2516,7 +2509,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('semver', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('semver', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2552,7 +2545,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('semver-compare', ...value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('semver-compare', ...value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2576,7 +2569,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('timestamp', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('timestamp', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2602,7 +2595,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('timestamp', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('timestamp', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2626,7 +2619,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('email', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('email', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2654,7 +2647,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('email', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('email', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2678,7 +2671,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('hash', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('hash', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2716,7 +2709,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('hash', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('hash', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2742,7 +2735,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('mobile', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('mobile', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2766,7 +2759,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('mobile', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('mobile', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2792,7 +2785,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('color-rgb', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('color-rgb', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2816,7 +2809,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('color-rgb', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('color-rgb', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2842,7 +2835,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('color-hex', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('color-hex', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2864,7 +2857,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('color-hex', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('color-hex', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2890,7 +2883,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('color-hsl', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('color-hsl', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2912,7 +2905,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('color-hsl', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('color-hsl', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2936,7 +2929,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('json', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('json', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2962,7 +2955,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('json', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('json', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -2986,7 +2979,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('min', ...value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('min', ...value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -3004,7 +2997,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('min', ...value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('min', ...value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -3028,7 +3021,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('max', ...value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('max', ...value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -3046,7 +3039,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('max', ...value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('max', ...value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -3072,7 +3065,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('min-max', ...value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('min-max', ...value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -3092,7 +3085,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('min-max', ...value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('min-max', ...value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -3104,13 +3097,13 @@ group('@amaui/utils/is', () => {
     group('same-origin', () => {
 
       to('is same-origin', async () => {
-        const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isValid('same-origin', 'http://localhost:4000/about'), { browsers });
+        const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isValid('same-origin', 'http://localhost:4000/about'),);
 
         valueBrowsers.forEach(value => assert(value).eq(true));
       });
 
       to('is not same-origin', async () => {
-        const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isValid('same-origin', 'https://google.com'), { browsers });
+        const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isValid('same-origin', 'https://google.com'),);
 
         valueBrowsers.forEach(value => assert(value).eq(false));
       });
@@ -3144,7 +3137,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('js-chunk', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('js-chunk', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -3164,7 +3157,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('js-chunk', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('js-chunk', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -3198,7 +3191,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('http-method', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('http-method', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -3222,7 +3215,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('http-method', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('http-method', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -3254,7 +3247,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('base64', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('base64', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -3288,7 +3281,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('base64', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('base64', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -3340,7 +3333,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('datauri', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('datauri', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -3378,7 +3371,7 @@ group('@amaui/utils/is', () => {
           ];
 
           return values_.map(value => window.AmauiUtils.isValid('datauri', value));
-        }, { browsers });
+        });
         const valueNode = values_.map(value => AmauiUtils.isValid('datauri', value));
         const values = [valueNode, ...valueBrowsers];
 
@@ -3394,7 +3387,7 @@ group('@amaui/utils/is', () => {
     group('browser', () => {
 
       to('is browser', async () => {
-        const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isEnvironment('browser'), { browsers });
+        const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isEnvironment('browser'),);
 
         valueBrowsers.forEach(value => assert(value).eq(true));
       });
@@ -3410,13 +3403,13 @@ group('@amaui/utils/is', () => {
     group('worker', () => {
 
       to('is worker', async () => {
-        const valueWorkers = await evaluateWorker(() => typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope, { browsers: { chromium: browsers.chromium } });
+        const valueWorkers = await evaluateWorker(() => typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope, { browsers: { chromium: utils.browsers.chromium } });
 
         valueWorkers.forEach(value => assert(value).eq(true));
       });
 
       to('is not worker', async () => {
-        const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isEnvironment('worker'), { browsers });
+        const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isEnvironment('worker'),);
         const valueNode = AmauiUtils.isEnvironment('worker');
         const values = [valueNode, ...valueBrowsers];
 
@@ -3434,7 +3427,7 @@ group('@amaui/utils/is', () => {
       });
 
       to('is not nodejs', async () => {
-        const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isEnvironment('nodejs'), { browsers });
+        const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isEnvironment('nodejs'),);
 
         valueBrowsers.forEach(value => assert(value).eq(false));
       });
@@ -3447,7 +3440,7 @@ group('@amaui/utils/is', () => {
       // while playwright testing so we will use a dummy input
       // to the is method
       to('is localhost', async () => {
-        const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isEnvironment('localhost', 'localhost'), { browsers });
+        const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isEnvironment('localhost', 'localhost'),);
 
         valueBrowsers.forEach(value => assert(value).eq(true));
       });
@@ -3487,7 +3480,7 @@ group('@amaui/utils/is', () => {
     group('mac', () => {
 
       to('is mac', async () => {
-        const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isOS('mac'), { browsers: { webkit: browsers.webkit } });
+        const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isOS('mac'), { browsers: { webkit: utils.browsers.webkit } });
 
         valueBrowsers.forEach(value => assert(value).eq(true));
       });
@@ -3756,7 +3749,7 @@ group('@amaui/utils/is', () => {
     group('Intl', () => {
 
       to('is Intl', async () => {
-        const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isExists('Intl'), { browsers });
+        const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isExists('Intl'),);
         const valueNode = AmauiUtils.isExists('Intl');
         const values = [valueNode, ...valueBrowsers];
 
@@ -3768,7 +3761,7 @@ group('@amaui/utils/is', () => {
     group('crypto', () => {
 
       to('is crypto', async () => {
-        const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isExists('crypto'), { browsers });
+        const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isExists('crypto'),);
 
         valueBrowsers.forEach(value => assert(value).eq(true));
       });
@@ -3914,7 +3907,7 @@ group('@amaui/utils/is', () => {
         ({} as any).is('object'),
         (function a() { } as any).is('function'),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

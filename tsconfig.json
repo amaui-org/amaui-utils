@@ -3,6 +3,7 @@
     "baseUrl": ".",
     "outDir": "./build",
     "target": "ES2017",
+    "allowJs": true,
     "module": "commonjs",
     "esModuleInterop": true,
     "resolveJsonModule": true,

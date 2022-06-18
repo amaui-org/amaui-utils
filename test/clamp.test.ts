@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/clamp', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('clamp', async () => {
     const values_ = [
@@ -47,7 +40,7 @@ group('@amaui/utils/clamp', () => {
       ];
 
       return values_.map((value: [any, any, any]) => window.AmauiUtils.clamp(...value));
-    }, { browsers });
+    });
     const valueNode = values_.map((value: [any, any, any]) => AmauiUtils.clamp(...value));
     const values = [valueNode, ...valueBrowsers];
 
@@ -79,7 +72,7 @@ group('@amaui/utils/clamp', () => {
       ];
 
       return values_.map((value: [any, any, any]) => window.AmauiUtils.clamp(...value));
-    }, { browsers });
+    });
     const valueNode = values_.map((value: [any, any, any]) => AmauiUtils.clamp(...value));
     const values = [valueNode, ...valueBrowsers];
 
@@ -102,7 +95,7 @@ group('@amaui/utils/clamp', () => {
       ];
 
       return values_.map((value: [any, any, any]) => window.AmauiUtils.clamp(...value));
-    }, { browsers });
+    });
     const valueNode = values_.map((value: [any, any, any]) => AmauiUtils.clamp(...value));
     const values = [valueNode, ...valueBrowsers];
 
@@ -119,7 +112,7 @@ group('@amaui/utils/clamp', () => {
       return [
         (-1 as any).clamp(1, 4),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

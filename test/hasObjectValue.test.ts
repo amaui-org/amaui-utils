@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/hasObjectProperty', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('hasObjectProperty', async () => {
     const value = {
@@ -71,7 +64,7 @@ group('@amaui/utils/hasObjectProperty', () => {
         window.AmauiUtils.hasObjectProperty(value, 'a.b.c', 'd.c.0.a', 'd.b.c.1.c.2'),
         window.AmauiUtils.hasObjectProperty(value, 'a.b.c'),
       ];
-    }, { browsers });
+    });
     const valueNode = [
       AmauiUtils.hasObjectProperty(4 as any),
       AmauiUtils.hasObjectProperty([1, 4, 1, 4, { a: 4 }], '4.a'),
@@ -96,7 +89,7 @@ group('@amaui/utils/hasObjectProperty', () => {
         ({ a: { a: '4' } } as any).hasProperty('a.a'),
         ([1, 4, 1, 4, { a: 4 }] as any).hasProperty('4.a'),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

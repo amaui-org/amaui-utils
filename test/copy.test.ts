@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/copy', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('copy', async () => {
     class A { }
@@ -107,7 +100,7 @@ group('@amaui/utils/copy', () => {
       ];
 
       return values_.map(item => window.AmauiUtils.equalDeep(window.AmauiUtils.copy(item), item));
-    }, { browsers });
+    });
     const valueNode = values_.map(item => AmauiUtils.equalDeep(AmauiUtils.copy(item), item));
     const values = [...valueNode, ...[].concat.apply([], valueBrowsers)];
 
@@ -124,7 +117,7 @@ group('@amaui/utils/copy', () => {
       ];
 
       return values_.map(item => window.AmauiUtils.equalDeep((item as any).copy(), item));
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

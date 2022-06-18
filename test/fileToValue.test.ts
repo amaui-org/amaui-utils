@@ -3,24 +3,17 @@ import { assert } from '@amaui/test';
 import AmauiNode from '@amaui/node';
 import path from 'path';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset, utils } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/fileToValue', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('fileToValue', async () => {
-    for (const name of Object.keys(browsers)) {
-      const browser = browsers[name];
+    for (const name of Object.keys(utils.browsers)) {
+      const browser = utils.browsers[name];
 
       // Note that Promise.all prevents a race condition
       // between clicking and waiting for the file chooser.
@@ -32,7 +25,7 @@ group('@amaui/utils/fileToValue', () => {
           input.type = 'file';
           input.id = 'a';
 
-          window.document.body.appendChild(input);
+          if (!window.document.getElementById('a')) window.document.body.appendChild(input);
         }, { browsers: { [name]: browser } }),
         // It is important to call waitForEvent before click to set up waiting.
         browser.page.waitForEvent('filechooser'),
@@ -79,7 +72,7 @@ group('@amaui/utils/fileToValue', () => {
       const file = input.files[0];
 
       return await (file as any).toValue('text');
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

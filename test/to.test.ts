@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/to', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   group('string', async () => {
 
@@ -33,7 +26,7 @@ group('@amaui/utils/to', () => {
         ];
 
         return values_.map((value: ArrayBuffer) => [window.AmauiUtils.to(value, 'string'), value instanceof ArrayBuffer]);
-      }, { browsers });
+      });
       const valueNode = values_.map((value: ArrayBuffer) => [AmauiUtils.to(value, 'string'), value instanceof ArrayBuffer]);
       const values = [valueNode, ...valueBrowsers];
 
@@ -70,7 +63,7 @@ group('@amaui/utils/to', () => {
         ];
 
         return values_;
-      }, { browsers });
+      });
       const valueNode = values_;
       const values = [valueNode, ...valueBrowsers];
 
@@ -97,7 +90,7 @@ group('@amaui/utils/to', () => {
         ];
 
         return values_;
-      }, { browsers });
+      });
       const valueNode = values_;
       const values = [valueNode, ...valueBrowsers];
 
@@ -123,7 +116,7 @@ group('@amaui/utils/to', () => {
         ];
 
         return values_.map(value => AmauiUtils.to(value, 'string'));
-      }, { browsers });
+      });
       const valueNode = values_.map(value => AmauiUtils.to(value, 'string'));
       const values = [valueNode, ...valueBrowsers];
 
@@ -157,7 +150,7 @@ group('@amaui/utils/to', () => {
         ];
 
         return values_;
-      }, { browsers });
+      });
       const valueNode = values_;
       const values = [valueNode, ...valueBrowsers];
 
@@ -191,7 +184,7 @@ group('@amaui/utils/to', () => {
         ];
 
         return values_.map((value: ArrayBuffer) => [window.AmauiUtils.to(value, 'string'), value instanceof ArrayBuffer, value.byteLength]);
-      }, { browsers });
+      });
       const valueNode = values_.map((value: ArrayBuffer) => [AmauiUtils.to(value, 'string'), value instanceof ArrayBuffer, value.byteLength]);
       const values = [valueNode, ...valueBrowsers];
 
@@ -229,7 +222,7 @@ group('@amaui/utils/to', () => {
         ];
 
         return values_.map((value: ArrayBuffer) => [window.AmauiUtils.to(window.AmauiUtils.to(value, 'string'), 'string'), value instanceof ArrayBuffer]);
-      }, { browsers });
+      });
       const valueNode = values_.map((value: ArrayBuffer) => [AmauiUtils.to(AmauiUtils.to(value, 'string'), 'string'), value instanceof ArrayBuffer]);
       const values = [valueNode, ...valueBrowsers];
 
@@ -264,7 +257,7 @@ group('@amaui/utils/to', () => {
         ];
 
         return values_.map((value: ArrayBuffer) => [window.AmauiUtils.to(window.AmauiUtils.to(value, 'string'), 'string'), value instanceof ArrayBuffer]);
-      }, { browsers });
+      });
       const valueNode = values_.map((value: ArrayBuffer) => [AmauiUtils.to(AmauiUtils.to(value, 'string'), 'string'), value instanceof ArrayBuffer]);
       const values = [valueNode, ...valueBrowsers];
 
@@ -328,7 +321,7 @@ group('@amaui/utils/to', () => {
         ];
 
         return values_.map((value: ArrayBuffer) => [window.AmauiUtils.to(value, 'string'), value instanceof ArrayBuffer]);
-      }, { browsers });
+      });
       const valueNode = values_.map((value: ArrayBuffer) => [AmauiUtils.to(value, 'string'), value instanceof ArrayBuffer]);
       const values = [valueNode, ...valueBrowsers];
 
@@ -367,7 +360,7 @@ group('@amaui/utils/to', () => {
         ];
 
         return values_.map((value: ArrayBuffer) => [window.AmauiUtils.to(value, 'string'), window.AmauiUtils.isValid('base64', value)]);
-      }, { browsers });
+      });
       const valueNode = values_.map((value: ArrayBuffer) => [AmauiUtils.to(value, 'string'), AmauiUtils.isValid('base64', value)]);
       const values = [valueNode, ...valueBrowsers];
 
@@ -402,7 +395,7 @@ group('@amaui/utils/to', () => {
         ];
 
         return values_.map((value: ArrayBuffer) => [window.AmauiUtils.to(value, 'string'), window.AmauiUtils.isValid('base64', value)]);
-      }, { browsers });
+      });
       const valueNode = values_.map((value: ArrayBuffer) => [AmauiUtils.to(value, 'string'), AmauiUtils.isValid('base64', value)]);
       const values = [valueNode, ...valueBrowsers];
 
@@ -441,7 +434,7 @@ group('@amaui/utils/to', () => {
         ];
 
         return values_.map((value: ArrayBuffer) => [window.AmauiUtils.to(value, 'string'), window.AmauiUtils.isValid('datauri', value)]);
-      }, { browsers });
+      });
       const valueNode = values_.map((value: ArrayBuffer) => [AmauiUtils.to(value, 'string'), AmauiUtils.isValid('datauri', value)]);
       const values = [valueNode, ...valueBrowsers];
 
@@ -476,7 +469,7 @@ group('@amaui/utils/to', () => {
         ];
 
         return values_.map((value: ArrayBuffer) => [window.AmauiUtils.to(value, 'string'), window.AmauiUtils.isValid('datauri', value)]);
-      }, { browsers });
+      });
       const valueNode = values_.map((value: ArrayBuffer) => [AmauiUtils.to(value, 'string'), AmauiUtils.isValid('datauri', value)]);
       const values = [valueNode, ...valueBrowsers];
 
@@ -515,7 +508,7 @@ group('@amaui/utils/to', () => {
         for (const [index, value] of values_.entries()) values_[index] = [value && window.AmauiUtils.to(await value.arrayBuffer(), 'string'), value instanceof Blob];
 
         return values_;
-      }, { browsers });
+      });
       const values = [...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -545,7 +538,7 @@ group('@amaui/utils/to', () => {
         for (const [index, value] of values_.entries()) values_[index] = [window.AmauiUtils.to(await value.arrayBuffer(), 'string'), value instanceof Blob];
 
         return values_;
-      }, { browsers });
+      });
       const values = [...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -575,7 +568,7 @@ group('@amaui/utils/to', () => {
         for (const [index, value] of values_.entries()) values_[index] = [value && window.AmauiUtils.to(await value.text(), 'string'), value instanceof Blob];
 
         return values_;
-      }, { browsers });
+      });
       const values = [...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -605,7 +598,7 @@ group('@amaui/utils/to', () => {
         for (const [index, value] of values_.entries()) values_[index] = [value && window.AmauiUtils.to(await value.text(), 'string'), value instanceof Blob];
 
         return values_;
-      }, { browsers });
+      });
       const values = [...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -629,7 +622,7 @@ group('@amaui/utils/to', () => {
   group('buffer', async () => {
 
     to('browser', async () => {
-      const valueBrowsers = await evaluate(async (window: any) => window.AmauiUtils.to('a', 'buffer'), { browsers });
+      const valueBrowsers = await evaluate(async (window: any) => window.AmauiUtils.to('a', 'buffer'),);
       const values = [...valueBrowsers];
 
       values.forEach(value => assert(value).eq(undefined));
@@ -798,7 +791,7 @@ Nullam accumsan et elit vel mattis. Pellentesque finibus est et eros tincidunt, 
         ];
 
         return values_;
-      }, { browsers });
+      });
 
       const values_ = [
         AmauiUtils.to(undefined, 'size'),
@@ -872,7 +865,7 @@ Nullam accumsan et elit vel mattis. Pellentesque finibus est et eros tincidunt, 
         ];
 
         return values_;
-      }, { browsers });
+      });
       const valueNode = values_;
       const values = [valueNode, ...valueBrowsers];
 
@@ -940,7 +933,7 @@ Nullam accumsan et elit vel mattis. Pellentesque finibus est et eros tincidunt, 
         ];
 
         return values_;
-      }, { browsers });
+      });
       const valueNode = values_;
       const values = [valueNode, ...valueBrowsers];
 
@@ -984,7 +977,7 @@ Nullam accumsan et elit vel mattis. Pellentesque finibus est et eros tincidunt, 
         ];
 
         return values_;
-      }, { browsers });
+      });
       const valueNode = values_;
       const values = [valueNode, ...valueBrowsers];
 
@@ -1027,7 +1020,7 @@ Nullam accumsan et elit vel mattis. Pellentesque finibus est et eros tincidunt, 
         ];
 
         return values_;
-      }, { browsers });
+      });
       const valueNode = values_;
       const values = [valueNode, ...valueBrowsers];
 
@@ -1049,7 +1042,7 @@ Nullam accumsan et elit vel mattis. Pellentesque finibus est et eros tincidunt, 
         (4 as any).to('string'),
         (true as any).to('string'),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

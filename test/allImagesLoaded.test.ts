@@ -1,18 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 group('@amaui/utils/allImagesLoaded', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('allImagesLoaded', async () => {
     const valueBrowsers = await evaluate(async (window: any) => {
@@ -41,7 +34,7 @@ group('@amaui/utils/allImagesLoaded', () => {
       for (const image of images) if (image.complete) result[1]++;
 
       return result;
-    }, { browsers });
+    });
 
     valueBrowsers.forEach((value: any) => assert(value).eql([4, 4]));
   });

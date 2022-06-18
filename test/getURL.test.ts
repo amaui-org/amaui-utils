@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/getURL', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('getURL', async () => {
     const values_ = [
@@ -45,7 +38,7 @@ group('@amaui/utils/getURL', () => {
       ];
 
       return values_.map(value => window.AmauiUtils.getURL(value));
-    }, { browsers });
+    });
     const valueNode = values_.map(value => AmauiUtils.getURL(value));
 
     assert(valueNode).eql([
@@ -68,8 +61,8 @@ group('@amaui/utils/getURL', () => {
       'https://a.com/a',
       'https://a.com/a?a=a4',
       'https://www.a.com/a?a=a4',
-      'http://localhost:4000?q=a',
-      'http://localhost:4000/a?q=a',
+      'http://localhost:4000?q=a&a=4',
+      'http://localhost:4000/a?q=a&a=4',
       'http://localhost:4000/a?a=a4',
       'http://localhost:4000/a/a?a=a4',
     ]));
@@ -81,7 +74,7 @@ group('@amaui/utils/getURL', () => {
       const valueBrowsers = await evaluate((window: any) => [
         window.AmauiUtils.getURL('http://a.com/a?a=a4', { URL: true }) instanceof URL,
         window.AmauiUtils.getURL('http://a.com/a?a=a4', { URL: false }),
-      ], { browsers });
+      ]);
       const valueNode = [
         AmauiUtils.getURL('http://a.com/a?a=a4', { URL: true }) instanceof URL,
         AmauiUtils.getURL('http://a.com/a?a=a4', { URL: false }),
@@ -103,7 +96,7 @@ group('@amaui/utils/getURL', () => {
       return [
         ('http://a.com' as any).getURL(),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

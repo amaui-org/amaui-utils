@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/permutation', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('permutation', async () => {
     const values_ = [
@@ -55,7 +48,7 @@ group('@amaui/utils/permutation', () => {
         item.length === window.AmauiUtils.unique(item.map(item_ => item_.join(''))).length,
         item.filter(item_ => window.AmauiUtils.unique(item_).length === item_.length).length === item.length
       ]);
-    }, { browsers });
+    });
     const valueNode = values_.map((value: any) => [AmauiUtils.permutation(value[0]), value[1]]).map(([item, length]) => !item ? item : [
       item.length === length,
       item.length === AmauiUtils.unique(item.map(item_ => item_.join(''))).length,
@@ -104,7 +97,7 @@ group('@amaui/utils/permutation', () => {
             item.length === window.AmauiUtils.unique(item.map(item_ => item_.join(''))).length,
             item.filter(item_ => window.AmauiUtils.unique(item_).length === item_.length).length === item.length
           ]);
-        }, { browsers });
+        });
         const valueNode = values_.map((value: any) => [AmauiUtils.permutation(value[0]), value[1]]).map(([item, length]) => [
           item.length === length,
           item.length === AmauiUtils.unique(item.map(item_ => item_.join(''))).length,
@@ -176,7 +169,7 @@ group('@amaui/utils/permutation', () => {
             item.length === window.AmauiUtils.unique(item.map(item_ => item_.join(''))).length,
             item.filter(item_ => window.AmauiUtils.unique(item_).length === item_.length).length === item.length
           ]);
-        }, { browsers });
+        });
         const valueNode = values_.map(([item, length]) => [
           item.length === length,
           item.length === AmauiUtils.unique(item.map(item_ => item_.join(''))).length,
@@ -198,7 +191,7 @@ group('@amaui/utils/permutation', () => {
       window.AmauiUtils.polyfills();
 
       return ([1, 2, 3] as any).permutation();
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 
@@ -219,15 +212,8 @@ group('@amaui/utils/permutation', () => {
 });
 
 group('@amaui/utils/permutationWithRepetition', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('permutationWithRepetition', async () => {
     const values_ = [
@@ -263,7 +249,7 @@ group('@amaui/utils/permutationWithRepetition', () => {
         item.length === length,
         item.length === window.AmauiUtils.unique(item.map(item_ => item_.join(''))).length,
       ]);
-    }, { browsers });
+    });
     const valueNode = values_.map((value: any) => [AmauiUtils.permutationWithRepetition(value[0]), value[1]]).map(([item, length]) => !item ? item : [
       item.length === length,
       item.length === AmauiUtils.unique(item.map(item_ => item_.join(''))).length
@@ -306,7 +292,7 @@ group('@amaui/utils/permutationWithRepetition', () => {
             item.length === length,
             item.length === window.AmauiUtils.unique(item.map(item_ => item_.join(''))).length
           ]);
-        }, { browsers });
+        });
         const valueNode = values_.map((value: any) => [AmauiUtils.permutationWithRepetition(value[0]), value[1]]).map(([item, length]) => [
           item.length === length,
           item.length === AmauiUtils.unique(item.map(item_ => item_.join(''))).length
@@ -372,7 +358,7 @@ group('@amaui/utils/permutationWithRepetition', () => {
             item.length === length,
             item.length === window.AmauiUtils.unique(item.map(item_ => item_.join(''))).length
           ]);
-        }, { browsers });
+        });
         const valueNode = values_.map(([item, length]) => [
           item.length === length,
           item.length === AmauiUtils.unique(item.map(item_ => item_.join(''))).length
@@ -393,7 +379,7 @@ group('@amaui/utils/permutationWithRepetition', () => {
       window.AmauiUtils.polyfills();
 
       return ([1, 2, 3] as any).permutationWithRepetition();
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

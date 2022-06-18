@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/hexToRgb', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('hexToRgb', async () => {
     const values_ = [
@@ -45,7 +38,7 @@ group('@amaui/utils/hexToRgb', () => {
       ];
 
       return values_.map((value: any) => window.AmauiUtils.hexToRgb(value));
-    }, { browsers });
+    });
     const valueNode = values_.map((value: any) => AmauiUtils.hexToRgb(value));
     const values = [valueNode, ...valueBrowsers];
 
@@ -75,7 +68,7 @@ group('@amaui/utils/hexToRgb', () => {
       ];
 
       return values_.map((value: any) => window.AmauiUtils.hexToRgb(value, .4));
-    }, { browsers });
+    });
     const valueNode = values_.map((value: any) => AmauiUtils.hexToRgb(value, .4));
     const values = [valueNode, ...valueBrowsers];
 
@@ -103,7 +96,7 @@ group('@amaui/utils/hexToRgb', () => {
         window.AmauiUtils.hexToRgb('#b1b100', undefined, false),
         ...values_.map((value: any) => window.AmauiUtils.hexToRgb(value, undefined, true)),
       ];
-    }, { browsers });
+    });
     const valueNode = [
       AmauiUtils.hexToRgb('#b1b100', undefined, false),
       ...values_.map((value: any) => AmauiUtils.hexToRgb(value, undefined, true)),
@@ -124,7 +117,7 @@ group('@amaui/utils/hexToRgb', () => {
       return [
         ('#ff8c00' as any).hexToRgb(.4),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

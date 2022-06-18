@@ -1,6 +1,6 @@
 {
   "name": "@amaui/utils",
-  "version": "1.0.1874",
+  "version": "1.0.11111",
   "description": "Utils",
   "repository": "https://github.com/amaui-org/amaui-utils.git",
   "author": "Lazar <lazareric.com@gmail.com>",
@@ -31,7 +31,7 @@
     "release": "yarn test && yarn build && npm publish ./build",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "type": "tsc --noEmit -p tsconfig.json",
-    "cov": "cross-env NODE_ENV=test amaui-test 'test/reactLazy.test.ts'",
+    "cov": "cross-env NODE_ENV=test amaui-test",
     "test:pre": "pm2 update && pm2 delete all && pm2 start utils/js/test/app.js && wait-on http://localhost:4000",
     "test:post": "pm2 delete all",
     "test": "yarn lint && yarn type && yarn build && yarn test:pre && yarn cov && yarn test:post"
@@ -42,12 +42,12 @@
   "dependencies": {
     "@babel/runtime": "^7.18.3",
     "crypto-js": "^4.1.1",
-    "path-to-regexp": "^6.2.1",
+    "path-to-regexp": "^6.2.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@amaui/node": "^1.0.11",
-    "@amaui/test": "^1.0.1114",
+    "@amaui/test": "^1.0.1141",
     "@amaui/utils": "^1.0.1874",
     "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.0",

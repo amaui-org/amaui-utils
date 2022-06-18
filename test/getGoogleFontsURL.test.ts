@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/getGoogleFontsURL', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('getGoogleFontsURL', async () => {
     const values_ = [
@@ -51,7 +44,7 @@ group('@amaui/utils/getGoogleFontsURL', () => {
       ];
 
       return values_.map((value: any) => window.AmauiUtils.getGoogleFontsURL(value));
-    }, { browsers });
+    });
     const valueNode = values_.map((value: any) => AmauiUtils.getGoogleFontsURL(value));
     const values = [valueNode, ...valueBrowsers];
 

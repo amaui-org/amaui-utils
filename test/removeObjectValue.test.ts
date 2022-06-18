@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/removeObjectValue', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('removeObjectValue', async () => {
     const value = {
@@ -82,7 +75,7 @@ group('@amaui/utils/removeObjectValue', () => {
         window.AmauiUtils.getObjectValue(value, 'd.b.a'),
         window.AmauiUtils.getObjectValue(value1, '4.a'),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.removeObjectValue(value, 'a.b.c');
     AmauiUtils.removeObjectValue(value, 'd.b.c.1.c.4');
@@ -108,7 +101,7 @@ group('@amaui/utils/removeObjectValue', () => {
         ({ a: '4' } as any).removeValue('a'),
         ([1, 4] as any).removeValue('1'),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

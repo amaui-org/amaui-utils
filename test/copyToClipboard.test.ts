@@ -1,26 +1,19 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset, utils } from '../utils/js/test/utils';
 
 group('@amaui/utils/copyToClipboard', () => {
-  let browsers: IBrowsers;
 
   // Only chromium allows it atm
   pre(async () => {
-    browsers = await startBrowsers({ chromium: true });
-
-    browsers.chromium.context.grantPermissions([
+    utils.browsers.chromium.context.grantPermissions([
       'clipboard-read',
       'clipboard-write',
     ]);
   });
 
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(async () => reset());
 
   to('copyToClipboard', async () => {
     const valueBrowsers = await evaluate(async (window: any) => {
@@ -43,7 +36,8 @@ group('@amaui/utils/copyToClipboard', () => {
       }
 
       return values;
-    }, { browsers });
+    }, { browsers: { chromium: utils.browsers.chromium } });
+
     const values = [...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -78,7 +72,7 @@ group('@amaui/utils/copyToClipboard', () => {
       }
 
       return values;
-    }, { browsers });
+    }, { browsers: { chromium: utils.browsers.chromium } });
 
     const values = [...valueBrowsers];
 

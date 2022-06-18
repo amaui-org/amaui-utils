@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/getLuminance', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('getLuminance', async () => {
     const values_ = [
@@ -45,7 +38,7 @@ group('@amaui/utils/getLuminance', () => {
       ];
 
       return values_.map((value: any) => window.AmauiUtils.getLuminance(value));
-    }, { browsers });
+    });
     const valueNode = values_.map((value: any) => AmauiUtils.getLuminance(value));
     const values = [valueNode, ...valueBrowsers];
 

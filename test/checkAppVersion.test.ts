@@ -1,18 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 group('@amaui/utils/checkAppVersion', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   group('checkAppVersion', () => {
 
@@ -31,7 +24,7 @@ group('@amaui/utils/checkAppVersion', () => {
           items,
           items1,
         ];
-      }, { browsers });
+      });
 
       valueBrowsers.forEach((value: any) => assert(value).eql([
         false,
@@ -65,7 +58,7 @@ group('@amaui/utils/checkAppVersion', () => {
           items,
           items1,
         ];
-      }, { browsers });
+      });
 
       valueBrowsers.forEach((value: any) => assert(value).eql([
         false,
@@ -99,7 +92,7 @@ group('@amaui/utils/checkAppVersion', () => {
           items,
           items1,
         ];
-      }, { browsers });
+      });
 
       valueBrowsers.forEach((value: any) => assert(value).eql([
         true,
@@ -127,7 +120,7 @@ group('@amaui/utils/checkAppVersion', () => {
           items,
           items1,
         ];
-      }, { browsers });
+      });
 
       valueBrowsers.forEach((value: any) => assert(value).eql([
         false,
@@ -159,7 +152,7 @@ group('@amaui/utils/checkAppVersion', () => {
           items,
           items1,
         ];
-      }, { browsers });
+      });
 
       valueBrowsers.forEach((value: any) => assert(value).eql([
         true,

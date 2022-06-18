@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/merge', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('merge', async () => {
     const values_ = [
@@ -43,7 +36,7 @@ group('@amaui/utils/merge', () => {
       ];
 
       return values_.map((value: [any, any]) => window.AmauiUtils.merge(...value));
-    }, { browsers });
+    });
 
     const valueNode = values_.map((value: [any, any]) => AmauiUtils.merge(...value));
     const values = [valueNode, ...valueBrowsers];
@@ -90,7 +83,7 @@ group('@amaui/utils/merge', () => {
           mo.ab !== o2.ab,
           mo1.ab === o2.ab,
         ];
-      }, { browsers });
+      });
 
       const valueNode = [
         mo.ab !== o2.ab,
@@ -109,7 +102,7 @@ group('@amaui/utils/merge', () => {
             window.AmauiUtils.merge([], [1, 4, 1], { merge: { array: true } }),
             window.AmauiUtils.merge([], [1, 4, 1], { merge: { array: false } }),
           ];
-        }, { browsers });
+        });
 
         const valueNode = [
           AmauiUtils.merge([], [1, 4, 1], { merge: { array: true } }),
@@ -135,7 +128,7 @@ group('@amaui/utils/merge', () => {
         ([] as any).merge([1, 4, 1], { merge: { array: true } }),
         ({} as any).merge({ a: '4' }),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

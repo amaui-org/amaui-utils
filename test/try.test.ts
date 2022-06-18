@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/try', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('tryValue', async () => {
     const values_ = [
@@ -29,7 +22,7 @@ group('@amaui/utils/try', () => {
       ];
 
       return values_;
-    }, { browsers });
+    });
     const valueNode = values_;
     const values = [valueNode, ...valueBrowsers];
 
@@ -60,7 +53,7 @@ group('@amaui/utils/try', () => {
         return [
           window.AMAUI.test.Try.logs.length,
         ];
-      }, { browsers });
+      });
       const valueNode = [
         global.AMAUI.test.Try.logs.length,
       ];

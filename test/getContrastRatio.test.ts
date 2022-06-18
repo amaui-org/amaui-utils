@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/getContrastRatio', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('getContrastRatio', async () => {
     const values_ = [
@@ -51,7 +44,7 @@ group('@amaui/utils/getContrastRatio', () => {
       ];
 
       return values_.map((value: [any, any]) => window.AmauiUtils.getContrastRatio(...value));
-    }, { browsers });
+    });
     const valueNode = values_.map((value: [any, any]) => AmauiUtils.getContrastRatio(...value));
     const values = [valueNode, ...valueBrowsers];
 
@@ -74,7 +67,7 @@ group('@amaui/utils/getContrastRatio', () => {
       return [
         ('rgb(140, 104, 40)' as any).getContrastRatio('rgb(140, 140, 70)'),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

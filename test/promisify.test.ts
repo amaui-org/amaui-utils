@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/promisify', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('promise', async () => {
     const promiseMethod = new Promise(resolve => resolve(4));
@@ -31,7 +24,7 @@ group('@amaui/utils/promisify', () => {
       ];
 
       return values_;
-    }, { browsers });
+    });
     const valueNode = values_;
     const values = [valueNode, ...valueBrowsers];
 
@@ -55,7 +48,7 @@ group('@amaui/utils/promisify', () => {
       ];
 
       return values_;
-    }, { browsers });
+    });
     const valueNode = values_;
     const values = [valueNode, ...valueBrowsers];
 
@@ -88,7 +81,7 @@ group('@amaui/utils/promisify', () => {
       }
 
       return values_;
-    }, { browsers });
+    });
 
     const method = (a: string, ad: boolean, method_: AmauiUtils.TMethod) => {
       setTimeout(() => {
@@ -143,7 +136,7 @@ group('@amaui/utils/promisify', () => {
           response[1][1] = [response[1][1] instanceof Error, response[1][1].message];
 
           return response;
-        }, { browsers });
+        });
 
         const method = (a: string, ad: boolean, method_: AmauiUtils.TMethod) => {
           setTimeout(() => {
@@ -201,7 +194,7 @@ group('@amaui/utils/promisify', () => {
           }
 
           return response;
-        }, { browsers });
+        });
 
         const method = (a: string, ad: boolean, method_: AmauiUtils.TMethod) => {
           setTimeout(() => {
@@ -252,7 +245,7 @@ group('@amaui/utils/promisify', () => {
       return [
         await (method as any).promisify()('a', true),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

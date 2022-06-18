@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/stringify', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('stringify', async () => {
     const valueBrowsers = await evaluate((window: any) => {
@@ -37,7 +30,7 @@ group('@amaui/utils/stringify', () => {
       ];
 
       return values_.map(value => window.AmauiUtils.stringify(value));
-    }, { browsers });
+    });
 
     const values_ = [
       'a',
@@ -86,7 +79,7 @@ group('@amaui/utils/stringify', () => {
       ];
 
       return values.map(value => window.AmauiUtils.stringify(value));
-    }, { browsers });
+    });
 
     const a: any = [1, 4];
     const a1 = { a: 14 };
@@ -122,7 +115,7 @@ group('@amaui/utils/stringify', () => {
       ];
 
       return values_.map(value => window.AmauiUtils.stringify(value, 4));
-    }, { browsers });
+    });
     const valueNode = values_.map(value => AmauiUtils.stringify(value, 4));
     const values = [valueNode, ...valueBrowsers];
 
@@ -143,7 +136,7 @@ group('@amaui/utils/stringify', () => {
       ];
 
       return values_.map(value => window.AmauiUtils.stringify(value, 4, (property, value) => value === 1 ? 14 : value));
-    }, { browsers });
+    });
     const valueNode = values_.map(value => AmauiUtils.stringify(value, 4, (property, value) => value === 1 ? 14 : value));
     const values = [valueNode, ...valueBrowsers];
 
@@ -163,7 +156,7 @@ group('@amaui/utils/stringify', () => {
         ([] as any).stringify(),
         ({} as any).stringify(),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

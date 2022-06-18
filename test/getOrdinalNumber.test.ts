@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/getOrdinalNumber', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('getOrdinalNumber', async () => {
     const values_ = [
@@ -73,7 +66,7 @@ group('@amaui/utils/getOrdinalNumber', () => {
       ];
 
       return values_.map(value => window.AmauiUtils.getOrdinalNumber(value as any));
-    }, { browsers });
+    });
     const valueNode = values_.map(value => AmauiUtils.getOrdinalNumber(value as any));
     const values = [valueNode, ...valueBrowsers];
 
@@ -111,7 +104,7 @@ group('@amaui/utils/getOrdinalNumber', () => {
         window.AmauiUtils.getOrdinalNumber(1, { onlySufix: true }),
         window.AmauiUtils.getOrdinalNumber(1, { onlySufix: false }),
       ];
-    }, { browsers });
+    });
     const valueNode = [
       AmauiUtils.getOrdinalNumber(1, { onlySufix: true }),
       AmauiUtils.getOrdinalNumber(1, { onlySufix: false }),
@@ -132,7 +125,7 @@ group('@amaui/utils/getOrdinalNumber', () => {
         (4 as any).getOrdinal(),
         ('4' as any).getOrdinalNumber(),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

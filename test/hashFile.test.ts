@@ -4,20 +4,17 @@ import path from 'path';
 import { assert } from '@amaui/test';
 import AmauiNode from '@amaui/node';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset, utils } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/hashFile', () => {
-  let browsers: IBrowsers;
   const filePath = path.resolve(__dirname, '../LICENSE');
   let value_: any;
 
   pre(async () => {
-    browsers = await startBrowsers();
-
-    for (const [index, name] of Object.keys(browsers).entries()) {
-      const browser = browsers[name];
+    for (const [index, name] of Object.keys(utils.browsers).entries()) {
+      const browser = utils.browsers[name];
 
       // Note that Promise.all prevents a race condition
       // between clicking and waiting for the file chooser.
@@ -29,7 +26,7 @@ group('@amaui/utils/hashFile', () => {
           input.type = 'file';
           input.id = 'a';
 
-          window.document.body.appendChild(input);
+          if (!window.document.getElementById('a')) window.document.body.appendChild(input);
         }, { browsers: { [name]: browser } }),
         // It is important to call waitForEvent before click to set up waiting.
         browser.page.waitForEvent('filechooser'),
@@ -41,11 +38,7 @@ group('@amaui/utils/hashFile', () => {
     }
   });
 
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('hashFile', async () => {
     const valueBrowsers = await evaluate(async (window: any) => {
@@ -55,7 +48,7 @@ group('@amaui/utils/hashFile', () => {
       return [
         await window.AmauiUtils.hashFile(file),
       ];
-    }, { browsers });
+    });
     const valueNode = [
       await AmauiUtils.hashFile(await AmauiNode.file.get(filePath, false)),
     ];
@@ -80,7 +73,7 @@ group('@amaui/utils/hashFile', () => {
           await window.AmauiUtils.hashFile(file, { withPrefix: true }),
           await window.AmauiUtils.hashFile(file, { withPrefix: false }),
         ];
-      }, { browsers });
+      });
 
       const file = await AmauiNode.file.get(filePath, false);
 
@@ -108,7 +101,7 @@ group('@amaui/utils/hashFile', () => {
       return [
         await (file as any).hash(),
       ];
-    }, { browsers });
+    });
 
     const values = [...valueBrowsers];
 

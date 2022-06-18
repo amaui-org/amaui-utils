@@ -25,7 +25,7 @@ import setObjectValue from './setObjectValue';
  * the case, all cache is cleaned + app reloaded.
  */
 const reactLazy = (import_: () => Promise<any>): React.LazyExoticComponent<React.ComponentType<any>> => (
-  React.lazy(async () => {
+  (React || window.React).lazy(async () => {
     try {
       const Component = await import_();
 

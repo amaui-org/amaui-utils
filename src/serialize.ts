@@ -18,10 +18,15 @@ const clean = (value: any): any => {
 };
 
 const serializeValue = (value_: any, method: (value: any) => any): string => {
-  const value = method(value_);
+  let value = method(value_);
 
   // Ref circular value
   if (value === undefined) return '';
+
+  // Is object-like make into an object
+  try {
+    if (is('object-like', value) && is('not-array-object', value) && value !== null) value = { ...value };
+  } catch (error) { }
 
   if (is('object', value)) return `{${Object.keys(value)
     .sort()

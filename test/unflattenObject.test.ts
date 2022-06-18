@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/unflattenObject', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('unflattenObject', async () => {
     const values_ = [
@@ -57,7 +50,7 @@ group('@amaui/utils/unflattenObject', () => {
       ];
 
       return values_.map(value => window.AmauiUtils.unflattenObject(value as any));
-    }, { browsers });
+    });
     const valueNode = values_.map(value => AmauiUtils.unflattenObject(value as any));
     const values = [valueNode, ...valueBrowsers];
 
@@ -94,7 +87,7 @@ group('@amaui/utils/unflattenObject', () => {
       return [
         ({ 'a': 4, 'ab.a': '4' } as any).unflatten(),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

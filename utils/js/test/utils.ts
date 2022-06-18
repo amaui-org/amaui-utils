@@ -1,6 +1,5 @@
 /* tslint:disable: no-shadowed-variable */
 import playwright, { chromium, webkit, firefox } from 'playwright';
-import fg from 'fast-glob';
 
 import * as AmauiUtils from '../../../src';
 
@@ -130,36 +129,29 @@ export const evaluate = async (
 ): Promise<any> => {
   const responses = [];
 
-  for (const key of Object.keys(options.browsers)) {
-    const browser: IBrowser = options.browsers[key];
+  if (!options.browsers) options.browsers = utils.browsers;
 
-    const window = await browser.page.evaluateHandle(() => window);
-
-    // Remove prod scripts
-    await browser.page.evaluateHandle((window: Window) => {
-      const scripts = window.document.getElementsByTagName('script');
-
-      Array.from(scripts).filter(script => script.src.indexOf('localhost') > -1).forEach(script => script.parentElement.removeChild(script));
-    }, window);
-
-    // Add prod scripts
-    const paths = (await fg('build/umd/*.prod.min.js', { onlyFiles: true }));
-
-    for (const value of paths) await browser.page.addScriptTag({ url: value });
-
-    const args = options.arguments?.length ? [window, ...options.arguments] : window;
+  for (const key of Object.keys(options.browsers || {})) {
+    const browser: IBrowser = options.browsers && options.browsers[key];
 
     if (options.preEvaluate) await options.preEvaluate(browser);
 
-    if (options.pre) await browser.page.evaluateHandle(options.pre, args);
+    const window = await browser.page?.evaluateHandle(() => window);
 
-    const response = await browser.page.evaluateHandle(method, args);
+    const args = options.arguments?.length ? [window, ...options.arguments] : window;
 
-    if (options.post) await browser.page.evaluateHandle(options.post, args);
+    if (options.pre) await browser.page?.evaluateHandle(options.pre, args);
+
+    const response = await browser.page?.evaluateHandle(method, args);
+
+    if (options.post) await browser.page?.evaluateHandle(options.post, args);
 
     if (options.postEvaluate) await options.postEvaluate(browser);
 
-    responses.push(await response.jsonValue());
+    responses.push(await response?.jsonValue());
+
+    // Clean up
+    await window.dispose();
   }
 
   return responses;
@@ -222,3 +214,21 @@ export const closeBrowser = async (browser: IBrowser, name?: string): Promise<vo
 export const closeBrowsers = async (browsers: IBrowsers): Promise<void> => {
   if (browsers) for (const browser of Object.keys(browsers)) await closeBrowser(browsers[browser], browser);
 };
+
+interface IUtils {
+  browsers?: IBrowsers;
+}
+
+export const utils: IUtils = {};
+
+preAll(async () => utils.browsers = await startBrowsers());
+
+preEveryTo(async () => {
+  await evaluate(async (window: any) => {
+    const values = [String, Number, Boolean, Array, Object, Function, ...(window.AmauiUtils.is('browser') ? [Blob, File] : [])];
+
+    values.forEach(value => Object.keys(value.prototype).forEach(key => { if (window.AmauiUtils[key]) delete value.prototype[key]; }));
+  });
+});
+
+postAll(async () => await closeBrowsers(utils.browsers));

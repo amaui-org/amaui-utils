@@ -2,29 +2,26 @@
 import { assert } from '@amaui/test';
 import cryptojs from 'crypto-js';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/encrypt', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('encrypt', async () => {
+    class A {
+      a = 14;
+    }
+
     const values_ = [
       'a',
       4,
       true,
       new Map(),
       function a() { },
-      class A { },
+      new A(),
       () => { },
       undefined,
       null,
@@ -41,13 +38,17 @@ group('@amaui/utils/encrypt', () => {
     ];
 
     const valueBrowsers = await evaluate((window: any) => {
+      class A {
+        a = 14;
+      }
+
       const values_ = [
         'a',
         4,
         true,
         new Map(),
         function a() { },
-        class A { },
+        new A(),
         () => { },
         undefined,
         null,
@@ -64,31 +65,25 @@ group('@amaui/utils/encrypt', () => {
       ];
 
       return values_.map(value => window.AmauiUtils.encrypt(value, 'amaui'));
-    }, { browsers });
+    });
     const valueNode = values_.map(value => AmauiUtils.encrypt(value, 'amaui'));
     const values = [valueNode, ...valueBrowsers];
 
     const actualValues = values.map(value => value.map((value_: any) => cryptojs.AES.decrypt(value_, 'amaui').toString(cryptojs.enc.Utf8)));
 
     actualValues.forEach(value => {
-      assert(value[5]).one.eq([
-        '"class A {\\n                }"',
-        '"class A {\\n            }"',
-      ]);
-
-      value.splice(5, 1);
-
       assert(value).eql([
         '"a"',
         '4',
         'true',
-        '"[object Map]"',
+        '{}',
         '"function a() { }"',
+        '{"a":14}',
         '"() => { }"',
         '',
         'null',
         '[1,"a",[1,"a",4]]',
-        '{\"a\":4,\"b\":{\"a\":447,\"b\":[true,\"function a() { }\",\"[object Map]\",{}],\"d\":{\"a\":4}},\"c\":[1,\"a\",\"4\",[1,\"a\",4]]}'
+        '{\"a\":4,\"b\":{\"a\":447,\"b\":[true,\"function a() { }\",{},{}],\"d\":{\"a\":4}},\"c\":[1,\"a\",\"4\",[1,\"a\",4]]}'
       ]);
     });
 
@@ -106,7 +101,7 @@ group('@amaui/utils/encrypt', () => {
         ([1, 4, 1] as any).encrypt('amaui').decrypt('amaui'),
         ({ a: 'a' } as any).encrypt('amaui').decrypt('amaui'),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 

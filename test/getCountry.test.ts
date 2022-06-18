@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/getCountry', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('getCountry', async () => {
     const values_ = [
@@ -49,7 +42,7 @@ group('@amaui/utils/getCountry', () => {
       ];
 
       return values_.map((value: any) => window.AmauiUtils.getCountry(...value));
-    }, { browsers });
+    });
     const valueNode = values_.map((value: any) => AmauiUtils.getCountry(...value));
     const values = [valueNode, ...valueBrowsers];
 

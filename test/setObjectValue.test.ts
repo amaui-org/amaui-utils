@@ -1,20 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
 import { assert } from '@amaui/test';
 
-import { startBrowsers, IBrowsers, evaluate, closeBrowsers, reset } from '../utils/js/test/utils';
+import { evaluate, reset } from '../utils/js/test/utils';
 
 import * as AmauiUtils from '../src';
 
 group('@amaui/utils/setObjectValue', () => {
-  let browsers: IBrowsers;
 
-  pre(async () => browsers = await startBrowsers());
-
-  post(async () => {
-    await closeBrowsers(browsers);
-
-    reset();
-  });
+  post(() => reset());
 
   to('setObjectValue', async () => {
     const value = {
@@ -82,7 +75,7 @@ group('@amaui/utils/setObjectValue', () => {
         window.AmauiUtils.getObjectValue(value, 'd.b.a'),
         window.AmauiUtils.getObjectValue(value1, '4.a'),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.setObjectValue(value, 'a', 4);
     AmauiUtils.setObjectValue(value, 'd.b.c.1.c.4', 'a');
@@ -176,7 +169,7 @@ group('@amaui/utils/setObjectValue', () => {
           window.AmauiUtils.getObjectValue(value1, '1'),
           window.AmauiUtils.getObjectValue(value1, '4.a'),
         ];
-      }, { browsers });
+      });
 
       AmauiUtils.setObjectValue(value, 'a', 4, { valueOverride: false });
       AmauiUtils.setObjectValue(value, 'a.d.a', 4, { valueOverride: true });
@@ -209,7 +202,7 @@ group('@amaui/utils/setObjectValue', () => {
         ({ a: '4' } as any).setValue('a', 4),
         ([1, 4] as any).setValue('1', 40),
       ];
-    }, { browsers });
+    });
 
     AmauiUtils.polyfills();
 
