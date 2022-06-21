@@ -9,17 +9,18 @@ module.exports = function (api) {
       '@babel/preset-env',
       {
         browserslistEnv: process.env.BABEL_ENV || process.env.NODE_ENV,
-        modules: esm ? false : 'commonjs'
+        modules: esm ? false : 'commonjs',
+        exclude: [
+          'proposal-class-properties',
+          'proposal-object-rest-spread'
+        ]
       },
     ],
-    '@babel/preset-react',
     '@babel/preset-typescript',
   ];
 
   const plugins = [
-    '@babel/plugin-transform-runtime',
-    '@babel/plugin-proposal-class-properties',
-    '@babel/plugin-proposal-object-rest-spread'
+    '@babel/plugin-transform-runtime'
   ];
 
   return {
