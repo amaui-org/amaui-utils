@@ -104,6 +104,16 @@
     fast-glob "^3.2.11"
     yargs "^17.5.1"
 
+"@amaui/utils@^1.0.11114":
+  version "1.0.11114"
+  resolved "https://registry.yarnpkg.com/@amaui/utils/-/utils-1.0.11114.tgz#285e483f91e2ccf1b25b4db242f5851c0cc43ca2"
+  integrity sha512-SSyQFgR+WBdt76DfxPihg9Idi6z00KH1wUiZ3nnD2LZ8pd492eFyt8pa2vIvo+uOtIWI3cYM/q1GkxgZKcAp1w==
+  dependencies:
+    "@babel/runtime" "^7.18.3"
+    crypto-js "^4.1.1"
+    path-to-regexp "^6.2.0"
+    uuid "^8.3.2"
+
 "@amaui/utils@^1.0.1874":
   version "1.0.1874"
   resolved "https://registry.yarnpkg.com/@amaui/utils/-/utils-1.0.1874.tgz#41fe174b0c7a66c2fcae3eb7742ee830a3864a85"
