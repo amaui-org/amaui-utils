@@ -1,7 +1,7 @@
 import { TMethod } from './models';
 
 interface IDebounceMethod {
-  (args: any): any;
+  (...args: any[]): any;
   clear: () => void;
 }
 
