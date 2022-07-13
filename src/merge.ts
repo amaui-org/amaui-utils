@@ -1,4 +1,4 @@
-import { is } from './is';
+import is from './is';
 import copy from './copy';
 
 export interface IOptions {
@@ -18,7 +18,7 @@ const optionsDefault: IOptions = {
 const merge = <T extends unknown>(
   target: T,
   source: any,
-  options_: IOptions = optionsDefault
+  options_: IOptions = copy(optionsDefault)
 ): T => {
   const options = { ...optionsDefault, ...options_ };
 

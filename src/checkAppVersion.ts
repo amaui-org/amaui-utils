@@ -1,4 +1,5 @@
-import { isEnvironment, isValid } from './is';
+import isEnvironment from './isEnvironment';
+import isValid from './isValid';
 import getObjectValue from './getObjectValue';
 
 // In your specific app, make sure you import your own app's package.json,

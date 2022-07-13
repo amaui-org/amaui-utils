@@ -1,4 +1,4 @@
-import { is } from './is';
+import is from './is';
 import setObjectValue from './setObjectValue';
 
 const unflattenObject = (object: object): object => {

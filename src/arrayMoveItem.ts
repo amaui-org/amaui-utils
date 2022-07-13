@@ -1,4 +1,4 @@
-import { is } from './is';
+import is from './is';
 
 const arrayMoveItem = (value: any[], previousIndex: number, newIndex: number): any[] => {
   if (is('array', value)) {

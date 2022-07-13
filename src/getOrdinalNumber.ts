@@ -1,6 +1,6 @@
-import { is } from './is';
+import is from './is';
 import castParam from './castParam';
-import merge from './merge';
+import copy from './copy';
 
 export interface IOptions {
   onlySufix?: boolean;
@@ -12,9 +12,9 @@ const optionsDefault: IOptions = {
 
 export const getOrdinalNumber = (
   value_: number,
-  options_: IOptions = optionsDefault
+  options_: IOptions = copy(optionsDefault)
 ): string => {
-  const options = merge(options_, optionsDefault);
+  const options = { ...optionsDefault, ...options_ };
 
   const value = castParam(value_);
 

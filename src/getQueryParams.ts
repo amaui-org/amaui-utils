@@ -1,6 +1,7 @@
-import { is, isEnvironment } from './is';
-import merge from './merge';
+import is from './is';
+import isEnvironment from './isEnvironment';
 import castParam from './castParam';
+import copy from './copy';
 
 export interface IOptions {
   castParam?: boolean;
@@ -13,9 +14,9 @@ const optionsDefault: IOptions = {
 const getQueryParams = (
   value_ = isEnvironment('browser') && window.location.search,
   paramName?: string,
-  options_: IOptions = optionsDefault
+  options_: IOptions = copy(optionsDefault)
 ): object | string | number | boolean | undefined => {
-  const options = merge(options_, optionsDefault);
+  const options = { ...optionsDefault, ...options_ };
 
   if (is('string', value_)) {
     const result = {};

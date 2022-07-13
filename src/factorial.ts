@@ -1,4 +1,4 @@
-import { is } from './is';
+import is from './is';
 
 function factorial(value: number): number {
   if (is('number', value)) {

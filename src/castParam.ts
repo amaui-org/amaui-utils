@@ -1,5 +1,5 @@
-import { is } from './is';
-import merge from './merge';
+import is from './is';
+import copy from './copy';
 
 export interface IOptions {
   decode?: boolean;
@@ -13,9 +13,9 @@ const optionsDefault: IOptions = {
 
 const castParam = (
   value: any,
-  options_: IOptions = optionsDefault
+  options_: IOptions = copy(optionsDefault)
 ): any => {
-  const options = merge(options_, optionsDefault);
+  const options = { ...optionsDefault, ...options_ };
 
   let newValue: any = value;
 

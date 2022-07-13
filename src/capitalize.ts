@@ -1,4 +1,4 @@
-import { is } from './is';
+import is from './is';
 
 const capitalize = (value: string): string => {
   if (is('string', value)) return `${value.charAt(0).toUpperCase()}${value.slice(1)}`;

@@ -1,7 +1,8 @@
-import { is } from './is';
-import merge from './merge';
+import is from './is';
 import unique from './unique';
-import { permutation, permutationWithRepetition } from './permutation';
+import permutation from './permutation';
+import variationWithRepetition from './variationWithRepetition';
+import copy from './copy';
 
 export type TVariation = Array<any> | (() => IterableIterator<any>);
 
@@ -15,8 +16,11 @@ const optionsDefault: IVariationOptions = {
 
 // m - array, n - items
 // m! / (m - n)!
-export function variation(value_: any[], items_ = 0, options_: IVariationOptions = {}): TVariation {
-  const options = merge(options_, optionsDefault, { copy: true });
+export default function variation(
+  value_: any[], items_ = 0,
+  options_: IVariationOptions = copy(optionsDefault)
+): TVariation {
+  const options = { ...optionsDefault, ...options_ };
 
   if (is('array', value_)) {
     const value = unique(value_);
@@ -166,10 +170,4 @@ export function variation(value_: any[], items_ = 0, options_: IVariationOptions
       return response;
     };
   }
-}
-
-// m - array, n - items
-// m ** n
-export function variationWithRepetition(value_: any[], items = 0, options: IVariationOptions = {}): TVariation {
-  return permutationWithRepetition(value_, { ...options, items });
 }

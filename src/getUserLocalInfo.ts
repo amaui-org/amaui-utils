@@ -1,4 +1,5 @@
-import { isBrowser, isOS } from './is';
+import isBrowser from './isBrowser';
+import isOS from './isOS';
 import getCountry from './getCountry';
 import { ICountry } from './countries';
 

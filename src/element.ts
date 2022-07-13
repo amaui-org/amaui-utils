@@ -1,4 +1,5 @@
-import { is, isEnvironment } from './is';
+import is from './is';
+import isEnvironment from './isEnvironment';
 import Try from './try';
 
 export type TArrayMethod = 'every' | 'some';

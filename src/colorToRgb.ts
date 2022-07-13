@@ -1,4 +1,4 @@
-import { isValid } from './is';
+import isValid from './isValid';
 import rgbToRgba from './rgbToRgba';
 import hexToRgb from './hexToRgb';
 import hslToRgb from './hslToRgb';

@@ -1,4 +1,5 @@
-import { isEnvironment, isValid } from './is';
+import isEnvironment from './isEnvironment';
+import isValid from './isValid';
 
 const download = (
   name: string,

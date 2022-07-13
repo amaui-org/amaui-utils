@@ -1,4 +1,4 @@
-import { is } from './is';
+import is from './is';
 
 const resolve = (value: any): any => {
   if (value === undefined) return 'undefined';

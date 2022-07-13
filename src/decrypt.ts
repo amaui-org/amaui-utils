@@ -1,8 +1,8 @@
 import AES from 'crypto-js/aes';
 import encUtf8 from 'crypto-js/enc-utf8';
 
-import merge from './merge';
 import deserialize from './deserialize';
+import copy from './copy';
 
 export interface IOptions {
   exception?: boolean;
@@ -12,8 +12,12 @@ const optionsDefault: IOptions = {
   exception: false,
 };
 
-const decrypt = (value_: string, privateValue: string, options_: IOptions = optionsDefault): any | undefined | Error => {
-  const options = merge(options_, optionsDefault);
+const decrypt = (
+  value_: string,
+  privateValue: string,
+  options_: IOptions = copy(optionsDefault)
+): any | undefined | Error => {
+  const options = { ...optionsDefault, ...options_ };
 
   let value = value_;
 

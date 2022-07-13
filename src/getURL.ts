@@ -1,6 +1,7 @@
-import { isValid, isEnvironment } from './is';
-import merge from './merge';
+import isValid from './isValid';
+import isEnvironment from './isEnvironment';
 import cleanValue from './cleanValue';
+import copy from './copy';
 
 export interface IOptions {
   URL?: boolean;
@@ -10,9 +11,10 @@ const optionsDefault: IOptions = {};
 
 export const getURL = (
   value: string,
-  options_: IOptions = optionsDefault
+  options_: IOptions = copy(optionsDefault)
 ): URL | string => {
-  const options = merge(options_, optionsDefault);
+  const options = { ...optionsDefault, ...options_ };
+
   let url: URL;
 
   try {

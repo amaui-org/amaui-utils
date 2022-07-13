@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { isValid } from './is';
+import isValid from './isValid';
 import getEnvironment from './getEnvironment';
 import setObjectValue from './setObjectValue';
 

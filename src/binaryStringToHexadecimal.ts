@@ -1,4 +1,4 @@
-import { isValid } from './is';
+import isValid from './isValid';
 
 const binaryStringToHexadecimal = (value_: string): string => {
   if (isValid('binary-string', value_)) {

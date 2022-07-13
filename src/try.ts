@@ -1,7 +1,7 @@
-import { is } from './is';
-import merge from './merge';
+import is from './is';
 import getEnvironment from './getEnvironment';
 import setObjectValue from './setObjectValue';
+import copy from './copy';
 
 export interface IOptions {
   log?: boolean;
@@ -11,9 +11,9 @@ const optionsDefault: IOptions = {};
 
 const Try = (
   value: () => any,
-  options_: IOptions = optionsDefault
+  options_: IOptions = copy(optionsDefault)
 ): any => {
-  const options = merge(options_, optionsDefault);
+  const options = { ...optionsDefault, ...options_ };
 
   try {
     return is('function', value) ? value() : undefined;

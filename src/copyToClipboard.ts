@@ -1,4 +1,4 @@
-import { is } from './is';
+import is from './is';
 import stringify from './stringify';
 
 const copyToClipboardFallback = (value_: any): void => {

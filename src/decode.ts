@@ -1,4 +1,4 @@
-import { isEnvironment } from './is';
+import isEnvironment from './isEnvironment';
 import deserialize from './deserialize';
 
 const decode = (value_: string): any => {

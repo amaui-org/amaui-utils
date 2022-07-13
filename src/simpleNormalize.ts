@@ -1,6 +1,6 @@
-import { is } from './is';
+import is from './is';
 import cleanValue, { IOptions as IOptionsCleanValue, optionsDefault as optionsDefaultCleanValue } from './cleanValue';
-import merge from './merge';
+import copy from './copy';
 
 export interface IOptions {
   clean?: boolean;
@@ -30,9 +30,9 @@ const optionsDefault: IOptions = {
 
 const simpleNormalize = (
   value: any,
-  options_: IOptions = optionsDefault
+  options_: IOptions = copy(optionsDefault)
 ): string => {
-  const options = merge(options_, optionsDefault);
+  const options = { ...optionsDefault, ...options_ };
 
   if (is('simple', value)) {
     let newValue = String(value);

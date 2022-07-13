@@ -1,7 +1,7 @@
 import SHA256 from 'crypto-js/sha256';
 
 import serialize from './serialize';
-import merge from './merge';
+import copy from './copy';
 
 export interface IOptions {
   serialize?: boolean;
@@ -13,8 +13,12 @@ const optionsDefault: IOptions = {
   withPrefix: true,
 };
 
-const hash = (value_: any, options_ = optionsDefault): string => {
-  const options = merge(options_, optionsDefault);
+const hash = (
+  value_: any,
+  options_: IOptions = copy(optionsDefault)
+): string => {
+  const options = { ...optionsDefault, ...options_ };
+
   let value: any = value_;
 
   if (options.serialize) value = serialize(value);

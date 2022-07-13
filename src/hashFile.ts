@@ -1,9 +1,9 @@
 import SHA256 from 'crypto-js/sha256';
 
-import { isEnvironment } from './is';
 import to from './to';
+import copy from './copy';
+import isEnvironment from './isEnvironment';
 import fileToValue from './fileToValue';
-import merge from './merge';
 
 export interface IOptions {
   withPrefix?: boolean;
@@ -13,8 +13,12 @@ const optionsDefault: IOptions = {
   withPrefix: true,
 };
 
-const hashFile = async (value_: any, options_ = optionsDefault): Promise<string> => {
-  const options = merge(options_, optionsDefault);
+const hashFile = async (
+  value_: any,
+  options_: IOptions = copy(optionsDefault)
+): Promise<string> => {
+  const options = { ...optionsDefault, ...options_ };
+
   let value: any = value_;
 
   value = isEnvironment('browser') ? await fileToValue(value, 'array-buffer') : to(Buffer.from(value), 'arraybuffer');

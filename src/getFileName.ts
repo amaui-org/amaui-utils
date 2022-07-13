@@ -1,6 +1,6 @@
-import merge from './merge';
 import cleanValue from './cleanValue';
 import capitalize from './capitalize';
+import copy from './copy';
 
 export interface IOptions {
   prefix?: string;
@@ -15,8 +15,11 @@ const optionsDefault: IOptions = {
   clean: true,
 };
 
-const getFileName = (file: File, options_: IOptions = optionsDefault): string => {
-  const options = merge(options_, optionsDefault);
+const getFileName = (
+  file: File,
+  options_: IOptions = copy(optionsDefault)
+): string => {
+  const options = { ...optionsDefault, ...options_ };
 
   const parts = file.name.split('.');
 

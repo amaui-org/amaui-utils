@@ -1,4 +1,4 @@
-import { is } from './is';
+import is from './is';
 import colorToRgb from './colorToRgb';
 
 const getLuminance = (value: string): number => {

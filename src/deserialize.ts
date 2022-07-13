@@ -1,4 +1,4 @@
-import { is } from './is';
+import is from './is';
 
 const deserialize = (value: string): any => {
   if (is('string', value)) {

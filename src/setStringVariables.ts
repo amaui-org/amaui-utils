@@ -1,6 +1,6 @@
-import { is } from './is';
-import merge from './merge';
+import is from './is';
 import getStringVariables, { IGetStringVariables } from './getStringVariables';
+import copy from './copy';
 
 export interface IOptions {
   getVariables?: boolean;
@@ -19,9 +19,9 @@ const optionsDefault: IOptions = {
 const setStringVariables = (
   value: string,
   variablesToValue: TVariablesToValue = [],
-  options_: IOptions = optionsDefault
+  options_: IOptions = copy(optionsDefault)
 ): string => {
-  const options = merge(options_, optionsDefault);
+  const options = { ...optionsDefault, ...options_ };
 
   if (is('string', value)) {
     let newValue = value;

@@ -1,4 +1,5 @@
-import { is, isEnvironment, IOptions as IIsOptions } from './is';
+import is, { IOptions as IIsOptions } from './is';
+import isEnvironment from './isEnvironment';
 import alpha from './alpha';
 import equalDeep from './equalDeep';
 import order from './order';
@@ -59,9 +60,12 @@ import checkObjectFilters from './checkObjectFilters';
 import numberWithCommas from './numberWithCommas';
 import arrayMoveItem from './arrayMoveItem';
 import factorial from './factorial';
-import { permutation, permutationWithRepetition, IPermutationOptions } from './permutation';
-import { variation, variationWithRepetition, IVariationOptions } from './variation';
-import { combination, combinationWithRepetition, ICombinationOptions } from './combination';
+import permutation, { IPermutationOptions } from './permutation';
+import permutationWithRepetition from './permutationWithRepetition';
+import variation, { IVariationOptions } from './variation';
+import variationWithRepetition from './variationWithRepetition';
+import combination, { ICombinationOptions } from './combination';
+import combinationWithRepetition from './combinationWithRepetition';
 import promisify from './promisify';
 import { IFilter } from './models';
 

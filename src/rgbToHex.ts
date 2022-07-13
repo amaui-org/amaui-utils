@@ -1,4 +1,4 @@
-import { isValid } from './is';
+import isValid from './isValid';
 import clamp from './clamp';
 import castParam from './castParam';
 

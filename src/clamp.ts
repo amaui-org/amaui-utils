@@ -1,4 +1,4 @@
-import { is } from './is';
+import is from './is';
 
 const clamp = (value: number, min = Number.MIN_SAFE_INTEGER, max = Number.MAX_SAFE_INTEGER): number => {
   if (is('number', value)) {

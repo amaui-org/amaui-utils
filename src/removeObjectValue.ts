@@ -1,4 +1,4 @@
-import { is } from './is';
+import is from './is';
 import castParam from './castParam';
 
 export const removeObjectValue = (

@@ -1,6 +1,6 @@
-import merge from './merge';
 import getEnvironment from './getEnvironment';
 import setObjectValue from './setObjectValue';
+import copy from './copy';
 
 export type TType = 'JSON';
 
@@ -16,9 +16,9 @@ const optionsDefault: IOptions = {
 const parse = (
   value: any,
   type: TType = 'JSON',
-  options_: IOptions = optionsDefault
+  options_: IOptions = copy(optionsDefault)
 ): any => {
-  const options = merge(options_, optionsDefault);
+  const options = { ...optionsDefault, ...options_ };
 
   switch (type) {
     case 'JSON':

@@ -1,4 +1,5 @@
-import { is, isValid } from './is';
+import is from './is';
+import isValid from './isValid';
 import getObjectValue from './getObjectValue';
 import { IFilter } from './models';
 

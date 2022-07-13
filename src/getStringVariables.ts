@@ -1,5 +1,5 @@
-import { is } from './is';
-import merge from './merge';
+import is from './is';
+import copy from './copy';
 
 export interface IGetStringVariables {
   value?: string;
@@ -19,8 +19,12 @@ const optionsDefault: IOptions = {
   placeholderPrefix: '_',
 };
 
-const getStringVariables = (value: string, options_: IOptions = optionsDefault): IGetStringVariables => {
-  const options = merge(options_, optionsDefault);
+const getStringVariables = (
+  value: string,
+  options_: IOptions = copy(optionsDefault)
+): IGetStringVariables => {
+  const options = { ...optionsDefault, ...options_ };
+
   let valueWithPlaceholders = value;
 
   if (is('string', value)) {

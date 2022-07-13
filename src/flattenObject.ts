@@ -1,4 +1,4 @@
-import { is } from './is';
+import is from './is';
 
 const flattenObject = <T extends unknown>(
   object: T,

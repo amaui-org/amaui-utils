@@ -1,4 +1,5 @@
-import { is, isEnvironment } from './is';
+import is from './is';
+import isEnvironment from './isEnvironment';
 import getQueryParams from './getQueryParams';
 
 const updateQueryParams = (value = {}, override = true): void => {

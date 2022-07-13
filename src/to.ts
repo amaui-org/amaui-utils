@@ -1,7 +1,9 @@
-import { is, isEnvironment, isValid } from './is';
+import is from './is';
+import isValid from './isValid';
+import isEnvironment from './isEnvironment';
 import stringify from './stringify';
 import castParam from './castParam';
-import merge from './merge';
+import copy from './copy';
 
 export type TType = 'string' | 'arraybuffer' | 'datauri' | 'base64' | 'blob' | 'buffer' | 'byte-size' | 'size' | 'size-format';
 
@@ -77,8 +79,12 @@ const optionsDefault: IOptions = {
   mime: 'text/plain',
 };
 
-const to = (value_: any, type: TType = 'arraybuffer', options_: IOptions = optionsDefault): TTo => {
-  const options = merge(options_, optionsDefault);
+const to = (
+  value_: any,
+  type: TType = 'arraybuffer',
+  options_: IOptions = copy(optionsDefault)
+): TTo => {
+  const options = { ...optionsDefault, ...options_ };
 
   let value: any = value_;
 

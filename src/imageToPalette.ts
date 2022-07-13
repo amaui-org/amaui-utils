@@ -1,4 +1,4 @@
-import { isEnvironment } from './is';
+import isEnvironment from './isEnvironment';
 import quantize from './quantize';
 
 const imageToPalette = (value: string, options: { amount?: number; size?: number; allowCrossOrigin?: boolean } = { amount: 4, size: 400, allowCrossOrigin: false }): Promise<Array<string>> => new Promise(resolve => {

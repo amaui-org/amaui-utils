@@ -1,7 +1,6 @@
-import { is } from './is';
-import merge from './merge';
+import is from './is';
 import capitalize from './capitalize';
-import hash from './hash';
+import copy from './copy';
 
 export interface IOptions {
   filters?: string[];
@@ -20,36 +19,12 @@ export const optionsDefault: IOptions = {
   trim: true,
 };
 
-class AmauiCache {
-  public static caches = {};
-
-  public static add(value: any, ...args: any[]): void {
-    const key = hash(args) as string;
-
-    if (!this.caches[key]) this.caches[key] = value;
-  }
-
-  public static get(...args: any[]): undefined | any {
-    const key = hash(args) as string;
-
-    return this.caches[key];
-  }
-
-  public static has(...args: any[]): boolean {
-    const key = hash(args) as string;
-
-    return this.caches.hasOwnProperty(key);
-  }
-}
-
 const cleanValue = (
   value_: string,
-  options_: IOptions = optionsDefault
+  options_: IOptions = copy(optionsDefault)
 ): string | any => {
   try {
-    const options = merge(options_, optionsDefault);
-
-    if (AmauiCache.has(value_, options)) return AmauiCache.get(value_, options);
+    const options = { ...optionsDefault, ...options_ };
 
     // Few predefined options
     // for className cammel case to regular
@@ -59,8 +34,6 @@ const cleanValue = (
       options.cammelCaseTransform = true;
       options.lowercase = true;
     }
-
-    const saveToCache = (value: any) => AmauiCache.add(value, value_, options_);
 
     if (is('string', value_)) {
       let value = value_;
@@ -74,9 +47,6 @@ const cleanValue = (
         if (path.slice(-1) === '/') path = path.slice(0, -1);
 
         value = query ? [path, query].join('?') : path;
-
-        // Save to cache
-        saveToCache(value);
 
         return value;
       }
@@ -94,14 +64,8 @@ const cleanValue = (
       if (options.capitalize) value = capitalize(value);
       if (options.lowercase) value = value.toLocaleLowerCase();
 
-      // Save to cache
-      saveToCache(value);
-
       return value;
     }
-
-    // Save to cache
-    saveToCache(value_);
 
     return value_;
   }

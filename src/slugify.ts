@@ -1,6 +1,6 @@
-import { is } from './is';
+import is from './is';
 import cleanValue from './cleanValue';
-import merge from './merge';
+import copy from './copy';
 
 export interface IOptions {
   lowercase?: boolean;
@@ -10,8 +10,11 @@ const optionsDefault: IOptions = {
   lowercase: true,
 };
 
-const slugify = (value_: string, options_: IOptions = optionsDefault) => {
-  const options = merge(options_, optionsDefault);
+const slugify = (
+  value_: string,
+  options_: IOptions = copy(optionsDefault)
+) => {
+  const options = { ...optionsDefault, ...options_ };
 
   let value = cleanValue(value_, {
     replaceWith: '-',

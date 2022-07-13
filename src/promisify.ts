@@ -1,6 +1,6 @@
-import { is } from './is';
+import is from './is';
 import { TMethod } from './models';
-import merge from './merge';
+import copy from './copy';
 
 export interface IOptions {
   onError?: 'reject' | 'resolve';
@@ -10,8 +10,11 @@ const optionsDefault: IOptions = {
   onError: 'reject',
 };
 
-const promisify = <T>(method: TMethod | Promise<any>, options_: IOptions = optionsDefault): (...args: any[]) => Promise<T | any> => async (...args: any[]) => {
-  const options = merge(options_, optionsDefault);
+const promisify = <T>(
+  method: TMethod | Promise<any>,
+  options_: IOptions = copy(optionsDefault)
+): (...args: any[]) => Promise<T | any> => async (...args: any[]) => {
+  const options = { ...optionsDefault, ...options_ };
 
   if (is('promise', method)) return method as unknown as Promise<any>;
 

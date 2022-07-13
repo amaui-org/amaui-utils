@@ -1,4 +1,4 @@
-import { is } from './is';
+import is from './is';
 
 const order = <T>(value: T): T => {
   if (is('object', value)) {

@@ -1,4 +1,4 @@
-import { isEnvironment } from './is';
+import isEnvironment from './isEnvironment';
 
 const allImagesLoaded = (): Promise<boolean | number> | boolean => {
   if (isEnvironment('browser')) {

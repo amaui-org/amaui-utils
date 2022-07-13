@@ -1,4 +1,4 @@
-import { is } from './is';
+import is from './is';
 import clamp from './clamp';
 import random from './random';
 

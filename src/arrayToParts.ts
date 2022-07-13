@@ -1,4 +1,4 @@
-import { is } from './is';
+import is from './is';
 
 const arrayToParts = (value: any[], parts = 10): any[] => {
   if (is('array', value)) {
