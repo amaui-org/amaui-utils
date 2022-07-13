@@ -1,6 +1,6 @@
 {
   "name": "@amaui/utils",
-  "version": "1.0.11117",
+  "version": "1.0.11141",
   "description": "Utils",
   "repository": "https://github.com/amaui-org/amaui-utils.git",
   "author": "Lazar <lazareric.com@gmail.com>",
@@ -87,7 +87,7 @@
   },
   "publishConfig": {
     "access": "public",
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://registry.npmjs.org"
   },
   "sideEffects": false,
   "engines": {
