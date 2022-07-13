@@ -1,4 +1,3 @@
-import copy from './copy';
 
 export interface IOptions {
   variant?: string;
@@ -19,7 +18,7 @@ const isNodejs = !!(typeof global !== 'undefined' && typeof module !== 'undefine
 export default function is(
   type: string,
   value?: any,
-  options_: IOptions = copy(optionsDefault)
+  options_: IOptions = {}
 ) {
   const options = { ...optionsDefault, ...options_ };
 

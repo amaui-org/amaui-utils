@@ -1,9 +1,8 @@
 import is from './is';
 import castParam from './castParam';
-import copy from './copy';
 
 export interface IOptions {
-  leadingZeros: number;
+  leadingZeros?: number;
 }
 
 const optionsDefault: IOptions = {
@@ -12,7 +11,7 @@ const optionsDefault: IOptions = {
 
 export const getLeadingZerosNumber = (
   value_: number,
-  options_: IOptions = copy(optionsDefault)
+  options_: IOptions = {}
 ): string => {
   const options = { ...optionsDefault, ...options_ };
 

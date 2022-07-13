@@ -1,6 +1,5 @@
 import is from './is';
 import getStringVariables, { IGetStringVariables } from './getStringVariables';
-import copy from './copy';
 
 export interface IOptions {
   getVariables?: boolean;
@@ -19,7 +18,7 @@ const optionsDefault: IOptions = {
 const setStringVariables = (
   value: string,
   variablesToValue: TVariablesToValue = [],
-  options_: IOptions = copy(optionsDefault)
+  options_: IOptions = {}
 ): string => {
   const options = { ...optionsDefault, ...options_ };
 

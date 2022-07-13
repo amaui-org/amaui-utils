@@ -2,7 +2,6 @@ import AES from 'crypto-js/aes';
 import encUtf8 from 'crypto-js/enc-utf8';
 
 import deserialize from './deserialize';
-import copy from './copy';
 
 export interface IOptions {
   exception?: boolean;
@@ -15,7 +14,7 @@ const optionsDefault: IOptions = {
 const decrypt = (
   value_: string,
   privateValue: string,
-  options_: IOptions = copy(optionsDefault)
+  options_: IOptions = {}
 ): any | undefined | Error => {
   const options = { ...optionsDefault, ...options_ };
 

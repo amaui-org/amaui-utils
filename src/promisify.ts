@@ -1,6 +1,5 @@
 import is from './is';
 import { TMethod } from './models';
-import copy from './copy';
 
 export interface IOptions {
   onError?: 'reject' | 'resolve';
@@ -12,7 +11,7 @@ const optionsDefault: IOptions = {
 
 const promisify = <T>(
   method: TMethod | Promise<any>,
-  options_: IOptions = copy(optionsDefault)
+  options_: IOptions = {}
 ): (...args: any[]) => Promise<T | any> => async (...args: any[]) => {
   const options = { ...optionsDefault, ...options_ };
 

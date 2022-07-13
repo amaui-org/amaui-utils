@@ -18,7 +18,7 @@ const optionsDefault: IPermutationOptions = {
 // m!
 export default function permutation(
   value_: any[],
-  options_: IPermutationOptions = copy(optionsDefault)
+  options_: IPermutationOptions = {}
 ): TPermutation {
   const options = { ...optionsDefault, ...options_ };
 

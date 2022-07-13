@@ -1,7 +1,6 @@
 import SHA256 from 'crypto-js/sha256';
 
 import serialize from './serialize';
-import copy from './copy';
 
 export interface IOptions {
   serialize?: boolean;
@@ -15,7 +14,7 @@ const optionsDefault: IOptions = {
 
 const hash = (
   value_: any,
-  options_: IOptions = copy(optionsDefault)
+  options_: IOptions = {}
 ): string => {
   const options = { ...optionsDefault, ...options_ };
 

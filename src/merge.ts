@@ -18,7 +18,7 @@ const optionsDefault: IOptions = {
 const merge = <T extends unknown>(
   target: T,
   source: any,
-  options_: IOptions = copy(optionsDefault)
+  options_: IOptions = {}
 ): T => {
   const options = { ...optionsDefault, ...options_ };
 

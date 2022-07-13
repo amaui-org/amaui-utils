@@ -19,7 +19,7 @@ const optionsDefault: ICombinationOptions = {
 export default function combination(
   value_: any[],
   items_ = 0,
-  options_: ICombinationOptions = copy(optionsDefault)
+  options_: ICombinationOptions = {}
 ): TCombination {
   const options = { ...optionsDefault, ...options_ };
 

@@ -1,7 +1,6 @@
 import SHA256 from 'crypto-js/sha256';
 
 import to from './to';
-import copy from './copy';
 import isEnvironment from './isEnvironment';
 import fileToValue from './fileToValue';
 
@@ -15,7 +14,7 @@ const optionsDefault: IOptions = {
 
 const hashFile = async (
   value_: any,
-  options_: IOptions = copy(optionsDefault)
+  options_: IOptions = {}
 ): Promise<string> => {
   const options = { ...optionsDefault, ...options_ };
 

@@ -1,6 +1,5 @@
 import is from './is';
 import cleanValue from './cleanValue';
-import copy from './copy';
 
 export interface IOptions {
   lowercase?: boolean;
@@ -12,7 +11,7 @@ const optionsDefault: IOptions = {
 
 const slugify = (
   value_: string,
-  options_: IOptions = copy(optionsDefault)
+  options_: IOptions = {}
 ) => {
   const options = { ...optionsDefault, ...options_ };
 

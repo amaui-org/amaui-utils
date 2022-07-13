@@ -1,6 +1,5 @@
 import cleanValue from './cleanValue';
 import capitalize from './capitalize';
-import copy from './copy';
 
 export interface IOptions {
   prefix?: string;
@@ -17,7 +16,7 @@ const optionsDefault: IOptions = {
 
 const getFileName = (
   file: File,
-  options_: IOptions = copy(optionsDefault)
+  options_: IOptions = {}
 ): string => {
   const options = { ...optionsDefault, ...options_ };
 

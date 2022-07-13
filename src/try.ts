@@ -1,7 +1,6 @@
 import is from './is';
 import getEnvironment from './getEnvironment';
 import setObjectValue from './setObjectValue';
-import copy from './copy';
 
 export interface IOptions {
   log?: boolean;
@@ -11,7 +10,7 @@ const optionsDefault: IOptions = {};
 
 const Try = (
   value: () => any,
-  options_: IOptions = copy(optionsDefault)
+  options_: IOptions = {}
 ): any => {
   const options = { ...optionsDefault, ...options_ };
 

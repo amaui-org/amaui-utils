@@ -16,7 +16,7 @@ const optionsDefault: IVariationOptions = {
 export default function variationWithRepetition(
   value_: any[],
   items = 0,
-  options_: IVariationOptions = copy(optionsDefault)
+  options_: IVariationOptions = {}
 ): TVariation {
   const options = { ...optionsDefault, ...options_ };
 

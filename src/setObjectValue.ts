@@ -1,7 +1,6 @@
 import is from './is';
 import cleanValue from './cleanValue';
 import castParam from './castParam';
-import copy from './copy';
 
 export interface IOptions {
   valueOverride?: boolean;
@@ -15,7 +14,7 @@ const setObjectValue = <T extends unknown>(
   object: T,
   keys: string | string[] = '',
   value: any = undefined,
-  options_: IOptions = copy(optionsDefault)
+  options_: IOptions = {}
 ): T => {
   const options = { ...optionsDefault, ...options_ };
 

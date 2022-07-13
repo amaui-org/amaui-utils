@@ -1,5 +1,4 @@
 import is from './is';
-import copy from './copy';
 
 export interface IGetStringVariables {
   value?: string;
@@ -21,7 +20,7 @@ const optionsDefault: IOptions = {
 
 const getStringVariables = (
   value: string,
-  options_: IOptions = copy(optionsDefault)
+  options_: IOptions = {}
 ): IGetStringVariables => {
   const options = { ...optionsDefault, ...options_ };
 

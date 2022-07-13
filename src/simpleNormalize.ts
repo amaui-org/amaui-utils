@@ -1,6 +1,5 @@
 import is from './is';
 import cleanValue, { IOptions as IOptionsCleanValue, optionsDefault as optionsDefaultCleanValue } from './cleanValue';
-import copy from './copy';
 
 export interface IOptions {
   clean?: boolean;
@@ -30,7 +29,7 @@ const optionsDefault: IOptions = {
 
 const simpleNormalize = (
   value: any,
-  options_: IOptions = copy(optionsDefault)
+  options_: IOptions = {}
 ): string => {
   const options = { ...optionsDefault, ...options_ };
 

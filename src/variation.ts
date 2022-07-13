@@ -18,7 +18,7 @@ const optionsDefault: IVariationOptions = {
 // m! / (m - n)!
 export default function variation(
   value_: any[], items_ = 0,
-  options_: IVariationOptions = copy(optionsDefault)
+  options_: IVariationOptions = {}
 ): TVariation {
   const options = { ...optionsDefault, ...options_ };
 

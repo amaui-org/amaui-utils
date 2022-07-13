@@ -1,6 +1,5 @@
 import is from './is';
 import capitalize from './capitalize';
-import copy from './copy';
 
 export interface IOptions {
   filters?: string[];
@@ -21,7 +20,7 @@ export const optionsDefault: IOptions = {
 
 const cleanValue = (
   value_: string,
-  options_: IOptions = copy(optionsDefault)
+  options_: IOptions = {}
 ): string | any => {
   try {
     const options = { ...optionsDefault, ...options_ };

@@ -3,7 +3,6 @@ import { validate as uuidValidate } from 'uuid';
 import is from './is';
 import isEnvironment from './isEnvironment';
 import equalDeep from './equalDeep';
-import copy from './copy';
 
 export interface IOptions {
   variant?: string;
@@ -19,7 +18,7 @@ const optionsDefault: IOptions = {};
 export default function isValid(
   type: string,
   value?: any,
-  options_: IOptions = copy(optionsDefault)
+  options_: IOptions = {}
 ) {
   const options = { ...optionsDefault, ...options_ };
 

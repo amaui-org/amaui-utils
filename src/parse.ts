@@ -1,6 +1,5 @@
 import getEnvironment from './getEnvironment';
 import setObjectValue from './setObjectValue';
-import copy from './copy';
 
 export type TType = 'JSON';
 
@@ -16,7 +15,7 @@ const optionsDefault: IOptions = {
 const parse = (
   value: any,
   type: TType = 'JSON',
-  options_: IOptions = copy(optionsDefault)
+  options_: IOptions = {}
 ): any => {
   const options = { ...optionsDefault, ...options_ };
 

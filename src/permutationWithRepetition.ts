@@ -17,7 +17,7 @@ const optionsDefault: IPermutationOptions = {
 // m! / a! * b! * c! ...
 export default function permutationWithRepetition(
   value_: any[],
-  options_: IPermutationOptions = copy(optionsDefault)
+  options_: IPermutationOptions = {}
 ): TPermutation {
   const options = { ...optionsDefault, ...options_ };
 

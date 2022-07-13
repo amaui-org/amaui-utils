@@ -1,5 +1,4 @@
 import is from './is';
-import copy from './copy';
 
 export interface IOptions {
   decode?: boolean;
@@ -13,7 +12,7 @@ const optionsDefault: IOptions = {
 
 const castParam = (
   value: any,
-  options_: IOptions = copy(optionsDefault)
+  options_: IOptions = {}
 ): any => {
   const options = { ...optionsDefault, ...options_ };
 

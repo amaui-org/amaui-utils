@@ -3,7 +3,6 @@ import isValid from './isValid';
 import isEnvironment from './isEnvironment';
 import stringify from './stringify';
 import castParam from './castParam';
-import copy from './copy';
 
 export type TType = 'string' | 'arraybuffer' | 'datauri' | 'base64' | 'blob' | 'buffer' | 'byte-size' | 'size' | 'size-format';
 
@@ -82,7 +81,7 @@ const optionsDefault: IOptions = {
 const to = (
   value_: any,
   type: TType = 'arraybuffer',
-  options_: IOptions = copy(optionsDefault)
+  options_: IOptions = {}
 ): TTo => {
   const options = { ...optionsDefault, ...options_ };
 

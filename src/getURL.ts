@@ -1,7 +1,6 @@
 import isValid from './isValid';
 import isEnvironment from './isEnvironment';
 import cleanValue from './cleanValue';
-import copy from './copy';
 
 export interface IOptions {
   URL?: boolean;
@@ -11,7 +10,7 @@ const optionsDefault: IOptions = {};
 
 export const getURL = (
   value: string,
-  options_: IOptions = copy(optionsDefault)
+  options_: IOptions = {}
 ): URL | string => {
   const options = { ...optionsDefault, ...options_ };
 
