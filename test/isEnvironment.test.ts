@@ -54,7 +54,7 @@ group('@amaui/utils/isEnvironment', () => {
     });
 
     to('is not nodejs', async () => {
-      const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isEnvironment('nodejs'),);
+      const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isEnvironment('nodejs'));
 
       valueBrowsers.forEach(value => assert(value).eq(false));
     });

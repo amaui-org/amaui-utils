@@ -16,7 +16,7 @@ export default function isEnvironment(
       return typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;
 
     case 'nodejs':
-      return !!(typeof global !== 'undefined' && typeof module !== 'undefined' && module.exports);
+      return (new Function('try {return this===global;}catch(e){return false;}'))();
 
     case 'localhost':
       value_ = value !== undefined ? value : (isEnvironment('browser') && window.location.hostname);
