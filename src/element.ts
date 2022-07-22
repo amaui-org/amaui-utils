@@ -34,6 +34,10 @@ function element(value: string | Element): IElementObject {
     return method.bind(value_);
   };
 
+  // Static
+  // Mathces
+  (element as any).matches = matches;
+
   // Parent
   object.parent = function (): Element {
     if (this.value && isEnvironment('browser') && this.value.parentNode) return this.value.parentNode as Element;
