@@ -1,5 +1,4 @@
 import isEnvironment from './isEnvironment';
-import isValid from './isValid';
 
 const download = (
   name: string,
@@ -10,7 +9,8 @@ const download = (
     const a = document.createElement('a');
 
     a.download = name;
-    a.href = isValid('data-uri', data) ? data : `data:${type};charset=utf-8,${encodeURIComponent(data)}`;
+
+    a.href = data.startsWith(`data:`) ? data : `data:${type};charset=utf-8,${encodeURIComponent(data)}`;
 
     document.body.appendChild(a);
 

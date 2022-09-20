@@ -58,55 +58,6 @@ group('@amaui/utils/polyfills', () => {
         ]));
       });
 
-      to('Caret positioning', async () => {
-        const valueBrowsers = await evaluate((window: any) => {
-          window.AmauiUtils.polyfills();
-
-          const p: HTMLParagraphElement = window.document.createElement('p');
-
-          p.contentEditable = 'true';
-          p.textContent = 'a';
-
-          window.document.body.append(p);
-
-          p.focus();
-
-          window.document.execCommand('selectAll', false, null);
-          window.document.getSelection().collapseToEnd();
-
-          // Save caret position
-          let save = window.AmauiUtils.CaretPositioning.save(p);
-          let position = window.document.getSelection();
-
-          const result = [
-            window.AmauiUtils.equalDeep(save, { start: 1, end: 1 }) &&
-            (position.anchorNode.parentElement === p || position.anchorNode === p) &&
-            position.anchorOffset === 1
-          ];
-
-          // Restore caret position
-          window.AmauiUtils.CaretPositioning.restore(p, { start: 0, end: 0 });
-
-          // Save caret position again
-          save = window.AmauiUtils.CaretPositioning.save(p);
-          position = window.document.getSelection();
-
-          result.push(
-            window.AmauiUtils.equalDeep(save, { start: 0, end: 0 }) &&
-            (position.anchorNode.parentElement === p || position.anchorNode === p) &&
-            position.anchorOffset === 0
-          );
-
-          return result;
-        });
-        const values = [...valueBrowsers];
-
-        values.forEach(value => assert(value).eql([
-          true,
-          true,
-        ]));
-      });
-
     });
 
   });

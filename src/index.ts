@@ -102,3 +102,8 @@ export { default as Try } from './try';
 export { default as quantize } from './quantize';
 export { default as imageToPalette } from './imageToPalette';
 export * from './models';
+export { default as percentageFromValueWithinRange } from './percentageFromValueWithinRange';
+export { default as valueFromPercentageWithinRange } from './valueFromPercentageWithinRange';
+export { default as pagination } from './pagination';
+export { default as canvasCrop } from './canvasCrop';
+export { default as elementToCanvas } from './elementToCanvas';

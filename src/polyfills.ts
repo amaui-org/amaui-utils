@@ -508,108 +508,10 @@ export const arrayBufferPolyfill = () => {
   if ('Blob' in window) (Blob.prototype as any).arrayBuffer = AMAUI_TEST ? arrayBufferFunction || (Blob.prototype as any).arrayBuffer : (Blob.prototype as any).arrayBuffer || arrayBufferFunction;
 };
 
-export const CaretPositioning: ICaretPositioning = {};
-
-export const carretPositioningPolyfill = () => {
-  // Carret positioning
-  if (window.getSelection && document.createRange) {
-    // Saves caret position(s)
-    CaretPositioning.save = function (element) {
-      const range = window.getSelection().getRangeAt(0);
-      const preSelectionRange = range.cloneRange();
-
-      preSelectionRange.selectNodeContents(element);
-      preSelectionRange.setEnd(range.startContainer, range.startOffset);
-
-      const start = preSelectionRange.toString().length;
-
-      return {
-        start,
-        end: start + range.toString().length,
-      };
-    };
-
-    // Restores caret position(s)
-    CaretPositioning.restore = function (element, selection) {
-      let charIndex = 0;
-      const range = document.createRange();
-
-      range.setStart(element, 0);
-      range.collapse(true);
-
-      const nodeStack = [element];
-      let node: any;
-      let foundStart = false;
-      let stop = false;
-
-      // tslint:disable-next-line
-      while (!stop && (node = nodeStack.pop())) {
-        if (node.nodeType === 3) {
-          const nextCharIndex = charIndex + node.length;
-
-          if (!foundStart && selection.start >= charIndex && selection.start <= nextCharIndex) {
-            range.setStart(node, selection.start - charIndex);
-
-            foundStart = true;
-          }
-
-          if (foundStart && selection.end >= charIndex && selection.end <= nextCharIndex) {
-            range.setEnd(node, selection.end - charIndex);
-
-            stop = true;
-          }
-
-          charIndex = nextCharIndex;
-        } else {
-          let i = node.childNodes.length;
-
-          while (i--) nodeStack.push(node.childNodes[i]);
-        }
-      }
-
-      const sel = window.getSelection();
-
-      sel.removeAllRanges();
-      sel.addRange(range);
-    };
-  }
-  else if ((document as any).selection && (document.body as any).createTextRange) {
-    // Saves caret position(s)
-    CaretPositioning.save = function (element) {
-      const selectedTextRange = (document as any).selection.createRange();
-      const preSelectionTextRange = (document as any).body.createTextRange();
-
-      preSelectionTextRange.moveToElementText(element);
-      preSelectionTextRange.setEndPoint('EndToStart', selectedTextRange);
-
-      const start = preSelectionTextRange.text.length;
-
-      return {
-        start,
-        end: start + selectedTextRange.text.length
-      };
-    };
-
-    // Restores caret position(s)
-    CaretPositioning.restore = function (element, selection) {
-      const textRange = (document as any).body.createTextRange();
-
-      textRange.moveToElementText(element);
-      textRange.collapse(true);
-      textRange.moveEnd('character', selection.end);
-      textRange.moveStart('character', selection.start);
-      textRange.select();
-    };
-  }
-};
-
 export const browserPolyfills = (additions = true) => {
   if (isEnvironment('browser')) {
     // ArrayBuffer
     arrayBufferPolyfill();
-
-    // Carret positioning
-    carretPositioningPolyfill();
   }
 };
 

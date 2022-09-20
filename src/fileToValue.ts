@@ -1,7 +1,7 @@
 
 export type TType = 'text' | 'binary' | 'array-buffer' | 'datauri';
 
-const fileToValue = (file: File, type: TType = 'text'): Promise<string | ArrayBuffer> => new Promise((resolve, reject) => {
+const fileToValue = (file: Blob | File, type: TType = 'text'): Promise<string | ArrayBuffer> => new Promise((resolve, reject) => {
   const reader = new FileReader();
 
   switch (type) {
