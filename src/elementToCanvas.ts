@@ -53,6 +53,8 @@ export interface IElementToCanvasOptions {
     quality?: number;
   };
 
+  filter?: Array<string>;
+
   crop?: { x?: number; y?: number; width?: number; height?: number; };
 
   styleSheets?: boolean;
@@ -90,6 +92,14 @@ const elementToCanvas = async (element_: HTMLElement, options_?: IElementToCanva
   if (isEnvironment('browser')) {
     if (element_ !== undefined && is('element', element_)) {
       const element = element_.cloneNode(true) as HTMLElement;
+
+      if (is('array', options.filter)) {
+        options.filter.forEach(item => {
+          const items = Array.from(element.querySelectorAll(item));
+
+          items.forEach(item_ => is('function', item_.remove) && item_.remove());
+        });
+      }
 
       let elementXML = serialize(element);
 

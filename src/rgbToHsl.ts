@@ -20,7 +20,9 @@ const rgbToHsl = (
     // find greatest and smallest channel values
     const cmin = Math.min(r, g, b);
     const cmax = Math.max(r, g, b);
+
     const delta = cmax - cmin;
+
     let h = 0;
     let s = 0;
     let l = 0;
