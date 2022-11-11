@@ -137,7 +137,7 @@ const elementToCanvas = async (element_: HTMLElement, options_?: IElementToCanva
         const links_ = Array.from(window.document.querySelectorAll('link'));
 
         for (const link of links_) {
-          if (!linksAdd[link.href]) {
+          if (!linksAdd[link.href] && ['stylesheet'].includes(link.rel)) {
             const value = await getData(link.href, 'text');
 
             if (value) {
@@ -193,7 +193,7 @@ const elementToCanvas = async (element_: HTMLElement, options_?: IElementToCanva
 
       if (options.response === 'svg') return svg;
 
-      const uri = `data:image/svg+xml;base64,${btoa(svg)}`;
+      const uri = `data:image/svg+xml;base64,${btoa(unescape(encodeURIComponent(svg)))}`;
 
       if (options.response === 'svg-datauri') return uri;
 
