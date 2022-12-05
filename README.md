@@ -56,7 +56,7 @@
 
   encode(value);
 
-  // 'eyJhIjoiYSIsImIiOlt7ImEiOjR9AA0='
+  // 'eyJhIjoiYSIsImIiOlt7ImEiOjR9aa0='
 
   equalDeep(value, { a: 'a', b: [{ a: 4 }] });
 
