@@ -90,7 +90,6 @@ export { default as numberWithCommas } from './numberWithCommas';
 export { default as simpleNormalize } from './simpleNormalize';
 export { default as parse } from './parse';
 export { default as arrayMoveItem } from './arrayMoveItem';
-export { default as reactLazy } from './reactLazy';
 export { default as asyncMethodRetry } from './asyncMethodRetry';
 export { default as getQueryParams } from './getQueryParams';
 export { default as updateQueryParams } from './updateQueryParams';

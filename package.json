@@ -1,6 +1,6 @@
 {
   "name": "@amaui/utils",
-  "version": "1.0.11445",
+  "version": "1.0.11447",
   "description": "Utils",
   "repository": "https://github.com/amaui-org/amaui-utils.git",
   "author": "Lazar <lazareric.com@gmail.com>",
@@ -35,9 +35,6 @@
     "test:pre": "pm2 update && pm2 delete all && pm2 start utils/js/test/app.js && wait-on http://localhost:4000",
     "test:post": "pm2 delete all",
     "test": "yarn lint && yarn type && yarn build && yarn test:pre && yarn cov && yarn test:post"
-  },
-  "peerDependencies": {
-    "react": "^17.0.2"
   },
   "dependencies": {
     "@babel/runtime": "^7.18.3",
