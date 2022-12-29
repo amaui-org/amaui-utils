@@ -30,11 +30,11 @@ const stringify = (value_: any, spaces = 2, replacer = method()) => {
     let value = JSON.stringify(value_, replacer, spaces);
 
     // Array circular ref value update
-    value = value
-      // first item
-      .replace(/(?!\[)\n* *null,/g, '')
-      // index 1+
-      .replace(/,\n* *null/g, '');
+    // value = value
+    //   // first item
+    //   .replace(/(?!\[)\n* *null,/g, '')
+    //   // index 1+
+    //   .replace(/,\n* *null/g, '');
 
     return value;
   }
