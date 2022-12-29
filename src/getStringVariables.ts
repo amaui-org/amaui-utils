@@ -27,11 +27,11 @@ const getStringVariables = (
   let valueWithPlaceholders = value;
 
   if (is('string', value)) {
-    let variables = value.match(options.variablesRegExp) || [];
+    let variables: RegExpMatchArray | [] = value.match(options.variablesRegExp) || [];
 
     variables.forEach((variable, index) => valueWithPlaceholders = valueWithPlaceholders.replace(variable, `${options.placeholderPrefix}${index}`));
 
-    if (options.cleanVariables) variables = variables.map(variable => variable.slice(1, variable.length - 1));
+    if (options.cleanVariables) variables = variables.map(variable => variable.slice(1, variable.length - 1)) as [];
 
     return {
       value,
