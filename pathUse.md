@@ -2,10 +2,13 @@
 
 ### API
 
-#### TVariation
+#### wait
 
 ```ts
-type TVariation = Array<any> | (() => IterableIterator<any>);
+const wait: (milliseconds?: number) => Promise<undefined>;
+```
+
+>);
 ```
 
 #### IVariationOptions

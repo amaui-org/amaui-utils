@@ -322,7 +322,7 @@ async function docs() {
 
   const use = fse.existsSync(paths.use);
 
-  if (isModules) {
+  if (files.length > 1) {
     if (!use) fse.mkdirSync(paths.use);
   }
 
