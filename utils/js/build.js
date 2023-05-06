@@ -326,7 +326,7 @@ async function docs() {
     if (!use) fse.mkdirSync(paths.use);
   }
 
-  await Promise.all(files.map(item => docsUpdateTypes(item, paths.use, isModules)));
+  await Promise.all(files.map(item => docsUpdateTypes(item, paths.use, files.length > 1)));
 
   if (log) console.log(`🌱 Done docs`);
 }
