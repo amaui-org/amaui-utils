@@ -255,7 +255,7 @@ async function docsUpdateTypes(pathTypes, pathUse, isModules) {
 
   const name = (path.parse(pathTypes).name).replace('.d', '').replace(/[\(\):]/gi, '');
 
-  const usePath = `pathUse${!isModules ? '.md' : `/${name}.md`}`;
+  const usePath = `${pathUse}${!isModules ? '.md' : `/${name}.md`}`;
 
   const use = fse.existsSync(usePath) ? await fse.readFile(usePath, 'utf8') : '';
 
