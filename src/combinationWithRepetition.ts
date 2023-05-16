@@ -1,6 +1,5 @@
 import is from './is';
 import unique from './unique';
-import copy from './copy';
 
 export type TCombination = Array<any> | (() => IterableIterator<any>);
 

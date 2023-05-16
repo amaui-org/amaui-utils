@@ -1,6 +1,5 @@
 import is from './is';
 import unique from './unique';
-import copy from './copy';
 
 export type TPermutation = Array<any> | (() => IterableIterator<any>);
 

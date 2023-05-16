@@ -2,7 +2,6 @@ import is from './is';
 import unique from './unique';
 import permutation from './permutation';
 import variationWithRepetition from './variationWithRepetition';
-import copy from './copy';
 
 export type TVariation = Array<any> | (() => IterableIterator<any>);
 
@@ -17,7 +16,8 @@ const optionsDefault: IVariationOptions = {
 // m - array, n - items
 // m! / (m - n)!
 export default function variation(
-  value_: any[], items_ = 0,
+  value_: any[],
+  items_ = 0,
   options_: IVariationOptions = {}
 ): TVariation {
   const options = { ...optionsDefault, ...options_ };

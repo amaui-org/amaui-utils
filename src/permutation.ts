@@ -1,12 +1,10 @@
 import is from './is';
 import unique from './unique';
 import equalDeep from './equalDeep';
-import copy from './copy';
 
 export type TPermutation = Array<any> | (() => IterableIterator<any>);
 
 export interface IPermutationOptions {
-  items?: number;
   response?: 'array' | 'yield';
 }
 

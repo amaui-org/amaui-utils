@@ -1,5 +1,4 @@
 import permutationWithRepetition from './permutationWithRepetition';
-import copy from './copy';
 
 export type TVariation = Array<any> | (() => IterableIterator<any>);
 
