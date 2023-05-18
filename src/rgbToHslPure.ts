@@ -1,5 +1,5 @@
 
-const rgbToHsl = (r_: number, g_: number, b_: number): number[] => {
+const rgbToHslPure = (r_: number, g_: number, b_: number): number[] => {
   let [r, g, b] = [r_, g_, b_];
 
   r /= 255;
@@ -34,4 +34,4 @@ const rgbToHsl = (r_: number, g_: number, b_: number): number[] => {
   return [h, s, l];
 };
 
-export default rgbToHsl;
+export default rgbToHslPure;

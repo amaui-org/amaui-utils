@@ -6,7 +6,7 @@ export interface IOptions {
 }
 
 const optionsDefault: IOptions = {
-  lowercase: true,
+  lowercase: true
 };
 
 const slugify = (
