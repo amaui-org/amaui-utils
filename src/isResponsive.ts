@@ -1,7 +1,9 @@
 import isEnvironment from './isEnvironment';
 
+export type TIsResponsiveType = 'mobile' | 'tablet' | 'laptop' | 'desktop' | 'tv';
+
 export default function isResponsive(
-  type: string,
+  type: TIsResponsiveType,
   value?: any
 ) {
   let value_: any;

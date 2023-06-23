@@ -1,7 +1,9 @@
 import isEnvironment from './isEnvironment';
 
+export type TIsStateType = 'online' | 'offline';
+
 export default function isState(
-  type: string
+  type: TIsStateType
 ) {
   switch (type) {
     case 'online':

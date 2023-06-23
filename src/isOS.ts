@@ -1,7 +1,9 @@
 import isEnvironment from './isEnvironment';
 
+export type TIsOSType = 'mac' | 'mobile' | 'android' | 'ios' | 'windows' | 'linux';
+
 export default function isOS(
-  type: string,
+  type: TIsOSType,
   value?: any
 ) {
   let value_: any;

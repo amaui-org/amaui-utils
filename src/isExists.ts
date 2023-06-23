@@ -1,6 +1,8 @@
 
+export type TIsExistsType = 'Intl';
+
 export default function isExists(
-  type: string
+  type: TIsExistsType
 ) {
   switch (type) {
     case 'Intl':

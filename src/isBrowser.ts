@@ -1,7 +1,9 @@
 import isEnvironment from './isEnvironment';
 
+export type TIsBrowserType = 'chrome' | 'opera' | 'firefox' | 'safari' | 'edge-chromium' | 'edge' | 'ie';
+
 export default function isBrowser(
-  type: string,
+  type: TIsBrowserType,
   value?: any
 ) {
   let value_: any;

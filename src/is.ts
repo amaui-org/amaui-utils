@@ -1,4 +1,6 @@
 
+export type TIsType = 'string' | 'number' | 'boolean' | 'array' | 'object' | 'object-like' | 'class' | 'function' | 'async' | 'map' | 'weakmap' | 'set' | 'weakset' | 'promise' | 'int8array' | 'uint8array' | 'uint8clampedarray' | 'int16array' | 'uint16array' | 'int32array' | 'uint32array' | 'float32array' | 'float64array' | 'bigint64array' | 'biguint64array' | 'typedarray' | 'dataview' | 'arraybuffer' | 'sharedarraybuffer' | 'symbol' | 'error' | 'date' | 'regexp' | 'arguments' | 'null' | 'undefined' | 'blob' | 'buffer' | 'element' | 'simple' | 'not-array-object';
+
 export interface IOptions {
   variant?: string;
 }
@@ -6,12 +8,13 @@ export interface IOptions {
 const optionsDefault: IOptions = {};
 
 const isBrowser = typeof window !== 'undefined' && typeof window.document !== 'undefined';
+
 const isNodejs = !!(typeof global !== 'undefined' && typeof module !== 'undefined' && module.exports);
 
 // Multiple is methods instead of one,
 // so it's lighter for tree shaking usability reasons
 export default function is(
-  type: string,
+  type: TIsType,
   value?: any,
   options_: IOptions = {}
 ) {

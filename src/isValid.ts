@@ -4,6 +4,8 @@ import is from './is';
 import isEnvironment from './isEnvironment';
 import equalDeep from './equalDeep';
 
+export type TIsValidType = 'date' | 'uuid' | 'binary-string' | 'hexadecimal-string' | 'url' | 'url-path' | 'compare' | 'semver' | 'semver-compare' | 'timestamp' | 'mobile' | 'email' | 'hash' | 'color' | 'color-rgb' | 'color-hex' | 'color-hsl' | 'json' | 'min' | 'max' | 'min-max' | 'same-origin' | 'js-chunk' | 'http-method' | 'base64' | 'datauri';
+
 export interface IOptions {
   variant?: string;
   min?: number;
@@ -16,7 +18,7 @@ export interface IOptions {
 const optionsDefault: IOptions = {};
 
 export default function isValid(
-  type: string,
+  type: TIsValidType,
   value?: any,
   options_: IOptions = {}
 ) {
@@ -139,6 +141,9 @@ export default function isValid(
       pattern = /^(0x)?[a-f0-9]{64}$/gi;
 
       return is('string', value) && pattern.test(value);
+
+    case 'color':
+      return isValid('color-rgb', value, options) || isValid('color-hex', value, options) || isValid('color-hsl', value, options);
 
     case 'color-rgb':
       // Matches rgb() and rgba(), with values divided with ',' and spaces (optionaly)

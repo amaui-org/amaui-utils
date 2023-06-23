@@ -172,7 +172,7 @@ export const stringPolyfills = (additions = true) => {
     (String.prototype as any).hash = function (options: IHashOptions = undefined): string { return hash(this, options); };
 
     // eslint-disable-next-line
-    (String.prototype as any).is = function (type: string, options: IIsOptions = undefined): boolean { return is(type, this, options); };
+    (String.prototype as any).is = function (type: string, options: IIsOptions = undefined): boolean { return is(type as any, this, options); };
 
     // eslint-disable-next-line
     (String.prototype as any).copyToClipboard = function (): Promise<void> { return copyToClipboard(this); };
@@ -233,7 +233,7 @@ export const numberPolyfills = (additions = true) => {
     (Number.prototype as any).equalDeep = function (valueB: any): boolean { return equalDeep(this, valueB); };
 
     // eslint-disable-next-line
-    (Number.prototype as any).is = function (type: string, options: IIsOptions = undefined): boolean { return is(type, this, options); };
+    (Number.prototype as any).is = function (type: string, options: IIsOptions = undefined): boolean { return is(type as any, this, options); };
 
     // eslint-disable-next-line
     (Number.prototype as any).getLeadingZeros = function (options: IGetLeadingZerosNumber = undefined): string { return getLeadingZerosNumber(this, options); };
@@ -285,7 +285,7 @@ export const booleanPolyfills = (additions = true) => {
     (Boolean.prototype as any).equalDeep = function (valueB: any): boolean { return equalDeep(this, valueB); };
 
     // eslint-disable-next-line
-    (Boolean.prototype as any).is = function (type: string, options: IIsOptions = undefined): boolean { return is(type, this, options); };
+    (Boolean.prototype as any).is = function (type: string, options: IIsOptions = undefined): boolean { return is(type as any, this, options); };
 
     // eslint-disable-next-line
     (Boolean.prototype as any).copyToClipboard = function (): Promise<void> { return copyToClipboard(this); };
@@ -367,7 +367,7 @@ export const arrayPolyfills = (additions = true) => {
     (Array.prototype as any).equalDeep = function (valueB: any): boolean { return equalDeep(this, valueB); };
 
     // eslint-disable-next-line
-    (Array.prototype as any).is = function (type: string, options: IIsOptions = undefined): boolean { return is(type, this, options); };
+    (Array.prototype as any).is = function (type: string, options: IIsOptions = undefined): boolean { return is(type as any, this, options); };
 
     // eslint-disable-next-line
     (Array.prototype as any).copyToClipboard = function (): Promise<void> { return copyToClipboard(this); };
@@ -437,7 +437,7 @@ export const objectPolyfills = (additions = true) => {
     (Object.prototype as any).equalDeep = function (valueB: any): boolean { return equalDeep(this, valueB); };
 
     // eslint-disable-next-line
-    (Object.prototype as any).is = function (type: string, options: IIsOptions = undefined): boolean { return is(type, this, options); };
+    (Object.prototype as any).is = function (type: string, options: IIsOptions = undefined): boolean { return is(type as any, this, options); };
 
     // eslint-disable-next-line
     (Object.prototype as any).copyToClipboard = function (): Promise<void> { return copyToClipboard(this); };
@@ -485,7 +485,7 @@ export const functionPolyfills = (additions = true) => {
     (Function.prototype as any).equalDeep = function (valueB: any): boolean { return equalDeep(this, valueB); };
 
     // eslint-disable-next-line
-    (Function.prototype as any).is = function (type: string, options: IIsOptions = undefined): boolean { return is(type, this, options); };
+    (Function.prototype as any).is = function (type: string, options: IIsOptions = undefined): boolean { return is(type as any, this, options); };
   }
 };
 

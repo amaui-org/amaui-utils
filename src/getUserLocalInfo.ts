@@ -55,10 +55,10 @@ export const getUserOSandBrowser = (): IUserOSandBrowser => {
   };
 
   meta.os.forEach(item => {
-    if (isOS(item)) result['os'] = item;
+    if (isOS(item as any)) result['os'] = item;
   });
   meta.browser.forEach(item => {
-    if (isBrowser(item)) result['browser'] = item;
+    if (isBrowser(item as any)) result['browser'] = item;
   });
 
   switch (result.browser) {

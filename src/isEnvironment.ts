@@ -2,8 +2,10 @@ import is from './is';
 
 declare const WorkerGlobalScope: any;
 
+export type TIsEnvironmentType = 'browser' | 'worker' | 'nodejs' | 'localhost';
+
 export default function isEnvironment(
-  type: string,
+  type: TIsEnvironmentType,
   value?: any
 ) {
   let value_: any;
