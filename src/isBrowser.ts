@@ -27,7 +27,7 @@ export default function isBrowser(
     case 'safari':
       value_ = value !== undefined ? value : (isEnvironment('browser') && window);
 
-      return isEnvironment('browser') && (/^((?!chrome|android).)*safari/i.test(value_.navigator.userAgent) || (function (p) { return p.toString() === '[object SafariRemoteNotification]'; })(!value_['safari'] || (value_['safari']?.pushNotification)));
+      return isEnvironment('browser') && (function (p) { return p.toString() === '[object SafariRemoteNotification]'; })(!value_['safari'] || (value_['safari']?.pushNotification));
 
     case 'edge-chromium':
       value_ = value !== undefined ? value : (isEnvironment('browser') && window);
