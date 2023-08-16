@@ -4,7 +4,7 @@ import is from './is';
 import isEnvironment from './isEnvironment';
 import equalDeep from './equalDeep';
 
-export type TIsValidType = 'date' | 'uuid' | 'binary-string' | 'hexadecimal-string' | 'url' | 'url-path' | 'compare' | 'semver' | 'semver-compare' | 'timestamp' | 'mobile' | 'email' | 'hash' | 'color' | 'color-rgb' | 'color-hex' | 'color-hsl' | 'json' | 'min' | 'max' | 'min-max' | 'same-origin' | 'js-chunk' | 'http-method' | 'base64' | 'datauri';
+export type TIsValidType = 'date' | 'uuid' | 'binary-string' | 'hexadecimal-string' | 'url' | 'url-path' | 'compare' | 'semver' | 'semver-compare' | 'timestamp' | 'mobile' | 'email' | 'password' | 'hash' | 'color' | 'color-rgb' | 'color-hex' | 'color-hsl' | 'json' | 'min' | 'max' | 'min-max' | 'same-origin' | 'js-chunk' | 'http-method' | 'base64' | 'datauri';
 
 export interface IOptions {
   variant?: string;
@@ -136,6 +136,29 @@ export default function isValid(
       pattern = /\S+@\S+\.\S+/;
 
       return pattern.test(value);
+
+    case 'password':
+      const values = [];
+
+      if (!is('string', value)) return false;
+
+      const min_ = options.min !== undefined ? options.min : 7;
+
+      const max_ = options.max !== undefined ? options.max : 440;
+
+      // min 7, max 440 characters
+      if (value.length >= min_ && value.length <= max_) values.push('length');
+
+      // lowercase characters
+      if (value.match(/[a-z]+/)) values.push('lowercase');
+
+      // uppercase characters
+      if (value.match(/[A-Z]+/)) values.push('uppercase');
+
+      // numbers
+      if (value.match(/[0-9]+/)) values.push('number');
+
+      return options.variant === 'value' ? values : values.length >= 4;
 
     case 'hash':
       pattern = /^(0x)?[a-f0-9]{64}$/gi;

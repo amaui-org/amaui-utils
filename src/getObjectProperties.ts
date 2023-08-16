@@ -15,13 +15,15 @@ const getObjectProperties = (
   const separator = '.';
 
   // Flatten the object
-  const flattened = flattenObject(object);
+  const flattened = flattenObject(object, true);
 
   const paths = Object.keys(flattened);
 
   let pathsToUse = paths.map(item => ({
     path: item,
-    usable: item
+    value: undefined,
+    usable: item,
+    used: ''
   }));
 
   const parts = path.split(separator).filter(Boolean);
@@ -33,6 +35,8 @@ const getObjectProperties = (
     // find all paths to use whose
     // usable path includes the first next part
     const partNext = parts[index + 1];
+
+    const indexLast = (parts.length - 1) === index;
 
     if (part === '**') {
       pathsToUse = pathsToUse.filter(item => {
@@ -54,6 +58,8 @@ const getObjectProperties = (
 
           item.usable = itemParts.join(separator);
 
+          item.used += `${!item.used ? '' : '.'}${part}`;
+
           return item;
         }
 
@@ -65,10 +71,14 @@ const getObjectProperties = (
     // ignore their first usable property
     // ie. object property or index
     else if (part === '*') {
-      pathsToUse = pathsToUse.map(item => {
+      pathsToUse = pathsToUse.filter(item => {
         const itemNew = item;
 
         const itemParts = itemNew.usable.split(separator).filter(Boolean);
+
+        // only use
+        // exact path items
+        if (indexLast) return itemParts.length === 1;
 
         // remove the first prop
         // object property or index
@@ -76,7 +86,9 @@ const getObjectProperties = (
 
         itemNew.usable = itemParts.join(separator);
 
-        return itemNew;
+        item.used += `${!item.used ? '' : '.'}${part}`;
+
+        return true;
       });
     }
     // regular
@@ -84,6 +96,8 @@ const getObjectProperties = (
     // equal to part
     else {
       pathsToUse = pathsToUse.filter(item => {
+        if (!item.usable.length) return false;
+
         const itemParts = item.usable.split(separator).filter(Boolean);
 
         const use = itemParts[0] === part;
@@ -94,7 +108,15 @@ const getObjectProperties = (
           itemParts.shift();
 
           item.usable = itemParts.join(separator);
+
+          item.used += `${!item.used ? '' : '.'}${part}`;
         }
+
+        // if last index
+        // only return items
+        // whose usable path
+        // matches exactly
+        if (indexLast) return !item.usable.length;
 
         return use;
       });
@@ -103,7 +125,7 @@ const getObjectProperties = (
 
   const value = {};
 
-  pathsToUse.forEach(item => value[item.path] = flattened[item.path]);
+  pathsToUse.forEach(item => value[item.path] = item.value !== undefined ? item.value : flattened[item.path]);
 
   return !unflatten ? value : unflattenObject(value);
 };

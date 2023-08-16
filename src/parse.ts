@@ -9,7 +9,7 @@ export interface IOptions {
 }
 
 const optionsDefault: IOptions = {
-  returnSame: true,
+  returnSame: true
 };
 
 const parse = (
