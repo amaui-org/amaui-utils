@@ -4,7 +4,7 @@ import is from './is';
 import isEnvironment from './isEnvironment';
 import equalDeep from './equalDeep';
 
-export type TIsValidType = 'date' | 'uuid' | 'binary-string' | 'hexadecimal-string' | 'url' | 'url-path' | 'compare' | 'semver' | 'semver-compare' | 'timestamp' | 'mobile' | 'email' | 'password' | 'hash' | 'color' | 'color-rgb' | 'color-hex' | 'color-hsl' | 'json' | 'min' | 'max' | 'min-max' | 'same-origin' | 'js-chunk' | 'http-method' | 'base64' | 'datauri';
+export type TIsValidType = 'date' | 'unix' | 'timestamp' | 'uuid' | 'binary-string' | 'hexadecimal-string' | 'url' | 'url-path' | 'compare' | 'semver' | 'semver-compare' | 'mobile' | 'email' | 'password' | 'hash' | 'color' | 'color-rgb' | 'color-hex' | 'color-hsl' | 'json' | 'min' | 'max' | 'min-max' | 'same-origin' | 'js-chunk' | 'http-method' | 'base64' | 'datauri';
 
 export interface IOptions {
   variant?: string;
@@ -34,6 +34,23 @@ export default function isValid(
   switch (type) {
     case 'date':
       return isValid('timestamp', new Date(value).getTime());
+
+    case 'unix':
+      return (
+        Number.isInteger(value) &&
+        String(value).length === 10 &&
+        new Date(value * 1000).getTime() > 0
+      );
+
+    case 'timestamp':
+      return (
+        Number.isInteger(value) &&
+        String(value).length >= 10 &&
+        (
+          new Date(value).getTime() > 0 ||
+          new Date(value * 1000).getTime() > 0
+        )
+      );
 
     case 'uuid':
       return uuidValidate(value);
@@ -116,16 +133,6 @@ export default function isValid(
       operators['greater-than-equal'] = operators['greater-than'] || operators['equal'];
 
       return operators[operator];
-
-    case 'timestamp':
-      return (
-        Number.isInteger(value) &&
-        String(value).length >= 10 &&
-        (
-          new Date(value).getTime() > 0 ||
-          new Date(value * 1000).getTime() > 0
-        )
-      );
 
     case 'mobile':
       pattern = /^(\+\d{1,2}\s?)?1?-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
