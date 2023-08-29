@@ -4,7 +4,7 @@ import is from './is';
 import isEnvironment from './isEnvironment';
 import equalDeep from './equalDeep';
 
-export type TIsValidType = 'date' | 'unix' | 'timestamp' | 'uuid' | 'binary-string' | 'hexadecimal-string' | 'url' | 'url-path' | 'compare' | 'semver' | 'semver-compare' | 'mobile' | 'email' | 'password' | 'hash' | 'color' | 'color-rgb' | 'color-hex' | 'color-hsl' | 'json' | 'min' | 'max' | 'min-max' | 'same-origin' | 'js-chunk' | 'http-method' | 'base64' | 'datauri';
+export type TIsValidType = 'date' | 'unix' | 'timestamp' | 'uuid' | 'binary-string' | 'hexadecimal-string' | 'url' | 'url-path' | 'domain-name' | 'compare' | 'semver' | 'semver-compare' | 'mobile' | 'email' | 'password' | 'hash' | 'color' | 'color-rgb' | 'color-hex' | 'color-hsl' | 'json' | 'min' | 'max' | 'min-max' | 'same-origin' | 'js-chunk' | 'http-method' | 'base64' | 'datauri';
 
 export interface IOptions {
   variant?: string;
@@ -74,6 +74,15 @@ export default function isValid(
       pattern = /^\/([^\/][A-Za-z0-9\-._~!$&'()*+,;=:@\/?#%]*)?$/;
 
       return pattern.test(value);
+
+    case 'domain-name':
+      pattern = /^[a-z0-9\-]+$/;
+
+      const valueCleanedUp = (value as string).replace(/--/g, '-');
+
+      const length = value?.length;
+
+      return pattern.test(value) && !(value as string).startsWith('-') && !(value as string).endsWith('-') && valueCleanedUp.length === value.length && length > 1 && length < 254;
 
     case 'compare':
       ({ valueA, valueB, operator } = options);
