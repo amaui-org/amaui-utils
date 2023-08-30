@@ -4,7 +4,7 @@ import is from './is';
 import isEnvironment from './isEnvironment';
 import equalDeep from './equalDeep';
 
-export type TIsValidType = 'date' | 'unix' | 'timestamp' | 'uuid' | 'binary-string' | 'hexadecimal-string' | 'url' | 'url-path' | 'domain-name' | 'compare' | 'semver' | 'semver-compare' | 'mobile' | 'email' | 'password' | 'hash' | 'color' | 'color-rgb' | 'color-hex' | 'color-hsl' | 'json' | 'min' | 'max' | 'min-max' | 'same-origin' | 'js-chunk' | 'http-method' | 'base64' | 'datauri';
+export type TIsValidType = 'date' | 'unix' | 'timestamp' | 'uuid' | 'binary-string' | 'hexadecimal-string' | 'url' | 'url-path' | 'domain-name' | 'compare' | 'semver' | 'semver-compare' | 'mobile' | 'email' | 'password' | 'hash' | 'color' | 'color-rgb' | 'color-hex' | 'color-hsl' | 'json' | 'min' | 'max' | 'min-max' | 'same-origin' | 'js-chunk' | 'http-method' | 'base64' | 'datauri' | 'pascal-case' | 'camel-case';
 
 export interface IOptions {
   variant?: string;
@@ -248,6 +248,16 @@ export default function isValid(
         /^data:\w+\/[-+.\w]+;base64,(?:[A-Za-z0-9+\\/]{4})*(?:[A-Za-z0-9+\\/]{2}(==)?|[A-Za-z0-9+\\/]{3}=?)?$/gi.test(value_) ||
         /^data:(\w+\/[-+.\w]+)?(;charset=[\w-]+)?,(.*)?/gi.test(value_)
       );
+
+    case 'pascal-case':
+      pattern = /^[A-Z][a-z]+(?:[A-Z][a-z]+)*$/;
+
+      return pattern.test(value);
+
+    case 'camel-case':
+      pattern = /^[a-z]+(?:[A-Z][a-z]+)*$/;
+
+      return pattern.test(value);
 
     default:
       return false;
