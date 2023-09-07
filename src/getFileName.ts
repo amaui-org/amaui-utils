@@ -9,10 +9,7 @@ export interface IOptions {
   withExt?: boolean;
 }
 
-const optionsDefault: IOptions = {
-  capitalize: true,
-  clean: true,
-};
+const optionsDefault: IOptions = {};
 
 const getFileName = (
   file: File,
@@ -22,10 +19,12 @@ const getFileName = (
 
   const parts = file.name.split('.');
 
-  let name = parts[0];
-  const ext = parts[1];
+  let name = parts.slice(0, -1).join('.');
+
+  const ext = parts[parts.length - 1];
 
   if (options.clean) name = cleanValue(name);
+
   if (options.capitalize) name = capitalize(name);
 
   return `${options.prefix || ''}${name}${options.sufix || ''}${options.withExt ? `.${ext}` : ''}`;
