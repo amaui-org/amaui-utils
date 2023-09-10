@@ -56,10 +56,10 @@ const dataUriToBuffer = (value: string): Buffer | undefined => {
   }
 };
 
-const sizeFormat = (value: number, decimals = 2): string => {
+const sizeFormat = (value: number, decimals = 2, thousand = 1000): string => {
   if (!is('number', value) || value <= 0) return '0 Bytes';
 
-  const k = 1024;
+  const k = thousand;
   const dm = decimals < 0 ? 0 : decimals;
   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
@@ -69,11 +69,13 @@ const sizeFormat = (value: number, decimals = 2): string => {
 };
 
 export interface IOptions {
+  thousand?: number;
   decimals?: number;
   mime?: string;
 }
 
 const optionsDefault: IOptions = {
+  thousand: 1000,
   decimals: 2,
   mime: 'text/plain',
 };
@@ -204,12 +206,12 @@ const to = (
       return;
 
     case 'size-format':
-      if (is('string', value) || is('number', value)) return sizeFormat(castParam(value), options.decimals);
+      if (is('string', value) || is('number', value)) return sizeFormat(castParam(value), options.decimals, options.thousand);
 
       return;
 
     case 'size':
-      if (is('string', value)) return sizeFormat(castParam(new TextEncoder().encode(value).byteLength), options.decimals);
+      if (is('string', value)) return sizeFormat(castParam(new TextEncoder().encode(value).byteLength), options.decimals, options.thousand);
 
       return;
 
