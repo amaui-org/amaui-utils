@@ -3,6 +3,8 @@ const pagination = (value = 1, total = 10, boundary = 1, middle = 1) => {
 
   const min = (boundary * 2) + (1 + (middle * 2)) + 2;
 
+  if (!total || total <= min) return Array.from({ length: total || 1 }).map((i, id) => id + 1);
+
   // start
   let value_ = 1;
   let dots = 'start';
