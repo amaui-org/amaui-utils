@@ -27,6 +27,10 @@ interface UserLocalInfo extends IUserOSandBrowser {
 }
 
 export const getUserIPandLocation = async (): Promise<IUserIPandLocation> => {
+  let ip_address: string;
+  let country_code: string;
+
+  // cloudflare
   try {
     let data: any = await fetch(`https://www.cloudflare.com/cdn-cgi/trace`);
 
@@ -34,17 +38,30 @@ export const getUserIPandLocation = async (): Promise<IUserIPandLocation> => {
 
     const items = data.split('\n');
 
-    const ip_address = items.find((item: string | string[]) => item.indexOf('ip') === 0).slice(3);
-    const country_code = items.find((item: string | string[]) => item.indexOf('loc') === 0).slice(4);
+    ip_address = items.find((item: string | string[]) => item.indexOf('ip') === 0).slice(3);
 
-    return {
-      ip_address,
-      country_code,
-    };
+    country_code = items.find((item: string | string[]) => item.indexOf('loc') === 0).slice(4);
   }
   catch (error) {
     console.log(error);
   }
+
+  // aws
+  if (!ip_address) {
+    try {
+      const dataAWS = await fetch('https://checkip.amazonaws.com');
+
+      ip_address = (await dataAWS.text()).split('\n')[0];
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
+  return {
+    ip_address,
+    country_code,
+  };
 };
 
 export const getUserOSandBrowser = (): IUserOSandBrowser => {
@@ -104,11 +121,11 @@ export const getUserOSandBrowser = (): IUserOSandBrowser => {
       version: result.version,
       major_version: result.version?.split('.')[0],
       agent: navigator.userAgent,
-      language: navigator.language,
+      language: navigator.language
     },
     os: {
-      platform: result.os,
-    },
+      platform: result.os
+    }
   };
 };
 
@@ -121,7 +138,8 @@ const getUserLocalInfo = async (): Promise<UserLocalInfo> => {
   return {
     ip_address: IPandLocation.ip_address,
     country,
-    ...osAndBrowser,
+
+    ...osAndBrowser
   };
 };
 
