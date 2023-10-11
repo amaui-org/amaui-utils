@@ -44,9 +44,9 @@ const rgbToHsl = (
 
     a = opacity !== undefined ? +(opacity > 1 ? (opacity / 100).toFixed(2) : clamp(opacity, 0, 1)) : a;
 
-    values = [...[h, s, l].map(value_ => Math.round(castParam(value_))), a && +a];
+    values = [...[h, s, l].map(value_ => Math.round(castParam(value_))), is('number', a) && +a];
 
-    return array ? values.filter(value_ => is('number', value_)) : `hsl${a ? 'a' : ''}(${h}, ${s}%, ${l}%${a ? `, ${a}` : ''})`;
+    return array ? values.filter(value_ => is('number', value_)) : `hsl${is('number', a) ? 'a' : ''}(${h}, ${s}%, ${l}%${is('number', a) ? `, ${a}` : ''})`;
   }
 };
 

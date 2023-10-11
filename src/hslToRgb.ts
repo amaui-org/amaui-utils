@@ -26,11 +26,11 @@ const hslToRgb = (
     let g = 255 * f(8);
     let b = 255 * f(4);
 
-    values = [...[r, g, b].map(item => Math.round(castParam(item))), a && +a];
+    values = [...[r, g, b].map(item => Math.round(castParam(item))), is('number', a) && +a];
 
     [r, g, b, a] = values;
 
-    return array ? values.filter((value_: any) => is('number', value_)) : `rgb${a ? 'a' : ''}(${r}, ${g}, ${b}${a ? `, ${a}` : ''})`;
+    return array ? values.filter((value_: any) => is('number', value_)) : `rgb${is('number', a) ? 'a' : ''}(${r}, ${g}, ${b}${is('number', a) ? `, ${a}` : ''})`;
   }
 };
 
