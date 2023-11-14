@@ -3,12 +3,12 @@ import isOS from './isOS';
 import getCountry from './getCountry';
 import { ICountry } from './countries';
 
-interface IUserIPandLocation {
+export interface IUserIPandLocation {
   ip_address: string;
   country_code: string;
 }
 
-interface IUserOSandBrowser {
+export interface IUserOSandBrowser {
   browser: {
     name: string;
     version: string;
@@ -21,7 +21,7 @@ interface IUserOSandBrowser {
   };
 }
 
-interface UserLocalInfo extends IUserOSandBrowser {
+export interface IUserLocalInfo extends IUserOSandBrowser {
   ip_address: string;
   country: ICountry;
 }
@@ -129,7 +129,7 @@ export const getUserOSandBrowser = (): IUserOSandBrowser => {
   };
 };
 
-const getUserLocalInfo = async (): Promise<UserLocalInfo> => {
+const getUserLocalInfo = async (): Promise<IUserLocalInfo> => {
   const IPandLocation = await getUserIPandLocation();
 
   const country = getCountry(IPandLocation.country_code);
