@@ -9,7 +9,7 @@ const copy = (value: any, values_?: WeakSet<any>): any => {
   const values = !values_ ? new WeakSet() : values_;
 
   // Ref circular value
-  if (values.has(value)) return;
+  if (values.has(value)) return value;
 
   if (isObject(value) || isArray(value)) values.add(value);
 
