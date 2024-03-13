@@ -231,3 +231,18 @@ export { default as canvasFilterInvert } from './canvasFilterInvert';
 
 export { default as canvasFilterOldPhoto } from './canvasFilterOldPhoto';
 
+export { default as innerHTMLToText } from './innerHTMLToText';
+
+export { default as textToInnerHTML } from './textToInnerHTML';
+
+export { default as encodeObjectValue } from './encodeObjectValue';
+
+export { default as decodeObjectValue } from './decodeObjectValue';
+
+export { default as startSelection } from './startSelection';
+
+export { default as insertTextAtSelection } from './insertTextAtSelection';
+
+export { default as clearSelection } from './clearSelection';
+
+export { default as stringToColor } from './stringToColor';
