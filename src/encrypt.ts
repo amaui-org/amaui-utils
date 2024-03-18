@@ -1,9 +1,9 @@
 import AES from 'crypto-js/aes';
 
-import serialize from './serialize';
+import stringify from './stringify';
 
 const encrypt = (value_: any, privateValue: string): string => {
-  const value = serialize(value_);
+  const value = stringify(value_);
 
   return AES.encrypt(value, privateValue).toString();
 };

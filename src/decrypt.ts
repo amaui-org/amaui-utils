@@ -1,14 +1,14 @@
 import AES from 'crypto-js/aes';
 import encUtf8 from 'crypto-js/enc-utf8';
 
-import deserialize from './deserialize';
+import parse from './parse';
 
 export interface IOptions {
   exception?: boolean;
 }
 
 const optionsDefault: IOptions = {
-  exception: false,
+  exception: false
 };
 
 const decrypt = (
@@ -37,7 +37,7 @@ const decrypt = (
     return;
   }
 
-  return deserialize(value);
+  return parse(value);
 };
 
 export default decrypt;
