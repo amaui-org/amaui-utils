@@ -1,7 +1,7 @@
 import Try from './try';
 
 const innerHTMLToText = (value: string) => Try(() => {
-  const unsafe = [' ', '"', '<', '>', '{', '}', '|', '\\', '^', '`'];
+  const unsafe = [' ', '"', '<', '>', '{', '}', '|', '\\', '^', '`', '\n', '\r', '\t'];
 
   if (!unsafe.some(item => value.includes(item))) return value;
 
