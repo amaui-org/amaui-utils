@@ -7,7 +7,7 @@ export interface IOptions {
 }
 
 const optionsDefault: IOptions = {
-  valueOverride: false,
+  valueOverride: false
 };
 
 const setObjectValue = <T extends unknown>(
@@ -30,7 +30,13 @@ const setObjectValue = <T extends unknown>(
     const key = keys[0];
     const keyClean = cleanValue(String(key), { filters: ['.', ','], replaceWith: '' });
 
-    if (keys.length === 1 && value !== undefined) {
+    if (keys.length === 1) {
+      // Add array or object as a value of the key, if that key doesn't exist atm
+      if (
+        !object.hasOwnProperty(key) ||
+        options.valueOverride
+      ) object[keyClean] = is('number', keys[1]) ? [] : {};
+
       if (
         (is('array', object) && is('number', key)) ||
         (is('object', object) && is('string', key))
@@ -39,18 +45,18 @@ const setObjectValue = <T extends unknown>(
       }
     }
     else {
-      // Add array or object as a value of the key, if that key doesn't exist atm
-      if (
-        !object.hasOwnProperty(key) ||
-        options.valueOverride
-      ) object[keyClean] = is('number', keys[1]) ? [] : {};
+      // // Add array or object as a value of the key, if that key doesn't exist atm
+      // if (
+      //   !object.hasOwnProperty(key) ||
+      //   options.valueOverride
+      // ) object[keyClean] = is('number', keys[1]) ? [] : {};
 
-      const value_ = object[keyClean];
+      // const value_ = object[keyClean];
 
-      // If we are trying to set a deeply nested value on a
-      // simple value type, meaning if it's not an array or an object,
-      // To override existing value use valueOverride: true option
-      if (!(is('object', value_) || is('array', value_))) return object;
+      // // If we are trying to set a deeply nested value on a
+      // // simple value type, meaning if it's not an array or an object,
+      // // To override existing value use valueOverride: true option
+      // if (!(is('object', value_) || is('array', value_))) return object;
 
       return setObjectValue(object[key], keys.slice(1), value, options);
     }
