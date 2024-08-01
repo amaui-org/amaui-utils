@@ -199,6 +199,8 @@ export { default as checkAppVersion } from './checkAppVersion';
 
 export { default as copyToClipboard } from './copyToClipboard';
 
+export * from './to';
+
 export { default as to } from './to';
 
 export { default as Try } from './try';

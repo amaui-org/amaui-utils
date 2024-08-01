@@ -9,7 +9,7 @@ export type TType = 'string' | 'arraybuffer' | 'datauri' | 'base64' | 'blob' | '
 export type TTo = ArrayBuffer | Blob | Buffer | string | number;
 
 // Only for browser, since browser only has Blob
-const dataUriToBlob = (value: string, arrayBuffer = false): Blob | ArrayBuffer | undefined => {
+export const dataUriToBlob = (value: string, arrayBuffer = false): Blob | ArrayBuffer | undefined => {
   if (isValid('datauri', value) || isValid('base64', value)) {
     try {
       // Convert base64 to raw binary data held in a string
@@ -41,7 +41,7 @@ const dataUriToBlob = (value: string, arrayBuffer = false): Blob | ArrayBuffer |
 };
 
 // Only for nodejs, since only nodejs has Buffer
-const dataUriToBuffer = (value: string): Buffer | undefined => {
+export const dataUriToBuffer = (value: string): Buffer | undefined => {
   if (isValid('datauri', value) || isValid('base64', value)) {
     try {
       // Extract the base64 data from dataUri
@@ -56,7 +56,15 @@ const dataUriToBuffer = (value: string): Buffer | undefined => {
   }
 };
 
-const sizeFormat = (value: number, decimals = 2, thousand = 1000): string => {
+export const blobToDataURI = blob => new Promise(resolve => {
+  const fileReader = new FileReader();
+
+  fileReader.onload = event => resolve(event.target.result);
+
+  fileReader.readAsDataURL(blob);
+});
+
+export const sizeFormat = (value: number, decimals = 2, thousand = 1000): string => {
   if (!is('number', value) || value <= 0) return '0 Bytes';
 
   const k = thousand;
