@@ -42,6 +42,11 @@ export interface IElementToCanvasOptions {
   width?: number;
   height?: number;
 
+  image?: {
+    width?: number;
+    height?: number;
+  };
+
   datauri?: {
     type?: string;
     quality?: number;
@@ -183,10 +188,10 @@ const elementToCanvas = async (element_: HTMLElement, options_?: IElementToCanva
 
       const height = options.height !== undefined ? options.height : element_.offsetHeight;
 
-      const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='${width}' height='${height}'>
+      const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='${options.image?.width !== undefined ? options.image?.width : width}' height='${options.image?.height !== undefined ? options.image?.height : height}'>
         ${styles}
 
-        <foreignObject x='0' y='0' width='${width}' height='${height}'>
+        <foreignObject x='0' y='0' width='${options.image?.width !== undefined ? options.image?.width : width}' height='${options.image?.height !== undefined ? options.image?.height : height}'>
           ${elementXML}
         </foreignObject>
       </svg>`;
@@ -207,7 +212,7 @@ const elementToCanvas = async (element_: HTMLElement, options_?: IElementToCanva
 
         const context = canvas.getContext('2d');
 
-        context.drawImage(img, options.x, options.y, img.width, img.height);
+        context.drawImage(img, options.x, options.y, options.image?.width !== undefined ? options.image?.width : img.width, options.image?.height !== undefined ? options.image?.height : img.height);
 
         if (options.crop) canvas = canvasCrop(canvas, options.crop.x, options.crop.y, options.crop.width, options.crop.height);
 
