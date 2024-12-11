@@ -2,7 +2,7 @@
   "name": "@onesy/utils",
   "version": "1.0.0",
   "description": "Utils",
-  "repository": "https://github.com/onesy-org/onesy-utils.git",
+  "repository": "https://github.com/onesy-me/utils.git",
   "author": "Lazar <lazareric.com@gmail.com>",
   "license": "MIT",
   "private": false,
