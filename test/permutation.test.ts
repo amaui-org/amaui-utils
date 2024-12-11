@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/permutation', () => {
+group('@onesy/utils/permutation', () => {
 
   post(() => reset());
 
@@ -43,16 +43,16 @@ group('@amaui/utils/permutation', () => {
         [[1, 2, 3, 4, 5, 6, 7], 5040],
       ];
 
-      return values_.map((value: any) => [window.AmauiUtils.permutation(value[0]), value[1]]).map(([item, length]) => !item ? item : [
+      return values_.map((value: any) => [window.OnesyUtils.permutation(value[0]), value[1]]).map(([item, length]) => !item ? item : [
         item.length === length,
-        item.length === window.AmauiUtils.unique(item.map(item_ => item_.join(''))).length,
-        item.filter(item_ => window.AmauiUtils.unique(item_).length === item_.length).length === item.length
+        item.length === window.OnesyUtils.unique(item.map(item_ => item_.join(''))).length,
+        item.filter(item_ => window.OnesyUtils.unique(item_).length === item_.length).length === item.length
       ]);
     });
-    const valueNode = values_.map((value: any) => [AmauiUtils.permutation(value[0]), value[1]]).map(([item, length]) => !item ? item : [
+    const valueNode = values_.map((value: any) => [OnesyUtils.permutation(value[0]), value[1]]).map(([item, length]) => !item ? item : [
       item.length === length,
-      item.length === AmauiUtils.unique(item.map(item_ => item_.join(''))).length,
-      item.filter(item_ => AmauiUtils.unique(item_).length === item_.length).length === item.length
+      item.length === OnesyUtils.unique(item.map(item_ => item_.join(''))).length,
+      item.filter(item_ => OnesyUtils.unique(item_).length === item_.length).length === item.length
     ]);
     const values = [valueNode, ...valueBrowsers];
 
@@ -92,16 +92,16 @@ group('@amaui/utils/permutation', () => {
             [[1, 2, 3, 4, 5, 6, 7], 5040],
           ];
 
-          return values_.map((value: any) => [window.AmauiUtils.permutation(value[0]), value[1]]).map(([item, length]) => [
+          return values_.map((value: any) => [window.OnesyUtils.permutation(value[0]), value[1]]).map(([item, length]) => [
             item.length === length,
-            item.length === window.AmauiUtils.unique(item.map(item_ => item_.join(''))).length,
-            item.filter(item_ => window.AmauiUtils.unique(item_).length === item_.length).length === item.length
+            item.length === window.OnesyUtils.unique(item.map(item_ => item_.join(''))).length,
+            item.filter(item_ => window.OnesyUtils.unique(item_).length === item_.length).length === item.length
           ]);
         });
-        const valueNode = values_.map((value: any) => [AmauiUtils.permutation(value[0]), value[1]]).map(([item, length]) => [
+        const valueNode = values_.map((value: any) => [OnesyUtils.permutation(value[0]), value[1]]).map(([item, length]) => [
           item.length === length,
-          item.length === AmauiUtils.unique(item.map(item_ => item_.join(''))).length,
-          item.filter(item_ => AmauiUtils.unique(item_).length === item_.length).length === item.length
+          item.length === OnesyUtils.unique(item.map(item_ => item_.join(''))).length,
+          item.filter(item_ => OnesyUtils.unique(item_).length === item_.length).length === item.length
         ]);
         const values = [valueNode, ...valueBrowsers];
 
@@ -122,7 +122,7 @@ group('@amaui/utils/permutation', () => {
 
         values_ = values_.map(item => {
           const result = [];
-          const method = (AmauiUtils.permutation(item[0], { response: 'yield' }) as any)();
+          const method = (OnesyUtils.permutation(item[0], { response: 'yield' }) as any)();
           let item_: any = { done: false };
 
           while (true) {
@@ -149,7 +149,7 @@ group('@amaui/utils/permutation', () => {
 
           values_ = values_.map(item => {
             const result = [];
-            const method = window.AmauiUtils.permutation(item[0], { response: 'yield' })();
+            const method = window.OnesyUtils.permutation(item[0], { response: 'yield' })();
             let item_: any = { done: false };
 
             while (true) {
@@ -166,14 +166,14 @@ group('@amaui/utils/permutation', () => {
 
           return values_.map(([item, length]) => [
             item.length === length,
-            item.length === window.AmauiUtils.unique(item.map(item_ => item_.join(''))).length,
-            item.filter(item_ => window.AmauiUtils.unique(item_).length === item_.length).length === item.length
+            item.length === window.OnesyUtils.unique(item.map(item_ => item_.join(''))).length,
+            item.filter(item_ => window.OnesyUtils.unique(item_).length === item_.length).length === item.length
           ]);
         });
         const valueNode = values_.map(([item, length]) => [
           item.length === length,
-          item.length === AmauiUtils.unique(item.map(item_ => item_.join(''))).length,
-          item.filter(item_ => AmauiUtils.unique(item_).length === item_.length).length === item.length
+          item.length === OnesyUtils.unique(item.map(item_ => item_.join(''))).length,
+          item.filter(item_ => OnesyUtils.unique(item_).length === item_.length).length === item.length
         ]);
         const values = [valueNode, ...valueBrowsers];
 
@@ -188,12 +188,12 @@ group('@amaui/utils/permutation', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return ([1, 2, 3] as any).permutation();
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = ([1, 2, 3] as any).permutation();
 

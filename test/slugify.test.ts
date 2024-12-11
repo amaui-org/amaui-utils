@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/slugify', () => {
+group('@onesy/utils/slugify', () => {
 
   post(() => reset());
 
@@ -37,9 +37,9 @@ group('@amaui/utils/slugify', () => {
         null,
       ];
 
-      return values_.map((value: any) => window.AmauiUtils.slugify(value));
+      return values_.map((value: any) => window.OnesyUtils.slugify(value));
     });
-    const valueNode = values_.map((value: any) => AmauiUtils.slugify(value));
+    const valueNode = values_.map((value: any) => OnesyUtils.slugify(value));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -61,13 +61,13 @@ group('@amaui/utils/slugify', () => {
     to('lowercase', async () => {
       const valueBrowsers = await evaluate((window: any) => {
         return [
-          window.AmauiUtils.slugify('A', { lowercase: true }),
-          window.AmauiUtils.slugify('A', { lowercase: false }),
+          window.OnesyUtils.slugify('A', { lowercase: true }),
+          window.OnesyUtils.slugify('A', { lowercase: false }),
         ];
       });
       const valueNode = [
-        AmauiUtils.slugify('A', { lowercase: true }),
-        AmauiUtils.slugify('A', { lowercase: false }),
+        OnesyUtils.slugify('A', { lowercase: true }),
+        OnesyUtils.slugify('A', { lowercase: false }),
       ];
       const values = [valueNode, ...valueBrowsers];
 
@@ -81,14 +81,14 @@ group('@amaui/utils/slugify', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ('a,a,a,a' as any).slugify(),
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ('a,a,a,a' as any).slugify(),

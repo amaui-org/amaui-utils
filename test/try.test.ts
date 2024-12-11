@@ -1,24 +1,24 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/try', () => {
+group('@onesy/utils/try', () => {
 
   post(() => reset());
 
   to('tryValue', async () => {
     const values_ = [
-      AmauiUtils.Try(() => 4),
-      AmauiUtils.Try(() => { throw new Error(); }),
+      OnesyUtils.Try(() => 4),
+      OnesyUtils.Try(() => { throw new Error(); }),
     ];
 
     const valueBrowsers = await evaluate((window: any) => {
       const values_ = [
-        window.AmauiUtils.Try(() => 4),
-        window.AmauiUtils.Try(() => { throw new Error(); }),
+        window.OnesyUtils.Try(() => 4),
+        window.OnesyUtils.Try(() => { throw new Error(); }),
       ];
 
       return values_;
@@ -39,16 +39,16 @@ group('@amaui/utils/try', () => {
         env: 'test',
       };
 
-      AmauiUtils.Try(() => { throw new Error(); }, { log: true });
-      AmauiUtils.Try(() => { throw new Error(); }, { log: false });
+      OnesyUtils.Try(() => { throw new Error(); }, { log: true });
+      OnesyUtils.Try(() => { throw new Error(); }, { log: false });
 
       const valueBrowsers = await evaluate((window: any) => {
         window.AMAUI = {
           env: 'test',
         };
 
-        window.AmauiUtils.Try(() => { throw new Error(); }, { log: true });
-        window.AmauiUtils.Try(() => { throw new Error(); }, { log: false });
+        window.OnesyUtils.Try(() => { throw new Error(); }, { log: true });
+        window.OnesyUtils.Try(() => { throw new Error(); }, { log: false });
 
         return [
           window.AMAUI.test.Try.logs.length,

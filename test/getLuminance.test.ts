@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/getLuminance', () => {
+group('@onesy/utils/getLuminance', () => {
 
   post(() => reset());
 
@@ -37,9 +37,9 @@ group('@amaui/utils/getLuminance', () => {
         new Array(),
       ];
 
-      return values_.map((value: any) => window.AmauiUtils.getLuminance(value));
+      return values_.map((value: any) => window.OnesyUtils.getLuminance(value));
     });
-    const valueNode = values_.map((value: any) => AmauiUtils.getLuminance(value));
+    const valueNode = values_.map((value: any) => OnesyUtils.getLuminance(value));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([

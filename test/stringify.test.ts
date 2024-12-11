@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/stringify', () => {
+group('@onesy/utils/stringify', () => {
 
   post(() => reset());
 
@@ -29,7 +29,7 @@ group('@amaui/utils/stringify', () => {
         null,
       ];
 
-      return values_.map(value => window.AmauiUtils.stringify(value));
+      return values_.map(value => window.OnesyUtils.stringify(value));
     });
 
     const values_ = [
@@ -50,7 +50,7 @@ group('@amaui/utils/stringify', () => {
       null,
     ];
 
-    const valueNode = values_.map(value => AmauiUtils.stringify(value));
+    const valueNode = values_.map(value => OnesyUtils.stringify(value));
 
     const values = [valueNode, ...valueBrowsers];
 
@@ -78,7 +78,7 @@ group('@amaui/utils/stringify', () => {
         a1
       ];
 
-      return values.map(value => window.AmauiUtils.stringify(value));
+      return values.map(value => window.OnesyUtils.stringify(value));
     });
 
     const a: any = [1, 4];
@@ -92,7 +92,7 @@ group('@amaui/utils/stringify', () => {
       a1
     ];
 
-    const valueNode = values_.map(value => AmauiUtils.stringify(value));
+    const valueNode = values_.map(value => OnesyUtils.stringify(value));
 
     const values = [valueNode, ...valueBrowsers];
 
@@ -114,9 +114,9 @@ group('@amaui/utils/stringify', () => {
         [1, 'a', [1, 'a', 4]],
       ];
 
-      return values_.map(value => window.AmauiUtils.stringify(value, 4));
+      return values_.map(value => window.OnesyUtils.stringify(value, 4));
     });
-    const valueNode = values_.map(value => AmauiUtils.stringify(value, 4));
+    const valueNode = values_.map(value => OnesyUtils.stringify(value, 4));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -135,9 +135,9 @@ group('@amaui/utils/stringify', () => {
         [1, 'a', [1, 'a', 4]],
       ];
 
-      return values_.map(value => window.AmauiUtils.stringify(value, 4, (property, value) => value === 1 ? 14 : value));
+      return values_.map(value => window.OnesyUtils.stringify(value, 4, (property, value) => value === 1 ? 14 : value));
     });
-    const valueNode = values_.map(value => AmauiUtils.stringify(value, 4, (property, value) => value === 1 ? 14 : value));
+    const valueNode = values_.map(value => OnesyUtils.stringify(value, 4, (property, value) => value === 1 ? 14 : value));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -147,7 +147,7 @@ group('@amaui/utils/stringify', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ('a' as any).stringify(),
@@ -158,7 +158,7 @@ group('@amaui/utils/stringify', () => {
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ('a' as any).stringify(),

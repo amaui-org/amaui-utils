@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/decode', () => {
+group('@onesy/utils/decode', () => {
 
   post(() => reset());
 
@@ -63,10 +63,10 @@ group('@amaui/utils/decode', () => {
         },
       ];
 
-      return values_.map((value: any) => window.AmauiUtils.decode(window.AmauiUtils.encode(value)));
+      return values_.map((value: any) => window.OnesyUtils.decode(window.OnesyUtils.encode(value)));
     });
 
-    const valueNode = values_.map((value: any) => AmauiUtils.decode(AmauiUtils.encode(value)));
+    const valueNode = values_.map((value: any) => OnesyUtils.decode(OnesyUtils.encode(value)));
 
     const values = [valueNode, ...valueBrowsers];
 
@@ -121,14 +121,14 @@ group('@amaui/utils/decode', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ('a' as any).encode().decode(),
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ('a' as any).encode().decode(),

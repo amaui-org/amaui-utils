@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/hslToRgb', () => {
+group('@onesy/utils/hslToRgb', () => {
 
   post(() => reset());
 
@@ -41,9 +41,9 @@ group('@amaui/utils/hslToRgb', () => {
         new Array(),
       ];
 
-      return values_.map((value: any) => window.AmauiUtils.hslToRgb(value));
+      return values_.map((value: any) => window.OnesyUtils.hslToRgb(value));
     });
-    const valueNode = values_.map((value: any) => AmauiUtils.hslToRgb(value));
+    const valueNode = values_.map((value: any) => OnesyUtils.hslToRgb(value));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -74,9 +74,9 @@ group('@amaui/utils/hslToRgb', () => {
         'hsla(192.414, 45.41%, 78.4%, 0.4)',
       ];
 
-      return values_.map((value: any) => window.AmauiUtils.hslToRgb(value, 0.4));
+      return values_.map((value: any) => window.OnesyUtils.hslToRgb(value, 0.4));
     });
-    const valueNode = values_.map((value: any) => AmauiUtils.hslToRgb(value, 0.4));
+    const valueNode = values_.map((value: any) => OnesyUtils.hslToRgb(value, 0.4));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -101,13 +101,13 @@ group('@amaui/utils/hslToRgb', () => {
       ];
 
       return [
-        window.AmauiUtils.hslToRgb('hsl(39, 100%, 50%)', undefined, false),
-        ...values_.map((value: any) => window.AmauiUtils.hslToRgb(value, undefined, true)),
+        window.OnesyUtils.hslToRgb('hsl(39, 100%, 50%)', undefined, false),
+        ...values_.map((value: any) => window.OnesyUtils.hslToRgb(value, undefined, true)),
       ];
     });
     const valueNode = [
-      AmauiUtils.hslToRgb('hsl(39, 100%, 50%)', undefined, false),
-      ...values_.map((value: any) => AmauiUtils.hslToRgb(value, undefined, true)),
+      OnesyUtils.hslToRgb('hsl(39, 100%, 50%)', undefined, false),
+      ...values_.map((value: any) => OnesyUtils.hslToRgb(value, undefined, true)),
     ];
     const values = [valueNode, ...valueBrowsers];
 
@@ -120,14 +120,14 @@ group('@amaui/utils/hslToRgb', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ('hsl(40, 100%, 40%)' as any).hslToRgb(),
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ('hsl(40, 100%, 40%)' as any).hslToRgb(),

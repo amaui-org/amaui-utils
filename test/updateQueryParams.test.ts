@@ -1,9 +1,9 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-group('@amaui/utils/updateQueryParams', () => {
+group('@onesy/utils/updateQueryParams', () => {
 
   post(() => reset());
 
@@ -20,7 +20,7 @@ group('@amaui/utils/updateQueryParams', () => {
         { q: 4, a: 'a' },
         { q: 4, a: 'a', ab: new Map(), ad: function a() { } },
       ].map(item => {
-        window.AmauiUtils.updateQueryParams(item);
+        window.OnesyUtils.updateQueryParams(item);
 
         const value = window.location.search;
 
@@ -55,7 +55,7 @@ group('@amaui/utils/updateQueryParams', () => {
         [{ q: 4, a: 'a' }, true],
         [{ q: 4, a: 'a' }, false],
       ].map((item: any) => {
-        window.AmauiUtils.updateQueryParams(...item);
+        window.OnesyUtils.updateQueryParams(...item);
 
         const value = window.location.search;
 
@@ -78,7 +78,7 @@ group('@amaui/utils/updateQueryParams', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       ({ a: 4, q: 4 } as any).updateQueryParams();
 

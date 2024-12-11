@@ -1,12 +1,12 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
-import AmauiNode from '@amaui/node';
+import { assert } from '@onesy/test';
+import OnesyNode from '@onesy/node';
 
 import { evaluate, reset, utils } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/download', () => {
+group('@onesy/utils/download', () => {
 
   post(() => reset());
 
@@ -20,16 +20,16 @@ group('@amaui/utils/download', () => {
 
       // Perform the action that initiates download
       evaluate((args: any) => {
-        AmauiUtils.download('a.txt', args[1], 'text/plain');
+        OnesyUtils.download('a.txt', args[1], 'text/plain');
       }, { browsers: { chromium: utils.browsers['chromium'] }, arguments: ['chromium'] }),
     ]);
 
     // Wait for the download process to complete
     const path = await download.path();
 
-    assert(await AmauiNode.file.get(path)).eq('chromium');
+    assert(await OnesyNode.file.get(path)).eq('chromium');
 
-    await AmauiNode.file.remove(path);
+    await OnesyNode.file.remove(path);
   });
 
 });

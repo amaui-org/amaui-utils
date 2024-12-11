@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/arrayMoveItem', () => {
+group('@onesy/utils/arrayMoveItem', () => {
 
   post(() => reset());
 
@@ -35,9 +35,9 @@ group('@amaui/utils/arrayMoveItem', () => {
         [new Object()],
       ];
 
-      return values_.map((value: [any, any, any]) => window.AmauiUtils.arrayMoveItem(...value));
+      return values_.map((value: [any, any, any]) => window.OnesyUtils.arrayMoveItem(...value));
     });
-    const valueNode = values_.map((value: [any, any, any]) => AmauiUtils.arrayMoveItem(...value));
+    const valueNode = values_.map((value: [any, any, any]) => OnesyUtils.arrayMoveItem(...value));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -55,14 +55,14 @@ group('@amaui/utils/arrayMoveItem', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ([1, 3, 4] as any).moveItem(1, 4),
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ([1, 3, 4] as any).moveItem(1, 4),

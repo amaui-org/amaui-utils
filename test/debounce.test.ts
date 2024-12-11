@@ -1,36 +1,36 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 import { spy } from 'sinon';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/debounce', () => {
+group('@onesy/utils/debounce', () => {
 
   post(() => reset());
 
   to('debounce', async () => {
     const valueBrowsers = await evaluate(async (window: any) => {
       const method = window.sinon.spy();
-      const debounceMethod = window.AmauiUtils.debounce(method);
+      const debounceMethod = window.OnesyUtils.debounce(method);
 
       for (const _ of new Array(4)) {
         for (const __ of new Array(14)) debounceMethod('a');
 
-        await window.AmauiUtils.wait(170);
+        await window.OnesyUtils.wait(170);
       }
 
       return [method.callCount, method.args];
     });
 
     const method = spy();
-    const debounceMethod = AmauiUtils.debounce(method);
+    const debounceMethod = OnesyUtils.debounce(method);
 
     for (const _ of new Array(4)) {
       for (const __ of new Array(14)) debounceMethod('a');
 
-      await AmauiUtils.wait(170);
+      await OnesyUtils.wait(170);
     }
 
     const valueNode = [method.callCount, method.args];
@@ -45,25 +45,25 @@ group('@amaui/utils/debounce', () => {
   to('clear', async () => {
     const valueBrowsers = await evaluate(async (window: any) => {
       const method = window.sinon.spy();
-      const debounceMethod = window.AmauiUtils.debounce(method);
+      const debounceMethod = window.OnesyUtils.debounce(method);
 
       debounceMethod('a');
 
       debounceMethod.clear();
 
-      await window.AmauiUtils.wait(170);
+      await window.OnesyUtils.wait(170);
 
       return [method.callCount, method.args];
     });
 
     const method = spy();
-    const debounceMethod = AmauiUtils.debounce(method);
+    const debounceMethod = OnesyUtils.debounce(method);
 
     debounceMethod('a');
 
     debounceMethod.clear();
 
-    await AmauiUtils.wait(170);
+    await OnesyUtils.wait(170);
 
     const valueNode = [method.callCount, method.args];
     const values = [valueNode, ...valueBrowsers];

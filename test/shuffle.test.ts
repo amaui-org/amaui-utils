@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/shuffle', () => {
+group('@onesy/utils/shuffle', () => {
 
   post(() => reset());
 
@@ -13,18 +13,18 @@ group('@amaui/utils/shuffle', () => {
     const value = 'yvryq6zG(l';
 
     const values_ = [
-      AmauiUtils.shuffle(value),
-      AmauiUtils.shuffle(value, 4),
-      AmauiUtils.shuffle(value, 40),
+      OnesyUtils.shuffle(value),
+      OnesyUtils.shuffle(value, 4),
+      OnesyUtils.shuffle(value, 40),
     ];
 
     const valueBrowsers = await evaluate((window: any) => {
       const value = 'yvryq6zG(l';
 
       const values_ = [
-        window.AmauiUtils.shuffle(value),
-        window.AmauiUtils.shuffle(value, 4),
-        window.AmauiUtils.shuffle(value, 40),
+        window.OnesyUtils.shuffle(value),
+        window.OnesyUtils.shuffle(value, 4),
+        window.OnesyUtils.shuffle(value, 40),
       ];
 
       return values_;
@@ -55,7 +55,7 @@ group('@amaui/utils/shuffle', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       const value = 'yvryq6zG(l';
 
@@ -64,7 +64,7 @@ group('@amaui/utils/shuffle', () => {
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const value = 'yvryq6zG(l';
 

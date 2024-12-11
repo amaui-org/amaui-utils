@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/merge', () => {
+group('@onesy/utils/merge', () => {
 
   post(() => reset());
 
@@ -35,10 +35,10 @@ group('@amaui/utils/merge', () => {
         [undefined, {}],
       ];
 
-      return values_.map((value: [any, any]) => window.AmauiUtils.merge(...value));
+      return values_.map((value: [any, any]) => window.OnesyUtils.merge(...value));
     });
 
-    const valueNode = values_.map((value: [any, any]) => AmauiUtils.merge(...value));
+    const valueNode = values_.map((value: [any, any]) => OnesyUtils.merge(...value));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -68,16 +68,16 @@ group('@amaui/utils/merge', () => {
       const o1 = { a: '4' };
       const o2 = { ab: { a: 4 } };
 
-      const mo: any = AmauiUtils.merge(o, o2, { copy: true });
-      const mo1: any = AmauiUtils.merge(o1, o2, { copy: false });
+      const mo: any = OnesyUtils.merge(o, o2, { copy: true });
+      const mo1: any = OnesyUtils.merge(o1, o2, { copy: false });
 
       const valueBrowsers = await evaluate((window: any) => {
         const o = { a: '4' };
         const o1 = { a: '4' };
         const o2 = { ab: { a: 4 } };
 
-        const mo: any = window.AmauiUtils.merge(o, o2, { copy: true });
-        const mo1: any = window.AmauiUtils.merge(o1, o2, { copy: false });
+        const mo: any = window.OnesyUtils.merge(o, o2, { copy: true });
+        const mo1: any = window.OnesyUtils.merge(o1, o2, { copy: false });
 
         return [
           mo.ab !== o2.ab,
@@ -99,14 +99,14 @@ group('@amaui/utils/merge', () => {
       to('array', async () => {
         const valueBrowsers = await evaluate((window: any) => {
           return [
-            window.AmauiUtils.merge([], [1, 4, 1], { merge: { array: true } }),
-            window.AmauiUtils.merge([], [1, 4, 1], { merge: { array: false } }),
+            window.OnesyUtils.merge([], [1, 4, 1], { merge: { array: true } }),
+            window.OnesyUtils.merge([], [1, 4, 1], { merge: { array: false } }),
           ];
         });
 
         const valueNode = [
-          AmauiUtils.merge([], [1, 4, 1], { merge: { array: true } }),
-          AmauiUtils.merge([], [1, 4, 1], { merge: { array: false } }),
+          OnesyUtils.merge([], [1, 4, 1], { merge: { array: true } }),
+          OnesyUtils.merge([], [1, 4, 1], { merge: { array: false } }),
         ];
         const values = [valueNode, ...valueBrowsers];
 
@@ -122,7 +122,7 @@ group('@amaui/utils/merge', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ([] as any).merge([1, 4, 1], { merge: { array: true } }),
@@ -130,7 +130,7 @@ group('@amaui/utils/merge', () => {
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ([] as any).merge([1, 4, 1], { merge: { array: true } }),

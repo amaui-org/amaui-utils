@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/capitalize', () => {
+group('@onesy/utils/capitalize', () => {
 
   post(() => reset());
 
@@ -35,9 +35,9 @@ group('@amaui/utils/capitalize', () => {
         new Array(),
       ];
 
-      return values_.map((value: any) => window.AmauiUtils.capitalize(value));
+      return values_.map((value: any) => window.OnesyUtils.capitalize(value));
     });
-    const valueNode = values_.map((value: any) => AmauiUtils.capitalize(value));
+    const valueNode = values_.map((value: any) => OnesyUtils.capitalize(value));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -55,7 +55,7 @@ group('@amaui/utils/capitalize', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       const values_ = [
         'a',
@@ -64,7 +64,7 @@ group('@amaui/utils/capitalize', () => {
       return values_.map((value: any) => value.capitalize());
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const values_ = [
       'a',

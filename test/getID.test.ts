@@ -1,17 +1,17 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/getID', () => {
+group('@onesy/utils/getID', () => {
 
   post(() => reset());
 
   to('getID', async () => {
-    const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.getID(),);
-    const valueNode = AmauiUtils.getID();
+    const valueBrowsers = await evaluate((window: any) => window.OnesyUtils.getID(),);
+    const valueNode = OnesyUtils.getID();
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => {

@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/getOrdinalNumber', () => {
+group('@onesy/utils/getOrdinalNumber', () => {
 
   post(() => reset());
 
@@ -65,9 +65,9 @@ group('@amaui/utils/getOrdinalNumber', () => {
         '44',
       ];
 
-      return values_.map(value => window.AmauiUtils.getOrdinalNumber(value as any));
+      return values_.map(value => window.OnesyUtils.getOrdinalNumber(value as any));
     });
-    const valueNode = values_.map(value => AmauiUtils.getOrdinalNumber(value as any));
+    const valueNode = values_.map(value => OnesyUtils.getOrdinalNumber(value as any));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -101,13 +101,13 @@ group('@amaui/utils/getOrdinalNumber', () => {
   to('onlySufix', async () => {
     const valueBrowsers = await evaluate((window: any) => {
       return [
-        window.AmauiUtils.getOrdinalNumber(1, { onlySufix: true }),
-        window.AmauiUtils.getOrdinalNumber(1, { onlySufix: false }),
+        window.OnesyUtils.getOrdinalNumber(1, { onlySufix: true }),
+        window.OnesyUtils.getOrdinalNumber(1, { onlySufix: false }),
       ];
     });
     const valueNode = [
-      AmauiUtils.getOrdinalNumber(1, { onlySufix: true }),
-      AmauiUtils.getOrdinalNumber(1, { onlySufix: false }),
+      OnesyUtils.getOrdinalNumber(1, { onlySufix: true }),
+      OnesyUtils.getOrdinalNumber(1, { onlySufix: false }),
     ];
     const values = [valueNode, ...valueBrowsers];
 
@@ -119,7 +119,7 @@ group('@amaui/utils/getOrdinalNumber', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         (4 as any).getOrdinal(),
@@ -127,7 +127,7 @@ group('@amaui/utils/getOrdinalNumber', () => {
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       (4 as any).getOrdinal(),

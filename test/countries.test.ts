@@ -1,17 +1,17 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/countries', () => {
+group('@onesy/utils/countries', () => {
 
   post(() => reset());
 
   to('Serbia', async () => {
-    const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.countries.find(country => country['alpha-2'] === 'RS'),);
-    const valueNode = AmauiUtils.countries.find(country => country['alpha-2'] === 'RS');
+    const valueBrowsers = await evaluate((window: any) => window.OnesyUtils.countries.find(country => country['alpha-2'] === 'RS'),);
+    const valueNode = OnesyUtils.countries.find(country => country['alpha-2'] === 'RS');
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql({

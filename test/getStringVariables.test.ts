@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/getStringVariables', () => {
+group('@onesy/utils/getStringVariables', () => {
 
   post(() => reset());
 
@@ -29,9 +29,9 @@ group('@amaui/utils/getStringVariables', () => {
         [new Array()],
       ];
 
-      return values_.map((value: [any, any]) => window.AmauiUtils.getStringVariables(...value));
+      return values_.map((value: [any, any]) => window.OnesyUtils.getStringVariables(...value));
     });
-    const valueNode = values_.map((value: [any, any]) => AmauiUtils.getStringVariables(...value));
+    const valueNode = values_.map((value: [any, any]) => OnesyUtils.getStringVariables(...value));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -70,9 +70,9 @@ group('@amaui/utils/getStringVariables', () => {
           [`'a' DD "a" MM \`a\` YYYY {a} [a]`, { variablesRegExp: /('.*?'|".*?"|`.*?`|\{.*?\}|\[.*?\])/g }],
         ];
 
-        return values_.map((value: [any, any]) => window.AmauiUtils.getStringVariables(...value));
+        return values_.map((value: [any, any]) => window.OnesyUtils.getStringVariables(...value));
       });
-      const valueNode = values_.map((value: [any, any]) => AmauiUtils.getStringVariables(...value));
+      const valueNode = values_.map((value: [any, any]) => OnesyUtils.getStringVariables(...value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -122,9 +122,9 @@ group('@amaui/utils/getStringVariables', () => {
           [`'a' DD "a" MM \`a\` YYYY {a} [a]`, { cleanVariables: false }],
         ];
 
-        return values_.map((value: [any, any]) => window.AmauiUtils.getStringVariables(...value));
+        return values_.map((value: [any, any]) => window.OnesyUtils.getStringVariables(...value));
       });
-      const valueNode = values_.map((value: [any, any]) => AmauiUtils.getStringVariables(...value));
+      const valueNode = values_.map((value: [any, any]) => OnesyUtils.getStringVariables(...value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -159,9 +159,9 @@ group('@amaui/utils/getStringVariables', () => {
           [`'a' DD "a" MM \`a\` YYYY {a} [a]`, { placeholderPrefix: ',' }],
         ];
 
-        return values_.map((value: [any, any]) => window.AmauiUtils.getStringVariables(...value));
+        return values_.map((value: [any, any]) => window.OnesyUtils.getStringVariables(...value));
       });
-      const valueNode = values_.map((value: [any, any]) => AmauiUtils.getStringVariables(...value));
+      const valueNode = values_.map((value: [any, any]) => OnesyUtils.getStringVariables(...value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -188,14 +188,14 @@ group('@amaui/utils/getStringVariables', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         (`'a' DD "a" MM \`a\` YYYY {a} [a]` as any).getVariables(),
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       (`'a' DD "a" MM \`a\` YYYY {a} [a]` as any).getVariables(),

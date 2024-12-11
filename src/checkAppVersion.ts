@@ -4,7 +4,7 @@ import getObjectValue from './getObjectValue';
 
 // In your specific app, make sure you import your own app's package.json,
 // and set on window.AMAUI.app = { version: packageJson.version }, so checkAppVersion can get your
-// app's actual version value instead of amaui-utils package.json version added atm
+// app's actual version value instead of onesy-utils package.json version added atm
 
 // meta.json file for this method to be used
 // should be generated during build with,

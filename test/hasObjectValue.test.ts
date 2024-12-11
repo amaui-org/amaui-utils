@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/hasObjectProperty', () => {
+group('@onesy/utils/hasObjectProperty', () => {
 
   post(() => reset());
 
@@ -59,17 +59,17 @@ group('@amaui/utils/hasObjectProperty', () => {
       };
 
       return [
-        window.AmauiUtils.hasObjectProperty(4 as any),
-        window.AmauiUtils.hasObjectProperty([1, 4, 1, 4, { a: 4 }], '4.a'),
-        window.AmauiUtils.hasObjectProperty(value, 'a.b.c', 'd.c.0.a', 'd.b.c.1.c.2'),
-        window.AmauiUtils.hasObjectProperty(value, 'a.b.c'),
+        window.OnesyUtils.hasObjectProperty(4 as any),
+        window.OnesyUtils.hasObjectProperty([1, 4, 1, 4, { a: 4 }], '4.a'),
+        window.OnesyUtils.hasObjectProperty(value, 'a.b.c', 'd.c.0.a', 'd.b.c.1.c.2'),
+        window.OnesyUtils.hasObjectProperty(value, 'a.b.c'),
       ];
     });
     const valueNode = [
-      AmauiUtils.hasObjectProperty(4 as any),
-      AmauiUtils.hasObjectProperty([1, 4, 1, 4, { a: 4 }], '4.a'),
-      AmauiUtils.hasObjectProperty(value, 'a.b.c', 'd.c.0.a', 'd.b.c.1.c.2'),
-      AmauiUtils.hasObjectProperty(value, 'a.b.c'),
+      OnesyUtils.hasObjectProperty(4 as any),
+      OnesyUtils.hasObjectProperty([1, 4, 1, 4, { a: 4 }], '4.a'),
+      OnesyUtils.hasObjectProperty(value, 'a.b.c', 'd.c.0.a', 'd.b.c.1.c.2'),
+      OnesyUtils.hasObjectProperty(value, 'a.b.c'),
     ];
     const values = [valueNode, ...valueBrowsers];
 
@@ -83,7 +83,7 @@ group('@amaui/utils/hasObjectProperty', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ({ a: { a: '4' } } as any).hasProperty('a.a'),
@@ -91,7 +91,7 @@ group('@amaui/utils/hasObjectProperty', () => {
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ({ a: { a: '4' } } as any).hasProperty('a.a'),

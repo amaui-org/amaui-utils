@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/getContrastRatio', () => {
+group('@onesy/utils/getContrastRatio', () => {
 
   post(() => reset());
 
@@ -43,9 +43,9 @@ group('@amaui/utils/getContrastRatio', () => {
         [new Array(), 'rgba(174, 214, 224, 0.4)'],
       ];
 
-      return values_.map((value: [any, any]) => window.AmauiUtils.getContrastRatio(...value));
+      return values_.map((value: [any, any]) => window.OnesyUtils.getContrastRatio(...value));
     });
-    const valueNode = values_.map((value: [any, any]) => AmauiUtils.getContrastRatio(...value));
+    const valueNode = values_.map((value: [any, any]) => OnesyUtils.getContrastRatio(...value));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -62,14 +62,14 @@ group('@amaui/utils/getContrastRatio', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ('rgb(140, 104, 40)' as any).getContrastRatio('rgb(140, 140, 70)'),
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ('rgb(140, 104, 40)' as any).getContrastRatio('rgb(140, 140, 70)'),

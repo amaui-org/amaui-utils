@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/matchRoute', () => {
+group('@onesy/utils/matchRoute', () => {
 
   post(() => reset());
 
@@ -19,7 +19,7 @@ group('@amaui/utils/matchRoute', () => {
         '/blog/tags/140',
       ];
 
-      return values_.map(value => window.AmauiUtils.matchRoute([
+      return values_.map(value => window.OnesyUtils.matchRoute([
         '/',
         '/blog/posts/:id',
         '/blog/tags/:id',
@@ -34,7 +34,7 @@ group('@amaui/utils/matchRoute', () => {
       '/blog/tags/140',
     ];
 
-    const valueNode = values_.map(value => AmauiUtils.matchRoute([
+    const valueNode = values_.map(value => OnesyUtils.matchRoute([
       '/',
       '/blog/posts/:id',
       '/blog/tags/:id',

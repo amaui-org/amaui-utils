@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/hasObjectProperty', () => {
+group('@onesy/utils/hasObjectProperty', () => {
 
   post(() => reset());
 
@@ -18,7 +18,7 @@ group('@amaui/utils/hasObjectProperty', () => {
           'ad.aad.a',
           'ad.a'
         ]
-      ].map(item => window.AmauiUtils.hasObjectProperty(...item));
+      ].map(item => window.OnesyUtils.hasObjectProperty(...item));
 
       return values_;
     });
@@ -30,7 +30,7 @@ group('@amaui/utils/hasObjectProperty', () => {
         'ad.aad.a',
         'ad.a'
       ]
-    ].map((item: [any, any, any, any]) => AmauiUtils.hasObjectProperty(...item));
+    ].map((item: [any, any, any, any]) => OnesyUtils.hasObjectProperty(...item));
 
     const values = [...valueNode, ...valueBrowsers];
 

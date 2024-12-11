@@ -1,80 +1,80 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/hexadecimalStringToBinary', () => {
+group('@onesy/utils/hexadecimalStringToBinary', () => {
 
   post(() => reset());
 
   to('hexadecimalStringToBinary', async () => {
     const values_ = [
-      AmauiUtils.hexadecimalStringToBinary(''),
-      AmauiUtils.hexadecimalStringToBinary(undefined),
-      AmauiUtils.hexadecimalStringToBinary(new Array() as any),
-      AmauiUtils.hexadecimalStringToBinary('00a'),
-      AmauiUtils.hexadecimalStringToBinary('02a443'),
-      AmauiUtils.hexadecimalStringToBinary('00a44abaa55754aaea744'),
-      AmauiUtils.hexadecimalStringToBinary('020'),
-      AmauiUtils.hexadecimalStringToBinary('1200'),
-      AmauiUtils.hexadecimalStringToBinary('13000'),
-      AmauiUtils.hexadecimalStringToBinary('000'),
-      AmauiUtils.hexadecimalStringToBinary('0200'),
-      AmauiUtils.hexadecimalStringToBinary('12000'),
-      AmauiUtils.hexadecimalStringToBinary('130000'),
-      AmauiUtils.hexadecimalStringToBinary('021'),
-      AmauiUtils.hexadecimalStringToBinary('1201'),
-      AmauiUtils.hexadecimalStringToBinary('13001'),
-      AmauiUtils.hexadecimalStringToBinary('001'),
-      AmauiUtils.hexadecimalStringToBinary('0201'),
-      AmauiUtils.hexadecimalStringToBinary('12001'),
-      AmauiUtils.hexadecimalStringToBinary('130001'),
-      AmauiUtils.hexadecimalStringToBinary('0001'),
-      AmauiUtils.hexadecimalStringToBinary('022'),
-      AmauiUtils.hexadecimalStringToBinary('025'),
-      AmauiUtils.hexadecimalStringToBinary('009'),
-      AmauiUtils.hexadecimalStringToBinary('0281'),
-      AmauiUtils.hexadecimalStringToBinary('12801'),
-      AmauiUtils.hexadecimalStringToBinary('138001'),
-      AmauiUtils.hexadecimalStringToBinary('0081'),
-      AmauiUtils.hexadecimalStringToBinary('02801'),
-      AmauiUtils.hexadecimalStringToBinary('128001'),
+      OnesyUtils.hexadecimalStringToBinary(''),
+      OnesyUtils.hexadecimalStringToBinary(undefined),
+      OnesyUtils.hexadecimalStringToBinary(new Array() as any),
+      OnesyUtils.hexadecimalStringToBinary('00a'),
+      OnesyUtils.hexadecimalStringToBinary('02a443'),
+      OnesyUtils.hexadecimalStringToBinary('00a44abaa55754aaea744'),
+      OnesyUtils.hexadecimalStringToBinary('020'),
+      OnesyUtils.hexadecimalStringToBinary('1200'),
+      OnesyUtils.hexadecimalStringToBinary('13000'),
+      OnesyUtils.hexadecimalStringToBinary('000'),
+      OnesyUtils.hexadecimalStringToBinary('0200'),
+      OnesyUtils.hexadecimalStringToBinary('12000'),
+      OnesyUtils.hexadecimalStringToBinary('130000'),
+      OnesyUtils.hexadecimalStringToBinary('021'),
+      OnesyUtils.hexadecimalStringToBinary('1201'),
+      OnesyUtils.hexadecimalStringToBinary('13001'),
+      OnesyUtils.hexadecimalStringToBinary('001'),
+      OnesyUtils.hexadecimalStringToBinary('0201'),
+      OnesyUtils.hexadecimalStringToBinary('12001'),
+      OnesyUtils.hexadecimalStringToBinary('130001'),
+      OnesyUtils.hexadecimalStringToBinary('0001'),
+      OnesyUtils.hexadecimalStringToBinary('022'),
+      OnesyUtils.hexadecimalStringToBinary('025'),
+      OnesyUtils.hexadecimalStringToBinary('009'),
+      OnesyUtils.hexadecimalStringToBinary('0281'),
+      OnesyUtils.hexadecimalStringToBinary('12801'),
+      OnesyUtils.hexadecimalStringToBinary('138001'),
+      OnesyUtils.hexadecimalStringToBinary('0081'),
+      OnesyUtils.hexadecimalStringToBinary('02801'),
+      OnesyUtils.hexadecimalStringToBinary('128001'),
     ];
 
     const valueBrowsers = await evaluate((window: any) => {
       const values_ = [
-        window.AmauiUtils.hexadecimalStringToBinary(''),
-        window.AmauiUtils.hexadecimalStringToBinary(undefined),
-        window.AmauiUtils.hexadecimalStringToBinary(new Array() as any),
-        window.AmauiUtils.hexadecimalStringToBinary('00a'),
-        window.AmauiUtils.hexadecimalStringToBinary('02a443'),
-        window.AmauiUtils.hexadecimalStringToBinary('00a44abaa55754aaea744'),
-        window.AmauiUtils.hexadecimalStringToBinary('020'),
-        window.AmauiUtils.hexadecimalStringToBinary('1200'),
-        window.AmauiUtils.hexadecimalStringToBinary('13000'),
-        window.AmauiUtils.hexadecimalStringToBinary('000'),
-        window.AmauiUtils.hexadecimalStringToBinary('0200'),
-        window.AmauiUtils.hexadecimalStringToBinary('12000'),
-        window.AmauiUtils.hexadecimalStringToBinary('130000'),
-        window.AmauiUtils.hexadecimalStringToBinary('021'),
-        window.AmauiUtils.hexadecimalStringToBinary('1201'),
-        window.AmauiUtils.hexadecimalStringToBinary('13001'),
-        window.AmauiUtils.hexadecimalStringToBinary('001'),
-        window.AmauiUtils.hexadecimalStringToBinary('0201'),
-        window.AmauiUtils.hexadecimalStringToBinary('12001'),
-        window.AmauiUtils.hexadecimalStringToBinary('130001'),
-        window.AmauiUtils.hexadecimalStringToBinary('0001'),
-        window.AmauiUtils.hexadecimalStringToBinary('022'),
-        window.AmauiUtils.hexadecimalStringToBinary('025'),
-        window.AmauiUtils.hexadecimalStringToBinary('009'),
-        window.AmauiUtils.hexadecimalStringToBinary('0281'),
-        window.AmauiUtils.hexadecimalStringToBinary('12801'),
-        window.AmauiUtils.hexadecimalStringToBinary('138001'),
-        window.AmauiUtils.hexadecimalStringToBinary('0081'),
-        window.AmauiUtils.hexadecimalStringToBinary('02801'),
-        window.AmauiUtils.hexadecimalStringToBinary('128001'),
+        window.OnesyUtils.hexadecimalStringToBinary(''),
+        window.OnesyUtils.hexadecimalStringToBinary(undefined),
+        window.OnesyUtils.hexadecimalStringToBinary(new Array() as any),
+        window.OnesyUtils.hexadecimalStringToBinary('00a'),
+        window.OnesyUtils.hexadecimalStringToBinary('02a443'),
+        window.OnesyUtils.hexadecimalStringToBinary('00a44abaa55754aaea744'),
+        window.OnesyUtils.hexadecimalStringToBinary('020'),
+        window.OnesyUtils.hexadecimalStringToBinary('1200'),
+        window.OnesyUtils.hexadecimalStringToBinary('13000'),
+        window.OnesyUtils.hexadecimalStringToBinary('000'),
+        window.OnesyUtils.hexadecimalStringToBinary('0200'),
+        window.OnesyUtils.hexadecimalStringToBinary('12000'),
+        window.OnesyUtils.hexadecimalStringToBinary('130000'),
+        window.OnesyUtils.hexadecimalStringToBinary('021'),
+        window.OnesyUtils.hexadecimalStringToBinary('1201'),
+        window.OnesyUtils.hexadecimalStringToBinary('13001'),
+        window.OnesyUtils.hexadecimalStringToBinary('001'),
+        window.OnesyUtils.hexadecimalStringToBinary('0201'),
+        window.OnesyUtils.hexadecimalStringToBinary('12001'),
+        window.OnesyUtils.hexadecimalStringToBinary('130001'),
+        window.OnesyUtils.hexadecimalStringToBinary('0001'),
+        window.OnesyUtils.hexadecimalStringToBinary('022'),
+        window.OnesyUtils.hexadecimalStringToBinary('025'),
+        window.OnesyUtils.hexadecimalStringToBinary('009'),
+        window.OnesyUtils.hexadecimalStringToBinary('0281'),
+        window.OnesyUtils.hexadecimalStringToBinary('12801'),
+        window.OnesyUtils.hexadecimalStringToBinary('138001'),
+        window.OnesyUtils.hexadecimalStringToBinary('0081'),
+        window.OnesyUtils.hexadecimalStringToBinary('02801'),
+        window.OnesyUtils.hexadecimalStringToBinary('128001'),
       ];
 
       return values_;
@@ -118,14 +118,14 @@ group('@amaui/utils/hexadecimalStringToBinary', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ('02a443' as any).hexadecimalStringToBinary(),
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ('02a443' as any).hexadecimalStringToBinary(),

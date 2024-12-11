@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/getObjectValue', () => {
+group('@onesy/utils/getObjectValue', () => {
 
   post(() => reset());
 
@@ -59,17 +59,17 @@ group('@amaui/utils/getObjectValue', () => {
       };
 
       return [
-        window.AmauiUtils.getObjectValue(4 as any),
-        window.AmauiUtils.getObjectValue([1, 4, 1, 4, { a: 4 }], '4.a'),
-        window.AmauiUtils.getObjectValue(value, 'a.b.c', 'd.c.0.a', 'd.b.c.1.c.2'),
-        window.AmauiUtils.getObjectValue(value, 'a.b.c'),
+        window.OnesyUtils.getObjectValue(4 as any),
+        window.OnesyUtils.getObjectValue([1, 4, 1, 4, { a: 4 }], '4.a'),
+        window.OnesyUtils.getObjectValue(value, 'a.b.c', 'd.c.0.a', 'd.b.c.1.c.2'),
+        window.OnesyUtils.getObjectValue(value, 'a.b.c'),
       ];
     });
     const valueNode = [
-      AmauiUtils.getObjectValue(4 as any),
-      AmauiUtils.getObjectValue([1, 4, 1, 4, { a: 4 }], '4.a'),
-      AmauiUtils.getObjectValue(value, 'a.b.c', 'd.c.0.a', 'd.b.c.1.c.2'),
-      AmauiUtils.getObjectValue(value, 'a.b.c'),
+      OnesyUtils.getObjectValue(4 as any),
+      OnesyUtils.getObjectValue([1, 4, 1, 4, { a: 4 }], '4.a'),
+      OnesyUtils.getObjectValue(value, 'a.b.c', 'd.c.0.a', 'd.b.c.1.c.2'),
+      OnesyUtils.getObjectValue(value, 'a.b.c'),
     ];
     const values = [valueNode, ...valueBrowsers];
 
@@ -83,7 +83,7 @@ group('@amaui/utils/getObjectValue', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ({ a: { a: '4' } } as any).getValue('a.a'),
@@ -91,7 +91,7 @@ group('@amaui/utils/getObjectValue', () => {
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ({ a: { a: '4' } } as any).getValue('a.a'),

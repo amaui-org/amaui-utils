@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/wait', () => {
+group('@onesy/utils/wait', () => {
 
   post(() => reset());
 
@@ -16,12 +16,12 @@ group('@amaui/utils/wait', () => {
       // tslint:disable-next-line
       const start = new Date().getTime();
 
-      await window.AmauiUtils.wait(140);
+      await window.OnesyUtils.wait(140);
 
       return new Date().getTime() - start >= 140;
     });
 
-    await AmauiUtils.wait(140);
+    await OnesyUtils.wait(140);
 
     const valueNode = new Date().getTime() - start >= 140;
     const values = [valueNode, ...valueBrowsers];

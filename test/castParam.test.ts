@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/castParam', () => {
+group('@onesy/utils/castParam', () => {
 
   post(() => reset());
 
@@ -39,9 +39,9 @@ group('@amaui/utils/castParam', () => {
         new Array(),
       ];
 
-      return values_.map((value: any) => window.AmauiUtils.castParam(value));
+      return values_.map((value: any) => window.OnesyUtils.castParam(value));
     });
-    const valueNode = values_.map((value: any) => AmauiUtils.castParam(value));
+    const valueNode = values_.map((value: any) => OnesyUtils.castParam(value));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -63,12 +63,12 @@ group('@amaui/utils/castParam', () => {
 
     to('decode', async () => {
       const valueBrowsers = await evaluate((window: any) => [
-        window.AmauiUtils.castParam('a%2C4', { decode: true }),
-        window.AmauiUtils.castParam('a%2C4', { decode: false }),
+        window.OnesyUtils.castParam('a%2C4', { decode: true }),
+        window.OnesyUtils.castParam('a%2C4', { decode: false }),
       ]);
       const valueNode = [
-        AmauiUtils.castParam('a%2C4', { decode: true }),
-        AmauiUtils.castParam('a%2C4', { decode: false }),
+        OnesyUtils.castParam('a%2C4', { decode: true }),
+        OnesyUtils.castParam('a%2C4', { decode: false }),
       ];
       const values = [valueNode, ...valueBrowsers];
 
@@ -80,11 +80,11 @@ group('@amaui/utils/castParam', () => {
 
     to('decodeMethod', async () => {
       const valueBrowsers = await evaluate((window: any) => [
-        window.AmauiUtils.castParam('a', { decode: true, decodeMethod: () => (4 as any) }),
+        window.OnesyUtils.castParam('a', { decode: true, decodeMethod: () => (4 as any) }),
       ]);
 
       const valueNode = [
-        AmauiUtils.castParam('a', { decode: true, decodeMethod: () => (4 as any) }),
+        OnesyUtils.castParam('a', { decode: true, decodeMethod: () => (4 as any) }),
       ];
 
       const values = [valueNode, ...valueBrowsers];
@@ -98,7 +98,7 @@ group('@amaui/utils/castParam', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       const values_ = [
         'a',
@@ -109,7 +109,7 @@ group('@amaui/utils/castParam', () => {
       return values_.map((value: any) => value.castParam());
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const values_ = [
       'a',

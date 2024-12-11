@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/decrypt', () => {
+group('@onesy/utils/decrypt', () => {
 
   post(() => reset());
 
@@ -63,10 +63,10 @@ group('@amaui/utils/decrypt', () => {
         },
       ];
 
-      return values_.map((value: any) => window.AmauiUtils.decrypt(window.AmauiUtils.encrypt(value, 'amaui'), 'amaui'));
+      return values_.map((value: any) => window.OnesyUtils.decrypt(window.OnesyUtils.encrypt(value, 'onesy'), 'onesy'));
     });
 
-    const valueNode = values_.map((value: any) => AmauiUtils.decrypt(AmauiUtils.encrypt(value, 'amaui'), 'amaui'));
+    const valueNode = values_.map((value: any) => OnesyUtils.decrypt(OnesyUtils.encrypt(value, 'onesy'), 'onesy'));
 
     const values = [valueNode, ...valueBrowsers];
 
@@ -129,10 +129,10 @@ group('@amaui/utils/decrypt', () => {
         'a',
       ];
 
-      return values_.map(value => window.AmauiUtils.decrypt(window.AmauiUtils.encrypt(value, 'amaui'), 'a'));
+      return values_.map(value => window.OnesyUtils.decrypt(window.OnesyUtils.encrypt(value, 'onesy'), 'a'));
     });
 
-    const valueNode = values_.map(value => AmauiUtils.decrypt(AmauiUtils.encrypt(value, 'amaui'), 'a'));
+    const valueNode = values_.map(value => OnesyUtils.decrypt(OnesyUtils.encrypt(value, 'onesy'), 'a'));
 
     const values = [valueNode, ...valueBrowsers];
 
@@ -148,13 +148,13 @@ group('@amaui/utils/decrypt', () => {
         const values_ = [];
 
         try {
-          window.AmauiUtils.decrypt(window.AmauiUtils.encrypt('a', 'amaui'), 'a', { exception: true });
+          window.OnesyUtils.decrypt(window.OnesyUtils.encrypt('a', 'onesy'), 'a', { exception: true });
         }
         catch (error) {
           values_.push(true);
         }
 
-        values_.push(!window.AmauiUtils.decrypt(window.AmauiUtils.encrypt('a', 'amaui'), 'a', { exception: false }));
+        values_.push(!window.OnesyUtils.decrypt(window.OnesyUtils.encrypt('a', 'onesy'), 'a', { exception: false }));
 
         return values_;
       });
@@ -162,13 +162,13 @@ group('@amaui/utils/decrypt', () => {
       const values_ = [];
 
       try {
-        AmauiUtils.decrypt(AmauiUtils.encrypt('a', 'amaui'), 'a', { exception: true });
+        OnesyUtils.decrypt(OnesyUtils.encrypt('a', 'onesy'), 'a', { exception: true });
       }
       catch (error) {
         values_.push(true);
       }
 
-      values_.push(!AmauiUtils.decrypt(AmauiUtils.encrypt('a', 'amaui'), 'a', { exception: false }));
+      values_.push(!OnesyUtils.decrypt(OnesyUtils.encrypt('a', 'onesy'), 'a', { exception: false }));
 
       const valueNode = values_;
       const values = [valueNode, ...valueBrowsers];
@@ -180,17 +180,17 @@ group('@amaui/utils/decrypt', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
-        ('a' as any).encrypt('amaui').decrypt('amaui'),
+        ('a' as any).encrypt('onesy').decrypt('onesy'),
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
-      ('a' as any).encrypt('amaui').decrypt('amaui'),
+      ('a' as any).encrypt('onesy').decrypt('onesy'),
     ];
 
     const values = [valueNode, ...valueBrowsers];

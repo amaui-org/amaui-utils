@@ -1,9 +1,9 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-group('@amaui/utils/allImagesLoaded', () => {
+group('@onesy/utils/allImagesLoaded', () => {
 
   post(() => reset());
 
@@ -15,7 +15,7 @@ group('@amaui/utils/allImagesLoaded', () => {
         const img = window.document.createElement('img');
 
         img.src = `https://picsum.photos/seed/${index}/440/440`;
-        img.className = 'amaui';
+        img.className = 'onesy';
         img.alt = '';
 
         window.document.body.appendChild(img);
@@ -28,7 +28,7 @@ group('@amaui/utils/allImagesLoaded', () => {
       // Not load completed images
       for (const image of images) if (!image.complete) result[0]++;
 
-      await window.AmauiUtils.allImagesLoaded();
+      await window.OnesyUtils.allImagesLoaded();
 
       // Images loaded after above method
       for (const image of images) if (image.complete) result[1]++;

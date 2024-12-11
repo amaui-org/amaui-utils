@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/getObjectPropertyValue', () => {
+group('@onesy/utils/getObjectPropertyValue', () => {
 
   post(() => reset());
 
@@ -59,17 +59,17 @@ group('@amaui/utils/getObjectPropertyValue', () => {
       };
 
       return [
-        window.AmauiUtils.getObjectPropertyValue(4 as any),
-        window.AmauiUtils.getObjectPropertyValue([1, 4, 1, 4, { a: 4 }], '4.a'),
-        window.AmauiUtils.getObjectPropertyValue(value, 'd.b.c.1.c.4'),
-        window.AmauiUtils.getObjectPropertyValue(value, 'a.b.c'),
+        window.OnesyUtils.getObjectPropertyValue(4 as any),
+        window.OnesyUtils.getObjectPropertyValue([1, 4, 1, 4, { a: 4 }], '4.a'),
+        window.OnesyUtils.getObjectPropertyValue(value, 'd.b.c.1.c.4'),
+        window.OnesyUtils.getObjectPropertyValue(value, 'a.b.c'),
       ];
     });
     const valueNode = [
-      AmauiUtils.getObjectPropertyValue(4 as any),
-      AmauiUtils.getObjectPropertyValue([1, 4, 1, 4, { a: 4 }], '4.a'),
-      AmauiUtils.getObjectPropertyValue(value, 'd.b.c.1.c.4'),
-      AmauiUtils.getObjectPropertyValue(value, 'a.b.c'),
+      OnesyUtils.getObjectPropertyValue(4 as any),
+      OnesyUtils.getObjectPropertyValue([1, 4, 1, 4, { a: 4 }], '4.a'),
+      OnesyUtils.getObjectPropertyValue(value, 'd.b.c.1.c.4'),
+      OnesyUtils.getObjectPropertyValue(value, 'a.b.c'),
     ];
     const values = [valueNode, ...valueBrowsers];
 
@@ -83,7 +83,7 @@ group('@amaui/utils/getObjectPropertyValue', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ({ a: { a: '4' } } as any).getPropertyValue('a.a'),
@@ -91,7 +91,7 @@ group('@amaui/utils/getObjectPropertyValue', () => {
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ({ a: { a: '4' } } as any).getPropertyValue('a.a'),

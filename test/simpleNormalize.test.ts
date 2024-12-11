@@ -1,30 +1,30 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/simpleNormalize', () => {
+group('@onesy/utils/simpleNormalize', () => {
 
   post(() => reset());
 
   to('simpleNormalize', async () => {
     const values_ = [
-      AmauiUtils.simpleNormalize('a'),
-      AmauiUtils.simpleNormalize('ui'),
-      AmauiUtils.simpleNormalize(4, { normalize: { map: new Map([['4', 'a']]) } }),
-      AmauiUtils.simpleNormalize(true),
-      AmauiUtils.simpleNormalize('id, _apI, ui true a4false'),
+      OnesyUtils.simpleNormalize('a'),
+      OnesyUtils.simpleNormalize('ui'),
+      OnesyUtils.simpleNormalize(4, { normalize: { map: new Map([['4', 'a']]) } }),
+      OnesyUtils.simpleNormalize(true),
+      OnesyUtils.simpleNormalize('id, _apI, ui true a4false'),
     ];
 
     const valueBrowsers = await evaluate((window: any) => {
       const values_ = [
-        window.AmauiUtils.simpleNormalize('a'),
-        window.AmauiUtils.simpleNormalize('ui'),
-        window.AmauiUtils.simpleNormalize(4, { normalize: { map: new Map([['4', 'a']]) } }),
-        window.AmauiUtils.simpleNormalize(true),
-        window.AmauiUtils.simpleNormalize('id, _apI, ui true a4false'),
+        window.OnesyUtils.simpleNormalize('a'),
+        window.OnesyUtils.simpleNormalize('ui'),
+        window.OnesyUtils.simpleNormalize(4, { normalize: { map: new Map([['4', 'a']]) } }),
+        window.OnesyUtils.simpleNormalize(true),
+        window.OnesyUtils.simpleNormalize('id, _apI, ui true a4false'),
       ];
 
       return values_;
@@ -45,11 +45,11 @@ group('@amaui/utils/simpleNormalize', () => {
 
     to('clean', async () => {
       const values_ = [
-        AmauiUtils.simpleNormalize('ui', {
+        OnesyUtils.simpleNormalize('ui', {
           clean: true,
           normalize: { map: new Map<any, any>([['ui', '_UI']]) },
         }),
-        AmauiUtils.simpleNormalize('ui', {
+        OnesyUtils.simpleNormalize('ui', {
           clean: false,
           normalize: { map: new Map<any, any>([['ui', '_UI']]) },
         }),
@@ -57,11 +57,11 @@ group('@amaui/utils/simpleNormalize', () => {
 
       const valueBrowsers = await evaluate((window: any) => {
         const values_ = [
-          window.AmauiUtils.simpleNormalize('ui', {
+          window.OnesyUtils.simpleNormalize('ui', {
             clean: true,
             normalize: { map: new Map<any, any>([['ui', '_UI']]) },
           }),
-          window.AmauiUtils.simpleNormalize('ui', {
+          window.OnesyUtils.simpleNormalize('ui', {
             clean: false,
             normalize: { map: new Map<any, any>([['ui', '_UI']]) },
           }),
@@ -80,11 +80,11 @@ group('@amaui/utils/simpleNormalize', () => {
 
     to('cleanAfter', async () => {
       const values_ = [
-        AmauiUtils.simpleNormalize('ui', {
+        OnesyUtils.simpleNormalize('ui', {
           cleanAfter: true,
           normalize: { map: new Map<any, any>([['ui', '_UI']]) },
         }),
-        AmauiUtils.simpleNormalize('ui', {
+        OnesyUtils.simpleNormalize('ui', {
           cleanAfter: false,
           normalize: { map: new Map<any, any>([['ui', '_UI']]) },
         }),
@@ -92,11 +92,11 @@ group('@amaui/utils/simpleNormalize', () => {
 
       const valueBrowsers = await evaluate((window: any) => {
         const values_ = [
-          window.AmauiUtils.simpleNormalize('ui', {
+          window.OnesyUtils.simpleNormalize('ui', {
             cleanAfter: true,
             normalize: { map: new Map<any, any>([['ui', '_UI']]) },
           }),
-          window.AmauiUtils.simpleNormalize('ui', {
+          window.OnesyUtils.simpleNormalize('ui', {
             cleanAfter: false,
             normalize: { map: new Map<any, any>([['ui', '_UI']]) },
           }),
@@ -115,7 +115,7 @@ group('@amaui/utils/simpleNormalize', () => {
 
     to('optionsCleanValue', async () => {
       const values_ = [
-        AmauiUtils.simpleNormalize('ui', {
+        OnesyUtils.simpleNormalize('ui', {
           cleanAfter: true,
           optionsCleanValue: { replaceWith: 'a' },
           normalize: { map: new Map<any, any>([['ui', '_UI']]) },
@@ -124,7 +124,7 @@ group('@amaui/utils/simpleNormalize', () => {
 
       const valueBrowsers = await evaluate((window: any) => {
         const values_ = [
-          window.AmauiUtils.simpleNormalize('ui', {
+          window.OnesyUtils.simpleNormalize('ui', {
             cleanAfter: true,
             optionsCleanValue: { replaceWith: 'a' },
             normalize: { map: new Map<any, any>([['ui', '_UI']]) },
@@ -145,14 +145,14 @@ group('@amaui/utils/simpleNormalize', () => {
 
       to('map', async () => {
         const values_ = [
-          AmauiUtils.simpleNormalize('ui', {
+          OnesyUtils.simpleNormalize('ui', {
             normalize: { map: new Map<any, any>([['ui', 'aUI']]) },
           }),
         ];
 
         const valueBrowsers = await evaluate((window: any) => {
           const values_ = [
-            window.AmauiUtils.simpleNormalize('ui', {
+            window.OnesyUtils.simpleNormalize('ui', {
               normalize: { map: new Map<any, any>([['ui', 'aUI']]) },
             }),
           ];
@@ -173,7 +173,7 @@ group('@amaui/utils/simpleNormalize', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ('ui' as any).simpleNormalize(),
@@ -182,7 +182,7 @@ group('@amaui/utils/simpleNormalize', () => {
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ('ui' as any).simpleNormalize(),

@@ -1,25 +1,25 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 import path from 'path';
 
 import { evaluate, reset, utils } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/equalDeep', () => {
+group('@onesy/utils/equalDeep', () => {
 
   post(() => reset());
 
   to('string', async () => {
     const values_ = [
-      AmauiUtils.equalDeep('a4', 'a4'),
-      !AmauiUtils.equalDeep('a', 'a4'),
+      OnesyUtils.equalDeep('a4', 'a4'),
+      !OnesyUtils.equalDeep('a', 'a4'),
     ];
 
     const valueBrowsers = await evaluate((window: any) => {
       const values_ = [
-        window.AmauiUtils.equalDeep('a4', 'a4'),
-        !window.AmauiUtils.equalDeep('a', 'a4'),
+        window.OnesyUtils.equalDeep('a4', 'a4'),
+        !window.OnesyUtils.equalDeep('a', 'a4'),
       ];
 
       return values_;
@@ -32,16 +32,16 @@ group('@amaui/utils/equalDeep', () => {
 
   to('number', async () => {
     const values_ = [
-      AmauiUtils.equalDeep(4, 4),
-      AmauiUtils.equalDeep(NaN, NaN),
-      !AmauiUtils.equalDeep(1, 4),
+      OnesyUtils.equalDeep(4, 4),
+      OnesyUtils.equalDeep(NaN, NaN),
+      !OnesyUtils.equalDeep(1, 4),
     ];
 
     const valueBrowsers = await evaluate((window: any) => {
       const values_ = [
-        window.AmauiUtils.equalDeep(4, 4),
-        window.AmauiUtils.equalDeep(NaN, NaN),
-        !window.AmauiUtils.equalDeep(1, 4),
+        window.OnesyUtils.equalDeep(4, 4),
+        window.OnesyUtils.equalDeep(NaN, NaN),
+        !window.OnesyUtils.equalDeep(1, 4),
       ];
 
       return values_;
@@ -54,14 +54,14 @@ group('@amaui/utils/equalDeep', () => {
 
   to('boolean', async () => {
     const values_ = [
-      AmauiUtils.equalDeep(true, true),
-      !AmauiUtils.equalDeep(false, true),
+      OnesyUtils.equalDeep(true, true),
+      !OnesyUtils.equalDeep(false, true),
     ];
 
     const valueBrowsers = await evaluate((window: any) => {
       const values_ = [
-        window.AmauiUtils.equalDeep(true, true),
-        !window.AmauiUtils.equalDeep(false, true),
+        window.OnesyUtils.equalDeep(true, true),
+        !window.OnesyUtils.equalDeep(false, true),
       ];
 
       return values_;
@@ -77,8 +77,8 @@ group('@amaui/utils/equalDeep', () => {
     const a1 = function a1() { };
 
     const values_ = [
-      AmauiUtils.equalDeep([1, 4, a], [1, 4, a]),
-      !AmauiUtils.equalDeep([1, 4, a1], [1, 4, a]),
+      OnesyUtils.equalDeep([1, 4, a], [1, 4, a]),
+      !OnesyUtils.equalDeep([1, 4, a1], [1, 4, a]),
     ];
 
     const valueBrowsers = await evaluate((window: any) => {
@@ -86,8 +86,8 @@ group('@amaui/utils/equalDeep', () => {
       const a1 = function a1() { };
 
       const values_ = [
-        window.AmauiUtils.equalDeep([1, 4, a], [1, 4, a]),
-        !window.AmauiUtils.equalDeep([1, 4, a1], [1, 4, a]),
+        window.OnesyUtils.equalDeep([1, 4, a], [1, 4, a]),
+        !window.OnesyUtils.equalDeep([1, 4, a1], [1, 4, a]),
       ];
 
       return values_;
@@ -104,8 +104,8 @@ group('@amaui/utils/equalDeep', () => {
     const m = new Map();
 
     const values_ = [
-      AmauiUtils.equalDeep({ a: 4, ab: { a: m } }, { a: 4, ab: { a: m } }),
-      !AmauiUtils.equalDeep({ a: 4, ad: a, ab: { a: new Map() } }, { a: 4, ad: a1, ab: { a: new Map() } }),
+      OnesyUtils.equalDeep({ a: 4, ab: { a: m } }, { a: 4, ab: { a: m } }),
+      !OnesyUtils.equalDeep({ a: 4, ad: a, ab: { a: new Map() } }, { a: 4, ad: a1, ab: { a: new Map() } }),
     ];
 
     const valueBrowsers = await evaluate((window: any) => {
@@ -114,8 +114,8 @@ group('@amaui/utils/equalDeep', () => {
       const m = new Map();
 
       const values_ = [
-        window.AmauiUtils.equalDeep({ a: 4, ab: { a: m } }, { a: 4, ab: { a: m } }),
-        !window.AmauiUtils.equalDeep({ a: 4, ad: a, ab: { a: m } }, { a: 4, ad: a1, ab: { a: m } }),
+        window.OnesyUtils.equalDeep({ a: 4, ab: { a: m } }, { a: 4, ab: { a: m } }),
+        !window.OnesyUtils.equalDeep({ a: 4, ad: a, ab: { a: m } }, { a: 4, ad: a1, ab: { a: m } }),
       ];
 
       return values_;
@@ -181,8 +181,8 @@ group('@amaui/utils/equalDeep', () => {
       const a1 = new Blob([new ArrayBuffer(41)]);
 
       const values_ = [
-        window.AmauiUtils.equalDeep(a, a),
-        window.AmauiUtils.equalDeep(a1, a),
+        window.OnesyUtils.equalDeep(a, a),
+        window.OnesyUtils.equalDeep(a1, a),
       ];
 
       return values_;
@@ -197,8 +197,8 @@ group('@amaui/utils/equalDeep', () => {
     const a1 = function a1() { };
 
     const values_ = [
-      AmauiUtils.equalDeep(a, a),
-      !AmauiUtils.equalDeep(a1, a),
+      OnesyUtils.equalDeep(a, a),
+      !OnesyUtils.equalDeep(a1, a),
     ];
 
     const valueBrowsers = await evaluate((window: any) => {
@@ -206,8 +206,8 @@ group('@amaui/utils/equalDeep', () => {
       const a1 = function a1() { };
 
       const values_ = [
-        window.AmauiUtils.equalDeep(a, a),
-        !window.AmauiUtils.equalDeep(a1, a),
+        window.OnesyUtils.equalDeep(a, a),
+        !window.OnesyUtils.equalDeep(a1, a),
       ];
 
       return values_;
@@ -220,7 +220,7 @@ group('@amaui/utils/equalDeep', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate(async (window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       const input = window.document.getElementById('a') as HTMLInputElement;
 
@@ -241,7 +241,7 @@ group('@amaui/utils/equalDeep', () => {
       ].every(item => item === true);
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const a = function a() { };
 

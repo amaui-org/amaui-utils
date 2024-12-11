@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/hash', () => {
+group('@onesy/utils/hash', () => {
 
   post(() => reset());
 
@@ -55,9 +55,9 @@ group('@amaui/utils/hash', () => {
         },
       ];
 
-      return values_.map(value => window.AmauiUtils.hash(value));
+      return values_.map(value => window.OnesyUtils.hash(value));
     });
-    const valueNode = values_.map(value => AmauiUtils.hash(value));
+    const valueNode = values_.map(value => OnesyUtils.hash(value));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => {
@@ -89,12 +89,12 @@ group('@amaui/utils/hash', () => {
 
     to('withPrefix', async () => {
       const valueBrowsers = await evaluate((window: any) => [
-        window.AmauiUtils.hash('a', { withPrefix: true }),
-        window.AmauiUtils.hash('a', { withPrefix: false }),
+        window.OnesyUtils.hash('a', { withPrefix: true }),
+        window.OnesyUtils.hash('a', { withPrefix: false }),
       ]);
       const valueNode = [
-        AmauiUtils.hash('a', { withPrefix: true }),
-        AmauiUtils.hash('a', { withPrefix: false }),
+        OnesyUtils.hash('a', { withPrefix: true }),
+        OnesyUtils.hash('a', { withPrefix: false }),
       ];
       const values = [valueNode, ...valueBrowsers];
 
@@ -106,12 +106,12 @@ group('@amaui/utils/hash', () => {
 
     to('serialize', async () => {
       const valueBrowsers = await evaluate((window: any) => [
-        window.AmauiUtils.hash('a', { serialize: true }),
-        window.AmauiUtils.hash('a', { serialize: false }),
+        window.OnesyUtils.hash('a', { serialize: true }),
+        window.OnesyUtils.hash('a', { serialize: false }),
       ]);
       const valueNode = [
-        AmauiUtils.hash('a', { serialize: true }),
-        AmauiUtils.hash('a', { serialize: false }),
+        OnesyUtils.hash('a', { serialize: true }),
+        OnesyUtils.hash('a', { serialize: false }),
       ];
       const values = [valueNode, ...valueBrowsers];
 
@@ -125,7 +125,7 @@ group('@amaui/utils/hash', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ('a' as any).hash(),
@@ -136,7 +136,7 @@ group('@amaui/utils/hash', () => {
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ('a' as any).hash(),

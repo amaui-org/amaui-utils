@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/parse', () => {
+group('@onesy/utils/parse', () => {
 
   post(() => reset());
 
@@ -53,9 +53,9 @@ group('@amaui/utils/parse', () => {
         null,
       ];
 
-      return values_.map(value => window.AmauiUtils.parse(value));
+      return values_.map(value => window.OnesyUtils.parse(value));
     });
-    const valueNode = values_.map(value => AmauiUtils.parse(value));
+    const valueNode = values_.map(value => OnesyUtils.parse(value));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -149,8 +149,8 @@ group('@amaui/utils/parse', () => {
         new Map(),
       ];
 
-      values_.map(value => AmauiUtils.parse(value, 'JSON', { log: true }));
-      values_.map(value => AmauiUtils.parse(value, 'JSON', { log: false }));
+      values_.map(value => OnesyUtils.parse(value, 'JSON', { log: true }));
+      values_.map(value => OnesyUtils.parse(value, 'JSON', { log: false }));
 
       const valueBrowsers = await evaluate((window: any) => {
         window.AMAUI = {
@@ -162,8 +162,8 @@ group('@amaui/utils/parse', () => {
           new Map(),
         ];
 
-        values_.map(value => window.AmauiUtils.parse(value, 'JSON', { log: true }));
-        values_.map(value => window.AmauiUtils.parse(value, 'JSON', { log: false }));
+        values_.map(value => window.OnesyUtils.parse(value, 'JSON', { log: true }));
+        values_.map(value => window.OnesyUtils.parse(value, 'JSON', { log: false }));
 
         return [
           window.AMAUI.test.parse.logs.length,
@@ -182,13 +182,13 @@ group('@amaui/utils/parse', () => {
     to('returnSame', async () => {
       const valueBrowsers = await evaluate((window: any) => {
         return [
-          window.AmauiUtils.parse([], 'JSON', { returnSame: true }),
-          window.AmauiUtils.parse([], 'JSON', { returnSame: false }),
+          window.OnesyUtils.parse([], 'JSON', { returnSame: true }),
+          window.OnesyUtils.parse([], 'JSON', { returnSame: false }),
         ];
       });
       const valueNode = [
-        AmauiUtils.parse([], 'JSON', { returnSame: true }),
-        AmauiUtils.parse([], 'JSON', { returnSame: false }),
+        OnesyUtils.parse([], 'JSON', { returnSame: true }),
+        OnesyUtils.parse([], 'JSON', { returnSame: false }),
       ];
       const values = [valueNode, ...valueBrowsers];
 
@@ -202,7 +202,7 @@ group('@amaui/utils/parse', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ('"a"' as any).parse(),
@@ -213,7 +213,7 @@ group('@amaui/utils/parse', () => {
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ('"a"' as any).parse(),

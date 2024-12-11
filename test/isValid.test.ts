@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/isValid', () => {
+group('@onesy/utils/isValid', () => {
 
   post(() => reset());
 
@@ -29,9 +29,9 @@ group('@amaui/utils/isValid', () => {
           new Date().toUTCString(),
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('date', value));
+        return values_.map(value => window.OnesyUtils.isValid('date', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('date', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('date', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(true)));
@@ -55,9 +55,9 @@ group('@amaui/utils/isValid', () => {
           undefined,
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('date', value));
+        return values_.map(value => window.OnesyUtils.isValid('date', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('date', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('date', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -69,21 +69,21 @@ group('@amaui/utils/isValid', () => {
 
     to('is uuid', async () => {
       const values_ = [
-        AmauiUtils.getID(),
-        AmauiUtils.getID(),
-        AmauiUtils.getID(),
+        OnesyUtils.getID(),
+        OnesyUtils.getID(),
+        OnesyUtils.getID(),
       ];
 
       const valueBrowsers = await evaluate((window: any) => {
         const values_ = [
-          window.AmauiUtils.getID(),
-          window.AmauiUtils.getID(),
-          window.AmauiUtils.getID(),
+          window.OnesyUtils.getID(),
+          window.OnesyUtils.getID(),
+          window.OnesyUtils.getID(),
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('uuid', value));
+        return values_.map(value => window.OnesyUtils.isValid('uuid', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('uuid', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('uuid', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(3).fill(true)));
@@ -105,9 +105,9 @@ group('@amaui/utils/isValid', () => {
           null,
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('uuid', value));
+        return values_.map(value => window.OnesyUtils.isValid('uuid', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('uuid', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('uuid', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(4).fill(false)));
@@ -131,9 +131,9 @@ group('@amaui/utils/isValid', () => {
           '1',
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('binary-string', value));
+        return values_.map(value => window.OnesyUtils.isValid('binary-string', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('binary-string', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('binary-string', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(3).fill(true)));
@@ -157,9 +157,9 @@ group('@amaui/utils/isValid', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('binary-string', value));
+        return values_.map(value => window.OnesyUtils.isValid('binary-string', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('binary-string', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('binary-string', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -183,9 +183,9 @@ group('@amaui/utils/isValid', () => {
           'a',
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('hexadecimal-string', value));
+        return values_.map(value => window.OnesyUtils.isValid('hexadecimal-string', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('hexadecimal-string', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('hexadecimal-string', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(3).fill(true)));
@@ -209,9 +209,9 @@ group('@amaui/utils/isValid', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('hexadecimal-string', value));
+        return values_.map(value => window.OnesyUtils.isValid('hexadecimal-string', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('hexadecimal-string', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('hexadecimal-string', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -241,9 +241,9 @@ group('@amaui/utils/isValid', () => {
           'https://www.asd.com/a?a=a4',
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('url', value));
+        return values_.map(value => window.OnesyUtils.isValid('url', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('url', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('url', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(6).fill(true)));
@@ -267,9 +267,9 @@ group('@amaui/utils/isValid', () => {
           '/a?a=a4',
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('url', value));
+        return values_.map(value => window.OnesyUtils.isValid('url', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('url', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('url', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -295,9 +295,9 @@ group('@amaui/utils/isValid', () => {
           '/a/a?a=a4',
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('url-path', value));
+        return values_.map(value => window.OnesyUtils.isValid('url-path', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('url-path', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('url-path', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(4).fill(true)));
@@ -319,9 +319,9 @@ group('@amaui/utils/isValid', () => {
           '//a?a=a4',
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('url-path', value));
+        return values_.map(value => window.OnesyUtils.isValid('url-path', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('url-path', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('url-path', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(4).fill(false)));
@@ -357,9 +357,9 @@ group('@amaui/utils/isValid', () => {
           ['', { valueA: 5, valueB: 4, operator: 'greater-than' }],
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('compare', ...value));
+        return values_.map(value => window.OnesyUtils.isValid('compare', ...value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('compare', ...value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('compare', ...value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(9).fill(true)));
@@ -391,9 +391,9 @@ group('@amaui/utils/isValid', () => {
           '1.4.1-alpha.4+123',
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('semver', value));
+        return values_.map(value => window.OnesyUtils.isValid('semver', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('semver', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('semver', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(7).fill(true)));
@@ -415,9 +415,9 @@ group('@amaui/utils/isValid', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('semver', value));
+        return values_.map(value => window.OnesyUtils.isValid('semver', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('semver', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('semver', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(4).fill(false)));
@@ -451,9 +451,9 @@ group('@amaui/utils/isValid', () => {
           ['', { valueA: '1.4.4', valueB: '1.4.1', operator: 'greater-than' }],
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('semver-compare', ...value));
+        return values_.map(value => window.OnesyUtils.isValid('semver-compare', ...value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('semver-compare', ...value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('semver-compare', ...value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(8).fill(true)));
@@ -475,9 +475,9 @@ group('@amaui/utils/isValid', () => {
           1638223021,
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('timestamp', value));
+        return values_.map(value => window.OnesyUtils.isValid('timestamp', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('timestamp', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('timestamp', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(2).fill(true)));
@@ -501,9 +501,9 @@ group('@amaui/utils/isValid', () => {
           null,
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('timestamp', value));
+        return values_.map(value => window.OnesyUtils.isValid('timestamp', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('timestamp', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('timestamp', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -525,9 +525,9 @@ group('@amaui/utils/isValid', () => {
           'a@a.co'
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('email', value));
+        return values_.map(value => window.OnesyUtils.isValid('email', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('email', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('email', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(2).fill(true)));
@@ -553,9 +553,9 @@ group('@amaui/utils/isValid', () => {
           null,
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('email', value));
+        return values_.map(value => window.OnesyUtils.isValid('email', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('email', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('email', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(6).fill(false)));
@@ -577,9 +577,9 @@ group('@amaui/utils/isValid', () => {
           '0xaa7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad',
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('hash', value));
+        return values_.map(value => window.OnesyUtils.isValid('hash', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('hash', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('hash', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(2).fill(true)));
@@ -615,9 +615,9 @@ group('@amaui/utils/isValid', () => {
           function asd() { }
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('hash', value));
+        return values_.map(value => window.OnesyUtils.isValid('hash', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('hash', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('hash', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(11).fill(false)));
@@ -641,9 +641,9 @@ group('@amaui/utils/isValid', () => {
           '0611234123',
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('mobile', value));
+        return values_.map(value => window.OnesyUtils.isValid('mobile', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('mobile', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('mobile', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(3).fill(true)));
@@ -665,9 +665,9 @@ group('@amaui/utils/isValid', () => {
           0
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('mobile', value));
+        return values_.map(value => window.OnesyUtils.isValid('mobile', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('mobile', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('mobile', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(4).fill(false)));
@@ -691,9 +691,9 @@ group('@amaui/utils/isValid', () => {
           'rgba(140, 140, 144, 0.4)',
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('color-rgb', value));
+        return values_.map(value => window.OnesyUtils.isValid('color-rgb', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('color-rgb', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('color-rgb', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(3).fill(true)));
@@ -715,9 +715,9 @@ group('@amaui/utils/isValid', () => {
           'rgb(144, 144 a)',
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('color-rgb', value));
+        return values_.map(value => window.OnesyUtils.isValid('color-rgb', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('color-rgb', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('color-rgb', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(4).fill(false)));
@@ -741,9 +741,9 @@ group('@amaui/utils/isValid', () => {
           '#ff444fff',
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('color-hex', value));
+        return values_.map(value => window.OnesyUtils.isValid('color-hex', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('color-hex', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('color-hex', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(3).fill(true)));
@@ -763,9 +763,9 @@ group('@amaui/utils/isValid', () => {
           '#ff444ffff',
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('color-hex', value));
+        return values_.map(value => window.OnesyUtils.isValid('color-hex', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('color-hex', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('color-hex', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(3).fill(false)));
@@ -789,9 +789,9 @@ group('@amaui/utils/isValid', () => {
           'hsla(140, 40%, 40%, 0.4)',
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('color-hsl', value));
+        return values_.map(value => window.OnesyUtils.isValid('color-hsl', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('color-hsl', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('color-hsl', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(3).fill(true)));
@@ -811,9 +811,9 @@ group('@amaui/utils/isValid', () => {
           'hsla(1, 144, 140)',
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('color-hsl', value));
+        return values_.map(value => window.OnesyUtils.isValid('color-hsl', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('color-hsl', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('color-hsl', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(3).fill(false)));
@@ -835,9 +835,9 @@ group('@amaui/utils/isValid', () => {
           '{"a":4,"c":4}',
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('json', value));
+        return values_.map(value => window.OnesyUtils.isValid('json', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('json', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('json', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(2).fill(true)));
@@ -861,9 +861,9 @@ group('@amaui/utils/isValid', () => {
           14,
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('json', value));
+        return values_.map(value => window.OnesyUtils.isValid('json', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('json', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('json', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -885,9 +885,9 @@ group('@amaui/utils/isValid', () => {
           [4, { min: 4 }],
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('min', ...value));
+        return values_.map(value => window.OnesyUtils.isValid('min', ...value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('min', ...value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('min', ...value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(2).fill(true)));
@@ -903,9 +903,9 @@ group('@amaui/utils/isValid', () => {
           [4, { min: 14 }],
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('min', ...value));
+        return values_.map(value => window.OnesyUtils.isValid('min', ...value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('min', ...value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('min', ...value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(false)));
@@ -927,9 +927,9 @@ group('@amaui/utils/isValid', () => {
           [4, { max: 4 }],
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('max', ...value));
+        return values_.map(value => window.OnesyUtils.isValid('max', ...value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('max', ...value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('max', ...value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(2).fill(true)));
@@ -945,9 +945,9 @@ group('@amaui/utils/isValid', () => {
           [14, { max: 4 }],
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('max', ...value));
+        return values_.map(value => window.OnesyUtils.isValid('max', ...value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('max', ...value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('max', ...value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(false)));
@@ -971,9 +971,9 @@ group('@amaui/utils/isValid', () => {
           [4, { min: 1, max: 4 }],
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('min-max', ...value));
+        return values_.map(value => window.OnesyUtils.isValid('min-max', ...value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('min-max', ...value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('min-max', ...value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(3).fill(true)));
@@ -991,9 +991,9 @@ group('@amaui/utils/isValid', () => {
           [1, { min: 4, max: 4 }],
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('min-max', ...value));
+        return values_.map(value => window.OnesyUtils.isValid('min-max', ...value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('min-max', ...value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('min-max', ...value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(2).fill(false)));
@@ -1004,13 +1004,13 @@ group('@amaui/utils/isValid', () => {
   group('same-origin', () => {
 
     to('is same-origin', async () => {
-      const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isValid('same-origin', 'http://localhost:4000/about'),);
+      const valueBrowsers = await evaluate((window: any) => window.OnesyUtils.isValid('same-origin', 'http://localhost:4000/about'),);
 
       valueBrowsers.forEach(value => assert(value).eq(true));
     });
 
     to('is not same-origin', async () => {
-      const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isValid('same-origin', 'https://google.com'),);
+      const valueBrowsers = await evaluate((window: any) => window.OnesyUtils.isValid('same-origin', 'https://google.com'),);
 
       valueBrowsers.forEach(value => assert(value).eq(false));
     });
@@ -1043,9 +1043,9 @@ group('@amaui/utils/isValid', () => {
           },
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('js-chunk', value));
+        return values_.map(value => window.OnesyUtils.isValid('js-chunk', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('js-chunk', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('js-chunk', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(2).fill(true)));
@@ -1063,9 +1063,9 @@ group('@amaui/utils/isValid', () => {
           { a: 4, c: 3 },
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('js-chunk', value));
+        return values_.map(value => window.OnesyUtils.isValid('js-chunk', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('js-chunk', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('js-chunk', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(2).fill(false)));
@@ -1097,9 +1097,9 @@ group('@amaui/utils/isValid', () => {
           'patch',
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('http-method', value));
+        return values_.map(value => window.OnesyUtils.isValid('http-method', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('http-method', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('http-method', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(7).fill(true)));
@@ -1121,9 +1121,9 @@ group('@amaui/utils/isValid', () => {
           null,
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('http-method', value));
+        return values_.map(value => window.OnesyUtils.isValid('http-method', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('http-method', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('http-method', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(4).fill(false)));
@@ -1153,9 +1153,9 @@ group('@amaui/utils/isValid', () => {
           'iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIBAMAAAA2IaO4AAAAFVBMVEXk5OTn5+ft7e319fX29vb5+fn///++GUmVAAAALUlEQVQIHWNICnYLZnALTgpmMGYIFWYIZTA2ZFAzTTFlSDFVMwVyQhmAwsYMAKDaBy0axX/iAAAAAElFTkSuQmCC   '
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('base64', value));
+        return values_.map(value => window.OnesyUtils.isValid('base64', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('base64', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('base64', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(6).fill(true)));
@@ -1187,9 +1187,9 @@ group('@amaui/utils/isValid', () => {
           'A%20brief%20note'
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('base64', value));
+        return values_.map(value => window.OnesyUtils.isValid('base64', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('base64', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('base64', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(9).fill(false)));
@@ -1239,9 +1239,9 @@ group('@amaui/utils/isValid', () => {
           'data:text/html;charset=US-ASCII,%3Ch1%3EHello!%3C%2Fh1%3E'
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('datauri', value));
+        return values_.map(value => window.OnesyUtils.isValid('datauri', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('datauri', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('datauri', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(16).fill(true)));
@@ -1277,9 +1277,9 @@ group('@amaui/utils/isValid', () => {
           'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAABlBMVEUAAAD///+l2Z/dAAAAM0lEQVR4nGP4/5/h/1+G/58ZDrAz3D/McH8yw83NDDeNGe4Ug9C9zwz3gVLMDA/A6P9/AFGGFyjOXZtQAAAAAElFTkSuQmCC'
         ];
 
-        return values_.map(value => window.AmauiUtils.isValid('datauri', value));
+        return values_.map(value => window.OnesyUtils.isValid('datauri', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.isValid('datauri', value));
+      const valueNode = values_.map(value => OnesyUtils.isValid('datauri', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(11).fill(false)));

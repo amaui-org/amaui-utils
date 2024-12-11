@@ -1,9 +1,9 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset, utils } from '../utils/js/test/utils';
 
-group('@amaui/utils/copyToClipboard', () => {
+group('@onesy/utils/copyToClipboard', () => {
 
   // Only chromium allows it atm
   pre(async () => {
@@ -30,7 +30,7 @@ group('@amaui/utils/copyToClipboard', () => {
       const values = [];
 
       for (const value of values_) {
-        window.AmauiUtils.copyToClipboard(value);
+        window.OnesyUtils.copyToClipboard(value);
 
         values.push(await navigator.clipboard.readText());
       }
@@ -53,7 +53,7 @@ group('@amaui/utils/copyToClipboard', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate(async (window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       const values_ = [
         'a',

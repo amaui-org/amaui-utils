@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/encode', () => {
+group('@onesy/utils/encode', () => {
 
   post(() => reset());
 
@@ -63,10 +63,10 @@ group('@amaui/utils/encode', () => {
         },
       ];
 
-      return values_.map(value => window.AmauiUtils.encode(value));
+      return values_.map(value => window.OnesyUtils.encode(value));
     });
 
-    const valueNode = values_.map(value => AmauiUtils.encode(value));
+    const valueNode = values_.map(value => OnesyUtils.encode(value));
 
     const values = [valueNode, ...valueBrowsers];
 
@@ -89,7 +89,7 @@ group('@amaui/utils/encode', () => {
     values.forEach(value => {
       value.splice(7, 1);
 
-      assert(value.every((item: any) => AmauiUtils.isValid('base64', item))).eq(true);
+      assert(value.every((item: any) => OnesyUtils.isValid('base64', item))).eq(true);
 
       assert(value).eql([
         'ImEi',
@@ -109,7 +109,7 @@ group('@amaui/utils/encode', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ('a' as any).encode().decode(),
@@ -120,7 +120,7 @@ group('@amaui/utils/encode', () => {
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ('a' as any).encode().decode(),

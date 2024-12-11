@@ -1,12 +1,12 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 import path from 'path';
 
 import { evaluate, reset, utils } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/getFileName', () => {
+group('@onesy/utils/getFileName', () => {
 
   pre(async () => {
     for (const name of Object.keys(utils.browsers)) {
@@ -47,7 +47,7 @@ group('@amaui/utils/getFileName', () => {
         const file = input.files[0];
 
         const values = [
-          window.AmauiUtils.getFileName(file),
+          window.OnesyUtils.getFileName(file),
         ];
 
         return values;
@@ -70,7 +70,7 @@ group('@amaui/utils/getFileName', () => {
           const file = input.files[0];
 
           const values = [
-            window.AmauiUtils.getFileName(file, { prefix: 'a' }),
+            window.OnesyUtils.getFileName(file, { prefix: 'a' }),
           ];
 
           return values;
@@ -91,7 +91,7 @@ group('@amaui/utils/getFileName', () => {
           const file = input.files[0];
 
           const values = [
-            window.AmauiUtils.getFileName(file, { sufix: 'a' }),
+            window.OnesyUtils.getFileName(file, { sufix: 'a' }),
           ];
 
           return values;
@@ -112,8 +112,8 @@ group('@amaui/utils/getFileName', () => {
           const file = input.files[0];
 
           const values = [
-            window.AmauiUtils.getFileName(file, { clean: true }),
-            window.AmauiUtils.getFileName(file, { clean: false }),
+            window.OnesyUtils.getFileName(file, { clean: true }),
+            window.OnesyUtils.getFileName(file, { clean: false }),
           ];
 
           return values;
@@ -135,8 +135,8 @@ group('@amaui/utils/getFileName', () => {
           const file = input.files[0];
 
           const values = [
-            window.AmauiUtils.getFileName(file, { capitalize: true }),
-            window.AmauiUtils.getFileName(file, { capitalize: false }),
+            window.OnesyUtils.getFileName(file, { capitalize: true }),
+            window.OnesyUtils.getFileName(file, { capitalize: false }),
           ];
 
           return values;
@@ -158,8 +158,8 @@ group('@amaui/utils/getFileName', () => {
           const file = input.files[0];
 
           const values = [
-            window.AmauiUtils.getFileName(file, { withExt: true }),
-            window.AmauiUtils.getFileName(file, { withExt: false }),
+            window.OnesyUtils.getFileName(file, { withExt: true }),
+            window.OnesyUtils.getFileName(file, { withExt: false }),
           ];
 
           return values;
@@ -176,7 +176,7 @@ group('@amaui/utils/getFileName', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       const input = window.document.getElementById('a') as HTMLInputElement;
       const file = input.files[0];
@@ -186,7 +186,7 @@ group('@amaui/utils/getFileName', () => {
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const values = [...valueBrowsers];
 

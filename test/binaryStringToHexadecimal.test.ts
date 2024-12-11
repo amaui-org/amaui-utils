@@ -1,80 +1,80 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/binaryStringToHexadecimal', () => {
+group('@onesy/utils/binaryStringToHexadecimal', () => {
 
   post(() => reset());
 
   to('binaryStringToHexadecimal', async () => {
     const values_ = [
-      AmauiUtils.binaryStringToHexadecimal(''),
-      AmauiUtils.binaryStringToHexadecimal(undefined),
-      AmauiUtils.binaryStringToHexadecimal(new Array() as any),
-      AmauiUtils.binaryStringToHexadecimal('1010'),
-      AmauiUtils.binaryStringToHexadecimal('10100100010011'),
-      AmauiUtils.binaryStringToHexadecimal('1010010001001010101110101010010101010111010101001010101011101010011101000100'),
-      AmauiUtils.binaryStringToHexadecimal('0'),
-      AmauiUtils.binaryStringToHexadecimal('00'),
-      AmauiUtils.binaryStringToHexadecimal('000'),
-      AmauiUtils.binaryStringToHexadecimal('0000'),
-      AmauiUtils.binaryStringToHexadecimal('00000'),
-      AmauiUtils.binaryStringToHexadecimal('000000'),
-      AmauiUtils.binaryStringToHexadecimal('0000000'),
-      AmauiUtils.binaryStringToHexadecimal('1'),
-      AmauiUtils.binaryStringToHexadecimal('01'),
-      AmauiUtils.binaryStringToHexadecimal('001'),
-      AmauiUtils.binaryStringToHexadecimal('0001'),
-      AmauiUtils.binaryStringToHexadecimal('00001'),
-      AmauiUtils.binaryStringToHexadecimal('000001'),
-      AmauiUtils.binaryStringToHexadecimal('0000001'),
-      AmauiUtils.binaryStringToHexadecimal('00000001'),
-      AmauiUtils.binaryStringToHexadecimal('10'),
-      AmauiUtils.binaryStringToHexadecimal('101'),
-      AmauiUtils.binaryStringToHexadecimal('1001'),
-      AmauiUtils.binaryStringToHexadecimal('10001'),
-      AmauiUtils.binaryStringToHexadecimal('100001'),
-      AmauiUtils.binaryStringToHexadecimal('1000001'),
-      AmauiUtils.binaryStringToHexadecimal('10000001'),
-      AmauiUtils.binaryStringToHexadecimal('100000001'),
-      AmauiUtils.binaryStringToHexadecimal('1000000001'),
+      OnesyUtils.binaryStringToHexadecimal(''),
+      OnesyUtils.binaryStringToHexadecimal(undefined),
+      OnesyUtils.binaryStringToHexadecimal(new Array() as any),
+      OnesyUtils.binaryStringToHexadecimal('1010'),
+      OnesyUtils.binaryStringToHexadecimal('10100100010011'),
+      OnesyUtils.binaryStringToHexadecimal('1010010001001010101110101010010101010111010101001010101011101010011101000100'),
+      OnesyUtils.binaryStringToHexadecimal('0'),
+      OnesyUtils.binaryStringToHexadecimal('00'),
+      OnesyUtils.binaryStringToHexadecimal('000'),
+      OnesyUtils.binaryStringToHexadecimal('0000'),
+      OnesyUtils.binaryStringToHexadecimal('00000'),
+      OnesyUtils.binaryStringToHexadecimal('000000'),
+      OnesyUtils.binaryStringToHexadecimal('0000000'),
+      OnesyUtils.binaryStringToHexadecimal('1'),
+      OnesyUtils.binaryStringToHexadecimal('01'),
+      OnesyUtils.binaryStringToHexadecimal('001'),
+      OnesyUtils.binaryStringToHexadecimal('0001'),
+      OnesyUtils.binaryStringToHexadecimal('00001'),
+      OnesyUtils.binaryStringToHexadecimal('000001'),
+      OnesyUtils.binaryStringToHexadecimal('0000001'),
+      OnesyUtils.binaryStringToHexadecimal('00000001'),
+      OnesyUtils.binaryStringToHexadecimal('10'),
+      OnesyUtils.binaryStringToHexadecimal('101'),
+      OnesyUtils.binaryStringToHexadecimal('1001'),
+      OnesyUtils.binaryStringToHexadecimal('10001'),
+      OnesyUtils.binaryStringToHexadecimal('100001'),
+      OnesyUtils.binaryStringToHexadecimal('1000001'),
+      OnesyUtils.binaryStringToHexadecimal('10000001'),
+      OnesyUtils.binaryStringToHexadecimal('100000001'),
+      OnesyUtils.binaryStringToHexadecimal('1000000001'),
     ];
 
     const valueBrowsers = await evaluate((window: any) => {
       const values_ = [
-        window.AmauiUtils.binaryStringToHexadecimal(''),
-        window.AmauiUtils.binaryStringToHexadecimal(undefined),
-        window.AmauiUtils.binaryStringToHexadecimal(new Array() as any),
-        window.AmauiUtils.binaryStringToHexadecimal('1010'),
-        window.AmauiUtils.binaryStringToHexadecimal('10100100010011'),
-        window.AmauiUtils.binaryStringToHexadecimal('1010010001001010101110101010010101010111010101001010101011101010011101000100'),
-        window.AmauiUtils.binaryStringToHexadecimal('0'),
-        window.AmauiUtils.binaryStringToHexadecimal('00'),
-        window.AmauiUtils.binaryStringToHexadecimal('000'),
-        window.AmauiUtils.binaryStringToHexadecimal('0000'),
-        window.AmauiUtils.binaryStringToHexadecimal('00000'),
-        window.AmauiUtils.binaryStringToHexadecimal('000000'),
-        window.AmauiUtils.binaryStringToHexadecimal('0000000'),
-        window.AmauiUtils.binaryStringToHexadecimal('1'),
-        window.AmauiUtils.binaryStringToHexadecimal('01'),
-        window.AmauiUtils.binaryStringToHexadecimal('001'),
-        window.AmauiUtils.binaryStringToHexadecimal('0001'),
-        window.AmauiUtils.binaryStringToHexadecimal('00001'),
-        window.AmauiUtils.binaryStringToHexadecimal('000001'),
-        window.AmauiUtils.binaryStringToHexadecimal('0000001'),
-        window.AmauiUtils.binaryStringToHexadecimal('00000001'),
-        window.AmauiUtils.binaryStringToHexadecimal('10'),
-        window.AmauiUtils.binaryStringToHexadecimal('101'),
-        window.AmauiUtils.binaryStringToHexadecimal('1001'),
-        window.AmauiUtils.binaryStringToHexadecimal('10001'),
-        window.AmauiUtils.binaryStringToHexadecimal('100001'),
-        window.AmauiUtils.binaryStringToHexadecimal('1000001'),
-        window.AmauiUtils.binaryStringToHexadecimal('10000001'),
-        window.AmauiUtils.binaryStringToHexadecimal('100000001'),
-        window.AmauiUtils.binaryStringToHexadecimal('1000000001'),
+        window.OnesyUtils.binaryStringToHexadecimal(''),
+        window.OnesyUtils.binaryStringToHexadecimal(undefined),
+        window.OnesyUtils.binaryStringToHexadecimal(new Array() as any),
+        window.OnesyUtils.binaryStringToHexadecimal('1010'),
+        window.OnesyUtils.binaryStringToHexadecimal('10100100010011'),
+        window.OnesyUtils.binaryStringToHexadecimal('1010010001001010101110101010010101010111010101001010101011101010011101000100'),
+        window.OnesyUtils.binaryStringToHexadecimal('0'),
+        window.OnesyUtils.binaryStringToHexadecimal('00'),
+        window.OnesyUtils.binaryStringToHexadecimal('000'),
+        window.OnesyUtils.binaryStringToHexadecimal('0000'),
+        window.OnesyUtils.binaryStringToHexadecimal('00000'),
+        window.OnesyUtils.binaryStringToHexadecimal('000000'),
+        window.OnesyUtils.binaryStringToHexadecimal('0000000'),
+        window.OnesyUtils.binaryStringToHexadecimal('1'),
+        window.OnesyUtils.binaryStringToHexadecimal('01'),
+        window.OnesyUtils.binaryStringToHexadecimal('001'),
+        window.OnesyUtils.binaryStringToHexadecimal('0001'),
+        window.OnesyUtils.binaryStringToHexadecimal('00001'),
+        window.OnesyUtils.binaryStringToHexadecimal('000001'),
+        window.OnesyUtils.binaryStringToHexadecimal('0000001'),
+        window.OnesyUtils.binaryStringToHexadecimal('00000001'),
+        window.OnesyUtils.binaryStringToHexadecimal('10'),
+        window.OnesyUtils.binaryStringToHexadecimal('101'),
+        window.OnesyUtils.binaryStringToHexadecimal('1001'),
+        window.OnesyUtils.binaryStringToHexadecimal('10001'),
+        window.OnesyUtils.binaryStringToHexadecimal('100001'),
+        window.OnesyUtils.binaryStringToHexadecimal('1000001'),
+        window.OnesyUtils.binaryStringToHexadecimal('10000001'),
+        window.OnesyUtils.binaryStringToHexadecimal('100000001'),
+        window.OnesyUtils.binaryStringToHexadecimal('1000000001'),
       ];
 
       return values_;
@@ -118,14 +118,14 @@ group('@amaui/utils/binaryStringToHexadecimal', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ('10100100010011' as any).binaryStringToHexadecimal(),
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ('10100100010011' as any).binaryStringToHexadecimal(),

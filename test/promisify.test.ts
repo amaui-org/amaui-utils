@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/promisify', () => {
+group('@onesy/utils/promisify', () => {
 
   post(() => reset());
 
@@ -13,14 +13,14 @@ group('@amaui/utils/promisify', () => {
     const promiseMethod = new Promise(resolve => resolve(4));
 
     const values_ = [
-      await promiseMethod === await (AmauiUtils.promisify(promiseMethod))(),
+      await promiseMethod === await (OnesyUtils.promisify(promiseMethod))(),
     ];
 
     const valueBrowsers = await evaluate(async (window: any) => {
       const promiseMethod = new Promise(resolve => resolve(4));
 
       const values_ = [
-        await promiseMethod === await (window.AmauiUtils.promisify(promiseMethod))(),
+        await promiseMethod === await (window.OnesyUtils.promisify(promiseMethod))(),
       ];
 
       return values_;
@@ -34,17 +34,17 @@ group('@amaui/utils/promisify', () => {
   });
 
   to('response', async () => {
-    const method = (a: string, ad: boolean, method_: AmauiUtils.TMethod) => setTimeout(() => method_([a, ad]), 400);
+    const method = (a: string, ad: boolean, method_: OnesyUtils.TMethod) => setTimeout(() => method_([a, ad]), 400);
 
     const values_ = [
-      await AmauiUtils.promisify(method)('a', true),
+      await OnesyUtils.promisify(method)('a', true),
     ];
 
     const valueBrowsers = await evaluate(async (window: any) => {
-      const method = (a: string, ad: boolean, method_: AmauiUtils.TMethod) => setTimeout(() => method_([a, ad]), 400);
+      const method = (a: string, ad: boolean, method_: OnesyUtils.TMethod) => setTimeout(() => method_([a, ad]), 400);
 
       const values_ = [
-        await window.AmauiUtils.promisify(method)('a', true),
+        await window.OnesyUtils.promisify(method)('a', true),
       ];
 
       return values_;
@@ -62,7 +62,7 @@ group('@amaui/utils/promisify', () => {
 
   to('error', async () => {
     const valueBrowsers = await evaluate(async (window: any) => {
-      const method = (a: string, ad: boolean, method_: AmauiUtils.TMethod) => {
+      const method = (a: string, ad: boolean, method_: OnesyUtils.TMethod) => {
         setTimeout(() => {
           if (a !== 'a') method_([a, ad], new Error('a'));
           else (method_([a, ad]));
@@ -70,11 +70,11 @@ group('@amaui/utils/promisify', () => {
       };
 
       const values_ = [
-        await window.AmauiUtils.promisify(method)('a', true),
+        await window.OnesyUtils.promisify(method)('a', true),
       ];
 
       try {
-        await window.AmauiUtils.promisify(method)('ad', true);
+        await window.OnesyUtils.promisify(method)('ad', true);
       }
       catch (error) {
         values_.push(error);
@@ -83,7 +83,7 @@ group('@amaui/utils/promisify', () => {
       return values_;
     });
 
-    const method = (a: string, ad: boolean, method_: AmauiUtils.TMethod) => {
+    const method = (a: string, ad: boolean, method_: OnesyUtils.TMethod) => {
       setTimeout(() => {
         if (a !== 'a') method_([a, ad], new Error('a'));
         else (method_([a, ad]));
@@ -91,11 +91,11 @@ group('@amaui/utils/promisify', () => {
     };
 
     const values_ = [
-      await AmauiUtils.promisify(method)('a', true),
+      await OnesyUtils.promisify(method)('a', true),
     ];
 
     try {
-      await AmauiUtils.promisify(method)('ad', true);
+      await OnesyUtils.promisify(method)('ad', true);
     }
     catch (error) {
       values_.push(error);
@@ -121,7 +121,7 @@ group('@amaui/utils/promisify', () => {
 
       to('resolve', async () => {
         const valueBrowsers = await evaluate(async (window: any) => {
-          const method = (a: string, ad: boolean, method_: AmauiUtils.TMethod) => {
+          const method = (a: string, ad: boolean, method_: OnesyUtils.TMethod) => {
             setTimeout(() => {
               if (a !== 'a') method_([a, ad], new Error('a'));
               else (method_([a, ad]));
@@ -129,8 +129,8 @@ group('@amaui/utils/promisify', () => {
           };
 
           const response = [
-            await window.AmauiUtils.promisify(method)('a', true),
-            await window.AmauiUtils.promisify(method, { onError: 'resolve' })('ad', true)
+            await window.OnesyUtils.promisify(method)('a', true),
+            await window.OnesyUtils.promisify(method, { onError: 'resolve' })('ad', true)
           ];
 
           response[1][1] = [response[1][1] instanceof Error, response[1][1].message];
@@ -138,7 +138,7 @@ group('@amaui/utils/promisify', () => {
           return response;
         });
 
-        const method = (a: string, ad: boolean, method_: AmauiUtils.TMethod) => {
+        const method = (a: string, ad: boolean, method_: OnesyUtils.TMethod) => {
           setTimeout(() => {
             if (a !== 'a') method_([a, ad], new Error('a'));
             else (method_([a, ad]));
@@ -146,8 +146,8 @@ group('@amaui/utils/promisify', () => {
         };
 
         const response = [
-          await AmauiUtils.promisify(method)('a', true),
-          await AmauiUtils.promisify(method, { onError: 'resolve' })('ad', true)
+          await OnesyUtils.promisify(method)('a', true),
+          await OnesyUtils.promisify(method, { onError: 'resolve' })('ad', true)
         ];
 
         response[1][1] = [response[1][1] instanceof Error, response[1][1].message];
@@ -175,7 +175,7 @@ group('@amaui/utils/promisify', () => {
 
       to('reject', async () => {
         const valueBrowsers = await evaluate(async (window: any) => {
-          const method = (a: string, ad: boolean, method_: AmauiUtils.TMethod) => {
+          const method = (a: string, ad: boolean, method_: OnesyUtils.TMethod) => {
             setTimeout(() => {
               if (a !== 'a') method_([a, ad], new Error('a'));
               else (method_([a, ad]));
@@ -183,11 +183,11 @@ group('@amaui/utils/promisify', () => {
           };
 
           const response = [
-            await window.AmauiUtils.promisify(method)('a', true)
+            await window.OnesyUtils.promisify(method)('a', true)
           ];
 
           try {
-            await window.AmauiUtils.promisify(method, { onError: 'reject' })('ad', true);
+            await window.OnesyUtils.promisify(method, { onError: 'reject' })('ad', true);
           }
           catch (error) {
             response.push([error instanceof Error, error.message]);
@@ -196,7 +196,7 @@ group('@amaui/utils/promisify', () => {
           return response;
         });
 
-        const method = (a: string, ad: boolean, method_: AmauiUtils.TMethod) => {
+        const method = (a: string, ad: boolean, method_: OnesyUtils.TMethod) => {
           setTimeout(() => {
             if (a !== 'a') method_([a, ad], new Error('a'));
             else (method_([a, ad]));
@@ -204,11 +204,11 @@ group('@amaui/utils/promisify', () => {
         };
 
         const response = [
-          await AmauiUtils.promisify(method)('a', true)
+          await OnesyUtils.promisify(method)('a', true)
         ];
 
         try {
-          await AmauiUtils.promisify(method, { onError: 'reject' })('ad', true);
+          await OnesyUtils.promisify(method, { onError: 'reject' })('ad', true);
         }
         catch (error) {
           response.push([error instanceof Error, error.message]);
@@ -238,18 +238,18 @@ group('@amaui/utils/promisify', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate(async (window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
-      const method = (a: string, ad: boolean, method_: AmauiUtils.TMethod) => setTimeout(() => method_([a, ad]), 400);
+      const method = (a: string, ad: boolean, method_: OnesyUtils.TMethod) => setTimeout(() => method_([a, ad]), 400);
 
       return [
         await (method as any).promisify()('a', true),
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
-    const method = (a: string, ad: boolean, method_: AmauiUtils.TMethod) => setTimeout(() => method_([a, ad]), 400);
+    const method = (a: string, ad: boolean, method_: OnesyUtils.TMethod) => setTimeout(() => method_([a, ad]), 400);
 
     const valueNode = [
       await (method as any).promisify()('a', true),

@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/darken', () => {
+group('@onesy/utils/darken', () => {
 
   post(() => reset());
 
@@ -41,9 +41,9 @@ group('@amaui/utils/darken', () => {
         new Array(),
       ];
 
-      return values_.map((value: any) => window.AmauiUtils.darken(value, .4));
+      return values_.map((value: any) => window.OnesyUtils.darken(value, .4));
     });
-    const valueNode = values_.map((value: any) => AmauiUtils.darken(value, .4));
+    const valueNode = values_.map((value: any) => OnesyUtils.darken(value, .4));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -59,14 +59,14 @@ group('@amaui/utils/darken', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ('rgba(255, 140, 0, 0.4)' as any).darken(.4),
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ('rgba(255, 140, 0, 0.4)' as any).darken(.4),

@@ -1,17 +1,17 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/checkObjectFilters', () => {
+group('@onesy/utils/checkObjectFilters', () => {
 
   post(() => reset());
 
   to('checkObjectFilters', async () => {
     const valueBrowsers = await evaluate((window: any) => [
-      window.AmauiUtils.checkObjectFilters(
+      window.OnesyUtils.checkObjectFilters(
         { a: 4, ab: [1, 4, 7], ad: { a: 4 } },
         [
           { field: 'a', operator: 'equal', value: 40 },
@@ -20,7 +20,7 @@ group('@amaui/utils/checkObjectFilters', () => {
         ],
         'or'
       ),
-      window.AmauiUtils.checkObjectFilters(
+      window.OnesyUtils.checkObjectFilters(
         { a: 4, ab: [1, 4, 7], ad: { a: 4 } },
         [
           { field: 'a', operator: 'equal', value: 40 },
@@ -30,7 +30,7 @@ group('@amaui/utils/checkObjectFilters', () => {
       ),
     ]);
     const valueNode = [
-      AmauiUtils.checkObjectFilters(
+      OnesyUtils.checkObjectFilters(
         { a: 4, ab: [1, 4, 7], ad: { a: 4 } },
         [
           { field: 'a', operator: 'equal', value: 40 },
@@ -39,7 +39,7 @@ group('@amaui/utils/checkObjectFilters', () => {
         ],
         'or'
       ),
-      AmauiUtils.checkObjectFilters(
+      OnesyUtils.checkObjectFilters(
         { a: 4, ab: [1, 4, 7], ad: { a: 4 } },
         [
           { field: 'a', operator: 'equal', value: 40 },
@@ -60,7 +60,7 @@ group('@amaui/utils/checkObjectFilters', () => {
 
     to('or', async () => {
       const valueBrowsers = await evaluate((window: any) => [
-        window.AmauiUtils.checkObjectFilters(
+        window.OnesyUtils.checkObjectFilters(
           { a: 4, ab: [1, 4, 7], ad: { a: 4 } },
           [
             { field: 'a', operator: 'equal', value: 40 },
@@ -69,7 +69,7 @@ group('@amaui/utils/checkObjectFilters', () => {
           ],
           'or'
         ),
-        window.AmauiUtils.checkObjectFilters(
+        window.OnesyUtils.checkObjectFilters(
           { a: 4, ab: [1, 4, 7], ad: { a: 4 } },
           [
             { field: 'a', operator: 'equal', value: 40 },
@@ -79,7 +79,7 @@ group('@amaui/utils/checkObjectFilters', () => {
         ),
       ]);
       const valueNode = [
-        AmauiUtils.checkObjectFilters(
+        OnesyUtils.checkObjectFilters(
           { a: 4, ab: [1, 4, 7], ad: { a: 4 } },
           [
             { field: 'a', operator: 'equal', value: 40 },
@@ -88,7 +88,7 @@ group('@amaui/utils/checkObjectFilters', () => {
           ],
           'or'
         ),
-        AmauiUtils.checkObjectFilters(
+        OnesyUtils.checkObjectFilters(
           { a: 4, ab: [1, 4, 7], ad: { a: 4 } },
           [
             { field: 'a', operator: 'equal', value: 40 },
@@ -107,7 +107,7 @@ group('@amaui/utils/checkObjectFilters', () => {
 
     to('and', async () => {
       const valueBrowsers = await evaluate((window: any) => [
-        window.AmauiUtils.checkObjectFilters(
+        window.OnesyUtils.checkObjectFilters(
           { a: 4, ab: [1, 4, 7], ad: { a: 'a ad' } },
           [
             { field: 'a', operator: 'less-than', value: 5 },
@@ -125,7 +125,7 @@ group('@amaui/utils/checkObjectFilters', () => {
           ],
           'and'
         ),
-        window.AmauiUtils.checkObjectFilters(
+        window.OnesyUtils.checkObjectFilters(
           { a: 4, ab: [1, 4, 7], ad: { a: 4 } },
           [
             { field: 'a', operator: 'equal', value: 4 },
@@ -135,7 +135,7 @@ group('@amaui/utils/checkObjectFilters', () => {
         ),
       ]);
       const valueNode = [
-        AmauiUtils.checkObjectFilters(
+        OnesyUtils.checkObjectFilters(
           { a: 4, ab: [1, 4, 7], ad: { a: 'a ad' } },
           [
             { field: 'a', operator: 'less-than', value: 5 },
@@ -153,7 +153,7 @@ group('@amaui/utils/checkObjectFilters', () => {
           ],
           'and'
         ),
-        AmauiUtils.checkObjectFilters(
+        OnesyUtils.checkObjectFilters(
           { a: 4, ab: [1, 4, 7], ad: { a: 4 } },
           [
             { field: 'a', operator: 'equal', value: 4 },
@@ -174,7 +174,7 @@ group('@amaui/utils/checkObjectFilters', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ({ a: 4, ab: [1, 4, 7], ad: { a: 4 } } as any).checkFilters(
@@ -186,7 +186,7 @@ group('@amaui/utils/checkObjectFilters', () => {
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ({ a: 4, ab: [1, 4, 7], ad: { a: 4 } } as any).checkFilters(

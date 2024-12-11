@@ -1,13 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
-import AmauiNode from '@amaui/node';
+import { assert } from '@onesy/test';
+import OnesyNode from '@onesy/node';
 import path from 'path';
 
 import { evaluate, reset, utils } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/fileToValue', () => {
+group('@onesy/utils/fileToValue', () => {
 
   post(() => reset());
 
@@ -42,22 +42,22 @@ group('@amaui/utils/fileToValue', () => {
         const file = input.files[0];
 
         const values = [
-          await window.AmauiUtils.fileToValue(file, 'text'),
-          (await window.AmauiUtils.fileToValue(file, 'binary') as string).length,
-          (await window.AmauiUtils.fileToValue(file, 'array-buffer') as ArrayBuffer).byteLength,
-          await window.AmauiUtils.fileToValue(file, 'datauri'),
+          await window.OnesyUtils.fileToValue(file, 'text'),
+          (await window.OnesyUtils.fileToValue(file, 'binary') as string).length,
+          (await window.OnesyUtils.fileToValue(file, 'array-buffer') as ArrayBuffer).byteLength,
+          await window.OnesyUtils.fileToValue(file, 'datauri'),
         ];
 
         return values;
       }, { browsers: { [name]: browser } });
 
-      const fileValue = await AmauiNode.file.get(filePath) as string;
+      const fileValue = await OnesyNode.file.get(filePath) as string;
 
       assert(valueBrowser[0]).eql([
         fileValue,
         fileValue.length,
         fileValue.length,
-        AmauiUtils.to(fileValue, 'datauri', { mime: 'application/json' }),
+        OnesyUtils.to(fileValue, 'datauri', { mime: 'application/json' }),
       ]);
     }
   });
@@ -66,7 +66,7 @@ group('@amaui/utils/fileToValue', () => {
     const filePath = path.resolve(__dirname, '../size-snapshot.json');
 
     const valueBrowsers = await evaluate(async (window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       const input = window.document.getElementById('a') as HTMLInputElement;
       const file = input.files[0];
@@ -74,11 +74,11 @@ group('@amaui/utils/fileToValue', () => {
       return await (file as any).toValue('text');
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const values = [...valueBrowsers];
 
-    const fileValue = await AmauiNode.file.get(filePath) as string;
+    const fileValue = await OnesyNode.file.get(filePath) as string;
 
     values.forEach(value => assert(value === fileValue).eq(true));
   });

@@ -1,13 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import React from 'react';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/is', () => {
+group('@onesy/utils/is', () => {
 
   post(() => reset());
 
@@ -29,9 +29,9 @@ group('@amaui/utils/is', () => {
           `a`
         ];
 
-        return values_.map(value => window.AmauiUtils.is('string', value));
+        return values_.map(value => window.OnesyUtils.is('string', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('string', value));
+      const valueNode = values_.map(value => OnesyUtils.is('string', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(4).fill(true)));
@@ -51,9 +51,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('string', value));
+        return values_.map(value => window.OnesyUtils.is('string', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('string', value));
+      const valueNode = values_.map(value => OnesyUtils.is('string', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(3).fill(false)));
@@ -79,9 +79,9 @@ group('@amaui/utils/is', () => {
           0
         ];
 
-        return values_.map(value => window.AmauiUtils.is('number', value));
+        return values_.map(value => window.OnesyUtils.is('number', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('number', value));
+      const valueNode = values_.map(value => OnesyUtils.is('number', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(4).fill(true)));
@@ -105,9 +105,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('number', value));
+        return values_.map(value => window.OnesyUtils.is('number', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('number', value));
+      const valueNode = values_.map(value => OnesyUtils.is('number', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -135,9 +135,9 @@ group('@amaui/utils/is', () => {
           !!undefined
         ];
 
-        return values_.map(value => window.AmauiUtils.is('boolean', value));
+        return values_.map(value => window.OnesyUtils.is('boolean', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('boolean', value));
+      const valueNode = values_.map(value => OnesyUtils.is('boolean', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(true)));
@@ -159,9 +159,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('boolean', value));
+        return values_.map(value => window.OnesyUtils.is('boolean', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('boolean', value));
+      const valueNode = values_.map(value => OnesyUtils.is('boolean', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(4).fill(false)));
@@ -187,9 +187,9 @@ group('@amaui/utils/is', () => {
           []
         ];
 
-        return values_.map(value => window.AmauiUtils.is('array', value));
+        return values_.map(value => window.OnesyUtils.is('array', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('array', value));
+      const valueNode = values_.map(value => OnesyUtils.is('array', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(4).fill(true)));
@@ -211,9 +211,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('array', value));
+        return values_.map(value => window.OnesyUtils.is('array', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('array', value));
+      const valueNode = values_.map(value => OnesyUtils.is('array', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(4).fill(false)));
@@ -235,9 +235,9 @@ group('@amaui/utils/is', () => {
           new Object({ a: 134 })
         ];
 
-        return values_.map(value => window.AmauiUtils.is('object', value));
+        return values_.map(value => window.OnesyUtils.is('object', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('object', value));
+      const valueNode = values_.map(value => OnesyUtils.is('object', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(2).fill(true)));
@@ -265,9 +265,9 @@ group('@amaui/utils/is', () => {
           function asd() { }
         ];
 
-        return values_.map(value => window.AmauiUtils.is('object', value));
+        return values_.map(value => window.OnesyUtils.is('object', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('object', value));
+      const valueNode = values_.map(value => OnesyUtils.is('object', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(7).fill(false)));
@@ -291,9 +291,9 @@ group('@amaui/utils/is', () => {
           new WeakMap(),
         ];
 
-        return values_.map(value => window.AmauiUtils.is('object-like', value));
+        return values_.map(value => window.OnesyUtils.is('object-like', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('object-like', value));
+      const valueNode = values_.map(value => OnesyUtils.is('object-like', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(3).fill(true)));
@@ -311,9 +311,9 @@ group('@amaui/utils/is', () => {
           new Object({ a: 134 }),
         ];
 
-        return values_.map(value => window.AmauiUtils.is('object-like', value));
+        return values_.map(value => window.OnesyUtils.is('object-like', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('object-like', value));
+      const valueNode = values_.map(value => OnesyUtils.is('object-like', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(2).fill(false)));
@@ -340,9 +340,9 @@ group('@amaui/utils/is', () => {
           new A()
         ];
 
-        return values_.map(value => window.AmauiUtils.is('class', value));
+        return values_.map(value => window.OnesyUtils.is('class', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('class', value));
+      const valueNode = values_.map(value => OnesyUtils.is('class', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(2).fill(true)));
@@ -370,9 +370,9 @@ group('@amaui/utils/is', () => {
           function asd() { }
         ];
 
-        return values_.map(value => window.AmauiUtils.is('class', value));
+        return values_.map(value => window.OnesyUtils.is('class', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('class', value));
+      const valueNode = values_.map(value => OnesyUtils.is('class', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(7).fill(false)));
@@ -399,9 +399,9 @@ group('@amaui/utils/is', () => {
           function asd() { }
         ];
 
-        return values_.map(value => window.AmauiUtils.is('function', value));
+        return values_.map(value => window.OnesyUtils.is('function', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('function', value));
+      const valueNode = values_.map(value => OnesyUtils.is('function', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(2).fill(true)));
@@ -423,9 +423,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('function', value));
+        return values_.map(value => window.OnesyUtils.is('function', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('function', value));
+      const valueNode = values_.map(value => OnesyUtils.is('function', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(4).fill(false)));
@@ -452,9 +452,9 @@ group('@amaui/utils/is', () => {
           async function aa() { }
         ];
 
-        return values_.map(value => window.AmauiUtils.is('async', value));
+        return values_.map(value => window.OnesyUtils.is('async', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('async', value));
+      const valueNode = values_.map(value => OnesyUtils.is('async', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(2).fill(true)));
@@ -483,9 +483,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('async', value));
+        return values_.map(value => window.OnesyUtils.is('async', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('async', value));
+      const valueNode = values_.map(value => OnesyUtils.is('async', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -505,9 +505,9 @@ group('@amaui/utils/is', () => {
           new Map(),
         ];
 
-        return values_.map(value => window.AmauiUtils.is('map', value));
+        return values_.map(value => window.OnesyUtils.is('map', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('map', value));
+      const valueNode = values_.map(value => OnesyUtils.is('map', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(true)));
@@ -531,9 +531,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('map', value));
+        return values_.map(value => window.OnesyUtils.is('map', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('map', value));
+      const valueNode = values_.map(value => OnesyUtils.is('map', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -553,9 +553,9 @@ group('@amaui/utils/is', () => {
           new WeakMap(),
         ];
 
-        return values_.map(value => window.AmauiUtils.is('weakmap', value));
+        return values_.map(value => window.OnesyUtils.is('weakmap', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('weakmap', value));
+      const valueNode = values_.map(value => OnesyUtils.is('weakmap', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(true)));
@@ -579,9 +579,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('weakmap', value));
+        return values_.map(value => window.OnesyUtils.is('weakmap', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('weakmap', value));
+      const valueNode = values_.map(value => OnesyUtils.is('weakmap', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -601,9 +601,9 @@ group('@amaui/utils/is', () => {
           new Set(),
         ];
 
-        return values_.map(value => window.AmauiUtils.is('set', value));
+        return values_.map(value => window.OnesyUtils.is('set', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('set', value));
+      const valueNode = values_.map(value => OnesyUtils.is('set', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(true)));
@@ -627,9 +627,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('set', value));
+        return values_.map(value => window.OnesyUtils.is('set', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('set', value));
+      const valueNode = values_.map(value => OnesyUtils.is('set', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -649,9 +649,9 @@ group('@amaui/utils/is', () => {
           new WeakSet(),
         ];
 
-        return values_.map(value => window.AmauiUtils.is('weakset', value));
+        return values_.map(value => window.OnesyUtils.is('weakset', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('weakset', value));
+      const valueNode = values_.map(value => OnesyUtils.is('weakset', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(true)));
@@ -675,9 +675,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('weakset', value));
+        return values_.map(value => window.OnesyUtils.is('weakset', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('weakset', value));
+      const valueNode = values_.map(value => OnesyUtils.is('weakset', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -697,9 +697,9 @@ group('@amaui/utils/is', () => {
           new Promise((resolve, reject) => resolve(true)),
         ];
 
-        return values_.map(value => window.AmauiUtils.is('promise', value));
+        return values_.map(value => window.OnesyUtils.is('promise', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('promise', value));
+      const valueNode = values_.map(value => OnesyUtils.is('promise', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(true)));
@@ -723,9 +723,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('promise', value));
+        return values_.map(value => window.OnesyUtils.is('promise', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('promise', value));
+      const valueNode = values_.map(value => OnesyUtils.is('promise', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -745,9 +745,9 @@ group('@amaui/utils/is', () => {
           new Int8Array(),
         ];
 
-        return values_.map(value => window.AmauiUtils.is('int8array', value));
+        return values_.map(value => window.OnesyUtils.is('int8array', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('int8array', value));
+      const valueNode = values_.map(value => OnesyUtils.is('int8array', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(true)));
@@ -771,9 +771,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('int8array', value));
+        return values_.map(value => window.OnesyUtils.is('int8array', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('int8array', value));
+      const valueNode = values_.map(value => OnesyUtils.is('int8array', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -793,9 +793,9 @@ group('@amaui/utils/is', () => {
           new Uint8Array(),
         ];
 
-        return values_.map(value => window.AmauiUtils.is('uint8array', value));
+        return values_.map(value => window.OnesyUtils.is('uint8array', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('uint8array', value));
+      const valueNode = values_.map(value => OnesyUtils.is('uint8array', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(true)));
@@ -819,9 +819,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('uint8array', value));
+        return values_.map(value => window.OnesyUtils.is('uint8array', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('uint8array', value));
+      const valueNode = values_.map(value => OnesyUtils.is('uint8array', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -841,9 +841,9 @@ group('@amaui/utils/is', () => {
           new Uint8ClampedArray(),
         ];
 
-        return values_.map(value => window.AmauiUtils.is('uint8clampedarray', value));
+        return values_.map(value => window.OnesyUtils.is('uint8clampedarray', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('uint8clampedarray', value));
+      const valueNode = values_.map(value => OnesyUtils.is('uint8clampedarray', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(true)));
@@ -867,9 +867,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('uint8clampedarray', value));
+        return values_.map(value => window.OnesyUtils.is('uint8clampedarray', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('uint8clampedarray', value));
+      const valueNode = values_.map(value => OnesyUtils.is('uint8clampedarray', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -889,9 +889,9 @@ group('@amaui/utils/is', () => {
           new Int16Array(),
         ];
 
-        return values_.map(value => window.AmauiUtils.is('int16array', value));
+        return values_.map(value => window.OnesyUtils.is('int16array', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('int16array', value));
+      const valueNode = values_.map(value => OnesyUtils.is('int16array', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(true)));
@@ -915,9 +915,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('int16array', value));
+        return values_.map(value => window.OnesyUtils.is('int16array', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('int16array', value));
+      const valueNode = values_.map(value => OnesyUtils.is('int16array', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -937,9 +937,9 @@ group('@amaui/utils/is', () => {
           new Uint16Array(),
         ];
 
-        return values_.map(value => window.AmauiUtils.is('uint16array', value));
+        return values_.map(value => window.OnesyUtils.is('uint16array', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('uint16array', value));
+      const valueNode = values_.map(value => OnesyUtils.is('uint16array', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(true)));
@@ -963,9 +963,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('uint16array', value));
+        return values_.map(value => window.OnesyUtils.is('uint16array', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('uint16array', value));
+      const valueNode = values_.map(value => OnesyUtils.is('uint16array', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -985,9 +985,9 @@ group('@amaui/utils/is', () => {
           new Int32Array(),
         ];
 
-        return values_.map(value => window.AmauiUtils.is('int32array', value));
+        return values_.map(value => window.OnesyUtils.is('int32array', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('int32array', value));
+      const valueNode = values_.map(value => OnesyUtils.is('int32array', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(true)));
@@ -1011,9 +1011,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('int32array', value));
+        return values_.map(value => window.OnesyUtils.is('int32array', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('int32array', value));
+      const valueNode = values_.map(value => OnesyUtils.is('int32array', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -1033,9 +1033,9 @@ group('@amaui/utils/is', () => {
           new Uint32Array(),
         ];
 
-        return values_.map(value => window.AmauiUtils.is('uint32array', value));
+        return values_.map(value => window.OnesyUtils.is('uint32array', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('uint32array', value));
+      const valueNode = values_.map(value => OnesyUtils.is('uint32array', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(true)));
@@ -1059,9 +1059,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('uint32array', value));
+        return values_.map(value => window.OnesyUtils.is('uint32array', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('uint32array', value));
+      const valueNode = values_.map(value => OnesyUtils.is('uint32array', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -1081,9 +1081,9 @@ group('@amaui/utils/is', () => {
           new Float32Array(),
         ];
 
-        return values_.map(value => window.AmauiUtils.is('float32array', value));
+        return values_.map(value => window.OnesyUtils.is('float32array', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('float32array', value));
+      const valueNode = values_.map(value => OnesyUtils.is('float32array', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(true)));
@@ -1107,9 +1107,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('float32array', value));
+        return values_.map(value => window.OnesyUtils.is('float32array', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('float32array', value));
+      const valueNode = values_.map(value => OnesyUtils.is('float32array', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -1129,9 +1129,9 @@ group('@amaui/utils/is', () => {
           new Float64Array(),
         ];
 
-        return values_.map(value => window.AmauiUtils.is('float64array', value));
+        return values_.map(value => window.OnesyUtils.is('float64array', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('float64array', value));
+      const valueNode = values_.map(value => OnesyUtils.is('float64array', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(true)));
@@ -1155,9 +1155,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('float64array', value));
+        return values_.map(value => window.OnesyUtils.is('float64array', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('float64array', value));
+      const valueNode = values_.map(value => OnesyUtils.is('float64array', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -1177,9 +1177,9 @@ group('@amaui/utils/is', () => {
           new BigInt64Array(),
         ];
 
-        return values_.map(value => window.AmauiUtils.is('bigint64array', value));
+        return values_.map(value => window.OnesyUtils.is('bigint64array', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('bigint64array', value));
+      const valueNode = values_.map(value => OnesyUtils.is('bigint64array', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(true)));
@@ -1203,9 +1203,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('bigint64array', value));
+        return values_.map(value => window.OnesyUtils.is('bigint64array', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('bigint64array', value));
+      const valueNode = values_.map(value => OnesyUtils.is('bigint64array', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -1225,9 +1225,9 @@ group('@amaui/utils/is', () => {
           new BigUint64Array(),
         ];
 
-        return values_.map(value => window.AmauiUtils.is('biguint64array', value));
+        return values_.map(value => window.OnesyUtils.is('biguint64array', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('biguint64array', value));
+      const valueNode = values_.map(value => OnesyUtils.is('biguint64array', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(true)));
@@ -1251,9 +1251,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('biguint64array', value));
+        return values_.map(value => window.OnesyUtils.is('biguint64array', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('biguint64array', value));
+      const valueNode = values_.map(value => OnesyUtils.is('biguint64array', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -1293,9 +1293,9 @@ group('@amaui/utils/is', () => {
           new BigUint64Array(),
         ];
 
-        return values_.map(value => window.AmauiUtils.is('typedarray', value));
+        return values_.map(value => window.OnesyUtils.is('typedarray', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('typedarray', value));
+      const valueNode = values_.map(value => OnesyUtils.is('typedarray', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(11).fill(true)));
@@ -1319,9 +1319,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('typedarray', value));
+        return values_.map(value => window.OnesyUtils.is('typedarray', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('typedarray', value));
+      const valueNode = values_.map(value => OnesyUtils.is('typedarray', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -1341,9 +1341,9 @@ group('@amaui/utils/is', () => {
           new DataView(new ArrayBuffer(3)),
         ];
 
-        return values_.map(value => window.AmauiUtils.is('dataview', value));
+        return values_.map(value => window.OnesyUtils.is('dataview', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('dataview', value));
+      const valueNode = values_.map(value => OnesyUtils.is('dataview', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(true)));
@@ -1367,9 +1367,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('dataview', value));
+        return values_.map(value => window.OnesyUtils.is('dataview', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('dataview', value));
+      const valueNode = values_.map(value => OnesyUtils.is('dataview', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -1389,9 +1389,9 @@ group('@amaui/utils/is', () => {
           new ArrayBuffer(3),
         ];
 
-        return values_.map(value => window.AmauiUtils.is('arraybuffer', value));
+        return values_.map(value => window.OnesyUtils.is('arraybuffer', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('arraybuffer', value));
+      const valueNode = values_.map(value => OnesyUtils.is('arraybuffer', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(true)));
@@ -1415,9 +1415,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('arraybuffer', value));
+        return values_.map(value => window.OnesyUtils.is('arraybuffer', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('arraybuffer', value));
+      const valueNode = values_.map(value => OnesyUtils.is('arraybuffer', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -1433,7 +1433,7 @@ group('@amaui/utils/is', () => {
         new SharedArrayBuffer(3),
       ];
 
-      const valueNode = values_.map(value => AmauiUtils.is('sharedarraybuffer', value));
+      const valueNode = values_.map(value => OnesyUtils.is('sharedarraybuffer', value));
       const values = [valueNode];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(true)));
@@ -1457,9 +1457,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('sharedarraybuffer', value));
+        return values_.map(value => window.OnesyUtils.is('sharedarraybuffer', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('sharedarraybuffer', value));
+      const valueNode = values_.map(value => OnesyUtils.is('sharedarraybuffer', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -1479,9 +1479,9 @@ group('@amaui/utils/is', () => {
           Symbol(),
         ];
 
-        return values_.map(value => window.AmauiUtils.is('symbol', value));
+        return values_.map(value => window.OnesyUtils.is('symbol', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('symbol', value));
+      const valueNode = values_.map(value => OnesyUtils.is('symbol', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(true)));
@@ -1505,9 +1505,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('symbol', value));
+        return values_.map(value => window.OnesyUtils.is('symbol', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('symbol', value));
+      const valueNode = values_.map(value => OnesyUtils.is('symbol', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -1527,9 +1527,9 @@ group('@amaui/utils/is', () => {
           new Error(),
         ];
 
-        return values_.map(value => window.AmauiUtils.is('error', value));
+        return values_.map(value => window.OnesyUtils.is('error', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('error', value));
+      const valueNode = values_.map(value => OnesyUtils.is('error', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(true)));
@@ -1553,9 +1553,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('error', value));
+        return values_.map(value => window.OnesyUtils.is('error', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('error', value));
+      const valueNode = values_.map(value => OnesyUtils.is('error', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -1577,9 +1577,9 @@ group('@amaui/utils/is', () => {
           new Date(new Date().getTime()),
         ];
 
-        return values_.map(value => window.AmauiUtils.is('date', value));
+        return values_.map(value => window.OnesyUtils.is('date', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('date', value));
+      const valueNode = values_.map(value => OnesyUtils.is('date', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(2).fill(true)));
@@ -1601,9 +1601,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('date', value));
+        return values_.map(value => window.OnesyUtils.is('date', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('date', value));
+      const valueNode = values_.map(value => OnesyUtils.is('date', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(4).fill(false)));
@@ -1625,9 +1625,9 @@ group('@amaui/utils/is', () => {
           /a+/g,
         ];
 
-        return values_.map(value => window.AmauiUtils.is('regexp', value));
+        return values_.map(value => window.OnesyUtils.is('regexp', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('regexp', value));
+      const valueNode = values_.map(value => OnesyUtils.is('regexp', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(2).fill(true)));
@@ -1651,9 +1651,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('regexp', value));
+        return values_.map(value => window.OnesyUtils.is('regexp', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('regexp', value));
+      const valueNode = values_.map(value => OnesyUtils.is('regexp', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -1665,12 +1665,12 @@ group('@amaui/utils/is', () => {
 
     to('is arguments', async () => {
       const values_ = [
-        (function a() { return AmauiUtils.is('arguments', arguments); })(),
+        (function a() { return OnesyUtils.is('arguments', arguments); })(),
       ];
 
       const valueBrowsers = await evaluate((window: any) => {
         const values_ = [
-          (function a() { return window.AmauiUtils.is('arguments', arguments); })(),
+          (function a() { return window.OnesyUtils.is('arguments', arguments); })(),
         ];
 
         return values_;
@@ -1699,9 +1699,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('arguments', value));
+        return values_.map(value => window.OnesyUtils.is('arguments', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('arguments', value));
+      const valueNode = values_.map(value => OnesyUtils.is('arguments', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -1721,9 +1721,9 @@ group('@amaui/utils/is', () => {
           null,
         ];
 
-        return values_.map(value => window.AmauiUtils.is('null', value));
+        return values_.map(value => window.OnesyUtils.is('null', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('null', value));
+      const valueNode = values_.map(value => OnesyUtils.is('null', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(true)));
@@ -1747,9 +1747,9 @@ group('@amaui/utils/is', () => {
           {},
         ];
 
-        return values_.map(value => window.AmauiUtils.is('null', value));
+        return values_.map(value => window.OnesyUtils.is('null', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('null', value));
+      const valueNode = values_.map(value => OnesyUtils.is('null', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -1769,9 +1769,9 @@ group('@amaui/utils/is', () => {
           undefined,
         ];
 
-        return values_.map(value => window.AmauiUtils.is('undefined', value));
+        return values_.map(value => window.OnesyUtils.is('undefined', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('undefined', value));
+      const valueNode = values_.map(value => OnesyUtils.is('undefined', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(true)));
@@ -1795,9 +1795,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('undefined', value));
+        return values_.map(value => window.OnesyUtils.is('undefined', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('undefined', value));
+      const valueNode = values_.map(value => OnesyUtils.is('undefined', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(5).fill(false)));
@@ -1813,7 +1813,7 @@ group('@amaui/utils/is', () => {
           new Blob([new ArrayBuffer(4)]),
         ];
 
-        return values_.map(value => window.AmauiUtils.is('blob', value));
+        return values_.map(value => window.OnesyUtils.is('blob', value));
       });
       const values = [...valueBrowsers];
 
@@ -1836,9 +1836,9 @@ group('@amaui/utils/is', () => {
           null,
         ];
 
-        return values_.map(value => window.AmauiUtils.is('blob', value));
+        return values_.map(value => window.OnesyUtils.is('blob', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('blob', value));
+      const valueNode = values_.map(value => OnesyUtils.is('blob', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(4).fill(false)));
@@ -1853,7 +1853,7 @@ group('@amaui/utils/is', () => {
         Buffer.from('a'),
       ];
 
-      const valueNode = values_.map(value => AmauiUtils.is('buffer', value));
+      const valueNode = values_.map(value => OnesyUtils.is('buffer', value));
       const values = [valueNode];
 
       values.forEach(value => assert(value).eql(new Array(1).fill(true)));
@@ -1875,9 +1875,9 @@ group('@amaui/utils/is', () => {
           null,
         ];
 
-        return values_.map(value => window.AmauiUtils.is('buffer', value));
+        return values_.map(value => window.OnesyUtils.is('buffer', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('buffer', value));
+      const valueNode = values_.map(value => OnesyUtils.is('buffer', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(4).fill(false)));
@@ -1902,9 +1902,9 @@ group('@amaui/utils/is', () => {
           [window.React.createElement('a'), { variant: 'react' }],
         ];
 
-        return values_.map(value => window.AmauiUtils.is('element', ...value));
+        return values_.map(value => window.OnesyUtils.is('element', ...value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('element', ...value));
+      const valueNode = values_.map(value => OnesyUtils.is('element', ...value));
 
       assert(valueNode).eql(new Array(2).fill(true));
 
@@ -1927,9 +1927,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('element', value));
+        return values_.map(value => window.OnesyUtils.is('element', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('element', value));
+      const valueNode = values_.map(value => OnesyUtils.is('element', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(4).fill(false)));
@@ -1958,11 +1958,11 @@ group('@amaui/utils/is', () => {
         ];
 
         return [
-          ...values_.map(value => window.AmauiUtils.is('simple', value)),
+          ...values_.map(value => window.OnesyUtils.is('simple', value)),
         ];
       });
       const valueNode = [
-        ...values_.map(value => AmauiUtils.is('simple', value)),
+        ...values_.map(value => OnesyUtils.is('simple', value)),
       ];
       const values = [valueNode, ...valueBrowsers];
 
@@ -1981,9 +1981,9 @@ group('@amaui/utils/is', () => {
           [['1', '3', '4']],
         ];
 
-        return values_.map(value => window.AmauiUtils.is('simple', ...value));
+        return values_.map(value => window.OnesyUtils.is('simple', ...value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('simple', ...value));
+      const valueNode = values_.map(value => OnesyUtils.is('simple', ...value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(2).fill(false)));
@@ -2013,9 +2013,9 @@ group('@amaui/utils/is', () => {
           null
         ];
 
-        return values_.map(value => window.AmauiUtils.is('not-array-object', value));
+        return values_.map(value => window.OnesyUtils.is('not-array-object', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('not-array-object', value));
+      const valueNode = values_.map(value => OnesyUtils.is('not-array-object', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(6).fill(true)));
@@ -2033,9 +2033,9 @@ group('@amaui/utils/is', () => {
           { a: 1, c: 4 },
         ];
 
-        return values_.map(value => window.AmauiUtils.is('not-array-object', value));
+        return values_.map(value => window.OnesyUtils.is('not-array-object', value));
       });
-      const valueNode = values_.map(value => AmauiUtils.is('not-array-object', value));
+      const valueNode = values_.map(value => OnesyUtils.is('not-array-object', value));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql(new Array(2).fill(false)));
@@ -2045,7 +2045,7 @@ group('@amaui/utils/is', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ('a' as any).is('string'),
@@ -2057,7 +2057,7 @@ group('@amaui/utils/is', () => {
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ('a' as any).is('string'),

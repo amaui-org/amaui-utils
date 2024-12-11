@@ -1,9 +1,9 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-group('@amaui/utils/canvasFilterInvert', () => {
+group('@onesy/utils/canvasFilterInvert', () => {
 
   post(() => reset());
 
@@ -11,9 +11,9 @@ group('@amaui/utils/canvasFilterInvert', () => {
     const valueBrowsers = await evaluate(async (window: any) => {
       window.document.body.style.background = 'linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c)';
 
-      const canvas = await window.AmauiUtils.elementToCanvas(window.document.body);
+      const canvas = await window.OnesyUtils.elementToCanvas(window.document.body);
 
-      const cropped = window.AmauiUtils.canvasCrop(canvas, 0, 0, 14, 14);
+      const cropped = window.OnesyUtils.canvasCrop(canvas, 0, 0, 14, 14);
 
       const method = value => {
         const contextCropped = value.getContext('2d');
@@ -27,7 +27,7 @@ group('@amaui/utils/canvasFilterInvert', () => {
         canvas: method(cropped)
       };
 
-      window.AmauiUtils.canvasFilterInvert(undefined, cropped);
+      window.OnesyUtils.canvasFilterInvert(undefined, cropped);
 
       data.updated = method(cropped);
 

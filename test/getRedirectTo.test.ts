@@ -1,9 +1,9 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-group('@amaui/utils/getRedirectTo', () => {
+group('@onesy/utils/getRedirectTo', () => {
 
   post(() => reset());
 
@@ -16,7 +16,7 @@ group('@amaui/utils/getRedirectTo', () => {
         { a: 4 },
       ];
 
-      return values_.map((value: any) => window.AmauiUtils.getRedirectTo(value));
+      return values_.map((value: any) => window.OnesyUtils.getRedirectTo(value));
     });
     const values = [...valueBrowsers];
 

@@ -80,7 +80,7 @@ const optionsDefault: IElementToCanvasOptions = {
   },
 
   download: {
-    name: 'amaui-image.png',
+    name: 'onesy-image.png',
     type: 'image/png',
     quality: 1
   },

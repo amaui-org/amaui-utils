@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/pick', () => {
+group('@onesy/utils/pick', () => {
 
   post(() => reset());
 
@@ -13,12 +13,12 @@ group('@amaui/utils/pick', () => {
     const value = 'abcdefghijklmnopqrstuvwxyz';
 
     const values_ = [
-      AmauiUtils.pick(value).length === 1,
-      AmauiUtils.pick(value, -1).length === 1,
-      AmauiUtils.pick(value) && AmauiUtils.pick(value).split('').every(character => value.indexOf(character) > -1),
-      AmauiUtils.pick(value, 4).length === 4,
+      OnesyUtils.pick(value).length === 1,
+      OnesyUtils.pick(value, -1).length === 1,
+      OnesyUtils.pick(value) && OnesyUtils.pick(value).split('').every(character => value.indexOf(character) > -1),
+      OnesyUtils.pick(value, 4).length === 4,
       new Array(1e4).fill('').map(() => {
-        const value_ = AmauiUtils.pick(value, 1, 4).length;
+        const value_ = OnesyUtils.pick(value, 1, 4).length;
 
         return value_ >= 1 && value_ <= 4;
       }),
@@ -28,12 +28,12 @@ group('@amaui/utils/pick', () => {
       const value = 'abcdefghijklmnopqrstuvwxyz';
 
       return [
-        window.AmauiUtils.pick(value).length === 1,
-        window.AmauiUtils.pick(value, -1).length === 1,
-        window.AmauiUtils.pick(value) && window.AmauiUtils.pick(value).split('').every(character => value.indexOf(character) > -1),
-        window.AmauiUtils.pick(value, 4).length === 4,
+        window.OnesyUtils.pick(value).length === 1,
+        window.OnesyUtils.pick(value, -1).length === 1,
+        window.OnesyUtils.pick(value) && window.OnesyUtils.pick(value).split('').every(character => value.indexOf(character) > -1),
+        window.OnesyUtils.pick(value, 4).length === 4,
         new Array(1e4).fill('').map(() => {
-          const value_ = window.AmauiUtils.pick(value, 1, 4).length;
+          const value_ = window.OnesyUtils.pick(value, 1, 4).length;
 
           return value_ >= 1 && value_ <= 4;
         }),
@@ -53,7 +53,7 @@ group('@amaui/utils/pick', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       const value = 'abcdefghijklmnopqrstuvwxyz';
 
@@ -62,7 +62,7 @@ group('@amaui/utils/pick', () => {
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const value = 'abcdefghijklmnopqrstuvwxyz';
 

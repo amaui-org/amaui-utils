@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/getCountry', () => {
+group('@onesy/utils/getCountry', () => {
 
   post(() => reset());
 
@@ -41,9 +41,9 @@ group('@amaui/utils/getCountry', () => {
         ['a'],
       ];
 
-      return values_.map((value: any) => window.AmauiUtils.getCountry(...value));
+      return values_.map((value: any) => window.OnesyUtils.getCountry(...value));
     });
-    const valueNode = values_.map((value: any) => AmauiUtils.getCountry(...value));
+    const valueNode = values_.map((value: any) => OnesyUtils.getCountry(...value));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([

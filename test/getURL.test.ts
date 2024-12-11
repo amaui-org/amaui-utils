@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/getURL', () => {
+group('@onesy/utils/getURL', () => {
 
   post(() => reset());
 
@@ -37,9 +37,9 @@ group('@amaui/utils/getURL', () => {
         '/a/a?a=a4',
       ];
 
-      return values_.map(value => window.AmauiUtils.getURL(value));
+      return values_.map(value => window.OnesyUtils.getURL(value));
     });
-    const valueNode = values_.map(value => AmauiUtils.getURL(value));
+    const valueNode = values_.map(value => OnesyUtils.getURL(value));
 
     assert(valueNode).eql([
       '',
@@ -72,12 +72,12 @@ group('@amaui/utils/getURL', () => {
 
     to('URL', async () => {
       const valueBrowsers = await evaluate((window: any) => [
-        window.AmauiUtils.getURL('http://a.com/a?a=a4', { URL: true }) instanceof URL,
-        window.AmauiUtils.getURL('http://a.com/a?a=a4', { URL: false }),
+        window.OnesyUtils.getURL('http://a.com/a?a=a4', { URL: true }) instanceof URL,
+        window.OnesyUtils.getURL('http://a.com/a?a=a4', { URL: false }),
       ]);
       const valueNode = [
-        AmauiUtils.getURL('http://a.com/a?a=a4', { URL: true }) instanceof URL,
-        AmauiUtils.getURL('http://a.com/a?a=a4', { URL: false }),
+        OnesyUtils.getURL('http://a.com/a?a=a4', { URL: true }) instanceof URL,
+        OnesyUtils.getURL('http://a.com/a?a=a4', { URL: false }),
       ];
       const values = [valueNode, ...valueBrowsers];
 
@@ -91,14 +91,14 @@ group('@amaui/utils/getURL', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ('http://a.com' as any).getURL(),
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ('http://a.com' as any).getURL(),

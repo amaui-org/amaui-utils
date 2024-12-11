@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/copy', () => {
+group('@onesy/utils/copy', () => {
 
   post(() => reset());
 
@@ -99,9 +99,9 @@ group('@amaui/utils/copy', () => {
         },
       ];
 
-      return values_.map(item => window.AmauiUtils.equalDeep(window.AmauiUtils.copy(item), item));
+      return values_.map(item => window.OnesyUtils.equalDeep(window.OnesyUtils.copy(item), item));
     });
-    const valueNode = values_.map(item => AmauiUtils.equalDeep(AmauiUtils.copy(item), item));
+    const valueNode = values_.map(item => OnesyUtils.equalDeep(OnesyUtils.copy(item), item));
     const values = [...valueNode, ...[].concat.apply([], valueBrowsers)];
 
     values.forEach(value => assert(value).eq(true));
@@ -109,24 +109,24 @@ group('@amaui/utils/copy', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       const values_ = [
         [],
         {},
       ];
 
-      return values_.map(item => window.AmauiUtils.equalDeep((item as any).copy(), item));
+      return values_.map(item => window.OnesyUtils.equalDeep((item as any).copy(), item));
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const values_ = [
       [],
       {},
     ];
 
-    const valueNode = values_.map(item => AmauiUtils.equalDeep((item as any).copy(), item));
+    const valueNode = values_.map(item => OnesyUtils.equalDeep((item as any).copy(), item));
 
     const values = [...valueNode, ...[].concat.apply([], valueBrowsers)];
 

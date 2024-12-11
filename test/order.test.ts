@@ -1,17 +1,17 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/order', () => {
+group('@onesy/utils/order', () => {
 
   post(() => reset());
 
   to('object', async () => {
     const values_ = [
-      AmauiUtils.order({
+      OnesyUtils.order({
         ad: 4,
         d: 1,
         a: [4, 1],
@@ -24,7 +24,7 @@ group('@amaui/utils/order', () => {
 
     const valueBrowsers = await evaluate((window: any) => {
       const values_ = [
-        window.AmauiUtils.order({
+        window.OnesyUtils.order({
           ad: 4,
           d: 1,
           a: [4, 1],
@@ -58,12 +58,12 @@ group('@amaui/utils/order', () => {
 
   to('array', async () => {
     const values_ = [
-      AmauiUtils.order(['a', 4, { ad: 4, a: 1 }, 1]),
+      OnesyUtils.order(['a', 4, { ad: 4, a: 1 }, 1]),
     ];
 
     const valueBrowsers = await evaluate((window: any) => {
       const values_ = [
-        window.AmauiUtils.order(['a', 4, { ad: 4, a: 1 }, 1]),
+        window.OnesyUtils.order(['a', 4, { ad: 4, a: 1 }, 1]),
       ];
 
       return values_;
@@ -86,7 +86,7 @@ group('@amaui/utils/order', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ({ a: [1, 4], ad: 4, b: { a: 4, b: 'a' }, d: 1 } as any).order(),
@@ -94,7 +94,7 @@ group('@amaui/utils/order', () => {
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ({ a: [1, 4], ad: 4, b: { a: 4, b: 'a' }, d: 1 } as any).order(),

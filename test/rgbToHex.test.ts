@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/rgbToHex', () => {
+group('@onesy/utils/rgbToHex', () => {
 
   post(() => reset());
 
@@ -37,9 +37,9 @@ group('@amaui/utils/rgbToHex', () => {
         new Array(),
       ];
 
-      return values_.map((value: any) => window.AmauiUtils.rgbToHex(value));
+      return values_.map((value: any) => window.OnesyUtils.rgbToHex(value));
     });
-    const valueNode = values_.map((value: any) => AmauiUtils.rgbToHex(value));
+    const valueNode = values_.map((value: any) => OnesyUtils.rgbToHex(value));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -63,9 +63,9 @@ group('@amaui/utils/rgbToHex', () => {
         'rgba(255, 140, 0, 0.44)',
       ];
 
-      return values_.map((value: any) => window.AmauiUtils.rgbToHex(value, 0.44));
+      return values_.map((value: any) => window.OnesyUtils.rgbToHex(value, 0.44));
     });
-    const valueNode = values_.map((value: any) => AmauiUtils.rgbToHex(value, 0.44));
+    const valueNode = values_.map((value: any) => OnesyUtils.rgbToHex(value, 0.44));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -87,13 +87,13 @@ group('@amaui/utils/rgbToHex', () => {
       ];
 
       return [
-        window.AmauiUtils.rgbToHex('rgb(255, 140, 0)', undefined, false),
-        ...values_.map((value: any) => window.AmauiUtils.rgbToHex(value, undefined, true)),
+        window.OnesyUtils.rgbToHex('rgb(255, 140, 0)', undefined, false),
+        ...values_.map((value: any) => window.OnesyUtils.rgbToHex(value, undefined, true)),
       ];
     });
     const valueNode = [
-      AmauiUtils.rgbToHex('rgb(255, 140, 0)', undefined, false),
-      ...values_.map((value: any) => AmauiUtils.rgbToHex(value, undefined, true)),
+      OnesyUtils.rgbToHex('rgb(255, 140, 0)', undefined, false),
+      ...values_.map((value: any) => OnesyUtils.rgbToHex(value, undefined, true)),
     ];
     const values = [valueNode, ...valueBrowsers];
 
@@ -106,14 +106,14 @@ group('@amaui/utils/rgbToHex', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ('rgb(255, 140, 0)' as any).rgbToHex(),
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ('rgb(255, 140, 0)' as any).rgbToHex(),

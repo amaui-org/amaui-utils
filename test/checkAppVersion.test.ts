@@ -1,9 +1,9 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-group('@amaui/utils/checkAppVersion', () => {
+group('@onesy/utils/checkAppVersion', () => {
 
   post(() => reset());
 
@@ -15,7 +15,7 @@ group('@amaui/utils/checkAppVersion', () => {
 
         const items = await caches.keys();
 
-        const result = await window.AmauiUtils.checkAppVersion(4, false);
+        const result = await window.OnesyUtils.checkAppVersion(4, false);
 
         const items1 = await caches.keys();
 
@@ -49,7 +49,7 @@ group('@amaui/utils/checkAppVersion', () => {
 
         const items = await caches.keys();
 
-        const result = await window.AmauiUtils.checkAppVersion(4, false);
+        const result = await window.OnesyUtils.checkAppVersion(4, false);
 
         const items1 = await caches.keys();
 
@@ -83,7 +83,7 @@ group('@amaui/utils/checkAppVersion', () => {
 
         const items = await caches.keys();
 
-        const result = await window.AmauiUtils.checkAppVersion(4, false);
+        const result = await window.OnesyUtils.checkAppVersion(4, false);
 
         const items1 = await caches.keys();
 
@@ -111,7 +111,7 @@ group('@amaui/utils/checkAppVersion', () => {
 
         const items = await caches.keys();
 
-        const result = await window.AmauiUtils.checkRoot('amaui', 400, false);
+        const result = await window.OnesyUtils.checkRoot('onesy', 400, false);
 
         const items1 = await caches.keys();
 
@@ -131,19 +131,19 @@ group('@amaui/utils/checkAppVersion', () => {
 
     to('Root children found', async () => {
       const valueBrowsers = await evaluate(async (window: any) => {
-        const amaui = window.document.createElement('div');
+        const onesy = window.document.createElement('div');
 
-        amaui.id = 'amaui';
+        onesy.id = 'onesy';
 
-        amaui.append(window.document.createElement('a'));
+        onesy.append(window.document.createElement('a'));
 
-        window.document.body.append(amaui);
+        window.document.body.append(onesy);
 
         await caches.open('a');
 
         const items = await caches.keys();
 
-        const result = await window.AmauiUtils.checkRoot('amaui', 400, false);
+        const result = await window.OnesyUtils.checkRoot('onesy', 400, false);
 
         const items1 = await caches.keys();
 

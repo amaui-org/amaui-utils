@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/hexToRgb', () => {
+group('@onesy/utils/hexToRgb', () => {
 
   post(() => reset());
 
@@ -37,9 +37,9 @@ group('@amaui/utils/hexToRgb', () => {
         new Array(),
       ];
 
-      return values_.map((value: any) => window.AmauiUtils.hexToRgb(value));
+      return values_.map((value: any) => window.OnesyUtils.hexToRgb(value));
     });
-    const valueNode = values_.map((value: any) => AmauiUtils.hexToRgb(value));
+    const valueNode = values_.map((value: any) => OnesyUtils.hexToRgb(value));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -67,9 +67,9 @@ group('@amaui/utils/hexToRgb', () => {
         '#aed6e070',
       ];
 
-      return values_.map((value: any) => window.AmauiUtils.hexToRgb(value, .4));
+      return values_.map((value: any) => window.OnesyUtils.hexToRgb(value, .4));
     });
-    const valueNode = values_.map((value: any) => AmauiUtils.hexToRgb(value, .4));
+    const valueNode = values_.map((value: any) => OnesyUtils.hexToRgb(value, .4));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -93,13 +93,13 @@ group('@amaui/utils/hexToRgb', () => {
       ];
 
       return [
-        window.AmauiUtils.hexToRgb('#b1b100', undefined, false),
-        ...values_.map((value: any) => window.AmauiUtils.hexToRgb(value, undefined, true)),
+        window.OnesyUtils.hexToRgb('#b1b100', undefined, false),
+        ...values_.map((value: any) => window.OnesyUtils.hexToRgb(value, undefined, true)),
       ];
     });
     const valueNode = [
-      AmauiUtils.hexToRgb('#b1b100', undefined, false),
-      ...values_.map((value: any) => AmauiUtils.hexToRgb(value, undefined, true)),
+      OnesyUtils.hexToRgb('#b1b100', undefined, false),
+      ...values_.map((value: any) => OnesyUtils.hexToRgb(value, undefined, true)),
     ];
     const values = [valueNode, ...valueBrowsers];
 
@@ -112,14 +112,14 @@ group('@amaui/utils/hexToRgb', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ('#ff8c00' as any).hexToRgb(.4),
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ('#ff8c00' as any).hexToRgb(.4),

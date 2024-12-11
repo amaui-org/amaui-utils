@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/rgbToHslPure', () => {
+group('@onesy/utils/rgbToHslPure', () => {
 
   post(() => reset());
 
@@ -13,14 +13,14 @@ group('@amaui/utils/rgbToHslPure', () => {
     const valueBrowsers = await evaluate((window: any) => {
       const values_ = [
         [174, 214, 224]
-      ].map(item => window.AmauiUtils.rgbToHslPure(...item));
+      ].map(item => window.OnesyUtils.rgbToHslPure(...item));
 
       return values_;
     });
 
     const valueNode = [
       [174, 214, 224]
-    ].map((item: [number, number, number]) => AmauiUtils.rgbToHslPure(...item));
+    ].map((item: [number, number, number]) => OnesyUtils.rgbToHslPure(...item));
 
     const values = [...valueNode, ...valueBrowsers];
 

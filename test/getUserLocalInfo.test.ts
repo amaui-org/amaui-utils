@@ -1,14 +1,14 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-group('@amaui/utils/getUserLocalInfo', () => {
+group('@onesy/utils/getUserLocalInfo', () => {
 
   post(() => reset());
 
   to('getUserLocalInfo', async () => {
-    const valueBrowsers = await evaluate(async (window: any) => await window.AmauiUtils.getUserLocalInfo(),);
+    const valueBrowsers = await evaluate(async (window: any) => await window.OnesyUtils.getUserLocalInfo(),);
     const values = [...valueBrowsers];
 
     values.forEach((browser: any) => {

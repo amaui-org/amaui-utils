@@ -1,13 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import playwright from 'playwright';
 
 import { evaluate, startBrowser, IBrowser, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/isState', () => {
+group('@onesy/utils/isState', () => {
 
   post(() => reset());
 
@@ -16,7 +16,7 @@ group('@amaui/utils/isState', () => {
     to('is online', async () => {
       const browser: IBrowser = await startBrowser('chromium', { context: { ...playwright.devices['iPhone 13 Pro'] } });
 
-      const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isState('online'), { browsers: { chromium: browser } });
+      const valueBrowsers = await evaluate((window: any) => window.OnesyUtils.isState('online'), { browsers: { chromium: browser } });
 
       valueBrowsers.forEach(value => assert(value).eq(true));
 
@@ -24,7 +24,7 @@ group('@amaui/utils/isState', () => {
     });
 
     to('is not online', async () => {
-      const valueNode = AmauiUtils.isState('online');
+      const valueNode = OnesyUtils.isState('online');
 
       assert(valueNode).eq(false);
     });
@@ -36,7 +36,7 @@ group('@amaui/utils/isState', () => {
     to('is offline', async () => {
       const browser: IBrowser = await startBrowser('chromium');
 
-      const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isState('offline'), {
+      const valueBrowsers = await evaluate((window: any) => window.OnesyUtils.isState('offline'), {
         browsers: { chromium: browser },
         preEvaluate: async browser => await browser.context.setOffline(true),
         postEvaluate: async browser => await browser.context.setOffline(false),
@@ -48,8 +48,8 @@ group('@amaui/utils/isState', () => {
     });
 
     to('is not offline', async () => {
-      const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isState('offline'),);
-      const valueNode = AmauiUtils.isState('offline');
+      const valueBrowsers = await evaluate((window: any) => window.OnesyUtils.isState('offline'),);
+      const valueNode = OnesyUtils.isState('offline');
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eq(false));

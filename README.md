@@ -4,11 +4,11 @@
 
 <p align='center'>
   <a target='_blank' rel='noopener noreferrer' href='#'>
-    <img src='utils/images/logo.svg' alt='amaui logo' />
+    <img src='utils/images/logo.svg' alt='onesy logo' />
   </a>
 </p>
 
-<h1 align='center'>amaui Utils</h1>
+<h1 align='center'>onesy Utils</h1>
 
 <p align='center'>
   Utils
@@ -38,14 +38,14 @@
 ### Add
 
 ```sh
-yarn add @amaui/utils
+yarn add @onesy/utils
 ```
 
 ### Use
 
 ```javascript
   // Import any of the methods
-  import { encode, equalDeep } from '@amaui/utils';
+  import { encode, equalDeep } from '@onesy/utils';
 
   const value = { a: 'a', b: [{ a: 4 }] };
 

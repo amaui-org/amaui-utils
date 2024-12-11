@@ -1,14 +1,14 @@
 /* tslint:disable: no-shadowed-variable */
 import path from 'path';
 
-import { assert } from '@amaui/test';
-import AmauiNode from '@amaui/node';
+import { assert } from '@onesy/test';
+import OnesyNode from '@onesy/node';
 
 import { evaluate, reset, utils } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/hashFile', () => {
+group('@onesy/utils/hashFile', () => {
   const filePath = path.resolve(__dirname, '../LICENSE');
   let value_: any;
 
@@ -46,11 +46,11 @@ group('@amaui/utils/hashFile', () => {
       const file = input.files[0];
 
       return [
-        await window.AmauiUtils.hashFile(file),
+        await window.OnesyUtils.hashFile(file),
       ];
     });
     const valueNode = [
-      await AmauiUtils.hashFile(await AmauiNode.file.get(filePath, false)),
+      await OnesyUtils.hashFile(await OnesyNode.file.get(filePath, false)),
     ];
     const values = [...valueBrowsers];
 
@@ -59,7 +59,7 @@ group('@amaui/utils/hashFile', () => {
 
     values.forEach(value => assert(value).eql(valueNode));
 
-    assert(AmauiUtils.isValid('hash', valueNode[0])).eq(true);
+    assert(OnesyUtils.isValid('hash', valueNode[0])).eq(true);
   });
 
   group('options', () => {
@@ -70,16 +70,16 @@ group('@amaui/utils/hashFile', () => {
         const file = input.files[0];
 
         return [
-          await window.AmauiUtils.hashFile(file, { withPrefix: true }),
-          await window.AmauiUtils.hashFile(file, { withPrefix: false }),
+          await window.OnesyUtils.hashFile(file, { withPrefix: true }),
+          await window.OnesyUtils.hashFile(file, { withPrefix: false }),
         ];
       });
 
-      const file = await AmauiNode.file.get(filePath, false);
+      const file = await OnesyNode.file.get(filePath, false);
 
       const valueNode = [
-        await AmauiUtils.hashFile(file, { withPrefix: true }),
-        await AmauiUtils.hashFile(file, { withPrefix: false }),
+        await OnesyUtils.hashFile(file, { withPrefix: true }),
+        await OnesyUtils.hashFile(file, { withPrefix: false }),
       ];
       const values = [valueNode, ...valueBrowsers];
 
@@ -93,7 +93,7 @@ group('@amaui/utils/hashFile', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate(async (window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       const input = window.document.getElementById('a') as HTMLInputElement;
       const file = input.files[0];

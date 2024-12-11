@@ -1,13 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import playwright from 'playwright';
 
 import { evaluate, startBrowser, IBrowser, reset, utils } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/isOS', () => {
+group('@onesy/utils/isOS', () => {
 
   post(() => reset());
 
@@ -16,7 +16,7 @@ group('@amaui/utils/isOS', () => {
     to('is mobile', async () => {
       const browser: IBrowser = await startBrowser('chromium', { context: { ...playwright.devices['Pixel 4'] } });
 
-      const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isOS('mobile'), { browsers: { chromium: browser } });
+      const valueBrowsers = await evaluate((window: any) => window.OnesyUtils.isOS('mobile'), { browsers: { chromium: browser } });
 
       valueBrowsers.forEach(value => assert(value).eq(true));
 
@@ -24,7 +24,7 @@ group('@amaui/utils/isOS', () => {
     });
 
     to('is not mobile', async () => {
-      const valueNode = AmauiUtils.isOS('mobile');
+      const valueNode = OnesyUtils.isOS('mobile');
 
       assert(valueNode).eq(false);
     });
@@ -34,13 +34,13 @@ group('@amaui/utils/isOS', () => {
   group('mac', () => {
 
     to('is mac', async () => {
-      const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isOS('mac'), { browsers: { webkit: utils.browsers.webkit } });
+      const valueBrowsers = await evaluate((window: any) => window.OnesyUtils.isOS('mac'), { browsers: { webkit: utils.browsers.webkit } });
 
       valueBrowsers.forEach(value => assert(value).eq(true));
     });
 
     to('is not mac', async () => {
-      const valueNode = AmauiUtils.isOS('mac');
+      const valueNode = OnesyUtils.isOS('mac');
 
       assert(valueNode).eq(false);
     });
@@ -52,7 +52,7 @@ group('@amaui/utils/isOS', () => {
     to('is android', async () => {
       const browser: IBrowser = await startBrowser('chromium', { context: { ...playwright.devices['Pixel 4'] } });
 
-      const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isOS('android'), { browsers: { chromium: browser } });
+      const valueBrowsers = await evaluate((window: any) => window.OnesyUtils.isOS('android'), { browsers: { chromium: browser } });
 
       valueBrowsers.forEach(value => assert(value).eq(true));
 
@@ -60,7 +60,7 @@ group('@amaui/utils/isOS', () => {
     });
 
     to('is not android', async () => {
-      const valueNode = AmauiUtils.isOS('android');
+      const valueNode = OnesyUtils.isOS('android');
 
       assert(valueNode).eq(false);
     });
@@ -72,7 +72,7 @@ group('@amaui/utils/isOS', () => {
     to('is ios', async () => {
       const browser: IBrowser = await startBrowser('chromium', { context: { ...playwright.devices['iPhone 13 Pro'] } });
 
-      const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isOS('ios'), { browsers: { webkit: browser } });
+      const valueBrowsers = await evaluate((window: any) => window.OnesyUtils.isOS('ios'), { browsers: { webkit: browser } });
 
       valueBrowsers.forEach(value => assert(value).eq(true));
 
@@ -80,7 +80,7 @@ group('@amaui/utils/isOS', () => {
     });
 
     to('is not ios', async () => {
-      const valueNode = AmauiUtils.isOS('ios');
+      const valueNode = OnesyUtils.isOS('ios');
 
       assert(valueNode).eq(false);
     });
@@ -92,7 +92,7 @@ group('@amaui/utils/isOS', () => {
     to('is windows', async () => {
       const browser: IBrowser = await startBrowser('chromium', { context: { ...playwright.devices['Desktop Edge'] } });
 
-      const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isOS('windows'), { browsers: { chromium: browser } });
+      const valueBrowsers = await evaluate((window: any) => window.OnesyUtils.isOS('windows'), { browsers: { chromium: browser } });
 
       valueBrowsers.forEach(value => assert(value).eq(true));
 
@@ -100,7 +100,7 @@ group('@amaui/utils/isOS', () => {
     });
 
     to('is not windows', async () => {
-      const valueNode = AmauiUtils.isOS('windows');
+      const valueNode = OnesyUtils.isOS('windows');
 
       assert(valueNode).eq(false);
     });
@@ -117,7 +117,7 @@ group('@amaui/utils/isOS', () => {
         },
       });
 
-      const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isOS('linux'), { browsers: { chromium: browser } });
+      const valueBrowsers = await evaluate((window: any) => window.OnesyUtils.isOS('linux'), { browsers: { chromium: browser } });
 
       valueBrowsers.forEach(value => assert(value).eq(true));
 
@@ -125,7 +125,7 @@ group('@amaui/utils/isOS', () => {
     });
 
     to('is not linux', async () => {
-      const valueNode = AmauiUtils.isOS('linux');
+      const valueNode = OnesyUtils.isOS('linux');
 
       assert(valueNode).eq(false);
     });

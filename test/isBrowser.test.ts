@@ -1,13 +1,13 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import playwright from 'playwright';
 
 import { evaluate, startBrowser, IBrowser, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/is', () => {
+group('@onesy/utils/is', () => {
 
   post(() => reset());
 
@@ -16,7 +16,7 @@ group('@amaui/utils/is', () => {
     to('is chrome', async () => {
       const browser: IBrowser = await startBrowser('chromium', { context: { ...playwright.devices['Desktop Chrome'] } });
 
-      const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isBrowser('chrome'), { browsers: { chromium: browser } });
+      const valueBrowsers = await evaluate((window: any) => window.OnesyUtils.isBrowser('chrome'), { browsers: { chromium: browser } });
 
       valueBrowsers.forEach(value => assert(value).eq(true));
 
@@ -24,7 +24,7 @@ group('@amaui/utils/is', () => {
     });
 
     to('is not chrome', async () => {
-      const valueNode = AmauiUtils.isBrowser('chrome');
+      const valueNode = OnesyUtils.isBrowser('chrome');
 
       assert(valueNode).eq(false);
     });
@@ -41,7 +41,7 @@ group('@amaui/utils/is', () => {
         },
       });
 
-      const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isBrowser('opera'), { browsers: { chromium: browser } });
+      const valueBrowsers = await evaluate((window: any) => window.OnesyUtils.isBrowser('opera'), { browsers: { chromium: browser } });
 
       valueBrowsers.forEach(value => assert(value).eq(true));
 
@@ -49,7 +49,7 @@ group('@amaui/utils/is', () => {
     });
 
     to('is not opera', async () => {
-      const valueNode = AmauiUtils.isBrowser('opera');
+      const valueNode = OnesyUtils.isBrowser('opera');
 
       assert(valueNode).eq(false);
     });
@@ -61,7 +61,7 @@ group('@amaui/utils/is', () => {
     to('is firefox', async () => {
       const browser: IBrowser = await startBrowser('chromium', { context: { ...playwright.devices['Desktop Firefox'] } });
 
-      const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isBrowser('firefox'), { browsers: { chromium: browser } });
+      const valueBrowsers = await evaluate((window: any) => window.OnesyUtils.isBrowser('firefox'), { browsers: { chromium: browser } });
 
       valueBrowsers.forEach(value => assert(value).eq(true));
 
@@ -69,7 +69,7 @@ group('@amaui/utils/is', () => {
     });
 
     to('is not firefox', async () => {
-      const valueNode = AmauiUtils.isBrowser('firefox');
+      const valueNode = OnesyUtils.isBrowser('firefox');
 
       assert(valueNode).eq(false);
     });
@@ -81,7 +81,7 @@ group('@amaui/utils/is', () => {
     to('is safari', async () => {
       const browser: IBrowser = await startBrowser('chromium', { context: { ...playwright.devices['Desktop Safari'] } });
 
-      const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isBrowser('safari'), { browsers: { chromium: browser } });
+      const valueBrowsers = await evaluate((window: any) => window.OnesyUtils.isBrowser('safari'), { browsers: { chromium: browser } });
 
       valueBrowsers.forEach(value => assert(value).eq(true));
 
@@ -89,7 +89,7 @@ group('@amaui/utils/is', () => {
     });
 
     to('is not safari', async () => {
-      const valueNode = AmauiUtils.isBrowser('safari');
+      const valueNode = OnesyUtils.isBrowser('safari');
 
       assert(valueNode).eq(false);
     });
@@ -101,7 +101,7 @@ group('@amaui/utils/is', () => {
     to('is edge-chromium', async () => {
       const browser: IBrowser = await startBrowser('chromium', { context: { ...playwright.devices['Desktop Edge'] } });
 
-      const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isBrowser('edge-chromium'), { browsers: { chromium: browser } });
+      const valueBrowsers = await evaluate((window: any) => window.OnesyUtils.isBrowser('edge-chromium'), { browsers: { chromium: browser } });
 
       valueBrowsers.forEach(value => assert(value).eq(true));
 
@@ -109,7 +109,7 @@ group('@amaui/utils/is', () => {
     });
 
     to('is not edge-chromium', async () => {
-      const valueNode = AmauiUtils.isBrowser('edge-chromium');
+      const valueNode = OnesyUtils.isBrowser('edge-chromium');
 
       assert(valueNode).eq(false);
     });
@@ -126,7 +126,7 @@ group('@amaui/utils/is', () => {
         },
       });
 
-      const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.isBrowser('edge'), { browsers: { chromium: browser } });
+      const valueBrowsers = await evaluate((window: any) => window.OnesyUtils.isBrowser('edge'), { browsers: { chromium: browser } });
 
       valueBrowsers.forEach(value => assert(value).eq(true));
 
@@ -134,7 +134,7 @@ group('@amaui/utils/is', () => {
     });
 
     to('is not edge', async () => {
-      const valueNode = AmauiUtils.isBrowser('edge');
+      const valueNode = OnesyUtils.isBrowser('edge');
 
       assert(valueNode).eq(false);
     });
@@ -155,7 +155,7 @@ group('@amaui/utils/is', () => {
         // IE dummy data fixture
         window.document.documentMode = 7;
 
-        return window.AmauiUtils.isBrowser('ie');
+        return window.OnesyUtils.isBrowser('ie');
       }, { browsers: { chromium: browser } });
 
       valueBrowsers.forEach(value => assert(value).eq(true));
@@ -164,7 +164,7 @@ group('@amaui/utils/is', () => {
     });
 
     to('is not ie', async () => {
-      const valueNode = AmauiUtils.isBrowser('ie');
+      const valueNode = OnesyUtils.isBrowser('ie');
 
       assert(valueNode).eq(false);
     });

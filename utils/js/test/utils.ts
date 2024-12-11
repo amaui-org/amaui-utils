@@ -1,7 +1,7 @@
 /* tslint:disable: no-shadowed-variable */
 import playwright, { chromium, webkit, firefox } from 'playwright';
 
-import * as AmauiUtils from '../../../src';
+import * as OnesyUtils from '../../../src';
 
 export type TMethod = (...args: any[]) => any;
 
@@ -30,9 +30,9 @@ export interface IBrowsers<T = IBrowser> {
 type TOpen = ['browser'?, 'context'?, 'page'?];
 
 export const reset = () => {
-  const values = [String, Number, Boolean, Array, Object, Function, ...(AmauiUtils.is('browser') ? [Blob, File] : [])];
+  const values = [String, Number, Boolean, Array, Object, Function, ...(OnesyUtils.is('browser') ? [Blob, File] : [])];
 
-  values.forEach(value => Object.keys(value.prototype).forEach(key => { if (AmauiUtils[key]) delete value.prototype[key]; }));
+  values.forEach(value => Object.keys(value.prototype).forEach(key => { if (OnesyUtils[key]) delete value.prototype[key]; }));
 };
 
 export const startBrowser = (
@@ -225,9 +225,9 @@ preAll(async () => utils.browsers = await startBrowsers());
 
 preEveryTo(async () => {
   await evaluate(async (window: any) => {
-    const values = [String, Number, Boolean, Array, Object, Function, ...(window.AmauiUtils.is('browser') ? [Blob, File] : [])];
+    const values = [String, Number, Boolean, Array, Object, Function, ...(window.OnesyUtils.is('browser') ? [Blob, File] : [])];
 
-    values.forEach(value => Object.keys(value.prototype).forEach(key => { if (window.AmauiUtils[key]) delete value.prototype[key]; }));
+    values.forEach(value => Object.keys(value.prototype).forEach(key => { if (window.OnesyUtils[key]) delete value.prototype[key]; }));
   });
 });
 

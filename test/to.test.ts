@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/to', () => {
+group('@onesy/utils/to', () => {
 
   post(() => reset());
 
@@ -13,21 +13,21 @@ group('@amaui/utils/to', () => {
 
     to('arraybuffer', async () => {
       const values_ = [
-        AmauiUtils.to('', 'arraybuffer'),
-        AmauiUtils.to('a', 'arraybuffer'),
-        AmauiUtils.to('a a a a', 'arraybuffer'),
+        OnesyUtils.to('', 'arraybuffer'),
+        OnesyUtils.to('a', 'arraybuffer'),
+        OnesyUtils.to('a a a a', 'arraybuffer'),
       ];
 
       const valueBrowsers = await evaluate((window: any) => {
         const values_ = [
-          window.AmauiUtils.to('', 'arraybuffer'),
-          window.AmauiUtils.to('a', 'arraybuffer'),
-          window.AmauiUtils.to('a a a a', 'arraybuffer'),
+          window.OnesyUtils.to('', 'arraybuffer'),
+          window.OnesyUtils.to('a', 'arraybuffer'),
+          window.OnesyUtils.to('a a a a', 'arraybuffer'),
         ];
 
-        return values_.map((value: ArrayBuffer) => [window.AmauiUtils.to(value, 'string'), value instanceof ArrayBuffer]);
+        return values_.map((value: ArrayBuffer) => [window.OnesyUtils.to(value, 'string'), value instanceof ArrayBuffer]);
       });
-      const valueNode = values_.map((value: ArrayBuffer) => [AmauiUtils.to(value, 'string'), value instanceof ArrayBuffer]);
+      const valueNode = values_.map((value: ArrayBuffer) => [OnesyUtils.to(value, 'string'), value instanceof ArrayBuffer]);
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -48,18 +48,18 @@ group('@amaui/utils/to', () => {
 
     to('base64', async () => {
       const values_ = [
-        AmauiUtils.to(AmauiUtils.to('', 'base64'), 'string'),
-        AmauiUtils.to(AmauiUtils.to('a', 'base64'), 'string'),
-        AmauiUtils.to(AmauiUtils.to('a a a a', 'base64'), 'string'),
-        AmauiUtils.to('/pMAC+dOnX8daPKS+UVibVE7rifssjoAC5Eo25UeRS4ADcYWifd/kpYyisTahf7PuXFoqK1BWDdOqJ3XE/bx5zCW7ObcaoncjhB7v+FaFby3LDdOfC0V9r9YUnK7Mksl8cVb3PR5LS0ACxWoK1+RorPoOHKVr9YUnK73Pduqt3kg508uJjUS4Kvybla0STdpJvyA53gbLI0cx2Mqlu+3gbQax5JVnkXB8Cr3PRyHAAGy0akr7EqC0KzJLJfObcaon7GPyDOwtE7rR+Tr4lQX26czwjWlYWicKnGF4N0+5+YoPBwACp6tfkaKwtE/aondcTrlYVMAAxxUahfwNun3PbdWg5DKS+v1V2MAC9crAAqYGZJZL+53SKyyvclFnYGD6YrP6VJfbl7wmntItZK3gtYAByK/INQV7ncjAAvCccVG5LpXUAA=', 'string'),
+        OnesyUtils.to(OnesyUtils.to('', 'base64'), 'string'),
+        OnesyUtils.to(OnesyUtils.to('a', 'base64'), 'string'),
+        OnesyUtils.to(OnesyUtils.to('a a a a', 'base64'), 'string'),
+        OnesyUtils.to('/pMAC+dOnX8daPKS+UVibVE7rifssjoAC5Eo25UeRS4ADcYWifd/kpYyisTahf7PuXFoqK1BWDdOqJ3XE/bx5zCW7ObcaoncjhB7v+FaFby3LDdOfC0V9r9YUnK7Mksl8cVb3PR5LS0ACxWoK1+RorPoOHKVr9YUnK73Pduqt3kg508uJjUS4Kvybla0STdpJvyA53gbLI0cx2Mqlu+3gbQax5JVnkXB8Cr3PRyHAAGy0akr7EqC0KzJLJfObcaon7GPyDOwtE7rR+Tr4lQX26czwjWlYWicKnGF4N0+5+YoPBwACp6tfkaKwtE/aondcTrlYVMAAxxUahfwNun3PbdWg5DKS+v1V2MAC9crAAqYGZJZL+53SKyyvclFnYGD6YrP6VJfbl7wmntItZK3gtYAByK/INQV7ncjAAvCccVG5LpXUAA=', 'string'),
       ];
 
       const valueBrowsers = await evaluate((window: any) => {
         const values_ = [
-          window.AmauiUtils.to(window.AmauiUtils.to('', 'base64'), 'string'),
-          window.AmauiUtils.to(window.AmauiUtils.to('a', 'base64'), 'string'),
-          window.AmauiUtils.to(window.AmauiUtils.to('a a a a', 'base64'), 'string'),
-          window.AmauiUtils.to('/pMAC+dOnX8daPKS+UVibVE7rifssjoAC5Eo25UeRS4ADcYWifd/kpYyisTahf7PuXFoqK1BWDdOqJ3XE/bx5zCW7ObcaoncjhB7v+FaFby3LDdOfC0V9r9YUnK7Mksl8cVb3PR5LS0ACxWoK1+RorPoOHKVr9YUnK73Pduqt3kg508uJjUS4Kvybla0STdpJvyA53gbLI0cx2Mqlu+3gbQax5JVnkXB8Cr3PRyHAAGy0akr7EqC0KzJLJfObcaon7GPyDOwtE7rR+Tr4lQX26czwjWlYWicKnGF4N0+5+YoPBwACp6tfkaKwtE/aondcTrlYVMAAxxUahfwNun3PbdWg5DKS+v1V2MAC9crAAqYGZJZL+53SKyyvclFnYGD6YrP6VJfbl7wmntItZK3gtYAByK/INQV7ncjAAvCccVG5LpXUAA=', 'string'),
+          window.OnesyUtils.to(window.OnesyUtils.to('', 'base64'), 'string'),
+          window.OnesyUtils.to(window.OnesyUtils.to('a', 'base64'), 'string'),
+          window.OnesyUtils.to(window.OnesyUtils.to('a a a a', 'base64'), 'string'),
+          window.OnesyUtils.to('/pMAC+dOnX8daPKS+UVibVE7rifssjoAC5Eo25UeRS4ADcYWifd/kpYyisTahf7PuXFoqK1BWDdOqJ3XE/bx5zCW7ObcaoncjhB7v+FaFby3LDdOfC0V9r9YUnK7Mksl8cVb3PR5LS0ACxWoK1+RorPoOHKVr9YUnK73Pduqt3kg508uJjUS4Kvybla0STdpJvyA53gbLI0cx2Mqlu+3gbQax5JVnkXB8Cr3PRyHAAGy0akr7EqC0KzJLJfObcaon7GPyDOwtE7rR+Tr4lQX26czwjWlYWicKnGF4N0+5+YoPBwACp6tfkaKwtE/aondcTrlYVMAAxxUahfwNun3PbdWg5DKS+v1V2MAC9crAAqYGZJZL+53SKyyvclFnYGD6YrP6VJfbl7wmntItZK3gtYAByK/INQV7ncjAAvCccVG5LpXUAA=', 'string'),
         ];
 
         return values_;
@@ -77,16 +77,16 @@ group('@amaui/utils/to', () => {
 
     to('datauri', async () => {
       const values_ = [
-        AmauiUtils.to(AmauiUtils.to('', 'datauri'), 'string'),
-        AmauiUtils.to(AmauiUtils.to('a', 'datauri'), 'string'),
-        AmauiUtils.to(AmauiUtils.to('a a a a', 'datauri'), 'string'),
+        OnesyUtils.to(OnesyUtils.to('', 'datauri'), 'string'),
+        OnesyUtils.to(OnesyUtils.to('a', 'datauri'), 'string'),
+        OnesyUtils.to(OnesyUtils.to('a a a a', 'datauri'), 'string'),
       ];
 
       const valueBrowsers = await evaluate((window: any) => {
         const values_ = [
-          window.AmauiUtils.to(window.AmauiUtils.to('', 'datauri'), 'string'),
-          window.AmauiUtils.to(window.AmauiUtils.to('a', 'datauri'), 'string'),
-          window.AmauiUtils.to(window.AmauiUtils.to('a a a a', 'datauri'), 'string'),
+          window.OnesyUtils.to(window.OnesyUtils.to('', 'datauri'), 'string'),
+          window.OnesyUtils.to(window.OnesyUtils.to('a', 'datauri'), 'string'),
+          window.OnesyUtils.to(window.OnesyUtils.to('a a a a', 'datauri'), 'string'),
         ];
 
         return values_;
@@ -115,9 +115,9 @@ group('@amaui/utils/to', () => {
           'a a a a',
         ];
 
-        return values_.map(value => AmauiUtils.to(value, 'string'));
+        return values_.map(value => OnesyUtils.to(value, 'string'));
       });
-      const valueNode = values_.map(value => AmauiUtils.to(value, 'string'));
+      const valueNode = values_.map(value => OnesyUtils.to(value, 'string'));
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -129,24 +129,24 @@ group('@amaui/utils/to', () => {
 
     to('other', async () => {
       const values_ = [
-        AmauiUtils.to('a', 'string'),
-        AmauiUtils.to(4, 'string'),
-        AmauiUtils.to(true, 'string'),
-        AmauiUtils.to(undefined, 'string'),
-        AmauiUtils.to(new Map(), 'string'),
-        AmauiUtils.to(function a() { }, 'string'),
-        AmauiUtils.to(null, 'string'),
+        OnesyUtils.to('a', 'string'),
+        OnesyUtils.to(4, 'string'),
+        OnesyUtils.to(true, 'string'),
+        OnesyUtils.to(undefined, 'string'),
+        OnesyUtils.to(new Map(), 'string'),
+        OnesyUtils.to(function a() { }, 'string'),
+        OnesyUtils.to(null, 'string'),
       ];
 
       const valueBrowsers = await evaluate((window: any) => {
         const values_ = [
-          window.AmauiUtils.to('a', 'string'),
-          window.AmauiUtils.to(4, 'string'),
-          window.AmauiUtils.to(true, 'string'),
-          window.AmauiUtils.to(undefined, 'string'),
-          window.AmauiUtils.to(new Map(), 'string'),
-          window.AmauiUtils.to(function a() { }, 'string'),
-          window.AmauiUtils.to(null, 'string'),
+          window.OnesyUtils.to('a', 'string'),
+          window.OnesyUtils.to(4, 'string'),
+          window.OnesyUtils.to(true, 'string'),
+          window.OnesyUtils.to(undefined, 'string'),
+          window.OnesyUtils.to(new Map(), 'string'),
+          window.OnesyUtils.to(function a() { }, 'string'),
+          window.OnesyUtils.to(null, 'string'),
         ];
 
         return values_;
@@ -171,21 +171,21 @@ group('@amaui/utils/to', () => {
 
     to('string', async () => {
       const values_ = [
-        AmauiUtils.to('', 'arraybuffer'),
-        AmauiUtils.to('a', 'arraybuffer'),
-        AmauiUtils.to('a a a a', 'arraybuffer'),
+        OnesyUtils.to('', 'arraybuffer'),
+        OnesyUtils.to('a', 'arraybuffer'),
+        OnesyUtils.to('a a a a', 'arraybuffer'),
       ];
 
       const valueBrowsers = await evaluate((window: any) => {
         const values_ = [
-          window.AmauiUtils.to('', 'arraybuffer'),
-          window.AmauiUtils.to('a', 'arraybuffer'),
-          window.AmauiUtils.to('a a a a', 'arraybuffer'),
+          window.OnesyUtils.to('', 'arraybuffer'),
+          window.OnesyUtils.to('a', 'arraybuffer'),
+          window.OnesyUtils.to('a a a a', 'arraybuffer'),
         ];
 
-        return values_.map((value: ArrayBuffer) => [window.AmauiUtils.to(value, 'string'), value instanceof ArrayBuffer, value.byteLength]);
+        return values_.map((value: ArrayBuffer) => [window.OnesyUtils.to(value, 'string'), value instanceof ArrayBuffer, value.byteLength]);
       });
-      const valueNode = values_.map((value: ArrayBuffer) => [AmauiUtils.to(value, 'string'), value instanceof ArrayBuffer, value.byteLength]);
+      const valueNode = values_.map((value: ArrayBuffer) => [OnesyUtils.to(value, 'string'), value instanceof ArrayBuffer, value.byteLength]);
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -209,21 +209,21 @@ group('@amaui/utils/to', () => {
 
     to('base64', async () => {
       const values_ = [
-        AmauiUtils.to(AmauiUtils.to('', 'base64'), 'arraybuffer'),
-        AmauiUtils.to(AmauiUtils.to('a', 'base64'), 'arraybuffer'),
-        AmauiUtils.to(AmauiUtils.to('a a a a', 'base64'), 'arraybuffer'),
+        OnesyUtils.to(OnesyUtils.to('', 'base64'), 'arraybuffer'),
+        OnesyUtils.to(OnesyUtils.to('a', 'base64'), 'arraybuffer'),
+        OnesyUtils.to(OnesyUtils.to('a a a a', 'base64'), 'arraybuffer'),
       ];
 
       const valueBrowsers = await evaluate((window: any) => {
         const values_ = [
-          window.AmauiUtils.to(window.AmauiUtils.to('', 'base64'), 'arraybuffer'),
-          window.AmauiUtils.to(window.AmauiUtils.to('a', 'base64'), 'arraybuffer'),
-          window.AmauiUtils.to(window.AmauiUtils.to('a a a a', 'base64'), 'arraybuffer'),
+          window.OnesyUtils.to(window.OnesyUtils.to('', 'base64'), 'arraybuffer'),
+          window.OnesyUtils.to(window.OnesyUtils.to('a', 'base64'), 'arraybuffer'),
+          window.OnesyUtils.to(window.OnesyUtils.to('a a a a', 'base64'), 'arraybuffer'),
         ];
 
-        return values_.map((value: ArrayBuffer) => [window.AmauiUtils.to(window.AmauiUtils.to(value, 'string'), 'string'), value instanceof ArrayBuffer]);
+        return values_.map((value: ArrayBuffer) => [window.OnesyUtils.to(window.OnesyUtils.to(value, 'string'), 'string'), value instanceof ArrayBuffer]);
       });
-      const valueNode = values_.map((value: ArrayBuffer) => [AmauiUtils.to(AmauiUtils.to(value, 'string'), 'string'), value instanceof ArrayBuffer]);
+      const valueNode = values_.map((value: ArrayBuffer) => [OnesyUtils.to(OnesyUtils.to(value, 'string'), 'string'), value instanceof ArrayBuffer]);
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -244,21 +244,21 @@ group('@amaui/utils/to', () => {
 
     to('datauri', async () => {
       const values_ = [
-        AmauiUtils.to(AmauiUtils.to('', 'datauri'), 'arraybuffer'),
-        AmauiUtils.to(AmauiUtils.to('a', 'datauri'), 'arraybuffer'),
-        AmauiUtils.to(AmauiUtils.to('a a a a', 'datauri'), 'arraybuffer'),
+        OnesyUtils.to(OnesyUtils.to('', 'datauri'), 'arraybuffer'),
+        OnesyUtils.to(OnesyUtils.to('a', 'datauri'), 'arraybuffer'),
+        OnesyUtils.to(OnesyUtils.to('a a a a', 'datauri'), 'arraybuffer'),
       ];
 
       const valueBrowsers = await evaluate((window: any) => {
         const values_ = [
-          window.AmauiUtils.to(window.AmauiUtils.to('', 'datauri'), 'arraybuffer'),
-          window.AmauiUtils.to(window.AmauiUtils.to('a', 'datauri'), 'arraybuffer'),
-          window.AmauiUtils.to(window.AmauiUtils.to('a a a a', 'datauri'), 'arraybuffer'),
+          window.OnesyUtils.to(window.OnesyUtils.to('', 'datauri'), 'arraybuffer'),
+          window.OnesyUtils.to(window.OnesyUtils.to('a', 'datauri'), 'arraybuffer'),
+          window.OnesyUtils.to(window.OnesyUtils.to('a a a a', 'datauri'), 'arraybuffer'),
         ];
 
-        return values_.map((value: ArrayBuffer) => [window.AmauiUtils.to(window.AmauiUtils.to(value, 'string'), 'string'), value instanceof ArrayBuffer]);
+        return values_.map((value: ArrayBuffer) => [window.OnesyUtils.to(window.OnesyUtils.to(value, 'string'), 'string'), value instanceof ArrayBuffer]);
       });
-      const valueNode = values_.map((value: ArrayBuffer) => [AmauiUtils.to(AmauiUtils.to(value, 'string'), 'string'), value instanceof ArrayBuffer]);
+      const valueNode = values_.map((value: ArrayBuffer) => [OnesyUtils.to(OnesyUtils.to(value, 'string'), 'string'), value instanceof ArrayBuffer]);
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -279,12 +279,12 @@ group('@amaui/utils/to', () => {
 
     to('buffer', async () => {
       const values_ = [
-        AmauiUtils.to(AmauiUtils.to('', 'buffer'), 'arraybuffer'),
-        AmauiUtils.to(AmauiUtils.to('a', 'buffer'), 'arraybuffer'),
-        AmauiUtils.to(AmauiUtils.to('a a a a', 'buffer'), 'arraybuffer'),
+        OnesyUtils.to(OnesyUtils.to('', 'buffer'), 'arraybuffer'),
+        OnesyUtils.to(OnesyUtils.to('a', 'buffer'), 'arraybuffer'),
+        OnesyUtils.to(OnesyUtils.to('a a a a', 'buffer'), 'arraybuffer'),
       ];
 
-      const valueNode = values_.map((value: ArrayBuffer) => [AmauiUtils.to(value, 'string'), value instanceof ArrayBuffer, value.byteLength]);
+      const valueNode = values_.map((value: ArrayBuffer) => [OnesyUtils.to(value, 'string'), value instanceof ArrayBuffer, value.byteLength]);
       const values = [valueNode];
 
       values.forEach(value => assert(value).eql([
@@ -308,21 +308,21 @@ group('@amaui/utils/to', () => {
 
     to('arraybuffer', async () => {
       const values_ = [
-        AmauiUtils.to(AmauiUtils.to('', 'arraybuffer'), 'arraybuffer'),
-        AmauiUtils.to(AmauiUtils.to('a', 'arraybuffer'), 'arraybuffer'),
-        AmauiUtils.to(AmauiUtils.to('a a a a', 'arraybuffer'), 'arraybuffer'),
+        OnesyUtils.to(OnesyUtils.to('', 'arraybuffer'), 'arraybuffer'),
+        OnesyUtils.to(OnesyUtils.to('a', 'arraybuffer'), 'arraybuffer'),
+        OnesyUtils.to(OnesyUtils.to('a a a a', 'arraybuffer'), 'arraybuffer'),
       ];
 
       const valueBrowsers = await evaluate((window: any) => {
         const values_ = [
-          window.AmauiUtils.to(window.AmauiUtils.to('', 'arraybuffer'), 'arraybuffer'),
-          window.AmauiUtils.to(window.AmauiUtils.to('a', 'arraybuffer'), 'arraybuffer'),
-          window.AmauiUtils.to(window.AmauiUtils.to('a a a a', 'arraybuffer'), 'arraybuffer'),
+          window.OnesyUtils.to(window.OnesyUtils.to('', 'arraybuffer'), 'arraybuffer'),
+          window.OnesyUtils.to(window.OnesyUtils.to('a', 'arraybuffer'), 'arraybuffer'),
+          window.OnesyUtils.to(window.OnesyUtils.to('a a a a', 'arraybuffer'), 'arraybuffer'),
         ];
 
-        return values_.map((value: ArrayBuffer) => [window.AmauiUtils.to(value, 'string'), value instanceof ArrayBuffer]);
+        return values_.map((value: ArrayBuffer) => [window.OnesyUtils.to(value, 'string'), value instanceof ArrayBuffer]);
       });
-      const valueNode = values_.map((value: ArrayBuffer) => [AmauiUtils.to(value, 'string'), value instanceof ArrayBuffer]);
+      const valueNode = values_.map((value: ArrayBuffer) => [OnesyUtils.to(value, 'string'), value instanceof ArrayBuffer]);
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -347,21 +347,21 @@ group('@amaui/utils/to', () => {
 
     to('string', async () => {
       const values_ = [
-        AmauiUtils.to('', 'base64'),
-        AmauiUtils.to('a', 'base64'),
-        AmauiUtils.to('a a a a', 'base64'),
+        OnesyUtils.to('', 'base64'),
+        OnesyUtils.to('a', 'base64'),
+        OnesyUtils.to('a a a a', 'base64'),
       ];
 
       const valueBrowsers = await evaluate((window: any) => {
         const values_ = [
-          window.AmauiUtils.to('', 'base64'),
-          window.AmauiUtils.to('a', 'base64'),
-          window.AmauiUtils.to('a a a a', 'base64'),
+          window.OnesyUtils.to('', 'base64'),
+          window.OnesyUtils.to('a', 'base64'),
+          window.OnesyUtils.to('a a a a', 'base64'),
         ];
 
-        return values_.map((value: ArrayBuffer) => [window.AmauiUtils.to(value, 'string'), window.AmauiUtils.isValid('base64', value)]);
+        return values_.map((value: ArrayBuffer) => [window.OnesyUtils.to(value, 'string'), window.OnesyUtils.isValid('base64', value)]);
       });
-      const valueNode = values_.map((value: ArrayBuffer) => [AmauiUtils.to(value, 'string'), AmauiUtils.isValid('base64', value)]);
+      const valueNode = values_.map((value: ArrayBuffer) => [OnesyUtils.to(value, 'string'), OnesyUtils.isValid('base64', value)]);
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -382,21 +382,21 @@ group('@amaui/utils/to', () => {
 
     to('base64', async () => {
       const values_ = [
-        AmauiUtils.to(AmauiUtils.to('', 'base64'), 'base64'),
-        AmauiUtils.to(AmauiUtils.to('a', 'base64'), 'base64'),
-        AmauiUtils.to(AmauiUtils.to('a a a a', 'base64'), 'base64'),
+        OnesyUtils.to(OnesyUtils.to('', 'base64'), 'base64'),
+        OnesyUtils.to(OnesyUtils.to('a', 'base64'), 'base64'),
+        OnesyUtils.to(OnesyUtils.to('a a a a', 'base64'), 'base64'),
       ];
 
       const valueBrowsers = await evaluate((window: any) => {
         const values_ = [
-          window.AmauiUtils.to(window.AmauiUtils.to('', 'base64'), 'base64'),
-          window.AmauiUtils.to(window.AmauiUtils.to('a', 'base64'), 'base64'),
-          window.AmauiUtils.to(window.AmauiUtils.to('a a a a', 'base64'), 'base64'),
+          window.OnesyUtils.to(window.OnesyUtils.to('', 'base64'), 'base64'),
+          window.OnesyUtils.to(window.OnesyUtils.to('a', 'base64'), 'base64'),
+          window.OnesyUtils.to(window.OnesyUtils.to('a a a a', 'base64'), 'base64'),
         ];
 
-        return values_.map((value: ArrayBuffer) => [window.AmauiUtils.to(value, 'string'), window.AmauiUtils.isValid('base64', value)]);
+        return values_.map((value: ArrayBuffer) => [window.OnesyUtils.to(value, 'string'), window.OnesyUtils.isValid('base64', value)]);
       });
-      const valueNode = values_.map((value: ArrayBuffer) => [AmauiUtils.to(value, 'string'), AmauiUtils.isValid('base64', value)]);
+      const valueNode = values_.map((value: ArrayBuffer) => [OnesyUtils.to(value, 'string'), OnesyUtils.isValid('base64', value)]);
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -421,21 +421,21 @@ group('@amaui/utils/to', () => {
 
     to('string', async () => {
       const values_ = [
-        AmauiUtils.to('', 'datauri'),
-        AmauiUtils.to('a', 'datauri'),
-        AmauiUtils.to('a a a a', 'datauri'),
+        OnesyUtils.to('', 'datauri'),
+        OnesyUtils.to('a', 'datauri'),
+        OnesyUtils.to('a a a a', 'datauri'),
       ];
 
       const valueBrowsers = await evaluate((window: any) => {
         const values_ = [
-          window.AmauiUtils.to('', 'datauri'),
-          window.AmauiUtils.to('a', 'datauri'),
-          window.AmauiUtils.to('a a a a', 'datauri'),
+          window.OnesyUtils.to('', 'datauri'),
+          window.OnesyUtils.to('a', 'datauri'),
+          window.OnesyUtils.to('a a a a', 'datauri'),
         ];
 
-        return values_.map((value: ArrayBuffer) => [window.AmauiUtils.to(value, 'string'), window.AmauiUtils.isValid('datauri', value)]);
+        return values_.map((value: ArrayBuffer) => [window.OnesyUtils.to(value, 'string'), window.OnesyUtils.isValid('datauri', value)]);
       });
-      const valueNode = values_.map((value: ArrayBuffer) => [AmauiUtils.to(value, 'string'), AmauiUtils.isValid('datauri', value)]);
+      const valueNode = values_.map((value: ArrayBuffer) => [OnesyUtils.to(value, 'string'), OnesyUtils.isValid('datauri', value)]);
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -456,21 +456,21 @@ group('@amaui/utils/to', () => {
 
     to('datauri', async () => {
       const values_ = [
-        AmauiUtils.to(AmauiUtils.to('', 'datauri'), 'datauri'),
-        AmauiUtils.to(AmauiUtils.to('a', 'datauri'), 'datauri'),
-        AmauiUtils.to(AmauiUtils.to('a a a a', 'datauri'), 'datauri'),
+        OnesyUtils.to(OnesyUtils.to('', 'datauri'), 'datauri'),
+        OnesyUtils.to(OnesyUtils.to('a', 'datauri'), 'datauri'),
+        OnesyUtils.to(OnesyUtils.to('a a a a', 'datauri'), 'datauri'),
       ];
 
       const valueBrowsers = await evaluate((window: any) => {
         const values_ = [
-          window.AmauiUtils.to(window.AmauiUtils.to('', 'datauri'), 'datauri'),
-          window.AmauiUtils.to(window.AmauiUtils.to('a', 'datauri'), 'datauri'),
-          window.AmauiUtils.to(window.AmauiUtils.to('a a a a', 'datauri'), 'datauri'),
+          window.OnesyUtils.to(window.OnesyUtils.to('', 'datauri'), 'datauri'),
+          window.OnesyUtils.to(window.OnesyUtils.to('a', 'datauri'), 'datauri'),
+          window.OnesyUtils.to(window.OnesyUtils.to('a a a a', 'datauri'), 'datauri'),
         ];
 
-        return values_.map((value: ArrayBuffer) => [window.AmauiUtils.to(value, 'string'), window.AmauiUtils.isValid('datauri', value)]);
+        return values_.map((value: ArrayBuffer) => [window.OnesyUtils.to(value, 'string'), window.OnesyUtils.isValid('datauri', value)]);
       });
-      const valueNode = values_.map((value: ArrayBuffer) => [AmauiUtils.to(value, 'string'), AmauiUtils.isValid('datauri', value)]);
+      const valueNode = values_.map((value: ArrayBuffer) => [OnesyUtils.to(value, 'string'), OnesyUtils.isValid('datauri', value)]);
       const values = [valueNode, ...valueBrowsers];
 
       values.forEach(value => assert(value).eql([
@@ -494,18 +494,18 @@ group('@amaui/utils/to', () => {
   group('blob', async () => {
 
     to('nodejs', () => {
-      assert(AmauiUtils.to('a', 'blob')).eq(undefined);
+      assert(OnesyUtils.to('a', 'blob')).eq(undefined);
     });
 
     to('base64', async () => {
       const valueBrowsers = await evaluate(async (window: any) => {
         const values_: any = [
-          window.AmauiUtils.to(window.AmauiUtils.to('', 'base64'), 'blob'),
-          window.AmauiUtils.to(window.AmauiUtils.to('a', 'base64'), 'blob'),
-          window.AmauiUtils.to(window.AmauiUtils.to('a a a a', 'base64'), 'blob'),
+          window.OnesyUtils.to(window.OnesyUtils.to('', 'base64'), 'blob'),
+          window.OnesyUtils.to(window.OnesyUtils.to('a', 'base64'), 'blob'),
+          window.OnesyUtils.to(window.OnesyUtils.to('a a a a', 'base64'), 'blob'),
         ];
 
-        for (const [index, value] of values_.entries()) values_[index] = [value && window.AmauiUtils.to(await value.arrayBuffer(), 'string'), value instanceof Blob];
+        for (const [index, value] of values_.entries()) values_[index] = [value && window.OnesyUtils.to(await value.arrayBuffer(), 'string'), value instanceof Blob];
 
         return values_;
       });
@@ -530,12 +530,12 @@ group('@amaui/utils/to', () => {
     to('datauri', async () => {
       const valueBrowsers = await evaluate(async (window: any) => {
         const values_: any = [
-          window.AmauiUtils.to(window.AmauiUtils.to('', 'datauri'), 'blob'),
-          window.AmauiUtils.to(window.AmauiUtils.to('a', 'datauri'), 'blob'),
-          window.AmauiUtils.to(window.AmauiUtils.to('a a a a', 'datauri'), 'blob'),
+          window.OnesyUtils.to(window.OnesyUtils.to('', 'datauri'), 'blob'),
+          window.OnesyUtils.to(window.OnesyUtils.to('a', 'datauri'), 'blob'),
+          window.OnesyUtils.to(window.OnesyUtils.to('a a a a', 'datauri'), 'blob'),
         ];
 
-        for (const [index, value] of values_.entries()) values_[index] = [window.AmauiUtils.to(await value.arrayBuffer(), 'string'), value instanceof Blob];
+        for (const [index, value] of values_.entries()) values_[index] = [window.OnesyUtils.to(await value.arrayBuffer(), 'string'), value instanceof Blob];
 
         return values_;
       });
@@ -560,12 +560,12 @@ group('@amaui/utils/to', () => {
     to('string', async () => {
       const valueBrowsers = await evaluate(async (window: any) => {
         const values_: any = [
-          window.AmauiUtils.to('', 'blob'),
-          window.AmauiUtils.to('a', 'blob'),
-          window.AmauiUtils.to('a a a a', 'blob'),
+          window.OnesyUtils.to('', 'blob'),
+          window.OnesyUtils.to('a', 'blob'),
+          window.OnesyUtils.to('a a a a', 'blob'),
         ];
 
-        for (const [index, value] of values_.entries()) values_[index] = [value && window.AmauiUtils.to(await value.text(), 'string'), value instanceof Blob];
+        for (const [index, value] of values_.entries()) values_[index] = [value && window.OnesyUtils.to(await value.text(), 'string'), value instanceof Blob];
 
         return values_;
       });
@@ -590,12 +590,12 @@ group('@amaui/utils/to', () => {
     to('blob', async () => {
       const valueBrowsers = await evaluate(async (window: any) => {
         const values_: any = [
-          window.AmauiUtils.to(window.AmauiUtils.to('', 'blob'), 'blob'),
-          window.AmauiUtils.to(window.AmauiUtils.to('a', 'blob'), 'blob'),
-          window.AmauiUtils.to(window.AmauiUtils.to('a a a a', 'blob'), 'blob'),
+          window.OnesyUtils.to(window.OnesyUtils.to('', 'blob'), 'blob'),
+          window.OnesyUtils.to(window.OnesyUtils.to('a', 'blob'), 'blob'),
+          window.OnesyUtils.to(window.OnesyUtils.to('a a a a', 'blob'), 'blob'),
         ];
 
-        for (const [index, value] of values_.entries()) values_[index] = [value && window.AmauiUtils.to(await value.text(), 'string'), value instanceof Blob];
+        for (const [index, value] of values_.entries()) values_[index] = [value && window.OnesyUtils.to(await value.text(), 'string'), value instanceof Blob];
 
         return values_;
       });
@@ -622,7 +622,7 @@ group('@amaui/utils/to', () => {
   group('buffer', async () => {
 
     to('browser', async () => {
-      const valueBrowsers = await evaluate(async (window: any) => window.AmauiUtils.to('a', 'buffer'),);
+      const valueBrowsers = await evaluate(async (window: any) => window.OnesyUtils.to('a', 'buffer'),);
       const values = [...valueBrowsers];
 
       values.forEach(value => assert(value).eq(undefined));
@@ -630,12 +630,12 @@ group('@amaui/utils/to', () => {
 
     to('string', async () => {
       const values_ = [
-        AmauiUtils.to('', 'buffer'),
-        AmauiUtils.to('a', 'buffer'),
-        AmauiUtils.to('a a a a', 'buffer'),
+        OnesyUtils.to('', 'buffer'),
+        OnesyUtils.to('a', 'buffer'),
+        OnesyUtils.to('a a a a', 'buffer'),
       ];
 
-      const valueNode = values_.map((value: Buffer) => [AmauiUtils.to(value, 'string'), value instanceof Buffer, value.length]); const values = [valueNode];
+      const valueNode = values_.map((value: Buffer) => [OnesyUtils.to(value, 'string'), value instanceof Buffer, value.length]); const values = [valueNode];
 
       values.forEach(value => assert(value).eql([
         [
@@ -658,12 +658,12 @@ group('@amaui/utils/to', () => {
 
     to('base64', async () => {
       const values_ = [
-        AmauiUtils.to(AmauiUtils.to('', 'base64'), 'buffer'),
-        AmauiUtils.to(AmauiUtils.to('a', 'base64'), 'buffer'),
-        AmauiUtils.to(AmauiUtils.to('a a a a', 'base64'), 'buffer'),
+        OnesyUtils.to(OnesyUtils.to('', 'base64'), 'buffer'),
+        OnesyUtils.to(OnesyUtils.to('a', 'base64'), 'buffer'),
+        OnesyUtils.to(OnesyUtils.to('a a a a', 'base64'), 'buffer'),
       ];
 
-      const valueNode = values_.map((value: Buffer) => [AmauiUtils.to(AmauiUtils.to(value, 'string'), 'string'), value instanceof Buffer, value.length]);
+      const valueNode = values_.map((value: Buffer) => [OnesyUtils.to(OnesyUtils.to(value, 'string'), 'string'), value instanceof Buffer, value.length]);
       const values = [valueNode];
 
       values.forEach(value => assert(value).eql([
@@ -687,12 +687,12 @@ group('@amaui/utils/to', () => {
 
     to('datauri', async () => {
       const values_ = [
-        AmauiUtils.to(AmauiUtils.to('', 'datauri'), 'buffer'),
-        AmauiUtils.to(AmauiUtils.to('a', 'datauri'), 'buffer'),
-        AmauiUtils.to(AmauiUtils.to('a a a a', 'datauri'), 'buffer'),
+        OnesyUtils.to(OnesyUtils.to('', 'datauri'), 'buffer'),
+        OnesyUtils.to(OnesyUtils.to('a', 'datauri'), 'buffer'),
+        OnesyUtils.to(OnesyUtils.to('a a a a', 'datauri'), 'buffer'),
       ];
 
-      const valueNode = values_.map((value: Buffer) => [AmauiUtils.to(AmauiUtils.to(value, 'string'), 'string'), value instanceof Buffer, value.length]);
+      const valueNode = values_.map((value: Buffer) => [OnesyUtils.to(OnesyUtils.to(value, 'string'), 'string'), value instanceof Buffer, value.length]);
       const values = [valueNode];
 
       values.forEach(value => assert(value).eql([
@@ -716,12 +716,12 @@ group('@amaui/utils/to', () => {
 
     to('buffer', async () => {
       const values_ = [
-        AmauiUtils.to(AmauiUtils.to('', 'buffer'), 'buffer'),
-        AmauiUtils.to(AmauiUtils.to('a', 'buffer'), 'buffer'),
-        AmauiUtils.to(AmauiUtils.to('a a a a', 'buffer'), 'buffer'),
+        OnesyUtils.to(OnesyUtils.to('', 'buffer'), 'buffer'),
+        OnesyUtils.to(OnesyUtils.to('a', 'buffer'), 'buffer'),
+        OnesyUtils.to(OnesyUtils.to('a a a a', 'buffer'), 'buffer'),
       ];
 
-      const valueNode = values_.map((value: Buffer) => [AmauiUtils.to(value, 'string'), value instanceof Buffer, value.length]); const values = [valueNode];
+      const valueNode = values_.map((value: Buffer) => [OnesyUtils.to(value, 'string'), value instanceof Buffer, value.length]); const values = [valueNode];
 
       values.forEach(value => assert(value).eql([
         [
@@ -744,12 +744,12 @@ group('@amaui/utils/to', () => {
 
     to('other', async () => {
       const values_ = [
-        AmauiUtils.to(4, 'buffer'),
-        AmauiUtils.to(new Map(), 'buffer'),
-        AmauiUtils.to(null, 'buffer'),
+        OnesyUtils.to(4, 'buffer'),
+        OnesyUtils.to(new Map(), 'buffer'),
+        OnesyUtils.to(null, 'buffer'),
       ];
 
-      const valueNode = values_.map((value: Buffer) => [AmauiUtils.to(value, 'string'), value instanceof Buffer, value.length]);
+      const valueNode = values_.map((value: Buffer) => [OnesyUtils.to(value, 'string'), value instanceof Buffer, value.length]);
       const values = [valueNode];
 
       values.forEach(value => assert(value).eql([
@@ -778,10 +778,10 @@ group('@amaui/utils/to', () => {
     to('string', async () => {
       const valueBrowsers = await evaluate((window: any) => {
         const values_ = [
-          window.AmauiUtils.to(undefined, 'size'),
-          window.AmauiUtils.to('a', 'size'),
-          window.AmauiUtils.to('aaa', 'size'),
-          window.AmauiUtils.to(`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at ultricies metus, sit amet imperdiet justo. Nunc gravida enim at turpis sagittis, ut posuere neque luctus. Curabitur faucibus ante sed leo malesuada, in molestie lorem fringilla. Nunc ex tellus, aliquet ut ultricies eu, dignissim id lectus. In nec ornare odio, nec gravida dolor. Cras accumsan accumsan cursus. Proin lobortis dui ligula, sed porttitor purus malesuada et. Proin a magna purus. Donec non eleifend diam.
+          window.OnesyUtils.to(undefined, 'size'),
+          window.OnesyUtils.to('a', 'size'),
+          window.OnesyUtils.to('aaa', 'size'),
+          window.OnesyUtils.to(`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at ultricies metus, sit amet imperdiet justo. Nunc gravida enim at turpis sagittis, ut posuere neque luctus. Curabitur faucibus ante sed leo malesuada, in molestie lorem fringilla. Nunc ex tellus, aliquet ut ultricies eu, dignissim id lectus. In nec ornare odio, nec gravida dolor. Cras accumsan accumsan cursus. Proin lobortis dui ligula, sed porttitor purus malesuada et. Proin a magna purus. Donec non eleifend diam.
 
 Etiam ut congue est, et dictum sem. Nullam pharetra ex eget augue ornare, molestie consectetur augue mattis. Fusce vel eros id elit aliquam pulvinar. Mauris nec pharetra magna. Maecenas eu interdum lectus. Fusce elementum elit sit amet ligula fermentum, vel fermentum enim facilisis. Sed bibendum sed elit sed ullamcorper. Morbi in ultricies ipsum. Duis non libero nisl. Vestibulum posuere, dolor sed fermentum aliquet, ipsum risus tempor ligula, ac elementum nibh leo sit amet felis. Curabitur vel velit vel eros lobortis consectetur. Integer a placerat mi. Nam sodales imperdiet leo vel dapibus. Ut lacinia blandit ipsum, a rutrum metus pretium in.
 
@@ -794,10 +794,10 @@ Nullam accumsan et elit vel mattis. Pellentesque finibus est et eros tincidunt, 
       });
 
       const values_ = [
-        AmauiUtils.to(undefined, 'size'),
-        AmauiUtils.to('a', 'size'),
-        AmauiUtils.to('aaa', 'size'),
-        AmauiUtils.to(`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at ultricies metus, sit amet imperdiet justo. Nunc gravida enim at turpis sagittis, ut posuere neque luctus. Curabitur faucibus ante sed leo malesuada, in molestie lorem fringilla. Nunc ex tellus, aliquet ut ultricies eu, dignissim id lectus. In nec ornare odio, nec gravida dolor. Cras accumsan accumsan cursus. Proin lobortis dui ligula, sed porttitor purus malesuada et. Proin a magna purus. Donec non eleifend diam.
+        OnesyUtils.to(undefined, 'size'),
+        OnesyUtils.to('a', 'size'),
+        OnesyUtils.to('aaa', 'size'),
+        OnesyUtils.to(`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at ultricies metus, sit amet imperdiet justo. Nunc gravida enim at turpis sagittis, ut posuere neque luctus. Curabitur faucibus ante sed leo malesuada, in molestie lorem fringilla. Nunc ex tellus, aliquet ut ultricies eu, dignissim id lectus. In nec ornare odio, nec gravida dolor. Cras accumsan accumsan cursus. Proin lobortis dui ligula, sed porttitor purus malesuada et. Proin a magna purus. Donec non eleifend diam.
 
 Etiam ut congue est, et dictum sem. Nullam pharetra ex eget augue ornare, molestie consectetur augue mattis. Fusce vel eros id elit aliquam pulvinar. Mauris nec pharetra magna. Maecenas eu interdum lectus. Fusce elementum elit sit amet ligula fermentum, vel fermentum enim facilisis. Sed bibendum sed elit sed ullamcorper. Morbi in ultricies ipsum. Duis non libero nisl. Vestibulum posuere, dolor sed fermentum aliquet, ipsum risus tempor ligula, ac elementum nibh leo sit amet felis. Curabitur vel velit vel eros lobortis consectetur. Integer a placerat mi. Nam sodales imperdiet leo vel dapibus. Ut lacinia blandit ipsum, a rutrum metus pretium in.
 
@@ -824,44 +824,44 @@ Nullam accumsan et elit vel mattis. Pellentesque finibus est et eros tincidunt, 
 
     to('string', async () => {
       const values_ = [
-        AmauiUtils.to(undefined, 'size-format'),
-        AmauiUtils.to('a', 'size-format'),
-        AmauiUtils.to('1', 'size-format'),
-        AmauiUtils.to('14', 'size-format'),
-        AmauiUtils.to('140', 'size-format'),
-        AmauiUtils.to('1404', 'size-format'),
-        AmauiUtils.to('14040', 'size-format'),
-        AmauiUtils.to('1404040', 'size-format'),
-        AmauiUtils.to('140404040', 'size-format'),
-        AmauiUtils.to('14040404040', 'size-format'),
-        AmauiUtils.to('1404040404040', 'size-format'),
-        AmauiUtils.to('140404040404040', 'size-format'),
-        AmauiUtils.to('14040404040404040', 'size-format'),
-        AmauiUtils.to('1404040404040404040', 'size-format'),
-        AmauiUtils.to('140404040404040404040', 'size-format'),
-        AmauiUtils.to('14040404040404040404040', 'size-format'),
-        AmauiUtils.to('1404040404040404040404040', 'size-format'),
+        OnesyUtils.to(undefined, 'size-format'),
+        OnesyUtils.to('a', 'size-format'),
+        OnesyUtils.to('1', 'size-format'),
+        OnesyUtils.to('14', 'size-format'),
+        OnesyUtils.to('140', 'size-format'),
+        OnesyUtils.to('1404', 'size-format'),
+        OnesyUtils.to('14040', 'size-format'),
+        OnesyUtils.to('1404040', 'size-format'),
+        OnesyUtils.to('140404040', 'size-format'),
+        OnesyUtils.to('14040404040', 'size-format'),
+        OnesyUtils.to('1404040404040', 'size-format'),
+        OnesyUtils.to('140404040404040', 'size-format'),
+        OnesyUtils.to('14040404040404040', 'size-format'),
+        OnesyUtils.to('1404040404040404040', 'size-format'),
+        OnesyUtils.to('140404040404040404040', 'size-format'),
+        OnesyUtils.to('14040404040404040404040', 'size-format'),
+        OnesyUtils.to('1404040404040404040404040', 'size-format'),
       ];
 
       const valueBrowsers = await evaluate((window: any) => {
         const values_ = [
-          window.AmauiUtils.to(undefined, 'size-format'),
-          window.AmauiUtils.to('a', 'size-format'),
-          window.AmauiUtils.to('1', 'size-format'),
-          window.AmauiUtils.to('14', 'size-format'),
-          window.AmauiUtils.to('140', 'size-format'),
-          window.AmauiUtils.to('1404', 'size-format'),
-          window.AmauiUtils.to('14040', 'size-format'),
-          window.AmauiUtils.to('1404040', 'size-format'),
-          window.AmauiUtils.to('140404040', 'size-format'),
-          window.AmauiUtils.to('14040404040', 'size-format'),
-          window.AmauiUtils.to('1404040404040', 'size-format'),
-          window.AmauiUtils.to('140404040404040', 'size-format'),
-          window.AmauiUtils.to('14040404040404040', 'size-format'),
-          window.AmauiUtils.to('1404040404040404040', 'size-format'),
-          window.AmauiUtils.to('140404040404040404040', 'size-format'),
-          window.AmauiUtils.to('14040404040404040404040', 'size-format'),
-          window.AmauiUtils.to('1404040404040404040404040', 'size-format'),
+          window.OnesyUtils.to(undefined, 'size-format'),
+          window.OnesyUtils.to('a', 'size-format'),
+          window.OnesyUtils.to('1', 'size-format'),
+          window.OnesyUtils.to('14', 'size-format'),
+          window.OnesyUtils.to('140', 'size-format'),
+          window.OnesyUtils.to('1404', 'size-format'),
+          window.OnesyUtils.to('14040', 'size-format'),
+          window.OnesyUtils.to('1404040', 'size-format'),
+          window.OnesyUtils.to('140404040', 'size-format'),
+          window.OnesyUtils.to('14040404040', 'size-format'),
+          window.OnesyUtils.to('1404040404040', 'size-format'),
+          window.OnesyUtils.to('140404040404040', 'size-format'),
+          window.OnesyUtils.to('14040404040404040', 'size-format'),
+          window.OnesyUtils.to('1404040404040404040', 'size-format'),
+          window.OnesyUtils.to('140404040404040404040', 'size-format'),
+          window.OnesyUtils.to('14040404040404040404040', 'size-format'),
+          window.OnesyUtils.to('1404040404040404040404040', 'size-format'),
         ];
 
         return values_;
@@ -892,44 +892,44 @@ Nullam accumsan et elit vel mattis. Pellentesque finibus est et eros tincidunt, 
 
     to('number', async () => {
       const values_ = [
-        AmauiUtils.to(-1, 'size-format'),
-        AmauiUtils.to(0, 'size-format'),
-        AmauiUtils.to(1, 'size-format'),
-        AmauiUtils.to(14, 'size-format'),
-        AmauiUtils.to(140, 'size-format'),
-        AmauiUtils.to(1404, 'size-format'),
-        AmauiUtils.to(14040, 'size-format'),
-        AmauiUtils.to(1404040, 'size-format'),
-        AmauiUtils.to(140404040, 'size-format'),
-        AmauiUtils.to(14040404040, 'size-format'),
-        AmauiUtils.to(1404040404040, 'size-format'),
-        AmauiUtils.to(140404040404040, 'size-format'),
-        AmauiUtils.to(14040404040404040, 'size-format'),
-        AmauiUtils.to(1404040404040404040, 'size-format'),
-        AmauiUtils.to(140404040404040404040, 'size-format'),
-        AmauiUtils.to(14040404040404040404040, 'size-format'),
-        AmauiUtils.to(1404040404040404040404040, 'size-format'),
+        OnesyUtils.to(-1, 'size-format'),
+        OnesyUtils.to(0, 'size-format'),
+        OnesyUtils.to(1, 'size-format'),
+        OnesyUtils.to(14, 'size-format'),
+        OnesyUtils.to(140, 'size-format'),
+        OnesyUtils.to(1404, 'size-format'),
+        OnesyUtils.to(14040, 'size-format'),
+        OnesyUtils.to(1404040, 'size-format'),
+        OnesyUtils.to(140404040, 'size-format'),
+        OnesyUtils.to(14040404040, 'size-format'),
+        OnesyUtils.to(1404040404040, 'size-format'),
+        OnesyUtils.to(140404040404040, 'size-format'),
+        OnesyUtils.to(14040404040404040, 'size-format'),
+        OnesyUtils.to(1404040404040404040, 'size-format'),
+        OnesyUtils.to(140404040404040404040, 'size-format'),
+        OnesyUtils.to(14040404040404040404040, 'size-format'),
+        OnesyUtils.to(1404040404040404040404040, 'size-format'),
       ];
 
       const valueBrowsers = await evaluate((window: any) => {
         const values_ = [
-          window.AmauiUtils.to(-1, 'size-format'),
-          window.AmauiUtils.to(0, 'size-format'),
-          window.AmauiUtils.to(1, 'size-format'),
-          window.AmauiUtils.to(14, 'size-format'),
-          window.AmauiUtils.to(140, 'size-format'),
-          window.AmauiUtils.to(1404, 'size-format'),
-          window.AmauiUtils.to(14040, 'size-format'),
-          window.AmauiUtils.to(1404040, 'size-format'),
-          window.AmauiUtils.to(140404040, 'size-format'),
-          window.AmauiUtils.to(14040404040, 'size-format'),
-          window.AmauiUtils.to(1404040404040, 'size-format'),
-          window.AmauiUtils.to(140404040404040, 'size-format'),
-          window.AmauiUtils.to(14040404040404040, 'size-format'),
-          window.AmauiUtils.to(1404040404040404040, 'size-format'),
-          window.AmauiUtils.to(140404040404040404040, 'size-format'),
-          window.AmauiUtils.to(14040404040404040404040, 'size-format'),
-          window.AmauiUtils.to(1404040404040404040404040, 'size-format'),
+          window.OnesyUtils.to(-1, 'size-format'),
+          window.OnesyUtils.to(0, 'size-format'),
+          window.OnesyUtils.to(1, 'size-format'),
+          window.OnesyUtils.to(14, 'size-format'),
+          window.OnesyUtils.to(140, 'size-format'),
+          window.OnesyUtils.to(1404, 'size-format'),
+          window.OnesyUtils.to(14040, 'size-format'),
+          window.OnesyUtils.to(1404040, 'size-format'),
+          window.OnesyUtils.to(140404040, 'size-format'),
+          window.OnesyUtils.to(14040404040, 'size-format'),
+          window.OnesyUtils.to(1404040404040, 'size-format'),
+          window.OnesyUtils.to(140404040404040, 'size-format'),
+          window.OnesyUtils.to(14040404040404040, 'size-format'),
+          window.OnesyUtils.to(1404040404040404040, 'size-format'),
+          window.OnesyUtils.to(140404040404040404040, 'size-format'),
+          window.OnesyUtils.to(14040404040404040404040, 'size-format'),
+          window.OnesyUtils.to(1404040404040404040404040, 'size-format'),
         ];
 
         return values_;
@@ -964,16 +964,16 @@ Nullam accumsan et elit vel mattis. Pellentesque finibus est et eros tincidunt, 
 
     to('string', async () => {
       const values_ = [
-        AmauiUtils.to('', 'byte-size'),
-        AmauiUtils.to('a', 'byte-size'),
-        AmauiUtils.to(`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis efficitur neque non rhoncus pellentesque. Nam magna nisl, dignissim non mollis eget, faucibus eget diam. Vivamus pharetra nec orci sed laoreet. Nulla consectetur tortor non rhoncus ultricies. Aliquam semper gravida lacus a iaculis. Quisque volutpat facilisis velit, vel place mi empor vita. Curabitur id gravida mi, vitae rerit dui. Aliquam ut molestie nisi, ut molestie lectus.`, 'byte-size'),
+        OnesyUtils.to('', 'byte-size'),
+        OnesyUtils.to('a', 'byte-size'),
+        OnesyUtils.to(`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis efficitur neque non rhoncus pellentesque. Nam magna nisl, dignissim non mollis eget, faucibus eget diam. Vivamus pharetra nec orci sed laoreet. Nulla consectetur tortor non rhoncus ultricies. Aliquam semper gravida lacus a iaculis. Quisque volutpat facilisis velit, vel place mi empor vita. Curabitur id gravida mi, vitae rerit dui. Aliquam ut molestie nisi, ut molestie lectus.`, 'byte-size'),
       ];
 
       const valueBrowsers = await evaluate((window: any) => {
         const values_ = [
-          window.AmauiUtils.to('', 'byte-size'),
-          window.AmauiUtils.to('a', 'byte-size'),
-          window.AmauiUtils.to(`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis efficitur neque non rhoncus pellentesque. Nam magna nisl, dignissim non mollis eget, faucibus eget diam. Vivamus pharetra nec orci sed laoreet. Nulla consectetur tortor non rhoncus ultricies. Aliquam semper gravida lacus a iaculis. Quisque volutpat facilisis velit, vel place mi empor vita. Curabitur id gravida mi, vitae rerit dui. Aliquam ut molestie nisi, ut molestie lectus.`, 'byte-size'),
+          window.OnesyUtils.to('', 'byte-size'),
+          window.OnesyUtils.to('a', 'byte-size'),
+          window.OnesyUtils.to(`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis efficitur neque non rhoncus pellentesque. Nam magna nisl, dignissim non mollis eget, faucibus eget diam. Vivamus pharetra nec orci sed laoreet. Nulla consectetur tortor non rhoncus ultricies. Aliquam semper gravida lacus a iaculis. Quisque volutpat facilisis velit, vel place mi empor vita. Curabitur id gravida mi, vitae rerit dui. Aliquam ut molestie nisi, ut molestie lectus.`, 'byte-size'),
         ];
 
         return values_;
@@ -990,9 +990,9 @@ Nullam accumsan et elit vel mattis. Pellentesque finibus est et eros tincidunt, 
 
     to('buffer', async () => {
       const values_ = [
-        AmauiUtils.to(Buffer.from([]), 'byte-size'),
-        AmauiUtils.to(Buffer.from([1, 4, 1]), 'byte-size'),
-        AmauiUtils.to(Buffer.from([1, 4]), 'byte-size'),
+        OnesyUtils.to(Buffer.from([]), 'byte-size'),
+        OnesyUtils.to(Buffer.from([1, 4, 1]), 'byte-size'),
+        OnesyUtils.to(Buffer.from([1, 4]), 'byte-size'),
       ];
 
       const valueNode = values_;
@@ -1007,16 +1007,16 @@ Nullam accumsan et elit vel mattis. Pellentesque finibus est et eros tincidunt, 
 
     to('typed array', async () => {
       const values_ = [
-        AmauiUtils.to(new Uint8Array(), 'byte-size'),
-        AmauiUtils.to(new Uint8Array([1, 4, 1]), 'byte-size'),
-        AmauiUtils.to(new Uint16Array([1, 4]), 'byte-size'),
+        OnesyUtils.to(new Uint8Array(), 'byte-size'),
+        OnesyUtils.to(new Uint8Array([1, 4, 1]), 'byte-size'),
+        OnesyUtils.to(new Uint16Array([1, 4]), 'byte-size'),
       ];
 
       const valueBrowsers = await evaluate((window: any) => {
         const values_ = [
-          window.AmauiUtils.to(new Uint8Array(), 'byte-size'),
-          window.AmauiUtils.to(new Uint8Array([1, 4, 1]), 'byte-size'),
-          window.AmauiUtils.to(new Uint16Array([1, 4]), 'byte-size'),
+          window.OnesyUtils.to(new Uint8Array(), 'byte-size'),
+          window.OnesyUtils.to(new Uint8Array([1, 4, 1]), 'byte-size'),
+          window.OnesyUtils.to(new Uint16Array([1, 4]), 'byte-size'),
         ];
 
         return values_;
@@ -1035,7 +1035,7 @@ Nullam accumsan et elit vel mattis. Pellentesque finibus est et eros tincidunt, 
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate(async (window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ('a' as any).to('string'),
@@ -1044,7 +1044,7 @@ Nullam accumsan et elit vel mattis. Pellentesque finibus est et eros tincidunt, 
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ('a' as any).to('string'),

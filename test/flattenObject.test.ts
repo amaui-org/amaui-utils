@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/flattenObject', () => {
+group('@onesy/utils/flattenObject', () => {
 
   post(() => reset());
 
@@ -61,9 +61,9 @@ group('@amaui/utils/flattenObject', () => {
         },
       ];
 
-      return values_.map(value => window.AmauiUtils.flattenObject(value as any));
+      return values_.map(value => window.OnesyUtils.flattenObject(value as any));
     });
-    const valueNode = values_.map(value => AmauiUtils.flattenObject(value as any));
+    const valueNode = values_.map(value => OnesyUtils.flattenObject(value as any));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -88,14 +88,14 @@ group('@amaui/utils/flattenObject', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ({ a: 4, ab: { a: '4' } } as any).flatten(),
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ({ a: 4, ab: { a: '4' } } as any).flatten(),

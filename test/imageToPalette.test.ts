@@ -1,14 +1,14 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate } from '../utils/js/test/utils';
 
-group('@amaui/utils/imageToPalette', () => {
+group('@onesy/utils/imageToPalette', () => {
 
   to('imageToPalette', async () => {
     // Browser
     const valueBrowsers = await evaluate(async (window: any) => {
-      return await window.AmauiUtils.imageToPalette('/utils/images/image.jpg');
+      return await window.OnesyUtils.imageToPalette('/utils/images/image.jpg');
     });
 
     const values = [...valueBrowsers];
@@ -40,7 +40,7 @@ group('@amaui/utils/imageToPalette', () => {
     to('amount', async () => {
       // Browser
       const valueBrowsers = await evaluate(async (window: any) => {
-        return await window.AmauiUtils.imageToPalette('/utils/images/image.jpg', { amount: 14 });
+        return await window.OnesyUtils.imageToPalette('/utils/images/image.jpg', { amount: 14 });
       });
 
       const values = [...valueBrowsers];
@@ -152,7 +152,7 @@ group('@amaui/utils/imageToPalette', () => {
     to('size', async () => {
       // Browser
       const valueBrowsers = await evaluate(async (window: any) => {
-        return await window.AmauiUtils.imageToPalette('/utils/images/image.jpg', { size: 14 });
+        return await window.OnesyUtils.imageToPalette('/utils/images/image.jpg', { size: 14 });
       });
 
       const values = [...valueBrowsers];
@@ -204,7 +204,7 @@ group('@amaui/utils/imageToPalette', () => {
     to('allowCrossOrigin', async () => {
       // Browser
       const valueBrowsers = await evaluate(async (window: any) => {
-        return await window.AmauiUtils.imageToPalette('https://i.imgur.com/SHo6Fub.jpg', { allowCrossOrigin: true });
+        return await window.OnesyUtils.imageToPalette('https://i.imgur.com/SHo6Fub.jpg', { allowCrossOrigin: true });
       });
 
       const values = [...valueBrowsers];

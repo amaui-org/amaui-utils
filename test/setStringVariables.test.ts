@@ -1,28 +1,28 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/setStringVariables', () => {
+group('@onesy/utils/setStringVariables', () => {
 
   post(() => reset());
 
   to('setStringVariables', async () => {
     const values_ = [
-      AmauiUtils.setStringVariables('a'),
-      AmauiUtils.setStringVariables('a {a} a [ab]'),
-      AmauiUtils.setStringVariables('a {a} a [ab]', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }]),
-      AmauiUtils.setStringVariables('a {a} {a} a [ab]', [{ key: 'a', value: 'a' }]),
+      OnesyUtils.setStringVariables('a'),
+      OnesyUtils.setStringVariables('a {a} a [ab]'),
+      OnesyUtils.setStringVariables('a {a} a [ab]', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }]),
+      OnesyUtils.setStringVariables('a {a} {a} a [ab]', [{ key: 'a', value: 'a' }]),
     ];
 
     const valueBrowsers = await evaluate((window: any) => {
       const values_ = [
-        window.AmauiUtils.setStringVariables('a'),
-        window.AmauiUtils.setStringVariables('a {a} a [ab]'),
-        window.AmauiUtils.setStringVariables('a {a} a [ab]', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }]),
-        window.AmauiUtils.setStringVariables('a {a} {a} a [ab]', [{ key: 'a', value: 'a' }]),
+        window.OnesyUtils.setStringVariables('a'),
+        window.OnesyUtils.setStringVariables('a {a} a [ab]'),
+        window.OnesyUtils.setStringVariables('a {a} a [ab]', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }]),
+        window.OnesyUtils.setStringVariables('a {a} {a} a [ab]', [{ key: 'a', value: 'a' }]),
       ];
 
       return values_;
@@ -42,18 +42,18 @@ group('@amaui/utils/setStringVariables', () => {
 
     to('getVariables', async () => {
       const values_ = [
-        AmauiUtils.setStringVariables('a {a} a [ab]', [], { getVariables: true }),
-        AmauiUtils.setStringVariables('a {a} a [ab]', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }], { getVariables: true }),
-        AmauiUtils.setStringVariables('a {a} a [ab]', [], { getVariables: false }),
-        AmauiUtils.setStringVariables('a {a} a [ab]', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }], { getVariables: false }),
+        OnesyUtils.setStringVariables('a {a} a [ab]', [], { getVariables: true }),
+        OnesyUtils.setStringVariables('a {a} a [ab]', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }], { getVariables: true }),
+        OnesyUtils.setStringVariables('a {a} a [ab]', [], { getVariables: false }),
+        OnesyUtils.setStringVariables('a {a} a [ab]', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }], { getVariables: false }),
       ];
 
       const valueBrowsers = await evaluate((window: any) => {
         const values_ = [
-          window.AmauiUtils.setStringVariables('a {a} a [ab]', [], { getVariables: true }),
-          window.AmauiUtils.setStringVariables('a {a} a [ab]', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }], { getVariables: true }),
-          window.AmauiUtils.setStringVariables('a {a} a [ab]', [], { getVariables: false }),
-          window.AmauiUtils.setStringVariables('a {a} a [ab]', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }], { getVariables: false }),
+          window.OnesyUtils.setStringVariables('a {a} a [ab]', [], { getVariables: true }),
+          window.OnesyUtils.setStringVariables('a {a} a [ab]', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }], { getVariables: true }),
+          window.OnesyUtils.setStringVariables('a {a} a [ab]', [], { getVariables: false }),
+          window.OnesyUtils.setStringVariables('a {a} a [ab]', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }], { getVariables: false }),
         ];
 
         return values_;
@@ -71,18 +71,18 @@ group('@amaui/utils/setStringVariables', () => {
 
     to('cleanVariables', async () => {
       const values_ = [
-        AmauiUtils.setStringVariables('a {a} a [ab]', [], { cleanVariables: true }),
-        AmauiUtils.setStringVariables('a {a} a [ab]', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }], { cleanVariables: true }),
-        AmauiUtils.setStringVariables('a {a} a [ab]', [], { cleanVariables: false }),
-        AmauiUtils.setStringVariables('a {a} a [ab]', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }], { cleanVariables: false }),
+        OnesyUtils.setStringVariables('a {a} a [ab]', [], { cleanVariables: true }),
+        OnesyUtils.setStringVariables('a {a} a [ab]', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }], { cleanVariables: true }),
+        OnesyUtils.setStringVariables('a {a} a [ab]', [], { cleanVariables: false }),
+        OnesyUtils.setStringVariables('a {a} a [ab]', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }], { cleanVariables: false }),
       ];
 
       const valueBrowsers = await evaluate((window: any) => {
         const values_ = [
-          window.AmauiUtils.setStringVariables('a {a} a [ab]', [], { cleanVariables: true }),
-          window.AmauiUtils.setStringVariables('a {a} a [ab]', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }], { cleanVariables: true }),
-          window.AmauiUtils.setStringVariables('a {a} a [ab]', [], { cleanVariables: false }),
-          window.AmauiUtils.setStringVariables('a {a} a [ab]', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }], { cleanVariables: false }),
+          window.OnesyUtils.setStringVariables('a {a} a [ab]', [], { cleanVariables: true }),
+          window.OnesyUtils.setStringVariables('a {a} a [ab]', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }], { cleanVariables: true }),
+          window.OnesyUtils.setStringVariables('a {a} a [ab]', [], { cleanVariables: false }),
+          window.OnesyUtils.setStringVariables('a {a} a [ab]', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }], { cleanVariables: false }),
         ];
 
         return values_;
@@ -100,18 +100,18 @@ group('@amaui/utils/setStringVariables', () => {
 
     to('placeholderPrefix', async () => {
       const values_ = [
-        AmauiUtils.setStringVariables('a +0 a +1', [], { getVariables: false, placeholderPrefix: '_' }),
-        AmauiUtils.setStringVariables('a +0 a +1', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }], { getVariables: false, placeholderPrefix: '_' }),
-        AmauiUtils.setStringVariables('a +0 a +1', [], { getVariables: false, placeholderPrefix: '+' }),
-        AmauiUtils.setStringVariables('a +0 a +1', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }], { getVariables: false, placeholderPrefix: '+' }),
+        OnesyUtils.setStringVariables('a +0 a +1', [], { getVariables: false, placeholderPrefix: '_' }),
+        OnesyUtils.setStringVariables('a +0 a +1', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }], { getVariables: false, placeholderPrefix: '_' }),
+        OnesyUtils.setStringVariables('a +0 a +1', [], { getVariables: false, placeholderPrefix: '+' }),
+        OnesyUtils.setStringVariables('a +0 a +1', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }], { getVariables: false, placeholderPrefix: '+' }),
       ];
 
       const valueBrowsers = await evaluate((window: any) => {
         const values_ = [
-          window.AmauiUtils.setStringVariables('a +0 a +1', [], { getVariables: false, placeholderPrefix: '_' }),
-          window.AmauiUtils.setStringVariables('a +0 a +1', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }], { getVariables: false, placeholderPrefix: '_' }),
-          window.AmauiUtils.setStringVariables('a +0 a +1', [], { getVariables: false, placeholderPrefix: '+' }),
-          window.AmauiUtils.setStringVariables('a +0 a +1', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }], { getVariables: false, placeholderPrefix: '+' }),
+          window.OnesyUtils.setStringVariables('a +0 a +1', [], { getVariables: false, placeholderPrefix: '_' }),
+          window.OnesyUtils.setStringVariables('a +0 a +1', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }], { getVariables: false, placeholderPrefix: '_' }),
+          window.OnesyUtils.setStringVariables('a +0 a +1', [], { getVariables: false, placeholderPrefix: '+' }),
+          window.OnesyUtils.setStringVariables('a +0 a +1', [{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }], { getVariables: false, placeholderPrefix: '+' }),
         ];
 
         return values_;
@@ -131,14 +131,14 @@ group('@amaui/utils/setStringVariables', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ('a {a} a [ab]' as any).setVariables([{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }]),
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ('a {a} a [ab]' as any).setVariables([{ key: 'a', value: 'a' }, { key: 'ab', value: 4 }]),

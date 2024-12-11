@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/numberWithCommas', () => {
+group('@onesy/utils/numberWithCommas', () => {
 
   post(() => reset());
 
@@ -45,9 +45,9 @@ group('@amaui/utils/numberWithCommas', () => {
         null,
       ];
 
-      return values_.map((value: any) => window.AmauiUtils.numberWithCommas(value));
+      return values_.map((value: any) => window.OnesyUtils.numberWithCommas(value));
     });
-    const valueNode = values_.map((value: any) => AmauiUtils.numberWithCommas(value));
+    const valueNode = values_.map((value: any) => OnesyUtils.numberWithCommas(value));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -78,9 +78,9 @@ group('@amaui/utils/numberWithCommas', () => {
         1e4,
       ];
 
-      return values_.map((value: any) => window.AmauiUtils.numberWithCommas(value, '.'));
+      return values_.map((value: any) => window.OnesyUtils.numberWithCommas(value, '.'));
     });
-    const valueNode = values_.map((value: any) => AmauiUtils.numberWithCommas(value, '.'));
+    const valueNode = values_.map((value: any) => OnesyUtils.numberWithCommas(value, '.'));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -90,7 +90,7 @@ group('@amaui/utils/numberWithCommas', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         (1e4 as any).withCommas(),
@@ -98,7 +98,7 @@ group('@amaui/utils/numberWithCommas', () => {
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       (1e4 as any).withCommas(),

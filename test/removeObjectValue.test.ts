@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/removeObjectValue', () => {
+group('@onesy/utils/removeObjectValue', () => {
 
   post(() => reset());
 
@@ -64,29 +64,29 @@ group('@amaui/utils/removeObjectValue', () => {
       };
       const value1 = [1, 4, 1, 4, { a: 4 }];
 
-      window.AmauiUtils.removeObjectValue(value, 'a.b.c');
-      window.AmauiUtils.removeObjectValue(value, 'd.b.c.1.c.4');
-      window.AmauiUtils.removeObjectValue(value, 'd.b.a');
-      window.AmauiUtils.removeObjectValue(value1, '4.a');
+      window.OnesyUtils.removeObjectValue(value, 'a.b.c');
+      window.OnesyUtils.removeObjectValue(value, 'd.b.c.1.c.4');
+      window.OnesyUtils.removeObjectValue(value, 'd.b.a');
+      window.OnesyUtils.removeObjectValue(value1, '4.a');
 
       return [
-        window.AmauiUtils.getObjectValue(value, 'a.b.c'),
-        window.AmauiUtils.getObjectValue(value, 'd.b.c.1.c.4'),
-        window.AmauiUtils.getObjectValue(value, 'd.b.a'),
-        window.AmauiUtils.getObjectValue(value1, '4.a'),
+        window.OnesyUtils.getObjectValue(value, 'a.b.c'),
+        window.OnesyUtils.getObjectValue(value, 'd.b.c.1.c.4'),
+        window.OnesyUtils.getObjectValue(value, 'd.b.a'),
+        window.OnesyUtils.getObjectValue(value1, '4.a'),
       ];
     });
 
-    AmauiUtils.removeObjectValue(value, 'a.b.c');
-    AmauiUtils.removeObjectValue(value, 'd.b.c.1.c.4');
-    AmauiUtils.removeObjectValue(value, 'd.b.a');
-    AmauiUtils.removeObjectValue(value1, '4.a');
+    OnesyUtils.removeObjectValue(value, 'a.b.c');
+    OnesyUtils.removeObjectValue(value, 'd.b.c.1.c.4');
+    OnesyUtils.removeObjectValue(value, 'd.b.a');
+    OnesyUtils.removeObjectValue(value1, '4.a');
 
     const valueNode = [
-      AmauiUtils.getObjectValue(value, 'a.b.c'),
-      AmauiUtils.getObjectValue(value, 'd.b.c.1.c.4'),
-      AmauiUtils.getObjectValue(value, 'd.b.a'),
-      AmauiUtils.getObjectValue(value1, '4.a'),
+      OnesyUtils.getObjectValue(value, 'a.b.c'),
+      OnesyUtils.getObjectValue(value, 'd.b.c.1.c.4'),
+      OnesyUtils.getObjectValue(value, 'd.b.a'),
+      OnesyUtils.getObjectValue(value1, '4.a'),
     ];
     const values = [valueNode, ...valueBrowsers];
 
@@ -95,7 +95,7 @@ group('@amaui/utils/removeObjectValue', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ({ a: '4' } as any).removeValue('a'),
@@ -103,7 +103,7 @@ group('@amaui/utils/removeObjectValue', () => {
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ({ a: '4' } as any).removeValue('a'),

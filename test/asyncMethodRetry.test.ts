@@ -1,12 +1,12 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 import { spy } from 'sinon';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/asyncMethodRetry', () => {
+group('@onesy/utils/asyncMethodRetry', () => {
 
   post(() => reset());
 
@@ -24,7 +24,7 @@ group('@amaui/utils/asyncMethodRetry', () => {
       throw new Error();
     });
 
-    await AmauiUtils.asyncMethodRetry(methodMain, 40);
+    await OnesyUtils.asyncMethodRetry(methodMain, 40);
 
     const valueBrowsers = await evaluate(async (window: any) => {
       let retryCount = 3;
@@ -40,7 +40,7 @@ group('@amaui/utils/asyncMethodRetry', () => {
         throw new Error();
       });
 
-      await window.AmauiUtils.asyncMethodRetry(methodMain, 40);
+      await window.OnesyUtils.asyncMethodRetry(methodMain, 40);
 
       return [method.callCount];
     });
@@ -68,7 +68,7 @@ group('@amaui/utils/asyncMethodRetry', () => {
     });
 
     try {
-      await AmauiUtils.asyncMethodRetry(methodMain, 3);
+      await OnesyUtils.asyncMethodRetry(methodMain, 3);
     }
     catch (error) {
       value = error;
@@ -90,7 +90,7 @@ group('@amaui/utils/asyncMethodRetry', () => {
       });
 
       try {
-        await window.AmauiUtils.asyncMethodRetry(methodMain, 3);
+        await window.OnesyUtils.asyncMethodRetry(methodMain, 3);
       }
       catch (error) {
         value = error;
@@ -132,7 +132,7 @@ group('@amaui/utils/asyncMethodRetry', () => {
 
     const start = new Date().getTime();
 
-    await AmauiUtils.asyncMethodRetry(methodMain, 4, 140);
+    await OnesyUtils.asyncMethodRetry(methodMain, 4, 140);
 
     const valueNode = [
       new Date().getTime() - start,
@@ -155,7 +155,7 @@ group('@amaui/utils/asyncMethodRetry', () => {
 
       const start = new Date().getTime();
 
-      await window.AmauiUtils.asyncMethodRetry(methodMain, 4, 140);
+      await window.OnesyUtils.asyncMethodRetry(methodMain, 4, 140);
 
       return [
         new Date().getTime() - start,
@@ -186,7 +186,7 @@ group('@amaui/utils/asyncMethodRetry', () => {
     });
 
     try {
-      await AmauiUtils.asyncMethodRetry(methodMain);
+      await OnesyUtils.asyncMethodRetry(methodMain);
     }
     catch (error) {
       value = error;
@@ -208,7 +208,7 @@ group('@amaui/utils/asyncMethodRetry', () => {
       });
 
       try {
-        await window.AmauiUtils.asyncMethodRetry(methodMain);
+        await window.OnesyUtils.asyncMethodRetry(methodMain);
       }
       catch (error) {
         value = error;

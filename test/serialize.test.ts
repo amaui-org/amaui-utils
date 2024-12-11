@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/serialize', () => {
+group('@onesy/utils/serialize', () => {
 
   post(() => reset());
 
@@ -37,7 +37,7 @@ group('@amaui/utils/serialize', () => {
         },
       ];
 
-      return values_.map(value => window.AmauiUtils.serialize(value));
+      return values_.map(value => window.OnesyUtils.serialize(value));
     });
 
     class A {
@@ -66,7 +66,7 @@ group('@amaui/utils/serialize', () => {
       },
     ];
 
-    const valueNode = values_.map(value => AmauiUtils.serialize(value));
+    const valueNode = values_.map(value => OnesyUtils.serialize(value));
 
     const values = [valueNode, ...valueBrowsers];
 
@@ -98,7 +98,7 @@ group('@amaui/utils/serialize', () => {
         a1
       ];
 
-      return values.map(value => window.AmauiUtils.serialize(value));
+      return values.map(value => window.OnesyUtils.serialize(value));
     });
 
     const a: any = [1, 4];
@@ -112,7 +112,7 @@ group('@amaui/utils/serialize', () => {
       a1
     ];
 
-    const valueNode = values_.map(value => AmauiUtils.serialize(value));
+    const valueNode = values_.map(value => OnesyUtils.serialize(value));
 
     const values = [valueNode, ...valueBrowsers];
 
@@ -124,7 +124,7 @@ group('@amaui/utils/serialize', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ('a' as any).serialize().deserialize(),
@@ -135,7 +135,7 @@ group('@amaui/utils/serialize', () => {
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ('a' as any).serialize().deserialize(),

@@ -1,17 +1,17 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/getEnvironment', () => {
+group('@onesy/utils/getEnvironment', () => {
 
   post(() => reset());
 
   to('getEnvironment', async () => {
-    const valueBrowsers = await evaluate((window: any) => window.AmauiUtils.getEnvironment() === window,);
-    const valueNode = AmauiUtils.getEnvironment() === global;
+    const valueBrowsers = await evaluate((window: any) => window.OnesyUtils.getEnvironment() === window,);
+    const valueNode = OnesyUtils.getEnvironment() === global;
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eq(true));

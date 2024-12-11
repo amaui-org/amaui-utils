@@ -1,12 +1,12 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 import cryptojs from 'crypto-js';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/encrypt', () => {
+group('@onesy/utils/encrypt', () => {
 
   post(() => reset());
 
@@ -64,12 +64,12 @@ group('@amaui/utils/encrypt', () => {
         },
       ];
 
-      return values_.map(value => window.AmauiUtils.encrypt(value, 'amaui'));
+      return values_.map(value => window.OnesyUtils.encrypt(value, 'onesy'));
     });
-    const valueNode = values_.map(value => AmauiUtils.encrypt(value, 'amaui'));
+    const valueNode = values_.map(value => OnesyUtils.encrypt(value, 'onesy'));
     const values = [valueNode, ...valueBrowsers];
 
-    const actualValues = values.map(value => value.map((value_: any) => cryptojs.AES.decrypt(value_, 'amaui').toString(cryptojs.enc.Utf8)));
+    const actualValues = values.map(value => value.map((value_: any) => cryptojs.AES.decrypt(value_, 'onesy').toString(cryptojs.enc.Utf8)));
 
     actualValues.forEach(value => {
       assert(value).eql([
@@ -92,25 +92,25 @@ group('@amaui/utils/encrypt', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
-        ('a' as any).encrypt('amaui').decrypt('amaui'),
-        (4 as any).encrypt('amaui').decrypt('amaui'),
-        (true as any).encrypt('amaui').decrypt('amaui'),
-        ([1, 4, 1] as any).encrypt('amaui').decrypt('amaui'),
-        ({ a: 'a' } as any).encrypt('amaui').decrypt('amaui'),
+        ('a' as any).encrypt('onesy').decrypt('onesy'),
+        (4 as any).encrypt('onesy').decrypt('onesy'),
+        (true as any).encrypt('onesy').decrypt('onesy'),
+        ([1, 4, 1] as any).encrypt('onesy').decrypt('onesy'),
+        ({ a: 'a' } as any).encrypt('onesy').decrypt('onesy'),
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
-      ('a' as any).encrypt('amaui').decrypt('amaui'),
-      (4 as any).encrypt('amaui').decrypt('amaui'),
-      (true as any).encrypt('amaui').decrypt('amaui'),
-      ([1, 4, 1] as any).encrypt('amaui').decrypt('amaui'),
-      ({ a: 'a' } as any).encrypt('amaui').decrypt('amaui'),
+      ('a' as any).encrypt('onesy').decrypt('onesy'),
+      (4 as any).encrypt('onesy').decrypt('onesy'),
+      (true as any).encrypt('onesy').decrypt('onesy'),
+      ([1, 4, 1] as any).encrypt('onesy').decrypt('onesy'),
+      ({ a: 'a' } as any).encrypt('onesy').decrypt('onesy'),
     ];
 
     const values = [valueNode, ...valueBrowsers];

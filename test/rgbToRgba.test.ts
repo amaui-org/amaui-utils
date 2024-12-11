@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/rgbToRgba', () => {
+group('@onesy/utils/rgbToRgba', () => {
 
   post(() => reset());
 
@@ -39,9 +39,9 @@ group('@amaui/utils/rgbToRgba', () => {
         new Array(),
       ];
 
-      return values_.map((value: any) => window.AmauiUtils.rgbToRgba(value));
+      return values_.map((value: any) => window.OnesyUtils.rgbToRgba(value));
     });
-    const valueNode = values_.map((value: any) => AmauiUtils.rgbToRgba(value));
+    const valueNode = values_.map((value: any) => OnesyUtils.rgbToRgba(value));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -66,9 +66,9 @@ group('@amaui/utils/rgbToRgba', () => {
         'rgba(174, 214, 224, 0.44)',
       ];
 
-      return values_.map((value: any) => window.AmauiUtils.rgbToRgba(value, 0.44));
+      return values_.map((value: any) => window.OnesyUtils.rgbToRgba(value, 0.44));
     });
-    const valueNode = values_.map((value: any) => AmauiUtils.rgbToRgba(value, 0.44));
+    const valueNode = values_.map((value: any) => OnesyUtils.rgbToRgba(value, 0.44));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -90,13 +90,13 @@ group('@amaui/utils/rgbToRgba', () => {
       ];
 
       return [
-        window.AmauiUtils.rgbToRgba('rgb(0, 245, 0)', undefined, false),
-        ...values_.map((value: any) => window.AmauiUtils.rgbToRgba(value, undefined, true)),
+        window.OnesyUtils.rgbToRgba('rgb(0, 245, 0)', undefined, false),
+        ...values_.map((value: any) => window.OnesyUtils.rgbToRgba(value, undefined, true)),
       ];
     });
     const valueNode = [
-      AmauiUtils.rgbToRgba('rgb(0, 245, 0)', undefined, false),
-      ...values_.map((value: any) => AmauiUtils.rgbToRgba(value, undefined, true)),
+      OnesyUtils.rgbToRgba('rgb(0, 245, 0)', undefined, false),
+      ...values_.map((value: any) => OnesyUtils.rgbToRgba(value, undefined, true)),
     ];
     const values = [valueNode, ...valueBrowsers];
 
@@ -109,14 +109,14 @@ group('@amaui/utils/rgbToRgba', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ('rgb(140, 140, 0)' as any).rgbToRgba(),
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ('rgb(140, 140, 0)' as any).rgbToRgba(),

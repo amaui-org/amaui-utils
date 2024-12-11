@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/cleanValue', () => {
+group('@onesy/utils/cleanValue', () => {
 
   post(() => reset());
 
@@ -37,9 +37,9 @@ group('@amaui/utils/cleanValue', () => {
         new Array(),
       ];
 
-      return values_.map((value: any) => window.AmauiUtils.cleanValue(value));
+      return values_.map((value: any) => window.OnesyUtils.cleanValue(value));
     });
-    const valueNode = values_.map((value: any) => AmauiUtils.cleanValue(value));
+    const valueNode = values_.map((value: any) => OnesyUtils.cleanValue(value));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -60,10 +60,10 @@ group('@amaui/utils/cleanValue', () => {
 
     to('filters', async () => {
       const valueBrowsers = await evaluate((window: any) => [
-        window.AmauiUtils.cleanValue('a +', { filters: ['+'] }),
+        window.OnesyUtils.cleanValue('a +', { filters: ['+'] }),
       ]);
       const valueNode = [
-        AmauiUtils.cleanValue('a +', { filters: ['+'] }),
+        OnesyUtils.cleanValue('a +', { filters: ['+'] }),
       ];
       const values = [valueNode, ...valueBrowsers];
 
@@ -74,12 +74,12 @@ group('@amaui/utils/cleanValue', () => {
 
     to('className', async () => {
       const valueBrowsers = await evaluate((window: any) => [
-        window.AmauiUtils.cleanValue('BackgroundImage', { className: true }),
-        window.AmauiUtils.cleanValue('BackgroundImage', { className: false }),
+        window.OnesyUtils.cleanValue('BackgroundImage', { className: true }),
+        window.OnesyUtils.cleanValue('BackgroundImage', { className: false }),
       ]);
       const valueNode = [
-        AmauiUtils.cleanValue('BackgroundImage', { className: true }),
-        AmauiUtils.cleanValue('BackgroundImage', { className: false }),
+        OnesyUtils.cleanValue('BackgroundImage', { className: true }),
+        OnesyUtils.cleanValue('BackgroundImage', { className: false }),
       ];
       const values = [valueNode, ...valueBrowsers];
 
@@ -91,12 +91,12 @@ group('@amaui/utils/cleanValue', () => {
 
     to('cammelCaseTransform', async () => {
       const valueBrowsers = await evaluate((window: any) => [
-        window.AmauiUtils.cleanValue('BackgroundImage', { cammelCaseTransform: true }),
-        window.AmauiUtils.cleanValue('BackgroundImage', { cammelCaseTransform: false }),
+        window.OnesyUtils.cleanValue('BackgroundImage', { cammelCaseTransform: true }),
+        window.OnesyUtils.cleanValue('BackgroundImage', { cammelCaseTransform: false }),
       ]);
       const valueNode = [
-        AmauiUtils.cleanValue('BackgroundImage', { cammelCaseTransform: true }),
-        AmauiUtils.cleanValue('BackgroundImage', { cammelCaseTransform: false }),
+        OnesyUtils.cleanValue('BackgroundImage', { cammelCaseTransform: true }),
+        OnesyUtils.cleanValue('BackgroundImage', { cammelCaseTransform: false }),
       ];
       const values = [valueNode, ...valueBrowsers];
 
@@ -108,12 +108,12 @@ group('@amaui/utils/cleanValue', () => {
 
     to('url', async () => {
       const valueBrowsers = await evaluate((window: any) => [
-        window.AmauiUtils.cleanValue('https://asd.com/a/?a=a4', { url: true }),
-        window.AmauiUtils.cleanValue('https://asd.com/a/?a=a4', { url: false }),
+        window.OnesyUtils.cleanValue('https://asd.com/a/?a=a4', { url: true }),
+        window.OnesyUtils.cleanValue('https://asd.com/a/?a=a4', { url: false }),
       ]);
       const valueNode = [
-        AmauiUtils.cleanValue('https://asd.com/a/?a=a4', { url: true }),
-        AmauiUtils.cleanValue('https://asd.com/a/?a=a4', { url: false }),
+        OnesyUtils.cleanValue('https://asd.com/a/?a=a4', { url: true }),
+        OnesyUtils.cleanValue('https://asd.com/a/?a=a4', { url: false }),
       ];
       const values = [valueNode, ...valueBrowsers];
 
@@ -125,10 +125,10 @@ group('@amaui/utils/cleanValue', () => {
 
     to('replaceWith', async () => {
       const valueBrowsers = await evaluate((window: any) => [
-        window.AmauiUtils.cleanValue('a-', { replaceWith: '+' }),
+        window.OnesyUtils.cleanValue('a-', { replaceWith: '+' }),
       ]);
       const valueNode = [
-        AmauiUtils.cleanValue('a-', { replaceWith: '+' }),
+        OnesyUtils.cleanValue('a-', { replaceWith: '+' }),
       ];
       const values = [valueNode, ...valueBrowsers];
 
@@ -139,12 +139,12 @@ group('@amaui/utils/cleanValue', () => {
 
     to('trim', async () => {
       const valueBrowsers = await evaluate((window: any) => [
-        window.AmauiUtils.cleanValue('  a  ', { trim: true }),
-        window.AmauiUtils.cleanValue('  a  ', { trim: false }),
+        window.OnesyUtils.cleanValue('  a  ', { trim: true }),
+        window.OnesyUtils.cleanValue('  a  ', { trim: false }),
       ]);
       const valueNode = [
-        AmauiUtils.cleanValue('  a  ', { trim: true }),
-        AmauiUtils.cleanValue('  a  ', { trim: false }),
+        OnesyUtils.cleanValue('  a  ', { trim: true }),
+        OnesyUtils.cleanValue('  a  ', { trim: false }),
       ];
       const values = [valueNode, ...valueBrowsers];
 
@@ -156,12 +156,12 @@ group('@amaui/utils/cleanValue', () => {
 
     to('capitalize', async () => {
       const valueBrowsers = await evaluate((window: any) => [
-        window.AmauiUtils.cleanValue('a', { capitalize: true }),
-        window.AmauiUtils.cleanValue('a', { capitalize: false }),
+        window.OnesyUtils.cleanValue('a', { capitalize: true }),
+        window.OnesyUtils.cleanValue('a', { capitalize: false }),
       ]);
       const valueNode = [
-        AmauiUtils.cleanValue('a', { capitalize: true }),
-        AmauiUtils.cleanValue('a', { capitalize: false }),
+        OnesyUtils.cleanValue('a', { capitalize: true }),
+        OnesyUtils.cleanValue('a', { capitalize: false }),
       ];
       const values = [valueNode, ...valueBrowsers];
 
@@ -173,12 +173,12 @@ group('@amaui/utils/cleanValue', () => {
 
     to('lowercase', async () => {
       const valueBrowsers = await evaluate((window: any) => [
-        window.AmauiUtils.cleanValue('A', { lowercase: true }),
-        window.AmauiUtils.cleanValue('A', { lowercase: false }),
+        window.OnesyUtils.cleanValue('A', { lowercase: true }),
+        window.OnesyUtils.cleanValue('A', { lowercase: false }),
       ]);
       const valueNode = [
-        AmauiUtils.cleanValue('A', { lowercase: true }),
-        AmauiUtils.cleanValue('A', { lowercase: false }),
+        OnesyUtils.cleanValue('A', { lowercase: true }),
+        OnesyUtils.cleanValue('A', { lowercase: false }),
       ];
       const values = [valueNode, ...valueBrowsers];
 
@@ -192,14 +192,14 @@ group('@amaui/utils/cleanValue', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         (' a, ' as any).clean(),
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       (' a, ' as any).clean(),

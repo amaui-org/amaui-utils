@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/randomString', () => {
+group('@onesy/utils/randomString', () => {
 
   post(() => reset());
 
@@ -17,7 +17,7 @@ group('@amaui/utils/randomString', () => {
 
     const lowPriorityLength = Math.ceil(14 * 0.1);
 
-    const value: string = AmauiUtils.randomString(14);
+    const value: string = OnesyUtils.randomString(14);
 
     const used = [
       [lowercase, 14 - (lowPriorityLength * 3)],
@@ -27,12 +27,12 @@ group('@amaui/utils/randomString', () => {
     ];
 
     const values_ = [
-      AmauiUtils.randomString().length === 10,
+      OnesyUtils.randomString().length === 10,
       used.every((item: any) => (
         value.split('').filter(item_ => item[0].indexOf(item_) > -1).length === item[1]
       )),
       new Array(1e4).fill('').map(() => {
-        const value_ = AmauiUtils.randomString(4).length;
+        const value_ = OnesyUtils.randomString(4).length;
 
         return value_ >= 1 && value_ <= 4;
       }),
@@ -46,7 +46,7 @@ group('@amaui/utils/randomString', () => {
 
       const lowPriorityLength = Math.ceil(14 * 0.1);
 
-      const value: string = window.AmauiUtils.randomString(14);
+      const value: string = window.OnesyUtils.randomString(14);
 
       const used = [
         [lowercase, 14 - (lowPriorityLength * 3)],
@@ -56,12 +56,12 @@ group('@amaui/utils/randomString', () => {
       ];
 
       const values_ = [
-        window.AmauiUtils.randomString().length === 10,
+        window.OnesyUtils.randomString().length === 10,
         used.every((item: any) => (
           value.split('').filter(item_ => item[0].indexOf(item_) > -1).length === item[1]
         )),
         new Array(1e4).fill('').map(() => {
-          const value_ = window.AmauiUtils.randomString(4).length;
+          const value_ = window.OnesyUtils.randomString(4).length;
 
           return value_ >= 1 && value_ <= 4;
         }),

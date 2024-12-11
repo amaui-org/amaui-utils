@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/unique', () => {
+group('@onesy/utils/unique', () => {
 
   post(() => reset());
 
@@ -46,9 +46,9 @@ group('@amaui/utils/unique', () => {
         [1, 3]
       ];
 
-      return window.AmauiUtils.unique(value, 'a.a', '1');
+      return window.OnesyUtils.unique(value, 'a.a', '1');
     });
-    const valueNode = AmauiUtils.unique(value, 'a.a', '1');
+    const valueNode = OnesyUtils.unique(value, 'a.a', '1');
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(item => assert(item).eql([
@@ -88,9 +88,9 @@ group('@amaui/utils/unique', () => {
         3,
       ];
 
-      return window.AmauiUtils.unique(value);
+      return window.OnesyUtils.unique(value);
     });
-    const valueNode = AmauiUtils.unique(value);
+    const valueNode = OnesyUtils.unique(value);
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(item => assert(item).eql([
@@ -122,9 +122,9 @@ group('@amaui/utils/unique', () => {
         [1, 3],
       ];
 
-      return window.AmauiUtils.unique(value, 'a.a', '1');
+      return window.OnesyUtils.unique(value, 'a.a', '1');
     });
-    const valueNode = AmauiUtils.unique(value, 'a.a', '1');
+    const valueNode = OnesyUtils.unique(value, 'a.a', '1');
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(item => assert(item).eql([
@@ -156,9 +156,9 @@ group('@amaui/utils/unique', () => {
         [1, 3],
       ];
 
-      return window.AmauiUtils.unique(value);
+      return window.OnesyUtils.unique(value);
     });
-    const valueNode = AmauiUtils.unique(value);
+    const valueNode = OnesyUtils.unique(value);
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(item => assert(item).eql([
@@ -173,14 +173,14 @@ group('@amaui/utils/unique', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ([1, 4, 1] as any).unique(),
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ([1, 4, 1] as any).unique(),

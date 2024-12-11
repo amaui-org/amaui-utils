@@ -1,15 +1,15 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-group('@amaui/utils/elementToCanvas', () => {
+group('@onesy/utils/elementToCanvas', () => {
 
   post(() => reset());
 
   to('elementToCanvas', async () => {
     const valueBrowsers = await evaluate(async (window: any) => {
-      const canvas = await window.AmauiUtils.elementToCanvas(window.document.body);
+      const canvas = await window.OnesyUtils.elementToCanvas(window.document.body);
 
       return canvas.tagName === 'CANVAS';
     });

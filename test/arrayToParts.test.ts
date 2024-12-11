@@ -1,11 +1,11 @@
 /* tslint:disable: no-shadowed-variable */
-import { assert } from '@amaui/test';
+import { assert } from '@onesy/test';
 
 import { evaluate, reset } from '../utils/js/test/utils';
 
-import * as AmauiUtils from '../src';
+import * as OnesyUtils from '../src';
 
-group('@amaui/utils/arrayToParts', () => {
+group('@onesy/utils/arrayToParts', () => {
 
   post(() => reset());
 
@@ -37,9 +37,9 @@ group('@amaui/utils/arrayToParts', () => {
         [new Object()],
       ];
 
-      return values_.map((value: [any, any]) => window.AmauiUtils.arrayToParts(...value));
+      return values_.map((value: [any, any]) => window.OnesyUtils.arrayToParts(...value));
     });
-    const valueNode = values_.map((value: [any, any]) => AmauiUtils.arrayToParts(...value));
+    const valueNode = values_.map((value: [any, any]) => OnesyUtils.arrayToParts(...value));
     const values = [valueNode, ...valueBrowsers];
 
     values.forEach(value => assert(value).eql([
@@ -58,14 +58,14 @@ group('@amaui/utils/arrayToParts', () => {
 
   to('with polyfills additions', async () => {
     const valueBrowsers = await evaluate((window: any) => {
-      window.AmauiUtils.polyfills();
+      window.OnesyUtils.polyfills();
 
       return [
         ([1, 4] as any).toParts(1),
       ];
     });
 
-    AmauiUtils.polyfills();
+    OnesyUtils.polyfills();
 
     const valueNode = [
       ([1, 4] as any).toParts(1),
