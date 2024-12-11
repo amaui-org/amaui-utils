@@ -30,7 +30,7 @@ export interface IBrowsers<T = IBrowser> {
 type TOpen = ['browser'?, 'context'?, 'page'?];
 
 export const reset = () => {
-  const values = [String, Number, Boolean, Array, Object, Function, ...(OnesyUtils.is('browser') ? [Blob, File] : [])];
+  const values = [String, Number, Boolean, Array, Object, Function, ...(OnesyUtils.isEnvironment('browser') ? [Blob, File] : [])];
 
   values.forEach(value => Object.keys(value.prototype).forEach(key => { if (OnesyUtils[key]) delete value.prototype[key]; }));
 };
